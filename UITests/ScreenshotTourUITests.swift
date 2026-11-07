@@ -20,7 +20,7 @@ final class ScreenshotTourUITests: NoirUITestCase {
         shot(p + "02_prologue_choice")
         element("prologue.next").tap()
         element("prologue.open").tap()
-        wait("coach")
+        wait("coach.title")
         shot(p + "03_briefing")
         app.terminate()
 
@@ -33,7 +33,7 @@ final class ScreenshotTourUITests: NoirUITestCase {
         tab(1)
         wait("screen.ops")
         shot(p + "06_operations")
-        reveal(element("line.VELVET"))
+        reveal(element("line.VELVET.buy"))
         shot(p + "07_operations_lines")
         tab(2)
         wait("screen.city")
@@ -63,7 +63,7 @@ final class ScreenshotTourUITests: NoirUITestCase {
         element("network.section").buttons.element(boundBy: 2).tap()
         shot(p + "18_legacy_summary")
         element("toolbar.settings").tap()
-        wait("screen.settings")
+        wait("settings.done")
         shot(p + "19_settings")
         app.terminate()
 

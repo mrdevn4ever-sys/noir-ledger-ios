@@ -36,7 +36,6 @@ struct EventSheet: View {
             .toolbarBackground(.visible, for: .navigationBar)
         }
         .presentationDragIndicator(.visible)
-        .accessibilityIdentifier("sheet.event")
     }
 
     private func situation(_ p: PendingEvent) -> String {
@@ -182,7 +181,6 @@ struct RaidSheet: View {
         }
         .background(Noir.ground)
         .interactiveDismissDisabled()
-        .accessibilityIdentifier("sheet.raid")
     }
 }
 
@@ -218,7 +216,6 @@ struct OfflineSheet: View {
                         ValueRow(label: t("offline_influence"), value: "+" + t.decimal(report.influenceGained, digits: 1), symbol: "person.3")
                         ValueRow(label: t("offline_heat"), value: t("offline_heat_val", t.decimal(report.heatBefore, digits: 0), t.decimal(report.heatAfter, digits: 0)), symbol: "flame")
                     }
-                    .accessibilityIdentifier("offline.books")
                     Text(verbatim: t("offline_rules")).font(.footnote).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
                 }
                 Button { store.offlineReport = nil } label: { Text(verbatim: t("offline_ok")) }
@@ -228,6 +225,5 @@ struct OfflineSheet: View {
             .padding(Noir.s4)
         }
         .background(Noir.ground)
-        .accessibilityIdentifier("sheet.offline")
     }
 }

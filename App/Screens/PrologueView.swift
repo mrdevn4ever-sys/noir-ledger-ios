@@ -35,9 +35,9 @@ struct PrologueView: View {
             .padding(Noir.s4)
             .frame(maxWidth: 560)
             .frame(maxWidth: .infinity)
+            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.prologue", title: "NOIR LEDGER") }
         }
         .background(Noir.ground)
-        .accessibilityIdentifier("screen.prologue")
     }
 
     private var pageIndicator: some View {

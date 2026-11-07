@@ -182,13 +182,13 @@ struct EpilogueView: View {
             .padding(Noir.s4)
             .frame(maxWidth: 600)
             .frame(maxWidth: .infinity)
+            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.epilogue", title: t("epilogue_title")) }
         }
         .background(Noir.ground)
         .navigationTitle(Text(verbatim: t("epilogue_title")))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Noir.ground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .accessibilityIdentifier("screen.epilogue")
     }
 
     private func finish() {

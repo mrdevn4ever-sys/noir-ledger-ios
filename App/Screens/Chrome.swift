@@ -24,6 +24,7 @@ struct TabScreen<Content: View>: View {
             .padding(.horizontal, Noir.s4)
             .padding(.top, Noir.s3)
             .padding(.bottom, Noir.s6)
+            .background(alignment: .topLeading) { ScreenMarker(identifier: identifier, title: t(titleKey)) }
         }
         .scrollDismissesKeyboard(.never)
         .background(Noir.ground)
@@ -46,7 +47,21 @@ struct TabScreen<Content: View>: View {
                 .accessibilityIdentifier("toolbar.settings")
             }
         }
-        .accessibilityIdentifier(identifier)
+    }
+}
+
+/// An invisible, one-point element that names the screen for UI automation. Identifiers on containers would
+/// propagate to (and override) the identifiers of every control inside them, so screens use this marker instead.
+struct ScreenMarker: View {
+    let identifier: String
+    let title: String
+
+    var body: some View {
+        Color.clear
+            .frame(width: 1, height: 1)
+            .accessibilityElement()
+            .accessibilityLabel(Text(verbatim: title))
+            .accessibilityIdentifier(identifier)
     }
 }
 
@@ -68,6 +83,7 @@ struct DetailScreen<Content: View>: View {
                 .padding(.horizontal, Noir.s4)
                 .padding(.top, Noir.s3)
                 .padding(.bottom, Noir.s6)
+                .background(alignment: .topLeading) { ScreenMarker(identifier: identifier, title: title) }
         }
         .background(Noir.ground)
         .safeAreaInset(edge: .top, spacing: 0) { HUDView() }
@@ -76,7 +92,6 @@ struct DetailScreen<Content: View>: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Noir.ground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .accessibilityIdentifier(identifier)
     }
 }
 
@@ -283,7 +298,6 @@ struct TutorialCoach: View {
         .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.paperEdge, lineWidth: 1))
         .environment(\.noirSurface, .paper)
         .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("coach")
     }
 
     private func bodyText(_ step: TutorialStep) -> String {

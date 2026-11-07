@@ -107,7 +107,6 @@ struct SettingsView: View {
         } message: {
             Text(verbatim: t("reset_confirm_body"))
         }
-        .accessibilityIdentifier("screen.settings")
     }
 
     private var appVersion: String {

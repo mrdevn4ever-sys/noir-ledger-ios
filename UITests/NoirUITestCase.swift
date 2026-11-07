@@ -47,8 +47,8 @@ class NoirUITestCase: XCTestCase {
         var bottom = app.frame.maxY
         let tabBar = app.tabBars.firstMatch
         if tabBar.exists { bottom = min(bottom, tabBar.frame.minY) }
-        let coach = element("coach")
-        if coach.exists && coach.frame.height > 0 { bottom = min(bottom, coach.frame.minY) }
+        let coach = element("coach.toggle")
+        if coach.exists && coach.frame.height > 0 { bottom = min(bottom, coach.frame.minY - 8) }
         return bottom - 8
     }
 

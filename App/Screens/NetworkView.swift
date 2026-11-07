@@ -60,7 +60,7 @@ private struct RolePanel: View {
             HStack {
                 Label { Text(verbatim: t(Labels.role(role))).font(.headline) } icon: { Mark(Glyph.role(role), size: 24) }
                     .accessibilityAddTraits(.isHeader)
-                Spacer()
+                            Spacer()
                 if member == nil { StatusChip(text: t("crew_vacant"), symbol: "person.crop.circle.badge.questionmark") }
             }
             if let member, let def = member.def {
@@ -182,7 +182,6 @@ private struct ImprovementsSection: View {
                 PanelDivider()
                 ForEach(nodes.filter { $0.tier == 3 }, id: \.self) { UpgradeRow(upgrade: $0, state: state) }
             }
-            .accessibilityIdentifier("branch.\(branch.rawValue)")
         }
     }
 }
@@ -198,7 +197,7 @@ private struct UpgradeRow: View {
         VStack(alignment: .leading, spacing: Noir.s1) {
             HStack(alignment: .firstTextBaseline) {
                 Text(verbatim: t(Labels.upgrade(upgrade))).font(.subheadline.weight(.semibold))
-                Spacer()
+                            Spacer()
                 Text(verbatim: t("tier_label", upgrade.tier)).font(.caption).foregroundStyle(Noir.inkMuted)
             }
             Text(verbatim: t(Labels.upgradeDesc(upgrade))).font(.footnote).foregroundStyle(Noir.inkSoft)

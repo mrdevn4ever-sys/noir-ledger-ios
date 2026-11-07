@@ -57,7 +57,6 @@ private struct WonPanel: View {
                 .noirButton(.primary)
                 .accessibilityIdentifier("ledger.newGamePlus")
         }
-        .accessibilityIdentifier("ledger.won")
     }
 }
 
@@ -94,7 +93,6 @@ struct ChapterPanel: View {
                 }
             }
         }
-        .accessibilityIdentifier("ledger.chapter")
     }
 }
 
@@ -199,7 +197,6 @@ private struct AccountsPanel: View {
                      valueColor: state.wagesUnpaid ? Noir.paperRed : nil)
             ValueRow(label: t("heat_cover"), value: t.decimal(Economy.cover(state, m), digits: 0), symbol: "shield")
         }
-        .accessibilityIdentifier("ledger.accounts")
     }
 
     private func balance(_ a: Account) -> Double {
@@ -218,7 +215,7 @@ private struct JournalPanel: View {
     var body: some View {
         Panel(.paper) {
             Text(verbatim: t("journal_title")).font(.headline).accessibilityAddTraits(.isHeader)
-            if journal.isEmpty {
+                    if journal.isEmpty {
                 Text(verbatim: t("journal_empty")).font(.subheadline).foregroundStyle(Noir.paperInkSoft)
             } else {
                 ForEach(journal.prefix(20)) { entry in

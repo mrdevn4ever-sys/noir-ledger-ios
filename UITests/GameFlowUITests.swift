@@ -19,7 +19,7 @@ final class GameFlowUITests: NoirUITestCase {
         element("prologue.open").tap()
 
         // 1 Start the line (Operations).
-        wait("coach")
+        wait("coach.title")
         shot("en_05_briefing_coach")
         element("coach.go").tap()
         wait("screen.ops")
@@ -39,7 +39,7 @@ final class GameFlowUITests: NoirUITestCase {
         wait("screen.ledger")
         shot("en_08_briefing_heat")
         wait("coach.ack").tap()
-        XCTAssertFalse(element("coach").waitForExistence(timeout: 2), "the briefing is finished")
+        XCTAssertFalse(element("coach.title").waitForExistence(timeout: 2), "the briefing is finished")
         wait("ledger.chapterTitle")
         shot("en_09_chapter1")
     }
@@ -101,8 +101,7 @@ final class GameFlowUITests: NoirUITestCase {
         app.terminate()
 
         launch(["-qa-away", "7200"])
-        wait("sheet.offline")
-        wait("offline.title")
+                wait("offline.title")
         shot("en_20_offline_return")
         element("offline.ok").tap()
         tab(1)
@@ -118,11 +117,11 @@ final class GameFlowUITests: NoirUITestCase {
         wait("money.investigation")
         shot("en_21_investigation")
         tapRevealed("money.bribe")
-        wait("sheet.raid", 40)
+        wait("raid.title", 40)
         wait("raid.recover")
         shot("en_22_raid")
         element("raid.ack").tap()
-        XCTAssertFalse(element("sheet.raid").waitForExistence(timeout: 3))
+        XCTAssertFalse(element("raid.title").waitForExistence(timeout: 3))
         XCTAssertFalse(element("hud.investigation").exists, "the raid closed the case")
         tab(2)
         wait("screen.city")
@@ -172,7 +171,7 @@ final class GameFlowUITests: NoirUITestCase {
         wait("screen.ledger")
         XCTAssertTrue(app.tabBars.buttons["Ledger"].exists)
         element("toolbar.settings").tap()
-        wait("screen.settings")
+        wait("settings.done")
         app.buttons["Deutsch"].tap()
         XCTAssertTrue(app.navigationBars["Einstellungen"].waitForExistence(timeout: 5))
         shot("de_40_settings")
@@ -209,14 +208,14 @@ final class GameFlowUITests: NoirUITestCase {
     func testResetNeedsConfirmation() {
         launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
         element("toolbar.settings").tap()
-        wait("screen.settings")
+        wait("settings.done")
         tapRevealed("settings.reset")
-        let erase = app.alerts.buttons["Erase"]
+        let erase = app.alerts.buttons["Erase"].firstMatch
         XCTAssertTrue(erase.waitForExistence(timeout: 5))
         shot("en_41_reset_confirm")
-        app.alerts.buttons["Cancel"].tap()
+        app.alerts.buttons["Cancel"].firstMatch.tap()
         tapRevealed("settings.reset")
-        app.alerts.buttons["Erase"].tap()
+        app.alerts.buttons["Erase"].firstMatch.tap()
         wait("screen.prologue")
     }
 

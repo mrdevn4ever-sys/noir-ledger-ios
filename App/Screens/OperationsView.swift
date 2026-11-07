@@ -100,7 +100,6 @@ private struct LinePanel: View {
                 TrackRow(product: product, track: track, state: state)
             }
         }
-        .accessibilityIdentifier("line.\(product.rawValue)")
     }
 
     private func statusSymbol(_ s: LineStatus) -> String {
@@ -180,7 +179,6 @@ private struct LockedLinePanel: View {
                 }
             }
         }
-        .accessibilityIdentifier("line.\(product.rawValue)")
     }
 
     private func profile(_ key: String, _ gradeKey: String) -> some View {

@@ -80,7 +80,6 @@ private struct HeatPanel: View {
                 Text(verbatim: t("laylow_desc")).font(.footnote).foregroundStyle(Noir.inkSoft)
             }
         }
-        .accessibilityIdentifier("money.heat")
     }
 }
 
@@ -99,7 +98,7 @@ private struct FrontPanel: View {
             HStack(alignment: .firstTextBaseline) {
                 Label { Text(verbatim: t(Labels.front(front))).font(.headline) } icon: { Mark(Glyph.front(front), size: 24) }
                     .accessibilityAddTraits(.isHeader)
-                Spacer()
+                            Spacer()
                 if fs.owned {
                     Text(verbatim: t("level", fs.level, Content.maxFrontLevel)).font(.caption.weight(.semibold)).monospacedDigit()
                 } else {
