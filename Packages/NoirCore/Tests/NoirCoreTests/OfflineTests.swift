@@ -7,7 +7,7 @@ struct OfflineTests {
 
     private func base() -> GameState {
         var s = TS.rich(chapter: 2)
-        s.lastWallClockMs = 1_000_000
+        s.lastWallClockMs = 1_700_000_000_000
         return s
     }
 

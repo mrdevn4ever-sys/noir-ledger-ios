@@ -166,12 +166,6 @@ public enum Engine {
         var s = state
         let m = Economy.mods(s)
 
-        func payOrFail(_ c: Cost) -> Bool {
-            guard c.affordable(s) else { return false }
-            c.pay(&s)
-            return true
-        }
-
         switch a {
         case .choosePrologue(let choice):
             if s.campaign.prologueDone { return err(state, .invalid) }
@@ -198,7 +192,7 @@ public enum Engine {
             let def = Content.product(p)
             if s.line(p).owned { return err(state, .invalid) }
             if s.campaign.chapter < def.unlockChapter { return err(state, .locked) }
-            guard payOrFail(Cost(dirty: def.lineCost)) else { return err(state, .notAffordable) }
+            guard pay(Cost(dirty: def.lineCost), from: &s) else { return err(state, .notAffordable) }
             s.updateLine(p) { l in
                 l.owned = true
                 l.running = true
@@ -211,7 +205,7 @@ public enum Engine {
             guard l.owned else { return err(state, .locked) }
             let lvl = l.level(track)
             if lvl >= Content.maxLineLevel { return err(state, .maxLevel) }
-            guard payOrFail(Cost(dirty: Content.lineUpgradeCost(p, track, currentLevel: lvl))) else { return err(state, .notAffordable) }
+            guard pay(Cost(dirty: Content.lineUpgradeCost(p, track, currentLevel: lvl)), from: &s) else { return err(state, .notAffordable) }
             s.updateLine(p) { l in
                 switch track {
                 case .capacity: l.capacityLevel += 1
@@ -222,7 +216,7 @@ public enum Engine {
 
         case .upgradeStorage:
             if s.storageLevel >= Content.maxStorageLevel { return err(state, .maxLevel) }
-            guard payOrFail(Cost(dirty: Content.storageCost(currentLevel: s.storageLevel))) else { return err(state, .notAffordable) }
+            guard pay(Cost(dirty: Content.storageCost(currentLevel: s.storageLevel)), from: &s) else { return err(state, .notAffordable) }
             s.storageLevel += 1
 
         case .unlockDistrict(let d):
@@ -230,7 +224,7 @@ public enum Engine {
             if s.district(d).unlocked { return err(state, .invalid) }
             if s.campaign.chapter < def.unlockChapter { return err(state, .locked) }
             if s.influence < def.unlockInfluence { return err(state, .requirements) }
-            guard payOrFail(Economy.districtUnlockCost(s, d, m)) else { return err(state, .notAffordable) }
+            guard pay(Economy.districtUnlockCost(s, d, m), from: &s) else { return err(state, .notAffordable) }
             s.updateDistrict(d) { $0.unlocked = true }
             s.log(.districtUnlocked, ref: d.rawValue)
 
@@ -241,7 +235,7 @@ public enum Engine {
             if lvl >= Content.maxRouteLevel { return err(state, .maxLevel) }
             let free = s.campaign.tutorial != .done && lvl == 0
             if !free {
-                guard payOrFail(Cost(dirty: Content.routeCost(d, p, currentLevel: lvl))) else { return err(state, .notAffordable) }
+                guard pay(Cost(dirty: Content.routeCost(d, p, currentLevel: lvl)), from: &s) else { return err(state, .notAffordable) }
             }
             s.updateDistrict(d) { $0.routes[p] = lvl + 1 }
 
@@ -250,7 +244,7 @@ public enum Engine {
             guard ds.unlocked else { return err(state, .locked) }
             if ds.turfReadyAt > s.time { return err(state, .cooldown) }
             if ds.rival <= 0 { return err(state, .maxLevel) }
-            guard payOrFail(Economy.turfCost(s, d)) else { return err(state, .notAffordable) }
+            guard pay(Economy.turfCost(s, d), from: &s) else { return err(state, .notAffordable) }
             let gain = Economy.turfGain(s, d, m)
             let readyAt = s.time + Content.turfCooldown
             s.updateDistrict(d) { ds in
@@ -265,7 +259,7 @@ public enum Engine {
             let def = Content.front(f)
             if s.front(f).owned { return err(state, .invalid) }
             guard s.district(def.district).unlocked else { return err(state, .locked) }
-            guard payOrFail(def.buy) else { return err(state, .notAffordable) }
+            guard pay(def.buy, from: &s) else { return err(state, .notAffordable) }
             s.updateFront(f) { fs in
                 fs.owned = true
                 fs.active = true
@@ -276,7 +270,7 @@ public enum Engine {
             let fs = s.front(f)
             guard fs.owned else { return err(state, .locked) }
             if fs.level >= Content.maxFrontLevel { return err(state, .maxLevel) }
-            guard payOrFail(Cost(clean: Content.frontUpgradeCost(f, currentLevel: fs.level) * m.frontUpgradeCost)) else {
+            guard pay(Cost(clean: Content.frontUpgradeCost(f, currentLevel: fs.level) * m.frontUpgradeCost), from: &s) else {
                 return err(state, .notAffordable)
             }
             s.updateFront(f) { $0.level += 1 }
@@ -292,14 +286,14 @@ public enum Engine {
         case .upgradeProtection:
             if s.campaign.chapter < 2 { return err(state, .locked) }
             if s.protectionLevel >= Content.maxProtectionLevel { return err(state, .maxLevel) }
-            guard payOrFail(Cost(clean: Content.protectionCost(currentLevel: s.protectionLevel))) else { return err(state, .notAffordable) }
+            guard pay(Cost(clean: Content.protectionCost(currentLevel: s.protectionLevel)), from: &s) else { return err(state, .notAffordable) }
             s.protectionLevel += 1
             s.log(.protection, amount: Double(s.protectionLevel))
 
         case .donate:
             if s.campaign.chapter < 2 { return err(state, .locked) }
             let c = Economy.donationCost(s)
-            guard payOrFail(Cost(clean: c)) else { return err(state, .notAffordable) }
+            guard pay(Cost(clean: c), from: &s) else { return err(state, .notAffordable) }
             let gained = Economy.donationInfluence(s, clean: c)
             s.influence += gained
             s.log(.donation, amount: c, amount2: gained)
@@ -308,7 +302,7 @@ public enum Engine {
             if s.campaign.chapter < 1 { return err(state, .locked) }
             if s.bribeReadyAt > s.time { return err(state, .cooldown) }
             if s.heat <= 0.5 { return err(state, .invalid) }
-            guard payOrFail(Economy.bribeCost(s, m)) else { return err(state, .notAffordable) }
+            guard pay(Economy.bribeCost(s, m), from: &s) else { return err(state, .notAffordable) }
             s.heat = max(0, s.heat - Economy.bribeHeat)
             s.bribeReadyAt = s.time + Content.bribeCooldown
             s.log(.bribe, amount: Economy.bribeHeat)
@@ -323,7 +317,7 @@ public enum Engine {
             if s.crew.contains(where: { $0.defId == crewId }) { return err(state, .invalid) }
             if s.campaign.chapter < def.unlockChapter { return err(state, .locked) }
             if s.crewIn(def.role) != nil { return err(state, .roleOccupied) }
-            guard payOrFail(Cost(dirty: hireCost(s, def))) else { return err(state, .notAffordable) }
+            guard pay(Cost(dirty: hireCost(s, def)), from: &s) else { return err(state, .notAffordable) }
             s.crew.append(CrewMember(defId: def.id, loyalty: s.departed.contains(crewId) ? 45 : 60, hiredAt: s.time))
             s.log(.crewHired, ref: def.id)
 
@@ -337,7 +331,7 @@ public enum Engine {
         case .crewBonus(let crewId):
             guard let idx = s.crew.firstIndex(where: { $0.defId == crewId }) else { return err(state, .invalid) }
             if s.crew[idx].loyalty >= 100 { return err(state, .maxLevel) }
-            guard payOrFail(Cost(dirty: bonusCost(s.crew[idx]))) else { return err(state, .notAffordable) }
+            guard pay(Cost(dirty: bonusCost(s.crew[idx])), from: &s) else { return err(state, .notAffordable) }
             s.crew[idx].loyalty = min(100, s.crew[idx].loyalty + 15)
 
         case .buyUpgrade(let u):
@@ -347,7 +341,7 @@ public enum Engine {
             case .chapterLocked: return err(state, .locked)
             case .available: break
             }
-            guard payOrFail(Content.upgradeCost(u)) else { return err(state, .notAffordable) }
+            guard pay(Content.upgradeCost(u), from: &s) else { return err(state, .notAffordable) }
             s.upgrades.append(u)
             s.log(.upgrade, ref: u.rawValue)
 
@@ -375,7 +369,7 @@ public enum Engine {
             guard let phase = Campaign.currentPhase(s),
                   let choice = Campaign.finalChoices(s, phase).first(where: { $0.key == key }) else { return err(state, .invalid) }
             if let role = choice.requiresRole, s.crewIn(role) == nil { return err(state, .requirements) }
-            guard payOrFail(choice.cost) else { return err(state, .notAffordable) }
+            guard pay(choice.cost, from: &s) else { return err(state, .notAffordable) }
             s.heat = min(100, s.heat + choice.heat)
             let roll = choice.chance >= 1 ? 0 : Rng.unit(&s)
             let success = roll < choice.chance
@@ -387,7 +381,8 @@ public enum Engine {
             } else {
                 s.campaign.finalOp?.lastResult = .failure
                 s.campaign.finalOp?.failures += 1
-                s.campaign.finalOp?.readyAt = s.time + Content.finalPhaseCooldown
+                let readyAt = s.time + Content.finalPhaseCooldown
+                s.campaign.finalOp?.readyAt = readyAt
                 s.heat = min(100, s.heat + 10)
                 s.log(.finalPhaseLost, ref: String(phase.rawValue))
             }
@@ -414,6 +409,13 @@ public enum Engine {
             s.legacy.perks[perk] = rank + 1
         }
         return ok(&s)
+    }
+
+    /// Pays `c` if affordable. Returns false (and changes nothing) otherwise.
+    private static func pay(_ c: Cost, from s: inout GameState) -> Bool {
+        guard c.affordable(s) else { return false }
+        c.pay(&s)
+        return true
     }
 
     private static func err(_ s: GameState, _ e: ActionError) -> ActionResult {
