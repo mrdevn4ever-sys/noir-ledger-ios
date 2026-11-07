@@ -1,0 +1,38 @@
+name: iOS build and test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: NoirCore (swift test on macOS host)
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain inventory
+        run: |
+          echo "SHA=$GITHUB_SHA"
+          sw_vers
+          xcodebuild -version
+          swift --version
+      - name: Build and test the deterministic core
+        working-directory: Packages/NoirCore
+        run: swift test 2>&1 | tee ../../core-tests.log
+      - name: Upload core test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-tests-${{ github.sha }}
+          path: core-tests.log
