@@ -1,0 +1,26 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Project generators / package caches
+.build/
+.swiftpm/
+Tuist/.build/
+
+# CI and local QA artifacts
+.qa/
+artifacts/
+*.xcresult
+
+# Claude local run state
+.claude/settings.local.json
+.claude-run/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
