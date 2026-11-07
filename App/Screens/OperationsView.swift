@@ -75,10 +75,10 @@ private struct LinePanel: View {
         let line = state.line(product)
         let rate = Economy.productionRate(state, product, mods)
         Panel(.leather) {
-            HStack(alignment: .firstTextBaseline) {
+            HeaderRow {
                 Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Mark(Glyph.product(product), size: 28) }
                     .accessibilityAddTraits(.isHeader)
-                Spacer()
+            } trailing: {
                 StatusChip(text: t(Labels.lineStatus(line.status)), symbol: statusSymbol(line.status),
                            danger: line.status == .noCash || line.status == .storageFull)
                     .accessibilityIdentifier("line.\(product.rawValue).status")
@@ -159,9 +159,9 @@ private struct LockedLinePanel: View {
         let def = Content.product(product)
         let unlocked = state.campaign.chapter >= def.unlockChapter
         Panel(.anthracite) {
-            HStack {
+            HeaderRow {
                 Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Mark(Glyph.product(product), size: 28) }
-                Spacer()
+            } trailing: {
                 if !unlocked { StatusChip(text: t("locked_chapter", def.unlockChapter), symbol: "lock.fill") }
             }
             Text(verbatim: t(Labels.productDesc(product))).font(.subheadline).foregroundStyle(Noir.inkSoft)

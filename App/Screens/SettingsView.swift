@@ -24,6 +24,7 @@ struct SettingsView: View {
                     Text(verbatim: t("set_language"))
                 }
                 .pickerStyle(.inline)
+                .labelsHidden()
                 .accessibilityIdentifier("settings.language")
             } header: {
                 Text(verbatim: t("set_language"))

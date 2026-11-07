@@ -13,7 +13,7 @@ struct MoneyView: View {
         TabScreen("nav_money", identifier: "screen.money") {
             HeatPanel(state: s, mods: m)
             SectionHeading(title: t("money_launder_title"),
-                           detail: t("launder_summary", t.perMinute(Economy.launderCapacity(s, m)), t.perMinute(s.incomeRate)))
+                           detail: t("launder_summary", t.money(Economy.launderCapacity(s, m) * 60), t.money(s.incomeRate * 60)))
             ForEach(FrontId.allCases, id: \.self) { f in
                 FrontPanel(front: f, state: s, mods: m)
             }
@@ -98,7 +98,8 @@ private struct FrontPanel: View {
             HStack(alignment: .firstTextBaseline) {
                 Label { Text(verbatim: t(Labels.front(front))).font(.headline) } icon: { Mark(Glyph.front(front), size: 24) }
                     .accessibilityAddTraits(.isHeader)
-                            Spacer()
+                    .accessibilityIdentifier("front.\(front.rawValue)")
+                Spacer()
                 if fs.owned {
                     Text(verbatim: t("level", fs.level, Content.maxFrontLevel)).font(.caption.weight(.semibold)).monospacedDigit()
                 } else {
@@ -136,7 +137,6 @@ private struct FrontPanel: View {
                 StatusChip(text: t("front_needs_district", t(Labels.district(def.district))), symbol: "lock")
             }
         }
-        .accessibilityIdentifier("front.\(front.rawValue)")
     }
 }
 

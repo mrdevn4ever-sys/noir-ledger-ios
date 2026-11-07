@@ -60,7 +60,8 @@ private struct RolePanel: View {
             HStack {
                 Label { Text(verbatim: t(Labels.role(role))).font(.headline) } icon: { Mark(Glyph.role(role), size: 24) }
                     .accessibilityAddTraits(.isHeader)
-                            Spacer()
+                    .accessibilityIdentifier("crew.\(role.rawValue)")
+                Spacer()
                 if member == nil { StatusChip(text: t("crew_vacant"), symbol: "person.crop.circle.badge.questionmark") }
             }
             if let member, let def = member.def {
@@ -72,7 +73,6 @@ private struct RolePanel: View {
                 }
             }
         }
-        .accessibilityIdentifier("crew.\(role.rawValue)")
     }
 
     @ViewBuilder
@@ -197,7 +197,8 @@ private struct UpgradeRow: View {
         VStack(alignment: .leading, spacing: Noir.s1) {
             HStack(alignment: .firstTextBaseline) {
                 Text(verbatim: t(Labels.upgrade(upgrade))).font(.subheadline.weight(.semibold))
-                            Spacer()
+                    .accessibilityIdentifier("upgrade.row.\(upgrade.rawValue)")
+                Spacer()
                 Text(verbatim: t("tier_label", upgrade.tier)).font(.caption).foregroundStyle(Noir.inkMuted)
             }
             Text(verbatim: t(Labels.upgradeDesc(upgrade))).font(.footnote).foregroundStyle(Noir.inkSoft)
@@ -219,7 +220,6 @@ private struct UpgradeRow: View {
             }
         }
         .padding(.vertical, Noir.s1)
-        .accessibilityIdentifier("upgrade.row.\(upgrade.rawValue)")
     }
 }
 

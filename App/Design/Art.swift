@@ -120,11 +120,16 @@ struct DistrictArt: View {
     var height: CGFloat = 84
 
     var body: some View {
-        Image(Glyph.district(district))
-            .resizable()
-            .scaledToFill()
+        // The banner takes the width offered by its container; the illustration fills it and is clipped, so a wide
+        // aspect ratio can never widen the screen.
+        Color.clear
             .frame(maxWidth: .infinity)
             .frame(height: height)
+            .overlay {
+                Image(Glyph.district(district))
+                    .resizable()
+                    .scaledToFill()
+            }
             .clipped()
             .accessibilityHidden(true)
     }

@@ -17,6 +17,7 @@ final class ScreenshotTourUITests: NoirUITestCase {
         element("prologue.next").tap()
         element("prologue.next").tap()
         element("prologue.choice.TOOLS").tap()
+        usleep(600_000)
         shot(p + "02_prologue_choice")
         element("prologue.next").tap()
         element("prologue.open").tap()

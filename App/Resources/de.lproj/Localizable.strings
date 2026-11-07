@@ -446,7 +446,8 @@
 "legacy_desc" = "Talente begleiten dich in jedes Neue Spiel+. Jeder neue Durchgang macht die Rivalen stärker und die finale Operation teurer.";
 "legacy_empty" = "Vermächtnis entsteht durch den Abschluss der Kampagne. Hier erworbene Talente wirken in jedem Neuen Spiel+.";
 "perk_rank" = "Rang %1$ld/%2$ld";
-"perk_buy" = "Lernen · %1$ld P.";
+"perk_buy_one" = "Lernen · %1$ld P.";
+"perk_buy_other" = "Lernen · %1$ld P.";
 "ng_level" = "Neues Spiel+ %1$ld";
 "ng_confirm_title" = "Neues Spiel+ beginnen?";
 "ng_confirm_body" = "Dein Imperium schrumpft auf einen einzigen Keller. Vermächtnispunkte und Talente bleiben. Die Rivalen beginnen stärker.";

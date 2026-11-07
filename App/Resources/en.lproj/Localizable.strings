@@ -446,7 +446,8 @@
 "legacy_desc" = "Perks stay with you in every New Game+. Each new run makes the rivals stronger and the final operation costlier.";
 "legacy_empty" = "Legacy is earned by finishing the campaign. Perks bought here carry into every New Game+.";
 "perk_rank" = "Rank %1$ld/%2$ld";
-"perk_buy" = "Learn · %1$ld pts";
+"perk_buy_one" = "Learn · %1$ld pt";
+"perk_buy_other" = "Learn · %1$ld pts";
 "ng_level" = "New Game+ %1$ld";
 "ng_confirm_title" = "Begin New Game+?";
 "ng_confirm_body" = "Your empire resets to a single cellar. Legacy points and perks remain. The rivals start stronger.";

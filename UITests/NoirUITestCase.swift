@@ -52,9 +52,14 @@ class NoirUITestCase: XCTestCase {
         return bottom - 8
     }
 
+    /// The highest y below the pinned header (accounts, Heat gauge and any alert strip under it).
     private func visibleTop() -> CGFloat {
-        let hud = element("heat.gauge")
-        return hud.exists ? hud.frame.maxY + 8 : app.frame.minY + 120
+        var top = app.frame.minY + 120
+        for id in ["heat.gauge", "hud.investigation", "hud.event"] {
+            let e = element(id)
+            if e.exists && e.frame.height > 0 { top = max(top, e.frame.maxY + 8) }
+        }
+        return top
     }
 
     /// Scrolls the current screen until `e` is fully visible and tappable.
@@ -65,7 +70,7 @@ class NoirUITestCase: XCTestCase {
             if e.isHittable && f.maxY <= visibleBottom() && f.minY >= visibleTop() { return }
             let start: CGVector
             let end: CGVector
-            if f.minY < visibleTop() {
+            if f.minY < visibleTop() || (!e.isHittable && f.minY < visibleTop() + 60) {
                 start = CGVector(dx: 0.5, dy: 0.45)
                 end = CGVector(dx: 0.5, dy: 0.62)
             } else {

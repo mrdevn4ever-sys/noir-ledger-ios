@@ -215,7 +215,8 @@ private struct JournalPanel: View {
     var body: some View {
         Panel(.paper) {
             Text(verbatim: t("journal_title")).font(.headline).accessibilityAddTraits(.isHeader)
-                    if journal.isEmpty {
+                .accessibilityIdentifier("ledger.journal")
+            if journal.isEmpty {
                 Text(verbatim: t("journal_empty")).font(.subheadline).foregroundStyle(Noir.paperInkSoft)
             } else {
                 ForEach(journal.prefix(20)) { entry in
@@ -226,7 +227,6 @@ private struct JournalPanel: View {
                 }
             }
         }
-        .accessibilityIdentifier("ledger.journal")
     }
 }
 

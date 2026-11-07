@@ -289,6 +289,29 @@ struct ValueRow: View {
     }
 }
 
+/// A title on the leading side and a status/level on the trailing side; stacks vertically at accessibility text
+/// sizes so names are never hyphenated.
+struct HeaderRow<Leading: View, Trailing: View>: View {
+    @ViewBuilder var leading: Leading
+    @ViewBuilder var trailing: Trailing
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        if typeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: Noir.s1) {
+                leading
+                trailing
+            }
+        } else {
+            HStack(alignment: .firstTextBaseline) {
+                leading
+                Spacer(minLength: Noir.s2)
+                trailing
+            }
+        }
+    }
+}
+
 /// Lock or status chip with a symbol and text (never colour alone).
 struct StatusChip: View {
     let text: String

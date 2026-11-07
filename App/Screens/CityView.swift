@@ -55,6 +55,8 @@ private struct DistrictRow: View {
                         } else if ds.suspendedUntil > state.time {
                             StatusChip(text: t("district_suspended", t.duration(ds.suspendedUntil - state.time)), symbol: "xmark.octagon", danger: true)
                         }
+                    } else if state.campaign.chapter >= def.unlockChapter {
+                        StatusChip(text: t("district_unlock"), symbol: "arrow.right.circle")
                     } else {
                         StatusChip(text: lockText(def), symbol: "lock")
                     }

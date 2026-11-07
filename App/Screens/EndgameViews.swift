@@ -151,7 +151,7 @@ struct EpilogueView: View {
                 }
                 Panel(.paper) {
                     Text(verbatim: t("epilogue_books")).font(.headline).accessibilityAddTraits(.isHeader)
-                    ValueRow(label: t("stat_time"), value: t.duration(s.campaign.wonAtTime > 0 ? s.campaign.wonAtTime : s.time), symbol: "clock")
+                    ValueRow(label: t("stat_time"), value: t.duration(s.campaign.won ? s.campaign.wonAtTime : s.time), symbol: "clock")
                     ValueRow(label: t("stat_dirty"), value: t.money(s.stats.dirtyEarned), symbol: "banknote")
                     ValueRow(label: t("stat_clean"), value: t.money(s.stats.cleanLaundered), symbol: "building.columns")
                     ValueRow(label: t("stat_raids"), value: String(s.stats.raids), mark: Glyph.raid)
@@ -258,7 +258,7 @@ private struct PerkRow: View {
             }
             Text(verbatim: t(Labels.perkDesc(perk))).font(.subheadline).foregroundStyle(Noir.inkSoft)
             if rank < perk.maxRank {
-                Button { store.dispatch(.buyPerk(perk)) } label: { Text(verbatim: t("perk_buy", cost)) }
+                Button { store.dispatch(.buyPerk(perk)) } label: { Text(verbatim: t.plural("perk_buy", count: cost, cost)) }
                     .noirButton(.secondary)
                     .disabled(state.legacy.points < cost)
                     .accessibilityIdentifier("perk.\(perk.rawValue)")

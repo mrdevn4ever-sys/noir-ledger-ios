@@ -28,7 +28,7 @@ struct TabScreen<Content: View>: View {
         }
         .scrollDismissesKeyboard(.never)
         .background(Noir.ground)
-        .safeAreaInset(edge: .top, spacing: 0) { HUDView() }
+        .safeAreaInset(edge: .top, spacing: 0) { HUDView().dynamicTypeSize(...DynamicTypeSize.xxLarge) }
         .safeAreaInset(edge: .bottom, spacing: 0) { BottomChrome() }
         .navigationTitle(Text(verbatim: t(titleKey)))
         .navigationBarTitleDisplayMode(.inline)
@@ -86,7 +86,7 @@ struct DetailScreen<Content: View>: View {
                 .background(alignment: .topLeading) { ScreenMarker(identifier: identifier, title: title) }
         }
         .background(Noir.ground)
-        .safeAreaInset(edge: .top, spacing: 0) { HUDView() }
+        .safeAreaInset(edge: .top, spacing: 0) { HUDView().dynamicTypeSize(...DynamicTypeSize.xxLarge) }
         .safeAreaInset(edge: .bottom, spacing: 0) { BottomChrome() }
         .navigationTitle(Text(verbatim: title))
         .navigationBarTitleDisplayMode(.inline)
@@ -96,6 +96,9 @@ struct DetailScreen<Content: View>: View {
 }
 
 // MARK: - Accounts header
+
+/// The pinned header scales with Dynamic Type only up to xxLarge (like system bars; applied at its call sites), so at
+/// accessibility sizes the screen content, which scales fully, keeps most of the height.
 
 struct HUDView: View {
     @Environment(GameStore.self) private var store
@@ -194,7 +197,7 @@ struct AlertStrip: View {
             HStack(alignment: .firstTextBaseline, spacing: Noir.s2) {
                 Image(systemName: symbol).accessibilityHidden(true)
                 Text(verbatim: text).font(.footnote.weight(.semibold)).frame(maxWidth: .infinity, alignment: .leading)
-                Text(verbatim: action).font(.footnote.weight(.bold))
+                    .fixedSize(horizontal: false, vertical: true)
                 Image(systemName: "chevron.right").imageScale(.small).accessibilityHidden(true)
             }
             .padding(.horizontal, Noir.s3)
@@ -204,6 +207,7 @@ struct AlertStrip: View {
             .background(danger ? Noir.dangerFill : Noir.amberFill, in: RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
         }
         .buttonStyle(.plain)
+        .accessibilityHint(Text(verbatim: action))
         .accessibilityIdentifier(identifier)
     }
 }
