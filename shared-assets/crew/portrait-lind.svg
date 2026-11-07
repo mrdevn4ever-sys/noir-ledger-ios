@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>NOIR LEDGER crew.lind</title>
+<path d="M0 48a48 48 0 1 0 96 0a48 48 0 1 0 -96 0z" fill="#201B15"/>
+<path d="M1.5 48a46.5 46.5 0 1 0 93 0a46.5 46.5 0 1 0 -93 0z" fill="none" stroke="#8C6630" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 96C16 74 30 66 48 66s32 8 34 30z" fill="#2A1D14"/>
+<path d="M24 76c6 -10 14 -12 24 -10c10 -2 18 0 24 10c-8 -4 -16 -3 -24 2c-8 -5 -16 -6 -24 -2z" fill="#B9AC93" fill-opacity="0.75"/>
+<path d="M46 52h4a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a4 4 0 0 1 4 -4z" fill="#0A0908"/>
+<path d="M35 40a13 16 0 1 0 26 0a13 16 0 1 0 -26 0z" fill="#0A0908"/>
+<path d="M58 28c4 4 5 10 4 15" fill="none" stroke="#C8A55A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 50c-2 -20 4 -30 15 -30s17 10 15 30c-2 -6 -3 -10 -3 -16c-4 -4 -8 -5 -12 -5s-8 1 -12 5c0 6 -1 10 -3 16z" fill="#3A2B1F"/>
+<path d="M31 36c0 -14 7 -21 17 -21s17 7 17 21c-6 -3 -11 -4 -17 -4s-11 1 -17 4z" fill="#2A1D14"/>
+<path d="M55.8 26a2.2 2.2 0 1 0 4.4 0a2.2 2.2 0 1 0 -4.4 0z" fill="#C8A55A"/>
+</svg>

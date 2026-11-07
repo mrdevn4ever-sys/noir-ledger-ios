@@ -1,0 +1,1172 @@
+{
+  "name": "NOIR LEDGER shared assets",
+  "version": 1,
+  "generator": "tools/assets/build_assets.py",
+  "tools": {
+    "resvg": "0.2.0",
+    "pillow": "materials and contact sheet"
+  },
+  "license": "Original artwork created for NOIR LEDGER. No third-party images, fonts or icon sets.",
+  "rules": "Copy this directory byte-identically between the Android and iOS repositories. Platform exports are generated from these masters.",
+  "assets": [
+    {
+      "id": "tokens.colors",
+      "kind": "tokens",
+      "source": "tokens/tokens.json",
+      "sha256": "ae7c110d3f88a1df301f9d85c73f8e10bd4e40432898fadab354b143e38db420",
+      "exports": {
+        "android": [
+          "app/src/main/java/io/puredevn/noirledger/ui/theme/Theme.kt (Noir object, verified by AssetParityTest)"
+        ],
+        "ios": [
+          "App/Design/Theme.swift"
+        ]
+      }
+    },
+    {
+      "id": "brand.app-icon",
+      "kind": "icon",
+      "source": "brand/app-icon-master.svg",
+      "sha256": "416e4429545cddc521a51436af9a4cbe386dda07aaeb305eab6d3d5775fb43e4",
+      "geometryVersion": 1,
+      "viewBox": "0 0 1024 1024",
+      "colors": [
+        "brass",
+        "brassDark",
+        "leatherDark"
+      ],
+      "png": {
+        "source": "brand/app-icon-master-1024.png",
+        "width": 1024,
+        "sha256": "15be57a6ae283cadd927cf258c76dd6b1cce42ac43c758dd18c5de3ecc92a9d0"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/ic_launcher_foreground.xml",
+          "app/src/main/res/drawable/ic_launcher_background.xml",
+          "app/src/main/res/drawable/ic_launcher_monochrome.xml",
+          "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png (copy of brand/app-icon-master-1024.png)"
+        ]
+      }
+    },
+    {
+      "id": "brand.ledger-emblem",
+      "kind": "illustration",
+      "source": "brand/ledger-emblem.svg",
+      "sha256": "a9ad4c0983ac3b0e6e05d7f137d526a734df42f4a8182728723480cd71d23b56",
+      "geometryVersion": 1,
+      "viewBox": "0 0 1024 1024",
+      "colors": [
+        "brass",
+        "brassDark",
+        "leatherDark"
+      ],
+      "png": {
+        "source": "brand/ledger-emblem-512.png",
+        "width": 512,
+        "sha256": "3d6fa363d5cdf5106f148fcd10e0f86a78c451a99cf5d4ddc5ec7a9e29131bca"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_brand_ledger_emblem.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BrandLedgerEmblem.imageset (vector from shared-assets/brand/ledger-emblem.svg)"
+        ]
+      }
+    },
+    {
+      "id": "brand.wordmark",
+      "kind": "illustration",
+      "source": "brand/wordmark.svg",
+      "sha256": "6e05070f29b9d3262644fd3f8122d756b1d02eccd088bfa85fcd7bc2d05e1a59",
+      "geometryVersion": 1,
+      "viewBox": "0 0 720 104",
+      "colors": [
+        "amber",
+        "ink"
+      ],
+      "png": {
+        "source": "brand/wordmark-1600.png",
+        "width": 1600,
+        "sha256": "c0ee3465e7be48d43f6587a3bcdb25b2b2a4bd6baecb863c7dd2b7bf9ea4899b"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_brand_wordmark.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BrandWordmark.imageset (vector from shared-assets/brand/wordmark.svg)"
+        ]
+      }
+    },
+    {
+      "id": "product.glimmer",
+      "kind": "illustration",
+      "source": "products/seal-glimmer.svg",
+      "sha256": "463c5684ca5719189c38f11f976ee8ff92584322a44516c7f8bf28fbf42e049d",
+      "geometryVersion": 1,
+      "viewBox": "0 0 48 48",
+      "colors": [
+        "amber",
+        "surface2"
+      ],
+      "png": {
+        "source": "products/seal-glimmer-256.png",
+        "width": 256,
+        "sha256": "d949730357a6ac9adfbf2cc8d97ade23063272255930a87cae3d453e969a845d"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_seal_glimmer.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/ProductGlimmer.imageset (vector from shared-assets/products/seal-glimmer.svg)"
+        ]
+      }
+    },
+    {
+      "id": "product.cinder",
+      "kind": "illustration",
+      "source": "products/seal-cinder.svg",
+      "sha256": "91b7bc4fdae718f8179b1736559848d3466c42ed06c7b0c3e16f2e5c8038fb3c",
+      "geometryVersion": 1,
+      "viewBox": "0 0 48 48",
+      "colors": [
+        "inkSoft",
+        "surface2"
+      ],
+      "png": {
+        "source": "products/seal-cinder-256.png",
+        "width": 256,
+        "sha256": "19dc74308497eeaf116cb470a4540a1600e9cb6beac35dfeb70dbce0fa8fcd8c"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_seal_cinder.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/ProductCinder.imageset (vector from shared-assets/products/seal-cinder.svg)"
+        ]
+      }
+    },
+    {
+      "id": "product.velvet",
+      "kind": "illustration",
+      "source": "products/seal-velvet.svg",
+      "sha256": "91cc0fbff98efe2fa37f79d8bc501998358f412d55a0785a6838da39b44f1247",
+      "geometryVersion": 1,
+      "viewBox": "0 0 48 48",
+      "colors": [
+        "surface2",
+        "teal"
+      ],
+      "png": {
+        "source": "products/seal-velvet-256.png",
+        "width": 256,
+        "sha256": "c9f3326518fb1d9421ccde8caf2b4256b316107d404ffd76489886cf95a261b5"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_seal_velvet.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/ProductVelvet.imageset (vector from shared-assets/products/seal-velvet.svg)"
+        ]
+      }
+    },
+    {
+      "id": "product.halo",
+      "kind": "illustration",
+      "source": "products/seal-halo.svg",
+      "sha256": "41f7f4d06b989d81d0334e160f10ce986725a5da0bc3d80a1a604b4658a2424c",
+      "geometryVersion": 1,
+      "viewBox": "0 0 48 48",
+      "colors": [
+        "gold",
+        "surface2"
+      ],
+      "png": {
+        "source": "products/seal-halo-256.png",
+        "width": 256,
+        "sha256": "a9051b1cc176772c4a2623d712899bd19461524693128991083ea7bb8dfe83af"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_seal_halo.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/ProductHalo.imageset (vector from shared-assets/products/seal-halo.svg)"
+        ]
+      }
+    },
+    {
+      "id": "district.cellars",
+      "kind": "illustration",
+      "source": "districts/district-cellars.svg",
+      "sha256": "b0c76af6080e8a0020cfbc1a408625d6c17c2e514136c9bcfb7aeda08bf30be2",
+      "geometryVersion": 1,
+      "viewBox": "0 0 400 120",
+      "colors": [
+        "amber",
+        "ground",
+        "inkFaint",
+        "night"
+      ],
+      "png": {
+        "source": "districts/district-cellars-1600.png",
+        "width": 1600,
+        "sha256": "fcf816080bff2c8104335160dd55401bd48c9e46983453a91db37a9963f47ffd"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_district_cellars.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/DistrictCellars.imageset (vector from shared-assets/districts/district-cellars.svg)"
+        ]
+      }
+    },
+    {
+      "id": "district.docks",
+      "kind": "illustration",
+      "source": "districts/district-docks.svg",
+      "sha256": "c1f64a99fd29a1a7a8af333e5dce213e49304862d93d7cef95cbee21dd0c785c",
+      "geometryVersion": 1,
+      "viewBox": "0 0 400 120",
+      "colors": [
+        "amber",
+        "ground",
+        "inkFaint",
+        "night"
+      ],
+      "png": {
+        "source": "districts/district-docks-1600.png",
+        "width": 1600,
+        "sha256": "d665998933a875c8caf71cb7e71ed47109b0057bb090b5abcf390f7ccb8a6cf9"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_district_docks.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/DistrictDocks.imageset (vector from shared-assets/districts/district-docks.svg)"
+        ]
+      }
+    },
+    {
+      "id": "district.neon",
+      "kind": "illustration",
+      "source": "districts/district-neon.svg",
+      "sha256": "b9dcd086243808ed61f523f39097b184294262bf8c2fa4a8e04b4fc6b1768dbb",
+      "geometryVersion": 1,
+      "viewBox": "0 0 400 120",
+      "colors": [
+        "amber",
+        "ground",
+        "inkFaint",
+        "night",
+        "teal"
+      ],
+      "png": {
+        "source": "districts/district-neon-1600.png",
+        "width": 1600,
+        "sha256": "6fa6e9688eee988bb4cf6910a307bddc8b37729c4012dfbd1cd2e0c4e7a1c4d5"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_district_neon.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/DistrictNeon.imageset (vector from shared-assets/districts/district-neon.svg)"
+        ]
+      }
+    },
+    {
+      "id": "district.foundry",
+      "kind": "illustration",
+      "source": "districts/district-foundry.svg",
+      "sha256": "4acd25a94abad84b00d3681d8ae079b1958d9956da7c8c4564f43fefd1639cc4",
+      "geometryVersion": 1,
+      "viewBox": "0 0 400 120",
+      "colors": [
+        "amber",
+        "ground",
+        "inkFaint",
+        "night"
+      ],
+      "png": {
+        "source": "districts/district-foundry-1600.png",
+        "width": 1600,
+        "sha256": "3e4a2f223636d27a34de1c0fa64b8b7a1d6d73de0bde980007756a2949fd8424"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_district_foundry.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/DistrictFoundry.imageset (vector from shared-assets/districts/district-foundry.svg)"
+        ]
+      }
+    },
+    {
+      "id": "district.crown",
+      "kind": "illustration",
+      "source": "districts/district-crown.svg",
+      "sha256": "8a84efbb60bbb8d88590c5ad030990c0e33421bc11b6d6b387eb7f6474ed375b",
+      "geometryVersion": 1,
+      "viewBox": "0 0 400 120",
+      "colors": [
+        "amber",
+        "ground",
+        "inkFaint",
+        "night"
+      ],
+      "png": {
+        "source": "districts/district-crown-1600.png",
+        "width": 1600,
+        "sha256": "b4cbdfb9e609a10186a9efd881a6a0021f81341b66ac700e25b40d1cc15713ec"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_district_crown.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/DistrictCrown.imageset (vector from shared-assets/districts/district-crown.svg)"
+        ]
+      }
+    },
+    {
+      "id": "front.laundromat",
+      "kind": "mark",
+      "source": "fronts/laundromat.svg",
+      "sha256": "67c76ff1c2669ae5ebd06250c63650c67ae58dba05f30944d95a9e7f7767de0c",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_fronts_laundromat.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/FrontLaundromat.imageset (vector from shared-assets/fronts/laundromat.svg)"
+        ]
+      }
+    },
+    {
+      "id": "front.taxi",
+      "kind": "mark",
+      "source": "fronts/taxi.svg",
+      "sha256": "7755d7d86f4425cc6a03e3cb91cf874339ca0ce014e1850f55128840737d248e",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_fronts_taxi.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/FrontTaxi.imageset (vector from shared-assets/fronts/taxi.svg)"
+        ]
+      }
+    },
+    {
+      "id": "front.nightclub",
+      "kind": "mark",
+      "source": "fronts/nightclub.svg",
+      "sha256": "e13e9077937992f3cc78a029abd4d2fbe0a2225f7e85808c643accec4327b261",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_fronts_nightclub.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/FrontNightclub.imageset (vector from shared-assets/fronts/nightclub.svg)"
+        ]
+      }
+    },
+    {
+      "id": "front.construction",
+      "kind": "mark",
+      "source": "fronts/construction.svg",
+      "sha256": "49cc3b33a137a6e8ce7dd9bafe6aed8c10ab59bd5dd7a0f04dac05eabeead48e",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_fronts_construction.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/FrontConstruction.imageset (vector from shared-assets/fronts/construction.svg)"
+        ]
+      }
+    },
+    {
+      "id": "front.gallery",
+      "kind": "mark",
+      "source": "fronts/gallery.svg",
+      "sha256": "c53a0e75244b36e11f08f8d6f7b890f54b44fa81040307fc0694b419568fbe7b",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_fronts_gallery.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/FrontGallery.imageset (vector from shared-assets/fronts/gallery.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.production",
+      "kind": "mark",
+      "source": "roles/production.svg",
+      "sha256": "ef4536b8a4aa8cab09e726313664b22cd806faf1a51c45e41ddc74f1df9cbdcf",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_production.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleProduction.imageset (vector from shared-assets/roles/production.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.logistics",
+      "kind": "mark",
+      "source": "roles/logistics.svg",
+      "sha256": "d5f2e3443c5dce863849d323501a4b3f08b185af83ff3d93f60912458b70cffa",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_logistics.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleLogistics.imageset (vector from shared-assets/roles/logistics.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.enforcer",
+      "kind": "mark",
+      "source": "roles/enforcer.svg",
+      "sha256": "15c987806372952aa5a593ad0c82dfd9327fc05e32f1f8b4f4bcc67445e29888",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_enforcer.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleEnforcer.imageset (vector from shared-assets/roles/enforcer.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.accountant",
+      "kind": "mark",
+      "source": "roles/accountant.svg",
+      "sha256": "be1a0b7c18863bbf9233b82777cc89a332c7ff65a63186c1b911ef3efb815950",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_accountant.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleAccountant.imageset (vector from shared-assets/roles/accountant.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.lawyer",
+      "kind": "mark",
+      "source": "roles/lawyer.svg",
+      "sha256": "4adf83c7417cd4cc7c9a6f79e44e39d9ff0b8f24924822c0dbedf88f7bff1c76",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_lawyer.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleLawyer.imageset (vector from shared-assets/roles/lawyer.svg)"
+        ]
+      }
+    },
+    {
+      "id": "role.fixer",
+      "kind": "mark",
+      "source": "roles/fixer.svg",
+      "sha256": "a194d3bf1098b63aaa0768cf8a7c407a4da8929733c78ea932763dd9bc9f94ca",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_roles_fixer.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/RoleFixer.imageset (vector from shared-assets/roles/fixer.svg)"
+        ]
+      }
+    },
+    {
+      "id": "branch.logistics",
+      "kind": "mark",
+      "source": "branches/logistics.svg",
+      "sha256": "455acf0d3adc3677e8a2f0f2b2a599962fb314b6cefec283c02effa8364afeeb",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_branches_logistics.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BranchLogistics.imageset (vector from shared-assets/branches/logistics.svg)"
+        ]
+      }
+    },
+    {
+      "id": "branch.production",
+      "kind": "mark",
+      "source": "branches/production.svg",
+      "sha256": "aeb0c7b1c8d0c09082395c5e6f5274506b9c950f465627ce0b0ac56e259e97d7",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_branches_production.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BranchProduction.imageset (vector from shared-assets/branches/production.svg)"
+        ]
+      }
+    },
+    {
+      "id": "branch.security",
+      "kind": "mark",
+      "source": "branches/security.svg",
+      "sha256": "36d1b73a4a2d8948c4f1644c8a3e1e96d5ee83dea868f3be76d2c7b4f3a18d3d",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_branches_security.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BranchSecurity.imageset (vector from shared-assets/branches/security.svg)"
+        ]
+      }
+    },
+    {
+      "id": "branch.finance",
+      "kind": "mark",
+      "source": "branches/finance.svg",
+      "sha256": "74eb35fcf619d11794fe12ca0f43b3425b5cb5962e23ad2d2db5da6ed6b3f775",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_branches_finance.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BranchFinance.imageset (vector from shared-assets/branches/finance.svg)"
+        ]
+      }
+    },
+    {
+      "id": "branch.network",
+      "kind": "mark",
+      "source": "branches/network.svg",
+      "sha256": "3ba0d557b8f3939f5652eb5f0f6ce2a2ae42e2b8a30b019191f61bd42f1d89f3",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_branches_network.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/BranchNetwork.imageset (vector from shared-assets/branches/network.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.dirty-cash",
+      "kind": "mark",
+      "source": "status/dirty-cash.svg",
+      "sha256": "216a2a40621283268a4ee551b95d7e15525de8a7515c0fd5551eb58e41d1d584",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_dirty_cash.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusDirtyCash.imageset (vector from shared-assets/status/dirty-cash.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.clean-cash",
+      "kind": "mark",
+      "source": "status/clean-cash.svg",
+      "sha256": "df78c4f120927e43606637a412eaa425891df3deca848ba9e45aff8e1e0b4e66",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_clean_cash.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusCleanCash.imageset (vector from shared-assets/status/clean-cash.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.influence",
+      "kind": "mark",
+      "source": "status/influence.svg",
+      "sha256": "6de163c393da69276203435d4530413291346d6131a3f2406f52f4f03ce24132",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_influence.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusInfluence.imageset (vector from shared-assets/status/influence.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.heat",
+      "kind": "mark",
+      "source": "status/heat.svg",
+      "sha256": "378dfdeea785ade9596b7467ce2910afdb79674d28d1e2b37b46ff28a41279e2",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_heat.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusHeat.imageset (vector from shared-assets/status/heat.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.investigation",
+      "kind": "mark",
+      "source": "status/investigation.svg",
+      "sha256": "e573164d5f05af3747480c4202f711523d4abfb208e32352010bd9ca2ca6e83e",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_investigation.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusInvestigation.imageset (vector from shared-assets/status/investigation.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.raid",
+      "kind": "mark",
+      "source": "status/raid.svg",
+      "sha256": "03e1b4ff0417ea3278d33aad8c6c9b67d718e2eed79eb75a87d21b10d893ed79",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_raid.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusRaid.imageset (vector from shared-assets/status/raid.svg)"
+        ]
+      }
+    },
+    {
+      "id": "status.offline-return",
+      "kind": "mark",
+      "source": "status/offline-return.svg",
+      "sha256": "e17e604ffb63aa3ce093f7eaf79bbbd727a7b520cf1fae83d0016cbb942f5893",
+      "geometryVersion": 1,
+      "viewBox": "0 0 24 24",
+      "colors": [
+        "ink"
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_status_offline_return.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/StatusOfflineReturn.imageset (vector from shared-assets/status/offline-return.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.brandt",
+      "kind": "illustration",
+      "source": "crew/portrait-brandt.svg",
+      "sha256": "8a3c7931299e2ad119a178e4bb719144cb3b67801fe755f9bbbf1e3034f60c61",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "amber",
+        "brass",
+        "brassDark",
+        "leatherDark",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-brandt-384.png",
+        "width": 384,
+        "sha256": "1f9b1df7f656fa193ba9223ebda80149adb7a5677dbf8e1a34ab4e10cdbc7464"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_brandt.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewBrandt.imageset (vector from shared-assets/crew/portrait-brandt.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.varga",
+      "kind": "illustration",
+      "source": "crew/portrait-varga.svg",
+      "sha256": "4fe0658cffd067fb0134cce6100c7c9bf1915f8ed66d7a037e94044b8037418a",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "amber",
+        "brassDark",
+        "leatherDark",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-varga-384.png",
+        "width": 384,
+        "sha256": "d69a9de65860586f84e021b4997f3efe7be59093a65069bf475839c3924d230e"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_varga.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewVarga.imageset (vector from shared-assets/crew/portrait-varga.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.okafor",
+      "kind": "illustration",
+      "source": "crew/portrait-okafor.svg",
+      "sha256": "90bf3a7ae563a96ba134cfde5c4fda0af1fff32ddda72d0b57038bbff229b5b8",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "leatherDark",
+        "paper",
+        "surface2",
+        "teal"
+      ],
+      "png": {
+        "source": "crew/portrait-okafor-384.png",
+        "width": 384,
+        "sha256": "3fa86d063a34e4961526a6d059eaa60f1fb99b1b31ac9619392fed6922aaae6a"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_okafor.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewOkafor.imageset (vector from shared-assets/crew/portrait-okafor.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.morgen",
+      "kind": "illustration",
+      "source": "crew/portrait-morgen.svg",
+      "sha256": "9f92bfba5db9fbec36a2e014e041169da17eba8ab9c5c09403326429636f6617",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brass",
+        "brassDark",
+        "gold",
+        "leatherDark",
+        "paper",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-morgen-384.png",
+        "width": 384,
+        "sha256": "b739655a48fc65550de3df929885a53ee93c4d91e3f55095ed6063b0ffb6de1a"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_morgen.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewMorgen.imageset (vector from shared-assets/crew/portrait-morgen.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.feld",
+      "kind": "illustration",
+      "source": "crew/portrait-feld.svg",
+      "sha256": "a45b6ac54cdd2c4f35b48c12215c87c35d315b366dfc77310bd30099394b14a7",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "inkSoft",
+        "leatherDark",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-feld-384.png",
+        "width": 384,
+        "sha256": "19b61f75e2a6ba030f705b57357f4d5a3ee0be1f8615c2365346eee0b6aa7e34"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_feld.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewFeld.imageset (vector from shared-assets/crew/portrait-feld.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.wolff",
+      "kind": "illustration",
+      "source": "crew/portrait-wolff.svg",
+      "sha256": "d75985dbfad002a90a88054c3a2651985a5e2093d71bfcaaf963b82f0c9d8a20",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "gold",
+        "leatherDark",
+        "paper",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-wolff-384.png",
+        "width": 384,
+        "sha256": "8b8a42d1ad4dcf7972839bae0f2c573362228b4bce946e87eb5e8280a96f298a"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_wolff.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewWolff.imageset (vector from shared-assets/crew/portrait-wolff.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.kessler",
+      "kind": "illustration",
+      "source": "crew/portrait-kessler.svg",
+      "sha256": "566138a39a426c0d544e5d2e9e2990334f5cada965641ecba904a218d80c94b5",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "amber",
+        "brassDark",
+        "leatherDark",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-kessler-384.png",
+        "width": 384,
+        "sha256": "504b32b8f75443e9235b7e7e2b4b8d2244003551460ab5aced3ead7c3f7e9361"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_kessler.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewKessler.imageset (vector from shared-assets/crew/portrait-kessler.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.hollis",
+      "kind": "illustration",
+      "source": "crew/portrait-hollis.svg",
+      "sha256": "5e615ce3e5585ec0ade13733910ff194ab63c3caa1870537c7bc2aab0e8e4a51",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "leatherDark",
+        "surface2",
+        "teal"
+      ],
+      "png": {
+        "source": "crew/portrait-hollis-384.png",
+        "width": 384,
+        "sha256": "c86a650f8a65703eff9cb802ee2468bfb2b8b0ff772fb338b6a906faf578ba88"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_hollis.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewHollis.imageset (vector from shared-assets/crew/portrait-hollis.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.sand",
+      "kind": "illustration",
+      "source": "crew/portrait-sand.svg",
+      "sha256": "4b50d675a6916217f6ccbdb2652b714aefd4e7c48603459b00c4ff557c12b430",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "inkSoft",
+        "leatherDark",
+        "paper",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-sand-384.png",
+        "width": 384,
+        "sha256": "603dfa52ef1a4fa5517263a0faff023be430b023b00bedcf19f423b2fb518e16"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_sand.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewSand.imageset (vector from shared-assets/crew/portrait-sand.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.reiter",
+      "kind": "illustration",
+      "source": "crew/portrait-reiter.svg",
+      "sha256": "00f07a3b487b711d09f45dc450ed15208e4428eb3cd6efd4ed9083235189cba3",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brass",
+        "brassDark",
+        "gold",
+        "leatherDark",
+        "paper",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-reiter-384.png",
+        "width": 384,
+        "sha256": "cafc0a6410a89a7f12ae0e256191a38cf0d268f7511439804c18a219d04118c6"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_reiter.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewReiter.imageset (vector from shared-assets/crew/portrait-reiter.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.kraus",
+      "kind": "illustration",
+      "source": "crew/portrait-kraus.svg",
+      "sha256": "bc535654bd95e055f5394ce7a996d19475d802fe22cea5741fcbcdea6edd4ba5",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "inkFaint",
+        "leatherDark",
+        "paper",
+        "surface2",
+        "teal"
+      ],
+      "png": {
+        "source": "crew/portrait-kraus-384.png",
+        "width": 384,
+        "sha256": "0026e1cd0d0b6568344263930e35335869b9b01b6f1d96972c826a3b4f13687e"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_kraus.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewKraus.imageset (vector from shared-assets/crew/portrait-kraus.svg)"
+        ]
+      }
+    },
+    {
+      "id": "crew.lind",
+      "kind": "illustration",
+      "source": "crew/portrait-lind.svg",
+      "sha256": "d4a6310d38e0cb539be1b03a232b83c007a6ad739ff18641b6f31ea02b045b36",
+      "geometryVersion": 1,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "brassDark",
+        "gold",
+        "inkSoft",
+        "leatherDark",
+        "surface2"
+      ],
+      "png": {
+        "source": "crew/portrait-lind-384.png",
+        "width": 384,
+        "sha256": "133416d0e55c5ec9b4969eecdb13adfecc895c18c9d71b4f168c152f6fe2ed1c"
+      },
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable/nl_crew_lind.xml"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/CrewLind.imageset (vector from shared-assets/crew/portrait-lind.svg)"
+        ]
+      }
+    },
+    {
+      "id": "material.leather",
+      "kind": "material",
+      "source": "materials/leather.png",
+      "sha256": "223e3c663d3aceb897dcaaea43541378e6b8225b11186c32c58dcf7456251a16",
+      "seamless": true,
+      "size": [
+        512,
+        512
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_tex_leather.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/MaterialLeather.imageset (copy of shared-assets/materials/leather.png)"
+        ]
+      }
+    },
+    {
+      "id": "material.paper",
+      "kind": "material",
+      "source": "materials/paper.png",
+      "sha256": "203df85ed982ccccdc3c47df21b60605be10d4f4788306aab4333c57fa6c2021",
+      "seamless": true,
+      "size": [
+        512,
+        512
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_tex_paper.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/MaterialPaper.imageset (copy of shared-assets/materials/paper.png)"
+        ]
+      }
+    },
+    {
+      "id": "material.rain-grain",
+      "kind": "material",
+      "source": "materials/rain-grain.png",
+      "sha256": "1d4b4ddec19e4730a9616c87777a2c489bddc03735b471e496d271c3a4eecae4",
+      "seamless": true,
+      "size": [
+        512,
+        512
+      ],
+      "exports": {
+        "android": [
+          "app/src/main/res/drawable-nodpi/nl_tex_rain_grain.png"
+        ],
+        "ios": [
+          "App/Resources/Assets.xcassets/MaterialRainGrain.imageset (copy of shared-assets/materials/rain-grain.png)"
+        ]
+      }
+    }
+  ]
+}

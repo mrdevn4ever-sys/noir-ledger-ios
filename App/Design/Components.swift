@@ -157,7 +157,7 @@ struct HeatGauge: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Noir.s1) {
             HStack(spacing: Noir.s1) {
-                Image(systemName: status.symbol).imageScale(.small).accessibilityHidden(true)
+                Mark(status.mark, size: 14)
                 Text(verbatim: t(status.key)).font(.caption.weight(.semibold))
                 Spacer(minLength: Noir.s1)
                 Text(verbatim: t.decimal(heat, digits: 0)).font(.caption.weight(.bold)).monospacedDigit()
@@ -207,14 +207,7 @@ enum HeatStatus: Equatable {
         }
     }
 
-    var symbol: String {
-        switch self {
-        case .calm: "moon.zzz"
-        case .watched: "eye"
-        case .investigation: "exclamationmark.triangle.fill"
-        case .layLow: "figure.walk.motion"
-        }
-    }
+    var mark: String { self == .investigation ? Glyph.investigation : Glyph.heat }
 
     var isDanger: Bool { self == .investigation || self == .watched }
 }
@@ -232,11 +225,11 @@ enum Account: CaseIterable {
         }
     }
 
-    var symbol: String {
+    var mark: String {
         switch self {
-        case .dirty: "banknote"
-        case .clean: "building.columns"
-        case .influence: "person.2"
+        case .dirty: Glyph.dirtyCash
+        case .clean: Glyph.cleanCash
+        case .influence: Glyph.influence
         }
     }
 
@@ -272,6 +265,7 @@ struct ValueRow: View {
     let label: String
     let value: String
     var symbol: String?
+    var mark: String?
     var valueColor: Color?
     @Environment(\.noirSurface) private var surface
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -280,7 +274,11 @@ struct ValueRow: View {
         let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: Noir.s2))
         layout {
             HStack(spacing: Noir.s2) {
-                if let symbol { Image(systemName: symbol).foregroundStyle(surface.inkSoft).accessibilityHidden(true) }
+                if let mark {
+                    Mark(mark, size: 17).foregroundStyle(surface.inkSoft)
+                } else if let symbol {
+                    Image(systemName: symbol).foregroundStyle(surface.inkSoft).accessibilityHidden(true)
+                }
                 Text(verbatim: label).foregroundStyle(surface.inkSoft)
             }
             if !typeSize.isAccessibilitySize { Spacer(minLength: Noir.s2) }

@@ -1,0 +1,6 @@
+# Canonical shared assets and their iOS exports must stay byte-identical across repositories and platforms.
+shared-assets/** -text
+App/Resources/Assets.xcassets/** -text
+*.png binary
+# Everything else is LF in the repository.
+* text=auto eol=lf

@@ -43,7 +43,7 @@ private struct WonPanel: View {
     var body: some View {
         Panel(.paper) {
             HStack(alignment: .top, spacing: Noir.s3) {
-                LedgerEmblem(color: Noir.paperGold).frame(width: 40, height: 32)
+                LedgerEmblem().frame(width: 44, height: 44)
                 VStack(alignment: .leading, spacing: Noir.s1) {
                     Text(verbatim: t("won_title")).font(.display(.title3))
                     Text(verbatim: t("won_body")).font(.subheadline).foregroundStyle(Noir.paperInkSoft)
@@ -90,7 +90,7 @@ struct ChapterPanel: View {
                 if !reward.isFree {
                     Text(verbatim: t("chapter_reward", t.cost(reward)))
                         .font(.footnote.weight(.semibold))
-                        .foregroundStyle(Noir.paperGold)
+                        .foregroundStyle(Noir.paperInk)
                 }
             }
         }
@@ -190,7 +190,7 @@ private struct AccountsPanel: View {
             Text(verbatim: t("ledger_accounts")).font(.headline).accessibilityAddTraits(.isHeader)
             ForEach(Account.allCases, id: \.key) { account in
                 ValueRow(label: "\(t("account_no", Labels.accountNumber(account.key)))  \(t(account.key))",
-                         value: t.money(balance(account)), symbol: account.symbol)
+                         value: t.money(balance(account)), mark: account.mark)
             }
             PanelDivider()
             ValueRow(label: t("ledger_street_income"), value: t.perMinute(state.incomeRate), symbol: "arrow.down.left")

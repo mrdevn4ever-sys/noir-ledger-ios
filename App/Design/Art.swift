@@ -1,109 +1,146 @@
 import NoirCore
 import SwiftUI
 
-// MARK: - Symbol vocabulary (SF Symbols only, one family)
+// MARK: - Shared brand assets (shared-assets/ -> Assets.xcassets, see scripts/shared_assets.py)
 
+/// Asset-catalog names of the canonical cross-platform artwork. Branded game marks always come from here, never from
+/// SF Symbols; SF Symbols remain only for ordinary system chrome (navigation, settings, chevrons, locks).
 enum Glyph {
     static func product(_ p: ProductId) -> String {
         switch p {
-        case .glimmer: "sparkle"
-        case .cinder: "cube.box"
-        case .velvet: "rhombus"
-        case .halo: "circle.circle"
+        case .glimmer: "ProductGlimmer"
+        case .cinder: "ProductCinder"
+        case .velvet: "ProductVelvet"
+        case .halo: "ProductHalo"
         }
     }
 
     static func district(_ d: DistrictId) -> String {
         switch d {
-        case .cellars: "door.left.hand.closed"
-        case .docks: "shippingbox"
-        case .neonMile: "music.note"
-        case .foundry: "flame"
-        case .crownHill: "crown"
+        case .cellars: "DistrictCellars"
+        case .docks: "DistrictDocks"
+        case .neonMile: "DistrictNeon"
+        case .foundry: "DistrictFoundry"
+        case .crownHill: "DistrictCrown"
         }
     }
 
     static func front(_ f: FrontId) -> String {
         switch f {
-        case .laundromat: "washer"
-        case .taxi: "car"
-        case .nightclub: "music.mic"
-        case .construction: "hammer"
-        case .gallery: "photo.artframe"
+        case .laundromat: "FrontLaundromat"
+        case .taxi: "FrontTaxi"
+        case .nightclub: "FrontNightclub"
+        case .construction: "FrontConstruction"
+        case .gallery: "FrontGallery"
         }
     }
 
     static func role(_ r: CrewRole) -> String {
         switch r {
-        case .foreman: "wrench.and.screwdriver"
-        case .courier: "bicycle"
-        case .enforcer: "shield.lefthalf.filled"
-        case .accountant: "doc.text.magnifyingglass"
-        case .lawyer: "briefcase"
-        case .fixer: "phone"
+        case .foreman: "RoleProduction"
+        case .courier: "RoleLogistics"
+        case .enforcer: "RoleEnforcer"
+        case .accountant: "RoleAccountant"
+        case .lawyer: "RoleLawyer"
+        case .fixer: "RoleFixer"
         }
     }
 
     static func branch(_ b: UpgradeBranch) -> String {
         switch b {
-        case .logistics: "shippingbox.and.arrow.backward"
-        case .production: "gearshape.2"
-        case .security: "lock.shield"
-        case .finance: "banknote"
-        case .network: "person.3"
+        case .logistics: "BranchLogistics"
+        case .production: "BranchProduction"
+        case .security: "BranchSecurity"
+        case .finance: "BranchFinance"
+        case .network: "BranchNetwork"
         }
     }
+
+    /// Crew portraits: "CrewBrandt" for crew id "brandt".
+    static func portrait(_ crewId: String) -> String { "Crew" + crewId.prefix(1).uppercased() + crewId.dropFirst() }
+
+    static let dirtyCash = "StatusDirtyCash"
+    static let cleanCash = "StatusCleanCash"
+    static let influence = "StatusInfluence"
+    static let heat = "StatusHeat"
+    static let investigation = "StatusInvestigation"
+    static let raid = "StatusRaid"
+    static let offlineReturn = "StatusOfflineReturn"
 }
 
-// MARK: - Ledger emblem
+/// A canonical mark or seal from the asset catalog, scaled with Dynamic Type. Single-colour marks are template
+/// images and take the surrounding foreground colour; seals and illustrations keep their own colours.
+struct Mark: View {
+    let asset: String
+    @ScaledMetric private var size: CGFloat
 
-/// The house mark: a ledger bound in leather with a gold clasp, drawn in strokes.
-struct LedgerEmblem: View {
-    var color: Color = Noir.amber
-    var lineWidth: CGFloat = 2
+    init(_ asset: String, size: CGFloat = 20) {
+        self.asset = asset
+        _size = ScaledMetric(wrappedValue: size, relativeTo: .body)
+    }
 
     var body: some View {
-        Canvas { ctx, size in
-            let w = size.width
-            let h = size.height
-            let book = CGRect(x: w * 0.12, y: h * 0.16, width: w * 0.76, height: h * 0.68)
-            let cover = Path(roundedRect: book, cornerRadius: w * 0.05)
-            ctx.stroke(cover, with: .color(color), lineWidth: lineWidth)
-            var spine = Path()
-            spine.move(to: CGPoint(x: w * 0.5, y: book.minY))
-            spine.addLine(to: CGPoint(x: w * 0.5, y: book.maxY))
-            ctx.stroke(spine, with: .color(color), lineWidth: lineWidth)
-            for i in 1...4 {
-                let y = book.minY + book.height * CGFloat(i) / 5.5
-                var left = Path()
-                left.move(to: CGPoint(x: book.minX + w * 0.07, y: y))
-                left.addLine(to: CGPoint(x: w * 0.44, y: y))
-                var right = Path()
-                right.move(to: CGPoint(x: w * 0.56, y: y))
-                right.addLine(to: CGPoint(x: book.maxX - w * 0.07, y: y))
-                ctx.stroke(left, with: .color(color.opacity(0.6)), lineWidth: lineWidth * 0.6)
-                ctx.stroke(right, with: .color(color.opacity(0.6)), lineWidth: lineWidth * 0.6)
-            }
-            let clasp = CGRect(x: book.maxX - w * 0.02, y: h * 0.44, width: w * 0.08, height: h * 0.12)
-            ctx.fill(Path(roundedRect: clasp, cornerRadius: w * 0.015), with: .color(color))
-        }
-        .accessibilityHidden(true)
+        Image(asset)
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
     }
 }
 
-/// The wordmark: NOIR LEDGER in the display serif, tracked wide, with the emblem.
+/// The house mark from `shared-assets/brand/ledger-emblem.svg`.
+struct LedgerEmblem: View {
+    var body: some View {
+        Image("BrandLedgerEmblem")
+            .resizable()
+            .scaledToFit()
+            .accessibilityHidden(true)
+    }
+}
+
+/// The wordmark from `shared-assets/brand/wordmark.svg`.
 struct Wordmark: View {
     var body: some View {
         VStack(spacing: Noir.s2) {
-            LedgerEmblem().frame(width: 56, height: 44)
-            Text(verbatim: "NOIR LEDGER")
-                .font(.display(.title))
-                .tracking(4)
-                .foregroundStyle(Noir.ink)
+            LedgerEmblem().frame(width: 64, height: 64)
+            Image("BrandWordmark")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 240)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "NOIR LEDGER"))
         .accessibilityAddTraits(.isHeader)
+    }
+}
+
+/// A district's canonical illustration as a banner.
+struct DistrictArt: View {
+    let district: DistrictId
+    var height: CGFloat = 84
+
+    var body: some View {
+        Image(Glyph.district(district))
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity)
+            .frame(height: height)
+            .clipped()
+            .accessibilityHidden(true)
+    }
+}
+
+/// A crew member's canonical portrait.
+struct Portrait: View {
+    let crewId: String
+    var size: CGFloat = 56
+
+    var body: some View {
+        Image(Glyph.portrait(crewId))
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
     }
 }
 
@@ -212,9 +249,13 @@ struct CityMap: View {
                     .rotationEffect(.degrees(-90))
                     .frame(width: 30, height: 30)
                 Circle().strokeBorder(ring.opacity(0.45), lineWidth: 1).frame(width: 30, height: 30)
-                Image(systemName: ds.unlocked ? Glyph.district(d) : "lock.fill")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(ds.unlocked ? Noir.ink : Noir.inkMuted)
+                if ds.unlocked {
+                    Circle().fill(ring).frame(width: 8, height: 8)
+                } else {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundStyle(Noir.inkMuted)
+                }
             }
             .frame(width: Noir.minTarget, height: Noir.minTarget)
             .contentShape(Rectangle())

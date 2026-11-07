@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>NOIR LEDGER crew.hollis</title>
+<path d="M0 48a48 48 0 1 0 96 0a48 48 0 1 0 -96 0z" fill="#201B15"/>
+<path d="M1.5 48a46.5 46.5 0 1 0 93 0a46.5 46.5 0 1 0 -93 0z" fill="none" stroke="#8C6630" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 96C16 74 30 66 48 66s32 8 34 30z" fill="#2A1D14"/>
+<path d="M34 66c8 6 20 6 28 0l2 7c-10 6 -22 6 -32 0zM52 72l6 16 -6 2 -4 -14z" fill="#8FA6A0" fill-opacity="0.85"/>
+<path d="M46 52h4a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a4 4 0 0 1 4 -4z" fill="#0A0908"/>
+<path d="M35 40a13 16 0 1 0 26 0a13 16 0 1 0 -26 0z" fill="#0A0908"/>
+<path d="M58 28c4 4 5 10 4 15" fill="none" stroke="#8FA6A0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 38c0 -12 6 -18 13 -18s13 6 13 18c-3 -6 -8 -9 -13 -9s-10 3 -13 9z" fill="#3A2B1F"/>
+<path d="M34 32c0 -10 6 -16 14 -16s14 6 14 16z" fill="#8FA6A0" fill-opacity="0.9"/>
+<path d="M35 29h26a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-26a2 2 0 0 1 -2 -2v-1a2 2 0 0 1 2 -2z" fill="#0A0908" fill-opacity="0.5"/>
+</svg>

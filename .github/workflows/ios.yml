@@ -30,10 +30,131 @@ jobs:
       - name: Build and test the deterministic core
         working-directory: Packages/NoirCore
         run: swift test 2>&1 | tee ../../core-tests.log
-      - name: Upload core test log
+      - name: Keep the core log for the app job
         if: always()
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: core-tests-${{ github.sha }}
           path: core-tests.log
+
+  app:
+    name: App (Xcode build, unit + UI tests, Release, evidence)
+    runs-on: macos-15
+    timeout-minutes: 120
+    permissions:
+      # Needed only to push the evidence branch while the account's artifact storage quota is exhausted.
+      contents: write
+    env:
+      EVIDENCE: ${{ github.workspace }}/evidence
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Provenance and inventory
+        run: |
+          mkdir -p "$EVIDENCE"
+          {
+            echo "sha=$GITHUB_SHA run=$GITHUB_RUN_ID attempt=$GITHUB_RUN_ATTEMPT"
+            echo "runner image=${ImageOS:-?} ${ImageVersion:-?}"
+            sw_vers
+            xcodebuild -version
+            swift --version
+            xcrun simctl list runtimes
+          } | tee "$EVIDENCE/inventory.txt"
+
+      - name: Static gates (localization, shared-asset parity, source scan)
+        run: |
+          python3 scripts/check_l10n.py | tee "$EVIDENCE/l10n.log"
+          python3 scripts/shared_assets.py check | tee "$EVIDENCE/asset-parity.log"
+          python3 scripts/scan_repo.py | tee "$EVIDENCE/scan.log"
+
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen --version
+          xcodegen generate
+
+      - name: Pick and boot a simulator
+        run: |
+          python3 scripts/ci/pick_simulator.py | tee sim.env
+          source sim.env
+          echo "SIM_UDID=$SIM_UDID" >> "$GITHUB_ENV"
+          echo "SIM_NAME=$SIM_NAME" >> "$GITHUB_ENV"
+          echo "SIM_RUNTIME=$SIM_RUNTIME" >> "$GITHUB_ENV"
+          xcrun simctl boot "$SIM_UDID" || true
+          xcrun simctl bootstatus "$SIM_UDID" -b
+
+      - name: Unit and UI tests (Debug, simulator)
+        run: |
+          status=0
+          xcodebuild test             -project NoirLedger.xcodeproj -scheme NoirLedger -configuration Debug             -destination "id=$SIM_UDID"             -resultBundlePath build/NoirLedger.xcresult             CODE_SIGNING_ALLOWED=NO > "$EVIDENCE/xcodebuild-test.log" 2>&1 || status=$?
+          grep -E "error:|warning: |Test Suite .*(passed|failed)|Test Case .*(passed|failed)|✔|✘|\*\* TEST" "$EVIDENCE/xcodebuild-test.log" | tail -400 || true
+          exit $status
+
+      - name: Export screenshots and test summary
+        if: always()
+        run: |
+          if [ -d build/NoirLedger.xcresult ]; then
+            python3 scripts/ci/export_results.py build/NoirLedger.xcresult "$EVIDENCE"
+          else
+            echo "no result bundle"; exit 1
+          fi
+
+      - name: Release build for the simulator and QA-exclusion proof
+        run: |
+          status=0
+          xcodebuild build             -project NoirLedger.xcodeproj -scheme NoirLedger -configuration Release             -destination "generic/platform=iOS Simulator" -derivedDataPath build/release             CODE_SIGNING_ALLOWED=NO > "$EVIDENCE/xcodebuild-release.log" 2>&1 || status=$?
+          grep -E "error:|warning: |\*\* BUILD" "$EVIDENCE/xcodebuild-release.log" | tail -200 || true
+          test $status -eq 0
+          APP=build/release/Build/Products/Release-iphonesimulator/NoirLedger.app
+          test -d "$APP"
+          bash scripts/ci/verify_release_exclusion.sh "$APP" | tee "$EVIDENCE/release-exclusion.log"
+          (cd "$(dirname "$APP")" && ditto -c -k --keepParent NoirLedger.app "$EVIDENCE/NoirLedger-Release-iphonesimulator.app.zip")
+
+      - name: Contact sheet from the canonical asset files
+        run: |
+          brew install librsvg
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet pillow
+          .venv/bin/python scripts/ci/contact_sheet.py "$EVIDENCE/shared-assets-contact-sheet.png"
+
+      - name: Core test log and report
+        if: always()
+        run: |
+          (cd Packages/NoirCore && swift test 2>&1 | grep -E "seed=|NG\+ won|Test run with" > "$EVIDENCE/core-tests.log") || true
+          python3 scripts/ci/report.py "$EVIDENCE"
+
+      - name: Upload evidence (artifacts)
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-evidence-${{ github.sha }}
+          path: evidence
+          retention-days: 30
+
+      - name: Upload result bundle (artifact)
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult-${{ github.sha }}
+          path: build/NoirLedger.xcresult
+          retention-days: 30
+
+      - name: Push evidence branch (fallback while artifact storage is full)
+        if: always()
+        run: |
+          set -e
+          BRANCH="evidence/run-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          WORK=$(mktemp -d)
+          cp -R "$EVIDENCE"/. "$WORK"/
+          cd "$WORK"
+          git init -q
+          git checkout -q -b "$BRANCH"
+          git config user.name "noir-ledger-ci"
+          git config user.email "noir-ledger-ci@users.noreply.github.com"
+          git add -A
+          git commit -q -m "CI evidence for $GITHUB_SHA (run $GITHUB_RUN_ID attempt $GITHUB_RUN_ATTEMPT)"
+          git push -q "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" "$BRANCH"
+          echo "evidence pushed to branch $BRANCH"

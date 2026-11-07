@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>NOIR LEDGER crew.okafor</title>
+<path d="M0 48a48 48 0 1 0 96 0a48 48 0 1 0 -96 0z" fill="#201B15"/>
+<path d="M1.5 48a46.5 46.5 0 1 0 93 0a46.5 46.5 0 1 0 -93 0z" fill="none" stroke="#8C6630" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 96C16 74 30 66 48 66s32 8 34 30z" fill="#2A1D14"/>
+<path d="M38 67L48 86 58 67 54 66 48 76 42 66z" fill="#E6D8B8" fill-opacity="0.85"/>
+<path d="M34 68L46 96H38L28 72zM62 68L50 96h8l10 -24z" fill="#0A0908"/>
+<path d="M46 72h4l1.5 16 -3.5 4 -3.5 -4z" fill="#8FA6A0"/>
+<path d="M46 52h4a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a4 4 0 0 1 4 -4z" fill="#0A0908"/>
+<path d="M35 40a13 16 0 1 0 26 0a13 16 0 1 0 -26 0z" fill="#0A0908"/>
+<path d="M58 28c4 4 5 10 4 15" fill="none" stroke="#8FA6A0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36 34c1 -9 6 -13 12 -13s11 4 12 13c-3 -4 -7 -6 -12 -6s-9 2 -12 6z" fill="#3A2B1F"/>
+<path d="M37 44c2 9 6 13 11 13s9 -4 11 -13c-3 4 -7 5 -11 5s-8 -1 -11 -5z" fill="#3A2B1F"/>
+</svg>

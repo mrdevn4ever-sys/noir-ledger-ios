@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>NOIR LEDGER crew.feld</title>
+<path d="M0 48a48 48 0 1 0 96 0a48 48 0 1 0 -96 0z" fill="#201B15"/>
+<path d="M1.5 48a46.5 46.5 0 1 0 93 0a46.5 46.5 0 1 0 -93 0z" fill="none" stroke="#8C6630" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 96C16 74 30 66 48 66s32 8 34 30z" fill="#2A1D14"/>
+<path d="M42 58h12a5 5 0 0 1 5 5v4a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-4a5 5 0 0 1 5 -5z" fill="#2A1D14"/>
+<path d="M46 52h4a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a4 4 0 0 1 4 -4z" fill="#0A0908"/>
+<path d="M35 40a13 16 0 1 0 26 0a13 16 0 1 0 -26 0z" fill="#0A0908"/>
+<path d="M58 28c4 4 5 10 4 15" fill="none" stroke="#B9AC93" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37 31c2 -6 6 -9 11 -9s9 3 11 9c-3 -2 -7 -3 -11 -3s-8 1 -11 3z" fill="#3A2B1F"/>
+</svg>

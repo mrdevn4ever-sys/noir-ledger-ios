@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<title>NOIR LEDGER status.dirty-cash</title>
+<path d="M3 7.5h18v10H3z" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 4.5h13" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.5 12.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 10.5v4M18 10.5v4" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

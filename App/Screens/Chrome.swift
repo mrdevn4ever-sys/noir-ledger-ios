@@ -140,7 +140,7 @@ struct AccountCell: View, Identifiable {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: Noir.s1) {
-                Image(systemName: account.symbol).imageScale(.small).accessibilityHidden(true)
+                Mark(account.mark, size: 14)
                 Text(verbatim: t(account.key)).font(.caption)
             }
             .foregroundStyle(Noir.inkSoft)

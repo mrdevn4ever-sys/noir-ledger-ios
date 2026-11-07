@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>NOIR LEDGER crew.brandt</title>
+<path d="M0 48a48 48 0 1 0 96 0a48 48 0 1 0 -96 0z" fill="#201B15"/>
+<path d="M1.5 48a46.5 46.5 0 1 0 93 0a46.5 46.5 0 1 0 -93 0z" fill="none" stroke="#8C6630" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 96C16 74 30 66 48 66s32 8 34 30z" fill="#2A1D14"/>
+<path d="M36 70h6v26h-6zM54 70h6v26h-6z" fill="#E0A43A" fill-opacity="0.6"/>
+<path d="M46 52h4a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4v-8a4 4 0 0 1 4 -4z" fill="#0A0908"/>
+<path d="M35 40a13 16 0 1 0 26 0a13 16 0 1 0 -26 0z" fill="#0A0908"/>
+<path d="M58 28c4 4 5 10 4 15" fill="none" stroke="#E0A43A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 38c0 -12 6 -18 13 -18s13 6 13 18c-3 -6 -8 -9 -13 -9s-10 3 -13 9z" fill="#3A2B1F"/>
+<path d="M39.4 40a3.6 3.6 0 1 0 7.2 0a3.6 3.6 0 1 0 -7.2 0zM49.4 40a3.6 3.6 0 1 0 7.2 0a3.6 3.6 0 1 0 -7.2 0zM46.6 40L49.4 40" fill="none" stroke="#D19E4A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 31c1 -9 7 -13 15 -13s13 4 14 11l8 3c-12 1 -26 0 -37 -1z" fill="#2A1D14"/>
+</svg>

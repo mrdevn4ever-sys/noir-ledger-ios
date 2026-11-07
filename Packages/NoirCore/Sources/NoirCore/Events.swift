@@ -7,7 +7,7 @@ public enum EventId: String, CaseIterable, Codable, Sendable, CodingKeyRepresent
     case hilltopGala = "HILLTOP_GALA", oldDebt = "OLD_DEBT", powerCut = "POWER_CUT"
 }
 
-public struct ModTemplate: Sendable, Equatable {
+public struct ModTemplate: Sendable, Hashable {
     public let kind: ModKind
     public let value: Double
     public let seconds: Double
@@ -24,7 +24,7 @@ public struct ModTemplate: Sendable, Equatable {
 }
 
 /// Concrete consequences of an event branch. Amounts are already scaled for this pending event.
-public struct Effects: Sendable, Equatable {
+public struct Effects: Sendable, Hashable {
     public var dirty = 0.0
     public var clean = 0.0
     public var influence = 0.0
@@ -54,7 +54,7 @@ public struct Effects: Sendable, Equatable {
     }
 }
 
-public struct Outcome: Sendable, Equatable {
+public struct Outcome: Sendable, Hashable {
     public let chance: Double
     public let effects: Effects
 

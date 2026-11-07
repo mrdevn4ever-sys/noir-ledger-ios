@@ -46,7 +46,7 @@ private struct StashPanel: View {
                 .accessibilityIdentifier("ops.stashFill")
             HStack(spacing: Noir.s3) {
                 ForEach(ProductId.allCases.filter { state.stock($0) > 0.05 }, id: \.self) { p in
-                    Label { Text(verbatim: t.money(state.stock(p))).monospacedDigit() } icon: { Image(systemName: Glyph.product(p)) }
+                    Label { Text(verbatim: t.money(state.stock(p))).monospacedDigit() } icon: { Mark(Glyph.product(p), size: 18) }
                         .font(.caption)
                         .foregroundStyle(Noir.inkSoft)
                         .accessibilityLabel(Text(verbatim: "\(t(Labels.product(p))) \(t.money(state.stock(p)))"))
@@ -76,7 +76,7 @@ private struct LinePanel: View {
         let rate = Economy.productionRate(state, product, mods)
         Panel(.leather) {
             HStack(alignment: .firstTextBaseline) {
-                Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Image(systemName: Glyph.product(product)) }
+                Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Mark(Glyph.product(product), size: 28) }
                     .accessibilityAddTraits(.isHeader)
                 Spacer()
                 StatusChip(text: t(Labels.lineStatus(line.status)), symbol: statusSymbol(line.status),
@@ -161,7 +161,7 @@ private struct LockedLinePanel: View {
         let unlocked = state.campaign.chapter >= def.unlockChapter
         Panel(.anthracite) {
             HStack {
-                Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Image(systemName: Glyph.product(product)) }
+                Label { Text(verbatim: t(Labels.product(product))).font(.headline) } icon: { Mark(Glyph.product(product), size: 28) }
                 Spacer()
                 if !unlocked { StatusChip(text: t("locked_chapter", def.unlockChapter), symbol: "lock.fill") }
             }

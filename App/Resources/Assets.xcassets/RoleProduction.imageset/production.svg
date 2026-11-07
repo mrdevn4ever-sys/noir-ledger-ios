@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<title>NOIR LEDGER role.production</title>
+<path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 3v2.5M12 18.5v2.5M3 12h2.5M18.5 12h2.5M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8 -1.8M16.6 7.4l1.8 -1.8" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 12a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0 -13 0z" fill="none" stroke="#E9DFC9" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

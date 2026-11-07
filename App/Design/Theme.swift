@@ -1,49 +1,85 @@
 import SwiftUI
 
-/// NOIR LEDGER design tokens. One palette, three section materials (books, workshop, night city) and a single
-/// value accent. Red is reserved for Heat and danger. Every text pairing below meets 4.5:1 or better.
+/// The shared NOIR LEDGER colour tokens. Names and values are identical to `shared-assets/tokens/tokens.json` (the
+/// cross-platform token map used by Android too); `scripts/shared_assets.py check` fails the build if they diverge.
+enum SharedTokens {
+    // BEGIN SHARED TOKENS
+    static let ground = Color(hex: 0x0F0D0B)
+    static let surface1 = Color(hex: 0x17140F)
+    static let surface2 = Color(hex: 0x201B15)
+    static let surface3 = Color(hex: 0x2A241C)
+    static let hairline = Color(hex: 0x3A3227)
+    static let ink = Color(hex: 0xE9DFC9)
+    static let inkSoft = Color(hex: 0xB9AC93)
+    static let inkFaint = Color(hex: 0x8A7F6C)
+    static let amber = Color(hex: 0xE0A43A)
+    static let amberDim = Color(hex: 0x6B4E1C)
+    static let gold = Color(hex: 0xC8A55A)
+    static let teal = Color(hex: 0x8FA6A0)
+    static let red = Color(hex: 0xE0483C)
+    static let redDim = Color(hex: 0x5A1E19)
+    static let paper = Color(hex: 0xE6D8B8)
+    static let paperInk = Color(hex: 0x2A2117)
+    static let leather = Color(hex: 0x3C2A1D)
+    static let leatherDark = Color(hex: 0x2A1D14)
+    static let brass = Color(hex: 0xD19E4A)
+    static let brassDark = Color(hex: 0x8C6630)
+    static let onAmber = Color(hex: 0x1C1307)
+    static let night = Color(hex: 0x07060A)
+    // END SHARED TOKENS
+}
+
+/// Semantic roles used by the iOS views, each mapped onto the shared tokens (no colour exists outside the token map
+/// except opacity variants). Red is reserved for Heat and danger. Text pairings meet 4.5:1.
 enum Noir {
-    // MARK: Ground and neutrals (warm anthracite)
-    static let ground = Color(hex: 0x0F0E0D)
-    static let surface = Color(hex: 0x1B1A18)
-    static let raised = Color(hex: 0x262420)
-    static let hairline = Color(hex: 0x3D3933)
+    private typealias T = SharedTokens
+
+    // MARK: Ground and neutrals
+    static let ground = T.ground
+    static let surface = T.surface1
+    static let raised = T.surface2
+    static let track = T.surface3
+    static let hairline = T.hairline
 
     // MARK: Ink on dark
-    static let ink = Color(hex: 0xEDE6D8)
-    static let inkSoft = Color(hex: 0xB9B0A2)
-    static let inkMuted = Color(hex: 0x948B7E)
+    static let ink = T.ink
+    static let inkSoft = T.inkSoft
+    static let inkMuted = T.inkFaint
 
-    // MARK: Value (dirty amber / old gold)
-    static let amber = Color(hex: 0xD6A852)
-    static let amberFill = Color(hex: 0xB98A33)
-    static let onAmber = Color(hex: 0x17120A)
+    // MARK: Value and action
+    static let amber = T.amber
+    static let amberFill = T.amber
+    static let amberContainer = T.amberDim
+    static let onAmber = T.onAmber
 
     // MARK: Danger (Heat only)
-    static let danger = Color(hex: 0xEC5B49)
-    static let dangerFill = Color(hex: 0x8E2A22)
-    static let onDanger = Color(hex: 0xF6ECE0)
+    static let danger = T.red
+    static let dangerFill = T.redDim
+    static let onDanger = T.ink
 
-    // MARK: Accounts
-    static let dirtyInk = Color(hex: 0xCDBFA6)
-    static let cleanInk = amber
-    static let influenceInk = Color(hex: 0xA9BCCB)
+    // MARK: Accounts (token meanings: amber = dirty cash, gold = clean cash, teal = influence)
+    static let dirtyInk = T.amber
+    static let cleanInk = T.gold
+    static let influenceInk = T.teal
 
     // MARK: Section materials
     /// Books: aged ledger paper with dark ink.
-    static let paper = Color(hex: 0xE4D9C2)
-    static let paperEdge = Color(hex: 0xB9A988)
-    static let paperInk = Color(hex: 0x2A2219)
-    static let paperInkSoft = Color(hex: 0x54483A)
-    static let paperRed = Color(hex: 0x9A2A1F)
-    static let paperGold = Color(hex: 0x7A5A17)
-    /// Workshop (operations): worn leather.
-    static let leather = Color(hex: 0x2B2019)
-    static let leatherEdge = Color(hex: 0x5A4532)
-    /// Night city: wet slate under sodium light.
-    static let night = Color(hex: 0x161B22)
-    static let nightEdge = Color(hex: 0x34404D)
-    static let river = Color(hex: 0x223041)
+    static let paper = T.paper
+    static let paperEdge = T.brassDark
+    static let paperInk = T.paperInk
+    static let paperInkSoft = T.leather
+    static let paperRed = T.redDim
+    /// Foil on paper: marks, meters and toggles only (text on paper uses paper ink).
+    static let paperGold = T.brassDark
+    /// Workshop (operations): ledger leather.
+    static let leather = T.leatherDark
+    static let leatherEdge = T.brassDark.opacity(0.55)
+    /// Night city: anthracite under a cold teal edge.
+    static let night = T.surface1
+    static let nightEdge = T.teal.opacity(0.35)
+    static let river = T.teal.opacity(0.22)
+    static let silhouette = T.night
+    static let brass = T.brass
 
     // MARK: Spacing (4 pt rhythm)
     static let s1: CGFloat = 4

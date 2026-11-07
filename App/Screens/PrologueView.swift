@@ -23,7 +23,7 @@ struct PrologueView: View {
                 Group {
                     switch page {
                     case 0: story("pro_1_t", "pro_1_b", art: AnyView(RainyRiver()))
-                    case 1: story("pro_2_t", "pro_2_b", art: AnyView(LedgerEmblem(lineWidth: 2.5).frame(height: 110)))
+                    case 1: story("pro_2_t", "pro_2_b", art: AnyView(LedgerEmblem().frame(height: 120)))
                     case 2: choosePage
                     default: story("pro_4_t", "pro_4_b", art: AnyView(BareBulb()))
                     }
