@@ -1,0 +1,151 @@
+Application, 0x100fcd9d0, pid: 21551, label: 'NOIR LEDGER' <App element pid: 21551>
+  Window (Main), 0x100fcddf0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4375301696.4>
+    Other, 0x100fcea90, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4375207520.5>
+      Other, 0x100fcebb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4375336352.6>
+        Other, 0x100fc8fb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4382145632.7>
+          Other, 0x100fcd5b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4374972080.8>
+            Other, 0x100fcecd0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4382630816.41>
+              Other, 0x100fcedf0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4382636208.42>
+                Other, 0x100fcef10, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4374749616.44>
+                  Other, 0x100fcf030, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4382666432.343>
+                    Other, 0x100fcf150, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4724188992.345>
+                      Other, 0x100fcf270, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4724188080.346>
+                        Other, 0x100fcf390, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4693232832.347>
+                          NavigationBar, 0x100fcf4b0, {{0.0, 56.3}, {402.0, 44.0}}, identifier: 'Money' <AX element pid: 21551, elementOrHash.elementID: 4692974816.348>
+                            StaticText, 0x100fcf5d0, {{174.3, 68.0}, {53.7, 20.3}}, label: 'Money' <AX element pid: 21551, elementOrHash.elementID: 4496408352.350>
+                            Other, 0x100fcf6f0, {{334.0, 56.3}, {52.0, 44.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 21551, elementOrHash.elementID: 4390467584.351>
+                              Other, 0x100fcf810, {{334.0, 56.3}, {52.0, 44.0}} <AX element pid: 21551, elementOrHash.elementID: 4729318048.353>
+                                Button, 0x100fcf930, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 21551, elementOrHash.elementID: 4496647568.355>
+                          Other, 0x100fcfa50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4692908224.349>
+                            Other, 0x100fcfb70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4497082208.352>
+                              Other, 0x100fcfc90, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4692820416.354>
+                                Other, 0x100fcfdb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4729408496.356>
+                                  ScrollView, 0x100fcfed0, {{0.0, 0.0}, {402.3, 874.0}} <AX element pid: 21551, elementOrHash.elementID: 4399518208.357>
+                                    Other, 0x100fcfff0, {{0.0, -161.3}, {402.2, 1830.3}} <AX element pid: 21551, elementOrHash.elementID: 4382272016.363>
+                                      Other, 0x100fd0110, {{0.2, -161.3}, {1.0, 1.0}}, identifier: 'screen.money', label: 'Money' <AX element pid: 21551, elementOrHash.elementID: 4496916864.385>
+                                      StaticText, 0x100fd0230, {{32.0, -133.3}, {38.0, 20.3}}, label: 'Heat' <AX element pid: 21551, elementOrHash.elementID: 4496911680.386>
+                                      Other, 0x100fd0350, {{32.2, -101.0}, {338.3, 24.3}}, identifier: 'heat.gauge', label: 'Heat 12 of 100, trending to 12, Calm' <AX element pid: 21551, elementOrHash.elementID: 4496653424.387>
+                                        Image, 0x100fd0470, {{32.2, -101.0}, {14.0, 14.3}}, label: 'StatusHeat' <AX element pid: 21551, elementOrHash.elementID: 4496909472.436>
+                                        StaticText, 0x100fd0590, {{50.0, -101.0}, {30.0, 14.3}}, label: 'Calm' <AX element pid: 21551, elementOrHash.elementID: 4496905056.437>
+                                        StaticText, 0x100fd06b0, {{334.3, -101.0}, {16.3, 14.3}}, label: '12' <AX element pid: 21551, elementOrHash.elementID: 4496896640.438>
+                                        Image, 0x100fd07d0, {{356.5, -99.0}, {12.3, 10.0}}, identifier: 'arrow.right', label: 'Right' <AX element pid: 21551, elementOrHash.elementID: 4496731984.439>
+                                        Other, 0x100fd08f0, {{32.2, -82.7}, {338.3, 6.0}} <AX element pid: 21551, elementOrHash.elementID: 4496645680.440>
+                                      StaticText, 0x100fd0a10, {{32.0, -64.7}, {306.3, 51.7}}, label: 'Heat drifts toward a trend set by exposure against cover. Above 50 you are watched. At 75 an investigation opens a countdown.' <AX element pid: 21551, elementOrHash.elementID: 4496445216.388>
+                                      StaticText, 0x100fd0b30, {{33.5, -0.0}, {336.8, 18.0}}, label: 'Trend, 12' <AX element pid: 21551, elementOrHash.elementID: 4729629680.389>
+                                        Image, 0x100fd0c50, {{33.5, -0.0}, {18.0, 18.0}}, identifier: 'scope', label: 'scope' <AX element pid: 21551, elementOrHash.elementID: 4497071904.441>
+                                        StaticText, 0x100fd0d70, {{60.7, -0.0}, {39.3, 18.0}}, label: 'Trend' <AX element pid: 21551, elementOrHash.elementID: 4497227408.442>
+                                        StaticText, 0x100fd0e90, {{351.0, -0.0}, {19.3, 18.0}}, label: '12' <AX element pid: 21551, elementOrHash.elementID: 4497026384.443>
+                                      StaticText, 0x100fd0fb0, {{34.2, 31.0}, {336.2, 18.0}}, label: 'Cover, 12' <AX element pid: 21551, elementOrHash.elementID: 4375427664.390>
+                                        Image, 0x100fd10d0, {{34.2, 32.7}, {12.3, 15.0}}, identifier: 'shield', label: 'Shield' <AX element pid: 21551, elementOrHash.elementID: 4729623584.444>
+                                        StaticText, 0x100fd11f0, {{56.3, 31.0}, {40.3, 18.0}}, label: 'Cover' <AX element pid: 21551, elementOrHash.elementID: 4729202976.445>
+                                        StaticText, 0x100fd1310, {{351.0, 31.0}, {19.3, 18.0}}, label: '12' <AX element pid: 21551, elementOrHash.elementID: 4374768304.446>
+                                      StaticText, 0x100fd1430, {{16.0, 93.0}, {104.0, 24.0}}, label: 'Laundering' <AX element pid: 21551, elementOrHash.elementID: 4496495152.391>
+                                      StaticText, 0x100fd1550, {{16.0, 119.0}, {313.7, 18.0}}, label: 'Front capacity 90/min · street income 102/min' <AX element pid: 21551, elementOrHash.elementID: 4496824192.392>
+                                      StaticText, 0x100fd1670, {{32.2, 169.0}, {219.2, 24.0}}, identifier: 'front.LAUNDROMAT', label: 'Clearwater Laundromat' <AX element pid: 21551, elementOrHash.elementID: 4497007744.393>
+                                      StaticText, 0x100fd1790, {{326.3, 175.7}, {44.0, 14.3}}, label: 'Lv 1/10' <AX element pid: 21551, elementOrHash.elementID: 4729209296.475>
+                                      StaticText, 0x100fd18b0, {{32.0, 205.0}, {277.7, 18.0}}, label: 'Small and quiet. A slow, expensive wash.' <AX element pid: 21551, elementOrHash.elementID: 4496490528.395>
+                                      StaticText, 0x100fd19d0, {{32.0, 235.0}, {338.3, 18.0}}, label: 'Washes 90/min, Fee 30%' <AX element pid: 21551, elementOrHash.elementID: 4497042224.396>
+                                        StaticText, 0x100fd1af0, {{32.0, 235.0}, {105.7, 18.0}}, label: 'Washes 90/min' <AX element pid: 21551, elementOrHash.elementID: 4497045696.447>
+                                        StaticText, 0x100fd1c10, {{306.7, 235.0}, {63.7, 18.0}}, label: 'Fee 30%' <AX element pid: 21551, elementOrHash.elementID: 4496451344.448>
+                                      StaticText, 0x100fd1d30, {{32.0, 265.0}, {338.3, 18.0}}, label: 'Cover +1, Cellar Quarter' <AX element pid: 21551, elementOrHash.elementID: 4497122816.397>
+                                        StaticText, 0x100fd1e50, {{32.0, 265.0}, {60.3, 18.0}}, label: 'Cover +1' <AX element pid: 21551, elementOrHash.elementID: 4497237184.449>
+                                        StaticText, 0x100fd1f70, {{269.7, 265.0}, {100.7, 18.0}}, label: 'Cellar Quarter' <AX element pid: 21551, elementOrHash.elementID: 4496914608.450>
+                                      Switch, 0x100fd2090, {{32.0, 301.7}, {338.5, 31.0}}, identifier: 'front.LAUNDROMAT.active', label: 'Washing', value: 1 <AX element pid: 21551, elementOrHash.elementID: 4729661632.476>
+                                        StaticText, 0x100fd21b0, {{32.0, 308.0}, {61.3, 18.0}}, label: 'Washing' <AX element pid: 21551, elementOrHash.elementID: 4497262960.478>
+                                        Switch, 0x100fd22d0, {{321.3, 301.7}, {51.0, 31.0}}, value: 1 <AX element pid: 21551, elementOrHash.elementID: 4729605680.479>
+                                      Button, 0x100fd23f0, {{32.2, 351.0}, {338.3, 56.7}}, identifier: 'front.LAUNDROMAT.upgrade', label: 'Upgrade, 150 clean' <AX element pid: 21551, elementOrHash.elementID: 4724153728.477>
+                                        StaticText, 0x100fd2510, {{166.8, 361.0}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 21551, elementOrHash.elementID: 4723904128.480>
+                                        StaticText, 0x100fd2630, {{172.5, 383.3}, {57.7, 14.3}}, label: '150 clean' <AX element pid: 21551, elementOrHash.elementID: 4724047536.481>
+                                      StaticText, 0x100fd2750, {{32.2, 455.7}, {118.2, 24.0}}, identifier: 'front.TAXI', label: 'Quay Cabs' <AX element pid: 21551, elementOrHash.elementID: 4729535552.399>
+                                      StaticText, 0x100fd2870, {{307.0, 462.3}, {63.3, 14.3}}, label: 'Acct. 3489' <AX element pid: 21551, elementOrHash.elementID: 4729533536.400>
+                                      StaticText, 0x100fd2990, {{32.0, 491.7}, {144.0, 18.0}}, label: 'Cash fares hide a lot.' <AX element pid: 21551, elementOrHash.elementID: 4729523760.401>
+                                      StaticText, 0x100fd2ab0, {{32.0, 521.7}, {338.3, 18.0}}, label: 'Washes 420/min, Fee 22%' <AX element pid: 21551, elementOrHash.elementID: 4729510352.402>
+                                        StaticText, 0x100fd2bd0, {{32.0, 521.7}, {114.3, 18.0}}, label: 'Washes 420/min' <AX element pid: 21551, elementOrHash.elementID: 4729516128.453>
+                                        StaticText, 0x100fd2cf0, {{306.7, 521.7}, {63.7, 18.0}}, label: 'Fee 22%' <AX element pid: 21551, elementOrHash.elementID: 4729514208.454>
+                                      StaticText, 0x100fd2e10, {{32.0, 551.7}, {338.3, 18.0}}, label: 'Cover +4, North Quay' <AX element pid: 21551, elementOrHash.elementID: 4729480560.403>
+                                        StaticText, 0x100fd2f30, {{32.0, 551.7}, {63.0, 18.0}}, label: 'Cover +4' <AX element pid: 21551, elementOrHash.elementID: 4729497376.455>
+                                        StaticText, 0x100fd3050, {{288.7, 551.7}, {81.7, 18.0}}, label: 'North Quay' <AX element pid: 21551, elementOrHash.elementID: 4729484128.456>
+                                      StaticText, 0x100fd3170, {{33.8, 581.7}, {231.8, 15.7}}, label: 'Requires a foothold in North Quay' <AX element pid: 21551, elementOrHash.elementID: 4729467952.404>
+                                      StaticText, 0x100fd3290, {{32.2, 645.3}, {153.8, 24.0}}, identifier: 'front.NIGHTCLUB', label: 'Club Half Moon' <AX element pid: 21551, elementOrHash.elementID: 4729457728.405>
+                                      StaticText, 0x100fd33b0, {{307.3, 652.1}, {63.0, 14.3}}, label: 'Acct. 5089' <AX element pid: 21551, elementOrHash.elementID: 4729456064.406>
+                                      StaticText, 0x100fd34d0, {{32.0, 681.4}, {173.3, 18.0}}, label: 'Huge cash flow, but loud.' <AX element pid: 21551, elementOrHash.elementID: 4729454400.407>
+                                      StaticText, 0x100fd35f0, {{32.0, 711.4}, {338.3, 18.0}}, label: 'Washes 1,920/min, Fee 15%' <AX element pid: 21551, elementOrHash.elementID: 4729360848.408>
+                                        StaticText, 0x100fd3710, {{32.0, 711.4}, {124.3, 18.0}}, label: 'Washes 1,920/min' <AX element pid: 21551, elementOrHash.elementID: 4729445488.457>
+                                        StaticText, 0x100fd3830, {{306.7, 711.4}, {63.7, 18.0}}, label: 'Fee 15%' <AX element pid: 21551, elementOrHash.elementID: 4729272736.458>
+                                      StaticText, 0x100fd3950, {{32.0, 741.4}, {338.3, 18.0}}, label: 'Cover +10, Neon Mile' <AX element pid: 21551, elementOrHash.elementID: 4729499216.409>
+                                        StaticText, 0x100fd3a70, {{32.0, 741.4}, {69.7, 18.0}}, label: 'Cover +10' <AX element pid: 21551, elementOrHash.elementID: 4496955712.459>
+                                        StaticText, 0x100fd3b90, {{299.3, 741.4}, {71.0, 18.0}}, label: 'Neon Mile' <AX element pid: 21551, elementOrHash.elementID: 4729512256.460>
+                                      StaticText, 0x100fd3cb0, {{33.8, 771.5}, {222.5, 15.7}}, label: 'Requires a foothold in Neon Mile' <AX element pid: 21551, elementOrHash.elementID: 4729150960.410>
+                                      StaticText, 0x100fd3f20, {{32.2, 835.0}, {224.8, 24.0}}, identifier: 'front.CONSTRUCTION', label: 'Stahlmann Construction' <AX element pid: 21551, elementOrHash.elementID: 4497109248.411>
+                                      StaticText, 0x100fd4040, {{308.3, 841.8}, {62.0, 14.3}}, label: 'Acct. 3076' <AX element pid: 21551, elementOrHash.elementID: 4729525696.412>
+                                      StaticText, 0x100fd4160, {{32.0, 871.2}, {271.3, 18.0}}, label: 'Slow invoices, very low risk, solid cover.' <AX element pid: 21551, elementOrHash.elementID: 4729417456.413>
+                                      StaticText, 0x100fd4280, {{32.0, 901.2}, {338.3, 18.0}}, label: 'Washes 7,200/min, Fee 25%' <AX element pid: 21551, elementOrHash.elementID: 4729201024.414>
+                                        StaticText, 0x100fd43a0, {{32.0, 901.2}, {125.0, 18.0}}, label: 'Washes 7,200/min' <AX element pid: 21551, elementOrHash.elementID: 4729545488.461>
+                                        StaticText, 0x100fd44c0, {{306.7, 901.2}, {63.7, 18.0}}, label: 'Fee 25%' <AX element pid: 21551, elementOrHash.elementID: 4729527648.462>
+                                      StaticText, 0x100fd45e0, {{32.0, 931.2}, {338.3, 18.0}}, label: 'Cover +40, Foundry Row' <AX element pid: 21551, elementOrHash.elementID: 4729537504.415>
+                                        StaticText, 0x100fd4700, {{32.0, 931.2}, {72.3, 18.0}}, label: 'Cover +40' <AX element pid: 21551, elementOrHash.elementID: 4497334400.463>
+                                        StaticText, 0x100fd4820, {{276.7, 931.2}, {93.7, 18.0}}, label: 'Foundry Row' <AX element pid: 21551, elementOrHash.elementID: 4496993168.464>
+                                      StaticText, 0x100fd4940, {{33.8, 961.2}, {242.2, 15.7}}, label: 'Requires a foothold in Foundry Row' <AX element pid: 21551, elementOrHash.elementID: 4729167520.416>
+                                      StaticText, 0x100fd4a60, {{32.2, 1025.0}, {133.5, 24.0}}, identifier: 'front.GALLERY', label: 'Galerie Aurel' <AX element pid: 21551, elementOrHash.elementID: 4496831312.417>
+                                      StaticText, 0x100fd4b80, {{308.3, 1031.6}, {62.0, 14.3}}, label: 'Acct. 7965' <AX element pid: 21551, elementOrHash.elementID: 4497006672.418>
+                                      StaticText, 0x100fd4ca0, {{32.0, 1060.9}, {317.7, 38.0}}, label: 'Art prices have no ceiling. The cheapest wash in town.' <AX element pid: 21551, elementOrHash.elementID: 4497276384.419>
+                                      StaticText, 0x100fd4dc0, {{32.0, 1110.9}, {338.3, 18.0}}, label: 'Washes 27k/min, Fee 10%' <AX element pid: 21551, elementOrHash.elementID: 4729565904.420>
+                                        StaticText, 0x100fd4ee0, {{32.0, 1110.9}, {112.0, 18.0}}, label: 'Washes 27k/min' <AX element pid: 21551, elementOrHash.elementID: 4729589936.465>
+                                        StaticText, 0x100fd5000, {{306.7, 1110.9}, {63.7, 18.0}}, label: 'Fee 10%' <AX element pid: 21551, elementOrHash.elementID: 4729568000.466>
+                                      StaticText, 0x100fd5120, {{32.0, 1140.9}, {338.3, 18.0}}, label: 'Cover +90, Crown Hill' <AX element pid: 21551, elementOrHash.elementID: 4729551024.421>
+                                        StaticText, 0x100fd5240, {{32.0, 1140.9}, {72.0, 18.0}}, label: 'Cover +90' <AX element pid: 21551, elementOrHash.elementID: 4729560976.467>
+                                        StaticText, 0x100fd5360, {{297.3, 1140.9}, {73.0, 18.0}}, label: 'Crown Hill' <AX element pid: 21551, elementOrHash.elementID: 4729556000.468>
+                                      StaticText, 0x100fd5480, {{33.8, 1171.0}, {224.2, 15.7}}, label: 'Requires a foothold in Crown Hill' <AX element pid: 21551, elementOrHash.elementID: 4729478688.422>
+                                      StaticText, 0x100fd55a0, {{32.0, 1234.7}, {130.0, 20.3}}, label: 'Working reserve' <AX element pid: 21551, elementOrHash.elementID: 4729473344.423>
+                                      StaticText, 0x100fd56c0, {{32.0, 1267.0}, {338.3, 33.7}}, label: 'Fronts only wash dirty cash above this many minutes of street income.' <AX element pid: 21551, elementOrHash.elementID: 4729406208.424>
+                                      SegmentedControl, 0x100fd57e0, {{32.2, 1312.7}, {338.3, 31.0}}, identifier: 'money.reserve' <AX element pid: 21551, elementOrHash.elementID: 4729212336.425>
+                                        Button, 0x100fd5900, {{32.0, 1312.7}, {83.0, 32.0}}, label: 'None' <AX element pid: 21551, elementOrHash.elementID: 4729214848.469>
+                                        Button, 0x100fd5a20, {{116.0, 1312.7}, {84.0, 32.0}}, label: '2 min', Selected <AX element pid: 21551, elementOrHash.elementID: 4729239696.470>
+                                        Button, 0x100fd5b40, {{201.0, 1312.7}, {83.0, 32.0}}, label: '10 min' <AX element pid: 21551, elementOrHash.elementID: 4729243904.471>
+                                        Button, 0x100fd5c60, {{285.0, 1312.7}, {85.0, 32.0}}, label: '30 min' <AX element pid: 21551, elementOrHash.elementID: 4729248720.472>
+                                      StaticText, 0x100fd5d80, {{32.0, 1391.7}, {152.0, 20.3}}, label: 'Protection network' <AX element pid: 21551, elementOrHash.elementID: 4729611200.426>
+                                      StaticText, 0x100fd3dd0, {{32.0, 1424.0}, {334.0, 15.7}}, label: 'Paid friends in uniform. Raises your cover against Heat.' <AX element pid: 21551, elementOrHash.elementID: 4729404144.427>
+                                      StaticText, 0x100fd60c0, {{32.0, 1451.7}, {116.0, 18.0}}, label: 'Level 0 · cover 0' <AX element pid: 21551, elementOrHash.elementID: 4729393760.428>
+                                      StaticText, 0x100fd61e0, {{33.8, 1481.7}, {148.2, 15.7}}, label: 'Unlocks in chapter 2' <AX element pid: 21551, elementOrHash.elementID: 4496903760.429>
+                                      StaticText, 0x100fd6300, {{32.0, 1545.4}, {113.3, 20.3}}, label: 'Civic donation' <AX element pid: 21551, elementOrHash.elementID: 4729589008.430>
+                                      StaticText, 0x100fd6420, {{32.0, 1577.7}, {238.7, 15.7}}, label: 'Clean money buys goodwill at City Hall.' <AX element pid: 21551, elementOrHash.elementID: 4729485616.431>
+                                      StaticText, 0x100fd6540, {{33.8, 1605.5}, {148.2, 15.7}}, label: 'Unlocks in chapter 2' <AX element pid: 21551, elementOrHash.elementID: 4496424576.432>
+                                    Other, 0x100fd6660, {{369.0, 196.7}, {30.0, 348.0}}, label: 'Vertical scroll bar, 6 pages', value: 24% <AX element pid: 21551, elementOrHash.elementID: 4729388000.364>
+                                      Other, 0x100fd6780, {{396.0, 251.7}, {3.0, 127.0}} <AX element pid: 21551, elementOrHash.elementID: 4729388464.433>
+                                    Other, 0x100fd68a0, {{369.0, 196.7}, {30.0, 348.0}}, label: 'Vertical scroll bar, 6 pages', value: 24% <AX element pid: 21551, elementOrHash.elementID: 4729388000.364>
+                                      Other, 0x100fd69c0, {{396.0, 251.7}, {3.0, 127.0}} <AX element pid: 21551, elementOrHash.elementID: 4729388464.433>
+                                  StaticText, 0x100fd6ae0, {{16.0, 108.3}, {45.3, 48.0}}, identifier: 'hud.acc_dirty', label: 'Dirty 457, 102/min' <AX element pid: 21551, elementOrHash.elementID: 4729161520.358>
+                                    Image, 0x100fd6c00, {{16.0, 108.7}, {14.0, 14.0}}, label: 'StatusDirtyCash' <AX element pid: 21551, elementOrHash.elementID: 4729500960.365>
+                                    StaticText, 0x100fd6d20, {{34.0, 108.3}, {27.3, 14.3}}, label: 'Dirty' <AX element pid: 21551, elementOrHash.elementID: 4729475136.366>
+                                    StaticText, 0x100fd6e40, {{16.0, 122.7}, {32.3, 20.3}}, identifier: 'hud.acc_dirty', label: '457' <AX element pid: 21551, elementOrHash.elementID: 4729435760.367>
+                                    StaticText, 0x100fd6f60, {{16.0, 143.0}, {43.3, 13.3}}, label: '102/min' <AX element pid: 21551, elementOrHash.elementID: 4729432640.368>
+                                  StaticText, 0x100fd7080, {{143.3, 108.3}, {50.3, 48.0}}, identifier: 'hud.acc_clean', label: 'Clean 1,309, 63/min' <AX element pid: 21551, elementOrHash.elementID: 4729549552.359>
+                                    Image, 0x100fd71a0, {{143.3, 108.7}, {14.0, 14.0}}, label: 'StatusCleanCash' <AX element pid: 21551, elementOrHash.elementID: 4729239056.369>
+                                    StaticText, 0x100fd72c0, {{161.3, 108.3}, {32.3, 14.3}}, label: 'Clean' <AX element pid: 21551, elementOrHash.elementID: 4496704848.370>
+                                    StaticText, 0x100fd73e0, {{143.3, 122.7}, {48.3, 20.3}}, identifier: 'hud.acc_clean', label: '1,309' <AX element pid: 21551, elementOrHash.elementID: 4729502816.371>
+                                    StaticText, 0x100fd7500, {{143.3, 143.0}, {36.3, 13.3}}, label: '63/min' <AX element pid: 21551, elementOrHash.elementID: 4729440480.372>
+                                  StaticText, 0x100fd7620, {{270.7, 108.3}, {70.3, 48.0}}, identifier: 'hud.acc_influence', label: 'Influence 10.7, 0.3/min' <AX element pid: 21551, elementOrHash.elementID: 4729578880.360>
+                                    Image, 0x100fd7860, {{270.7, 108.7}, {14.0, 14.0}}, label: 'StatusInfluence' <AX element pid: 21551, elementOrHash.elementID: 4729492256.373>
+                                    StaticText, 0x100fd7980, {{288.7, 108.3}, {52.3, 14.3}}, label: 'Influence' <AX element pid: 21551, elementOrHash.elementID: 4729206048.374>
+                                    StaticText, 0x100fd7aa0, {{270.7, 122.7}, {37.3, 20.3}}, identifier: 'hud.acc_influence', label: '10.7' <AX element pid: 21551, elementOrHash.elementID: 4729582608.375>
+                                    StaticText, 0x100fd7bc0, {{270.7, 143.0}, {39.7, 13.3}}, label: '0.3/min' <AX element pid: 21551, elementOrHash.elementID: 4729580112.376>
+                                  Other, 0x100fd7ce0, {{16.0, 164.3}, {370.0, 24.3}}, identifier: 'heat.gauge', label: 'Heat 12 of 100, trending to 12, Calm' <AX element pid: 21551, elementOrHash.elementID: 4729428464.361>
+                                    Image, 0x100fd7e00, {{16.0, 164.3}, {14.0, 14.0}}, label: 'StatusHeat' <AX element pid: 21551, elementOrHash.elementID: 4729576368.377>
+                                    StaticText, 0x100fd7f20, {{34.0, 164.3}, {30.0, 14.3}}, label: 'Calm' <AX element pid: 21551, elementOrHash.elementID: 4729573872.378>
+                                    StaticText, 0x100fd8040, {{350.0, 164.3}, {16.3, 14.3}}, label: '12' <AX element pid: 21551, elementOrHash.elementID: 4729572640.379>
+                                    Image, 0x100fd8160, {{372.0, 166.3}, {12.3, 10.0}}, identifier: 'arrow.right', label: 'Right' <AX element pid: 21551, elementOrHash.elementID: 4729571408.380>
+                                    Other, 0x100fd8280, {{16.0, 182.7}, {370.0, 6.0}} <AX element pid: 21551, elementOrHash.elementID: 4729476720.381>
+                                  Other, 0x100fd83a0, {{12.0, 544.7}, {378.3, 238.3}} <AX element pid: 21551, elementOrHash.elementID: 4729409760.362>
+                                    Button, 0x100fd84c0, {{24.0, 556.7}, {354.0, 28.0}}, identifier: 'coach.toggle', label: 'Briefing 7 of 7' <AX element pid: 21551, elementOrHash.elementID: 4729420928.382>
+                                      StaticText, 0x100fd85e0, {{23.8, 563.5}, {82.3, 14.3}}, label: 'Briefing 7 of 7' <AX element pid: 21551, elementOrHash.elementID: 4729425936.434>
+                                      Image, 0x100fd8700, {{361.3, 566.7}, {14.7, 8.3}}, identifier: 'chevron.down', label: 'Go Down' <AX element pid: 21551, elementOrHash.elementID: 4729424688.435>
+                                    StaticText, 0x100fd8820, {{23.8, 592.7}, {111.3, 20.3}}, identifier: 'coach.title', label: 'Mind the Heat' <AX element pid: 21551, elementOrHash.elementID: 4729413520.383>
+                                    StaticText, 0x100fd8940, {{23.8, 621.0}, {354.3, 98.0}}, label: 'Every sale and every wash adds exposure; fronts, protection and influence add cover. Heat drifts toward that trend. Above 50 you are watched; at 75 an investigation starts a countdown. Bribe or lie low before it ends.' <AX element pid: 21551, elementOrHash.elementID: 4729411008.384>
+                                    Button, 0x100fd8a60, {{24.0, 727.0}, {354.0, 44.0}}, identifier: 'coach.ack', label: 'Understood' <AX element pid: 21551, elementOrHash.elementID: 4376087520.482>
+              TabBar, 0x100fd8b80, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 21551, elementOrHash.elementID: 4382633712.43>
+                Button, 0x100fd8ca0, {{2.0, 792.0}, {76.0, 48.0}}, identifier: 'book.closed', label: 'Ledger' <AX element pid: 21551, elementOrHash.elementID: 4382687952.45>
+                Button, 0x100fd8dc0, {{82.0, 792.0}, {77.0, 48.0}}, identifier: 'gearshape.2', label: 'Operations' <AX element pid: 21551, elementOrHash.elementID: 4375429392.46>
+                Button, 0x100fd8ee0, {{163.0, 792.0}, {76.0, 48.0}}, identifier: 'map', label: 'City' <AX element pid: 21551, elementOrHash.elementID: 4375502528.47>
+                Button, 0x100fd9000, {{243.0, 792.0}, {77.0, 48.0}}, identifier: 'banknote', label: 'Money', Selected <AX element pid: 21551, elementOrHash.elementID: 4375361424.48>
+                  Image, 0x100fd9120, {{263.7, 798.3}, {35.7, 22.7}}, identifier: 'banknote.fill', label: 'banknote.fill' <AX element pid: 21551, elementOrHash.elementID: 4375519952.344>
+                Button, 0x100fd9240, {{324.0, 792.0}, {76.0, 48.0}}, identifier: 'person.3', label: 'Network' <AX element pid: 21551, elementOrHash.elementID: 4374734608.49>

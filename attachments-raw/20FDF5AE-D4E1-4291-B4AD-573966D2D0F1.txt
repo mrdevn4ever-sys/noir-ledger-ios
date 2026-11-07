@@ -1,0 +1,143 @@
+Application, 0x106298ee0, pid: 8606, label: 'NOIR LEDGER' <App element pid: 8606>
+  Window (Main), 0x1062a54c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4355886896.4>
+    Other, 0x1062acf70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4355899376.5>
+      Other, 0x1062c11c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4355901664.6>
+        Other, 0x1062a62d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4354880528.7>
+          Other, 0x106299300, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4348350960.8>
+            Other, 0x1062c12e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4347487232.9>
+              Other, 0x1062c1400, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4347450976.10>
+                Other, 0x1062c1520, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4356069088.12>
+                  Other, 0x1062c1640, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4348098032.619>
+                    Other, 0x1062c1760, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4695180224.621>
+                      Other, 0x1062c1880, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4695267968.622>
+                        Other, 0x1062c19a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4715687472.623>
+                          NavigationBar, 0x1062c1ac0, {{0.0, 56.3}, {402.0, 44.0}}, identifier: 'Network' <AX element pid: 8606, elementOrHash.elementID: 4680444544.624>
+                            StaticText, 0x1063b4270, {{167.3, 68.0}, {67.7, 20.3}}, label: 'Network' <AX element pid: 8606, elementOrHash.elementID: 4680224192.626>
+                            Other, 0x1063b3160, {{334.0, 56.3}, {52.0, 44.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 8606, elementOrHash.elementID: 4365353984.627>
+                              Other, 0x1063af920, {{334.0, 56.3}, {52.0, 44.0}} <AX element pid: 8606, elementOrHash.elementID: 4695349424.629>
+                                Button, 0x1063b4610, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 8606, elementOrHash.elementID: 4695331312.631>
+                          Other, 0x1063b0c60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4715688224.625>
+                            Other, 0x1063b2b20, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4680839344.628>
+                              Other, 0x1063b1080, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4695365296.630>
+                                Other, 0x1063a99e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4694466768.632>
+                                  ScrollView, 0x1063b3dd0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 8606, elementOrHash.elementID: 4382220800.633>
+                                    Other, 0x1063986c0, {{0.0, 196.7}, {402.0, 2435.0}} <AX element pid: 8606, elementOrHash.elementID: 4715676928.638>
+                                      Other, 0x1063b0840, {{0.0, 196.7}, {1.0, 1.0}}, identifier: 'screen.network', label: 'Network' <AX element pid: 8606, elementOrHash.elementID: 4695177664.657>
+                                      SegmentedControl, 0x1063b5b30, {{16.0, 208.7}, {370.0, 31.0}}, identifier: 'network.section' <AX element pid: 8606, elementOrHash.elementID: 4680661536.658>
+                                        Button, 0x1063b5c50, {{16.0, 208.7}, {122.0, 32.0}}, label: 'Crew', Selected <AX element pid: 8606, elementOrHash.elementID: 4680704944.715>
+                                        Button, 0x1063b5d70, {{139.0, 208.7}, {123.0, 32.0}}, label: 'Improvements' <AX element pid: 8606, elementOrHash.elementID: 4680711408.716>
+                                        Button, 0x1063b5e90, {{263.0, 208.7}, {123.0, 32.0}}, label: 'Legacy' <AX element pid: 8606, elementOrHash.elementID: 4680585504.717>
+                                      StaticText, 0x1063b5fb0, {{18.0, 255.7}, {368.0, 18.0}}, label: 'Wages, 148/min' <AX element pid: 8606, elementOrHash.elementID: 4715476496.659>
+                                        Image, 0x1063b60d0, {{18.0, 257.3}, {21.7, 14.7}}, identifier: 'person.2', label: 'person.2' <AX element pid: 8606, elementOrHash.elementID: 4715602544.718>
+                                        StaticText, 0x1063b61f0, {{48.7, 255.7}, {46.7, 18.0}}, label: 'Wages' <AX element pid: 8606, elementOrHash.elementID: 4693880000.719>
+                                        StaticText, 0x1063b6310, {{326.3, 255.7}, {59.7, 18.0}}, label: '148/min' <AX element pid: 8606, elementOrHash.elementID: 4693885376.720>
+                                      StaticText, 0x1063b6430, {{32.0, 305.7}, {119.3, 24.0}}, identifier: 'crew.FOREMAN', label: 'Production' <AX element pid: 8606, elementOrHash.elementID: 4693653744.660>
+                                      StaticText, 0x1063b6550, {{108.0, 351.7}, {121.7, 24.0}}, identifier: 'crew.FOREMAN.name', label: 'Jonas Brandt' <AX element pid: 8606, elementOrHash.elementID: 4693715968.661>
+                                      StaticText, 0x1063b6670, {{108.0, 377.7}, {139.3, 18.0}}, label: 'Regular · Meticulous' <AX element pid: 8606, elementOrHash.elementID: 4693591712.662>
+                                      StaticText, 0x1063b6790, {{32.0, 417.7}, {204.7, 15.7}}, label: 'Stronger effect for a higher wage.' <AX element pid: 8606, elementOrHash.elementID: 4693548864.663>
+                                      StaticText, 0x1063b68b0, {{32.0, 445.3}, {249.3, 18.0}}, label: 'Production speed +17%, prices +6%' <AX element pid: 8606, elementOrHash.elementID: 4693733552.664>
+                                      StaticText, 0x1063b69d0, {{32.0, 475.3}, {338.0, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4356745024.665>
+                                        Other, 0x1063b6af0, {{32.0, 479.7}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4355945808.721>
+                                        StaticText, 0x1063b6c10, {{308.3, 475.3}, {61.7, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4356564064.722>
+                                      StaticText, 0x1063b6d30, {{32.0, 501.7}, {83.7, 15.7}}, label: 'Wage 6.9/min' <AX element pid: 8606, elementOrHash.elementID: 4693854384.666>
+                                      Button, 0x1063b6e50, {{32.0, 529.3}, {338.0, 56.7}}, identifier: 'crew.FOREMAN.bonus', label: 'Pay bonus, 69 dirty' <AX element pid: 8606, elementOrHash.elementID: 4356769184.667>
+                                        StaticText, 0x1063b6f70, {{159.8, 539.3}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4694015472.723>
+                                        StaticText, 0x1063b7090, {{178.0, 561.7}, {46.0, 14.3}}, label: '69 dirty' <AX element pid: 8606, elementOrHash.elementID: 4715485216.724>
+                                      Button, 0x1063b71b0, {{32.0, 598.0}, {338.0, 44.0}}, identifier: 'crew.FOREMAN.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4694053584.668>
+                                      StaticText, 0x1063b72d0, {{32.0, 690.0}, {103.3, 24.0}}, identifier: 'crew.COURIER', label: 'Logistics' <AX element pid: 8606, elementOrHash.elementID: 4715688640.669>
+                                      StaticText, 0x1063b73f0, {{108.0, 736.0}, {96.3, 24.0}}, identifier: 'crew.COURIER.name', label: 'Emil Varga' <AX element pid: 8606, elementOrHash.elementID: 4693637776.670>
+                                      StaticText, 0x1063b7510, {{108.0, 762.0}, {123.3, 18.0}}, label: 'Regular · Hothead' <AX element pid: 8606, elementOrHash.elementID: 4693852480.671>
+                                      StaticText, 0x1063b7630, {{32.0, 802.0}, {252.3, 15.7}}, label: 'Stronger effect, but raises your exposure.' <AX element pid: 8606, elementOrHash.elementID: 4715597216.672>
+                                      StaticText, 0x1063b7750, {{32.0, 829.7}, {146.7, 18.0}}, label: 'Route capacity +25%' <AX element pid: 8606, elementOrHash.elementID: 4693510032.673>
+                                      StaticText, 0x1063b7870, {{32.0, 859.7}, {338.0, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4715594160.674>
+                                        Other, 0x1063b7990, {{32.0, 863.7}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4693923008.725>
+                                        StaticText, 0x1063b7ab0, {{308.3, 859.7}, {61.7, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4693846672.726>
+                                      StaticText, 0x1063b7bd0, {{32.0, 886.0}, {71.7, 15.7}}, label: 'Wage 7/min' <AX element pid: 8606, elementOrHash.elementID: 4693955904.675>
+                                      Button, 0x1063b7cf0, {{32.0, 913.7}, {338.0, 56.7}}, identifier: 'crew.COURIER.bonus', label: 'Pay bonus, 70 dirty' <AX element pid: 8606, elementOrHash.elementID: 4693631632.676>
+                                        StaticText, 0x1063b7e10, {{159.8, 923.7}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4694013920.727>
+                                        StaticText, 0x1063b7f30, {{178.0, 946.0}, {46.0, 14.3}}, label: '70 dirty' <AX element pid: 8606, elementOrHash.elementID: 4693831152.728>
+                                      Button, 0x1063b8050, {{32.0, 982.3}, {338.0, 44.0}}, identifier: 'crew.COURIER.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4694105136.677>
+                                      StaticText, 0x1063b8170, {{32.0, 1074.3}, {89.0, 24.0}}, identifier: 'crew.ENFORCER', label: 'Muscle' <AX element pid: 8606, elementOrHash.elementID: 4693840256.678>
+                                      StaticText, 0x1063b8290, {{108.0, 1120.3}, {92.3, 24.0}}, identifier: 'crew.ENFORCER.name', label: 'Dario Feld' <AX element pid: 8606, elementOrHash.elementID: 4693638944.679>
+                                      StaticText, 0x1063b83b0, {{108.0, 1146.3}, {123.3, 18.0}}, label: 'Regular · Hothead' <AX element pid: 8606, elementOrHash.elementID: 4693965488.680>
+                                      StaticText, 0x1063b84d0, {{32.0, 1186.3}, {252.3, 15.7}}, label: 'Stronger effect, but raises your exposure.' <AX element pid: 8606, elementOrHash.elementID: 4356074960.681>
+                                      StaticText, 0x1063b85f0, {{32.0, 1214.0}, {323.7, 18.0}}, label: 'Push strength +62%, raids cost half the control' <AX element pid: 8606, elementOrHash.elementID: 4694122944.682>
+                                      StaticText, 0x1063b8710, {{32.0, 1244.0}, {338.0, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4694058752.683>
+                                        Other, 0x1063b8830, {{32.0, 1248.3}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4693898304.729>
+                                        StaticText, 0x1063b8950, {{308.3, 1244.0}, {61.7, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4693939328.730>
+                                      StaticText, 0x1063b8bc0, {{32.0, 1270.3}, {80.0, 15.7}}, label: 'Wage 40/min' <AX element pid: 8606, elementOrHash.elementID: 4693994944.684>
+                                      Button, 0x1063b8ce0, {{32.0, 1298.0}, {338.0, 56.7}}, identifier: 'crew.ENFORCER.bonus', label: 'Pay bonus, 400 dirty' <AX element pid: 8606, elementOrHash.elementID: 4693627072.685>
+                                        StaticText, 0x1063b8e00, {{159.8, 1308.0}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4694333584.731>
+                                        StaticText, 0x1063b8f20, {{174.2, 1330.3}, {53.7, 14.3}}, label: '400 dirty' <AX element pid: 8606, elementOrHash.elementID: 4356000080.732>
+                                      Button, 0x1063b9040, {{32.0, 1366.7}, {338.0, 44.0}}, identifier: 'crew.ENFORCER.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4693811888.686>
+                                      StaticText, 0x1063b9160, {{32.0, 1458.7}, {81.0, 24.0}}, identifier: 'crew.ACCOUNTANT', label: 'Books' <AX element pid: 8606, elementOrHash.elementID: 4694060640.687>
+                                      StaticText, 0x1063b9280, {{108.0, 1504.7}, {107.0, 24.0}}, identifier: 'crew.ACCOUNTANT.name', label: 'Ilse Morgen' <AX element pid: 8606, elementOrHash.elementID: 4356428032.688>
+                                      StaticText, 0x1063b93a0, {{108.0, 1530.7}, {100.0, 18.0}}, label: 'Regular · Loyal' <AX element pid: 8606, elementOrHash.elementID: 4356045376.689>
+                                      StaticText, 0x1063b94c0, {{32.0, 1570.7}, {222.0, 15.7}}, label: 'Loyalty grows faster and falls slower.' <AX element pid: 8606, elementOrHash.elementID: 4715626912.690>
+                                      StaticText, 0x1063b95e0, {{32.0, 1598.3}, {236.0, 18.0}}, label: 'Laundering capacity +25%, fee −3' <AX element pid: 8606, elementOrHash.elementID: 4356121248.691>
+                                      StaticText, 0x1063b9700, {{32.0, 1628.3}, {338.0, 14.3}}, label: 'Loyalty 72' <AX element pid: 8606, elementOrHash.elementID: 4693632736.692>
+                                        Other, 0x1063b9820, {{32.0, 1632.7}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4694262400.733>
+                                        StaticText, 0x1063b9940, {{308.3, 1628.3}, {61.7, 14.3}}, label: 'Loyalty 72' <AX element pid: 8606, elementOrHash.elementID: 4693850432.734>
+                                      StaticText, 0x1063b9a60, {{32.0, 1654.7}, {80.0, 15.7}}, label: 'Wage 18/min' <AX element pid: 8606, elementOrHash.elementID: 4693970080.693>
+                                      Button, 0x1063b9b80, {{32.0, 1682.3}, {338.0, 56.7}}, identifier: 'crew.ACCOUNTANT.bonus', label: 'Pay bonus, 180 dirty' <AX element pid: 8606, elementOrHash.elementID: 4693549760.694>
+                                        StaticText, 0x1063b9ca0, {{159.8, 1692.3}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4356716832.735>
+                                        StaticText, 0x1063b9dc0, {{174.2, 1714.7}, {53.7, 14.3}}, label: '180 dirty' <AX element pid: 8606, elementOrHash.elementID: 4356717264.736>
+                                      Button, 0x1063b9ee0, {{32.0, 1751.0}, {338.0, 44.0}}, identifier: 'crew.ACCOUNTANT.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4693550192.695>
+                                      StaticText, 0x1063ba000, {{32.0, 1843.0}, {97.0, 24.0}}, identifier: 'crew.LAWYER', label: 'Counsel' <AX element pid: 8606, elementOrHash.elementID: 4694324784.696>
+                                      StaticText, 0x1063ba120, {{108.0, 1889.0}, {113.0, 24.0}}, identifier: 'crew.LAWYER.name', label: 'Hanna Wolff' <AX element pid: 8606, elementOrHash.elementID: 4693952944.697>
+                                      StaticText, 0x1063ba240, {{108.0, 1915.0}, {121.7, 18.0}}, label: 'Regular · Discreet' <AX element pid: 8606, elementOrHash.elementID: 4693814400.698>
+                                      StaticText, 0x1063ba360, {{32.0, 1955.0}, {270.7, 15.7}}, label: 'Slightly weaker effect, lowers your exposure.' <AX element pid: 8606, elementOrHash.elementID: 4693814832.699>
+                                      StaticText, 0x1063b8a70, {{32.0, 1982.7}, {311.7, 38.0}}, label: 'Cover +11%, Heat cools +27%, raid cash loss −36%' <AX element pid: 8606, elementOrHash.elementID: 4693972960.700>
+                                      StaticText, 0x1063ba6a0, {{32.0, 2032.7}, {338.0, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4355835040.701>
+                                        Other, 0x1063ba7c0, {{32.0, 2037.0}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4693973392.737>
+                                        StaticText, 0x1063ba8e0, {{308.3, 2032.7}, {61.7, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4355834608.738>
+                                      StaticText, 0x1063baa00, {{32.0, 2059.0}, {80.0, 15.7}}, label: 'Wage 60/min' <AX element pid: 8606, elementOrHash.elementID: 4355835472.702>
+                                      Button, 0x1063bab20, {{32.0, 2086.7}, {338.0, 56.7}}, identifier: 'crew.LAWYER.bonus', label: 'Pay bonus, 600 dirty' <AX element pid: 8606, elementOrHash.elementID: 4355862416.703>
+                                        StaticText, 0x1063bac40, {{159.8, 2096.7}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4355835904.739>
+                                        StaticText, 0x1063bad60, {{174.2, 2119.0}, {53.7, 14.3}}, label: '600 dirty' <AX element pid: 8606, elementOrHash.elementID: 4355847184.740>
+                                      Button, 0x1063bae80, {{32.0, 2155.3}, {338.0, 44.0}}, identifier: 'crew.LAWYER.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4694303664.704>
+                                      StaticText, 0x1063bafa0, {{32.0, 2247.3}, {132.3, 24.0}}, identifier: 'crew.FIXER', label: 'Connections' <AX element pid: 8606, elementOrHash.elementID: 4694068384.705>
+                                      StaticText, 0x1063bb0c0, {{108.0, 2293.3}, {112.3, 24.0}}, identifier: 'crew.FIXER.name', label: 'Sami Okafor' <AX element pid: 8606, elementOrHash.elementID: 4694069248.706>
+                                      StaticText, 0x1063bb1e0, {{108.0, 2319.3}, {139.7, 18.0}}, label: 'Regular · Connected' <AX element pid: 8606, elementOrHash.elementID: 4694075904.707>
+                                      StaticText, 0x1063bb300, {{32.0, 2359.3}, {191.0, 15.7}}, label: 'Brings in influence of their own.' <AX element pid: 8606, elementOrHash.elementID: 4694076336.708>
+                                      StaticText, 0x1063bb420, {{32.0, 2387.0}, {204.3, 18.0}}, label: 'Influence +30%, bribes −20%' <AX element pid: 8606, elementOrHash.elementID: 4694076768.709>
+                                      StaticText, 0x1063bb540, {{32.0, 2417.0}, {338.0, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4694078064.710>
+                                        Other, 0x1063bb660, {{32.0, 2421.3}, {268.3, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4694077200.741>
+                                        StaticText, 0x1063bb780, {{308.3, 2417.0}, {61.7, 14.3}}, label: 'Loyalty 71' <AX element pid: 8606, elementOrHash.elementID: 4694077632.742>
+                                      StaticText, 0x1063bb8a0, {{32.0, 2443.3}, {91.7, 15.7}}, label: 'Wage 16.5/min' <AX element pid: 8606, elementOrHash.elementID: 4693683568.711>
+                                      Button, 0x1063bb9c0, {{32.0, 2471.0}, {338.0, 56.7}}, identifier: 'crew.FIXER.bonus', label: 'Pay bonus, 165 dirty' <AX element pid: 8606, elementOrHash.elementID: 4694444384.712>
+                                        StaticText, 0x1063bbae0, {{159.8, 2481.0}, {82.3, 20.3}}, label: 'Pay bonus' <AX element pid: 8606, elementOrHash.elementID: 4693684000.743>
+                                        StaticText, 0x1063bbc00, {{174.2, 2503.3}, {53.7, 14.3}}, label: '165 dirty' <AX element pid: 8606, elementOrHash.elementID: 4693684432.744>
+                                      Button, 0x1063bbd20, {{32.0, 2539.7}, {338.0, 44.0}}, identifier: 'crew.FIXER.dismiss', label: 'Dismiss' <AX element pid: 8606, elementOrHash.elementID: 4694445952.713>
+                                    Other, 0x1063bc040, {{369.0, 196.7}, {30.0, 586.3}}, label: 'Vertical scroll bar, 5 pages', value: 0% <AX element pid: 8606, elementOrHash.elementID: 4354775952.639>
+                                      Other, 0x1063bc160, {{396.0, 199.7}, {3.0, 186.3}} <AX element pid: 8606, elementOrHash.elementID: 4695235136.714>
+                                    Other, 0x1063bc280, {{369.0, 196.7}, {30.0, 586.3}}, label: 'Vertical scroll bar, 5 pages', value: 0% <AX element pid: 8606, elementOrHash.elementID: 4354775952.639>
+                                      Other, 0x1063bc3a0, {{396.0, 199.7}, {3.0, 186.3}} <AX element pid: 8606, elementOrHash.elementID: 4695235136.714>
+                                  StaticText, 0x1063bc4c0, {{16.0, 108.3}, {57.7, 48.0}}, identifier: 'hud.acc_dirty', label: 'Dirty 186.1k, 773/min' <AX element pid: 8606, elementOrHash.elementID: 4694051360.634>
+                                    Image, 0x1063bc5e0, {{16.0, 108.7}, {14.0, 14.0}}, label: 'StatusDirtyCash' <AX element pid: 8606, elementOrHash.elementID: 4694305600.640>
+                                    StaticText, 0x1063bc700, {{34.0, 108.3}, {27.3, 14.3}}, label: 'Dirty' <AX element pid: 8606, elementOrHash.elementID: 4693624336.641>
+                                    StaticText, 0x1063bc820, {{16.0, 122.7}, {57.7, 20.3}}, identifier: 'hud.acc_dirty', label: '186.1k' <AX element pid: 8606, elementOrHash.elementID: 4694050928.642>
+                                    StaticText, 0x1063bc940, {{16.0, 143.0}, {43.3, 13.3}}, label: '773/min' <AX element pid: 8606, elementOrHash.elementID: 4694321008.643>
+                                  StaticText, 0x1063bca60, {{143.3, 108.3}, {57.7, 48.0}}, identifier: 'hud.acc_clean', label: 'Clean 153.4k, 194/min' <AX element pid: 8606, elementOrHash.elementID: 4693842096.635>
+                                    Image, 0x1063bcb80, {{143.3, 108.7}, {14.0, 14.0}}, label: 'StatusCleanCash' <AX element pid: 8606, elementOrHash.elementID: 4693785744.644>
+                                    StaticText, 0x1063bcca0, {{161.3, 108.3}, {32.3, 14.3}}, label: 'Clean' <AX element pid: 8606, elementOrHash.elementID: 4693869392.645>
+                                    StaticText, 0x1063bcdc0, {{143.3, 122.7}, {57.7, 20.3}}, identifier: 'hud.acc_clean', label: '153.4k' <AX element pid: 8606, elementOrHash.elementID: 4693654544.646>
+                                    StaticText, 0x1063bcee0, {{143.3, 143.0}, {43.3, 13.3}}, label: '194/min' <AX element pid: 8606, elementOrHash.elementID: 4693656000.647>
+                                  StaticText, 0x1063bd000, {{270.7, 108.3}, {70.3, 48.0}}, identifier: 'hud.acc_influence', label: 'Influence 363, 1.3/min' <AX element pid: 8606, elementOrHash.elementID: 4693703088.636>
+                                    Image, 0x1063bd120, {{270.7, 108.7}, {14.0, 14.0}}, label: 'StatusInfluence' <AX element pid: 8606, elementOrHash.elementID: 4693843552.648>
+                                    StaticText, 0x1063bd240, {{288.7, 108.3}, {52.3, 14.3}}, label: 'Influence' <AX element pid: 8606, elementOrHash.elementID: 4693844656.649>
+                                    StaticText, 0x1063bd360, {{270.7, 122.7}, {32.3, 20.3}}, identifier: 'hud.acc_influence', label: '363' <AX element pid: 8606, elementOrHash.elementID: 4693845088.650>
+                                    StaticText, 0x1063bd480, {{270.7, 143.0}, {39.7, 13.3}}, label: '1.3/min' <AX element pid: 8606, elementOrHash.elementID: 4693702656.651>
+                                  Other, 0x1063bd5a0, {{16.0, 164.3}, {370.0, 24.3}}, identifier: 'heat.gauge', label: 'Heat 15 of 100, trending to 17, Calm' <AX element pid: 8606, elementOrHash.elementID: 4694331152.637>
+                                    Image, 0x1063bd6c0, {{16.0, 164.3}, {14.0, 14.0}}, label: 'StatusHeat' <AX element pid: 8606, elementOrHash.elementID: 4694263520.652>
+                                    StaticText, 0x1063bd7e0, {{34.0, 164.3}, {30.0, 14.3}}, label: 'Calm' <AX element pid: 8606, elementOrHash.elementID: 4693758368.653>
+                                    StaticText, 0x1063bd900, {{352.3, 164.3}, {16.3, 14.3}}, label: '15' <AX element pid: 8606, elementOrHash.elementID: 4693758800.654>
+                                    Image, 0x1063bda20, {{374.3, 166.3}, {10.0, 10.0}}, identifier: 'arrow.up.right', label: 'arrow.up.right' <AX element pid: 8606, elementOrHash.elementID: 4694238880.655>
+                                    Other, 0x1063bdb40, {{16.0, 182.7}, {370.0, 6.0}} <AX element pid: 8606, elementOrHash.elementID: 4694330720.656>
+              TabBar, 0x1063bdc60, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 8606, elementOrHash.elementID: 4354966576.11>
+                Button, 0x1063bdd80, {{2.0, 792.0}, {76.0, 48.0}}, label: 'Ledger' <AX element pid: 8606, elementOrHash.elementID: 4355110848.13>
+                Button, 0x1063bdea0, {{82.0, 792.0}, {77.0, 48.0}}, label: 'Operations' <AX element pid: 8606, elementOrHash.elementID: 4356008752.14>
+                Button, 0x1063bdfc0, {{163.0, 792.0}, {76.0, 48.0}}, label: 'City' <AX element pid: 8606, elementOrHash.elementID: 4356019312.15>
+                Button, 0x1063be170, {{243.0, 792.0}, {77.0, 48.0}}, label: 'Money' <AX element pid: 8606, elementOrHash.elementID: 4348111264.16>
+                Button, 0x1063be290, {{324.0, 792.0}, {76.0, 48.0}}, label: 'Network', Selected <AX element pid: 8606, elementOrHash.elementID: 4356058512.17>
+                  Image, 0x1063be3b0, {{337.0, 797.3}, {49.0, 26.0}}, identifier: 'person.3.fill', label: 'person.3.fill' <AX element pid: 8606, elementOrHash.elementID: 4356061440.620>
