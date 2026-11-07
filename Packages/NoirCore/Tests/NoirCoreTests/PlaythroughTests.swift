@@ -49,7 +49,8 @@ struct PlaythroughTests {
     @Test("New Game+ with bought perks is winnable and records a second win")
     func newGamePlus() {
         var first = Bot(Engine.newGame(seed: 11, nowMs: 1))
-        #expect(first.run(maxSeconds: Self.maxGameSeconds))
+        let firstWon = first.run(maxSeconds: Self.maxGameSeconds)
+        #expect(firstWon)
         var s = TS.ok(first.s, .markEpilogueSeen)
         s = TS.ok(s, .startNewGamePlus)
         #expect(s.legacy.ngLevel == 1)
@@ -61,7 +62,8 @@ struct PlaythroughTests {
         }
         #expect(PerkId.allCases.contains { s.legacy.rank($0) > 0 })
         var second = Bot(s)
-        #expect(second.run(maxSeconds: Self.maxGameSeconds), "New Game+ must be winnable")
+        let secondWon = second.run(maxSeconds: Self.maxGameSeconds)
+        #expect(secondWon, "New Game+ must be winnable")
         #expect(second.s.legacy.wins == 2)
         #expect(second.s.legacy.ngLevel == 1)
         let hours = (second.s.time - s.time) / 3600

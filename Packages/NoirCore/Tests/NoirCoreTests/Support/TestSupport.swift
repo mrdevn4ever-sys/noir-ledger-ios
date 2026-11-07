@@ -54,7 +54,8 @@ enum TS {
     /// State with every number finite and inside its legal range.
     static func expectSane(_ s: GameState, sourceLocation: SourceLocation = #_sourceLocation) {
         let values = [s.dirty, s.clean, s.influence, s.heat, s.time, s.incomeRate, s.cleanRate] + s.inventory.values.map { $0 }
-        #expect(values.allSatisfy(\.isFinite), "non-finite value", sourceLocation: sourceLocation)
+        let finite = values.allSatisfy { $0.isFinite }
+        #expect(finite, "non-finite value", sourceLocation: sourceLocation)
         #expect(s.dirty >= -1e-6 && s.clean >= -1e-6 && s.influence >= -1e-6, "negative currency", sourceLocation: sourceLocation)
         #expect(s.heat >= 0 && s.heat <= 100, "heat out of range", sourceLocation: sourceLocation)
         #expect(s.inventory.values.allSatisfy { $0 >= -1e-6 }, "negative stock", sourceLocation: sourceLocation)

@@ -56,7 +56,8 @@ struct HeatAndRaidTests {
         Simulation.step(&s, dt: 1, offline: false, report: &r)
         let inv = s.investigation
         #expect(inv != nil)
-        #expect(abs((inv?.endsAt ?? 0) - (inv?.startedAt ?? 0) - 180) < 1e-9)
+        let window: Double = (inv?.endsAt ?? 0) - (inv?.startedAt ?? 0)
+        #expect(abs(window - 180) < 1e-9)
         #expect(s.stats.investigations == 1)
 
         var briefing = Engine.newGame(seed: 1, nowMs: 1)
@@ -74,7 +75,8 @@ struct HeatAndRaidTests {
         s.heat = 80
         var r = TickReport()
         Simulation.step(&s, dt: 1, offline: false, report: &r)
-        #expect(abs((s.investigation?.endsAt ?? 0) - (s.investigation?.startedAt ?? 0) - 270) < 1e-9)
+        let window: Double = (s.investigation?.endsAt ?? 0) - (s.investigation?.startedAt ?? 0)
+        #expect(abs(window - 270) < 1e-9)
     }
 
     @Test("The case is dropped below 60 Heat (65 with the police scanner)", arguments: [false, true])

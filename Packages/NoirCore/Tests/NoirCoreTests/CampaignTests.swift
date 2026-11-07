@@ -189,7 +189,8 @@ struct CampaignTests {
             if !r.success {
                 #expect(r.state.campaign.finalOp?.failures == 1)
                 #expect(abs(r.state.heat - (s.heat + 12 + 10)) < 1e-9)
-                #expect(abs((r.state.campaign.finalOp?.readyAt ?? 0) - (s.time + 120)) < 1e-9)
+                let readyAt: Double = r.state.campaign.finalOp?.readyAt ?? 0
+                #expect(abs(readyAt - s.time - 120) < 1e-9)
                 failed = true
                 break
             }

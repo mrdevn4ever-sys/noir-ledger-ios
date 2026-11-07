@@ -175,7 +175,7 @@ struct EconomyTests {
         s.influence = 100
         s.protectionLevel = 2
         s.fronts[.laundromat] = { var f = FrontState(); f.owned = true; f.level = 2; return f }()
-        let expected = 4 + 1 * 1.3 + 8 * (4 - 1) + 2 * 10
+        let expected: Double = 4.0 + 1.3 + 24.0 + 20.0
         #expect(abs(Economy.cover(s, Mods()) - expected) < 1e-9)
         #expect(Economy.heatTarget(exposure: 0, cover: 10) == 0)
         #expect(abs(Economy.heatTarget(exposure: 10, cover: 10) - 50) < 1e-9)

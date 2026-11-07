@@ -47,7 +47,8 @@ struct OfflineTests {
     func absurdJump() throws {
         let s = base()
         let (after, report) = Engine.applyOffline(s, nowMs: s.lastWallClockMs + 50 * 365 * 24 * 3_600_000)
-        #expect(try #require(report).creditedSeconds == Content.offlineCapSeconds)
+        let r = try #require(report)
+        #expect(r.creditedSeconds == Content.offlineCapSeconds)
         #expect(abs(after.time - s.time - 8 * 3600) < 1e-6)
     }
 
@@ -83,7 +84,10 @@ struct OfflineTests {
         #expect(after.heat <= 74 + 1e-9)
         let inv = after.investigation
         #expect(inv != nil)
-        #expect(abs((inv?.endsAt ?? 0) - (inv?.startedAt ?? 0) - (60 + 4 * 3600)) < 1e-6, "the case file does not move while away")
+        let ends: Double = inv?.endsAt ?? 0
+        let started: Double = inv?.startedAt ?? 0
+        let window: Double = ends - started
+        #expect(abs(window - 14_460) < 1e-6, "the case file does not move while away")
         #expect((after.crewIn(.courier)?.loyalty ?? 0) >= 10)
     }
 
