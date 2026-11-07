@@ -1,0 +1,22 @@
+Failed to tap "Erase" Button: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x6000021366c0>.
+Sparse tree of matches:
+→Application, pid: 28636, label: 'NOIR LEDGER'
+  ↳Window (Main)
+    ↳Other
+      ↳Alert, label: 'Erase everything?'
+        ↳Other
+          ↳Other
+            ↳Other
+              ↳ScrollView
+                ↳Other
+                  ↳Other
+                    ↳Button, identifier: 'settings.reset.confirm', label: 'Erase'
+                      ↳Button, identifier: 'settings.reset.confirm', label: 'Erase'
+Possibly caused by runtime issues:
+Automation type mismatch: computed Alert from legacy attributes vs Sheet from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 3;
+    "XC_kAXXCAttributeElementBaseType" = "_UIAlertControllerPhoneTVMacView";
+    "XC_kAXXCAttributeElementType" = "_UIAlertControllerPhoneTVMacView";
+    "XC_kAXXCAttributeTraits" = 72057602627862528;
+}
+See test report attachments for more detail.

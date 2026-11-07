@@ -1,0 +1,96 @@
+Application, 0x10169b790, pid: 30342, label: 'NOIR LEDGER' <App element pid: 30342>
+  Window (Main), 0x1016a2c60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346465472.4>
+    Other, 0x1016a2eb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370605776.5>
+      Other, 0x1016a1e70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370608992.6>
+        Other, 0x1016922c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346364560.7>
+          Other, 0x1016a6e00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346737552.8>
+            Other, 0x1016a1410, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346855840.40>
+              Other, 0x1016a6960, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346861632.41>
+                Other, 0x1016a6a80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4372336032.43>
+                  Other, 0x1016a34f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346866816.49>
+                    Other, 0x1016a3610, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370519872.51>
+                      Other, 0x1016a3730, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370620064.52>
+                        Other, 0x1016a3850, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4372485200.53>
+                          NavigationBar, 0x1016a3970, {{0.0, 56.3}, {402.0, 44.0}}, identifier: 'Ledger' <AX element pid: 30342, elementOrHash.elementID: 4346983504.54>
+                            StaticText, 0x1016a3a90, {{173.3, 68.0}, {55.7, 20.3}}, label: 'Ledger' <AX element pid: 30342, elementOrHash.elementID: 4370934208.56>
+                            Other, 0x1016a3bb0, {{334.0, 56.3}, {52.0, 44.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 30342, elementOrHash.elementID: 4354593792.57>
+                              Other, 0x1016a3cd0, {{334.0, 56.3}, {52.0, 44.0}} <AX element pid: 30342, elementOrHash.elementID: 4370882208.59>
+                                Button, 0x1016a3df0, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 30342, elementOrHash.elementID: 4370869712.61>
+                          Other, 0x1016a40b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4372485648.55>
+                            Other, 0x1016a41d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370974192.58>
+                              Other, 0x1016a42f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4346976944.60>
+                                Other, 0x1016a4410, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 30342, elementOrHash.elementID: 4370986688.62>
+                                  ScrollView, 0x1016a4530, {{0.0, 0.0}, {402.0, 874.0}}, identifier: 'screen.ledger' <AX element pid: 30342, elementOrHash.elementID: 4380011008.63>
+                                    Other, 0x1016a4650, {{0.0, 196.7}, {402.0, 542.0}} <AX element pid: 30342, elementOrHash.elementID: 4372418976.69>
+                                      StaticText, 0x1016a4770, {{32.0, 224.7}, {86.0, 26.3}}, identifier: 'ledger.chapter', label: 'Briefing' <AX element pid: 30342, elementOrHash.elementID: 4371097088.92>
+                                      StaticText, 0x1016a4990, {{32.0, 263.0}, {335.3, 38.0}}, identifier: 'ledger.chapter', label: 'The street, the stash and the laundry, learned by doing. Follow the steps below.' <AX element pid: 30342, elementOrHash.elementID: 4370871680.93>
+                                      StaticText, 0x1016a4ab0, {{32.0, 349.0}, {75.0, 20.3}}, identifier: 'ledger.accounts', label: 'Accounts' <AX element pid: 30342, elementOrHash.elementID: 4371072560.94>
+                                      StaticText, 0x1016a4bd0, {{32.0, 381.3}, {338.0, 18.0}}, identifier: 'ledger.accounts', label: 'Acct. 2413  Dirty, 150' <AX element pid: 30342, elementOrHash.elementID: 4370935984.95>
+                                        Image, 0x1016a4cf0, {{32.0, 382.0}, {17.0, 17.0}}, label: 'StatusDirtyCash' <AX element pid: 30342, elementOrHash.elementID: 4371061024.107>
+                                        StaticText, 0x1016a4e10, {{57.0, 381.3}, {114.0, 18.0}}, label: 'Acct. 2413  Dirty' <AX element pid: 30342, elementOrHash.elementID: 4371053440.108>
+                                        StaticText, 0x1016a4f30, {{341.0, 381.3}, {29.0, 18.0}}, label: '150' <AX element pid: 30342, elementOrHash.elementID: 4370949728.109>
+                                      StaticText, 0x1016a5050, {{32.0, 411.3}, {338.0, 18.0}}, identifier: 'ledger.accounts', label: 'Acct. 1932  Clean, 0' <AX element pid: 30342, elementOrHash.elementID: 4371040448.96>
+                                        Image, 0x1016a5170, {{32.0, 412.0}, {17.0, 17.0}}, label: 'StatusCleanCash' <AX element pid: 30342, elementOrHash.elementID: 4371117296.110>
+                                        StaticText, 0x1016a5290, {{57.0, 411.3}, {120.3, 18.0}}, label: 'Acct. 1932  Clean' <AX element pid: 30342, elementOrHash.elementID: 4370709184.111>
+                                        StaticText, 0x1016a53b0, {{360.3, 411.3}, {9.7, 18.0}}, label: '0' <AX element pid: 30342, elementOrHash.elementID: 4370812800.112>
+                                      StaticText, 0x1016a54d0, {{32.0, 441.3}, {338.0, 18.0}}, identifier: 'ledger.accounts', label: 'Acct. 2606  Influence, 0.1' <AX element pid: 30342, elementOrHash.elementID: 4371091440.97>
+                                        Image, 0x1016a55f0, {{32.0, 442.0}, {17.0, 17.0}}, label: 'StatusInfluence' <AX element pid: 30342, elementOrHash.elementID: 4371127680.113>
+                                        StaticText, 0x1016a5710, {{57.0, 441.3}, {147.0, 18.0}}, label: 'Acct. 2606  Influence' <AX element pid: 30342, elementOrHash.elementID: 4371051072.114>
+                                        StaticText, 0x1016a5830, {{346.0, 441.3}, {24.0, 18.0}}, label: '0.1' <AX element pid: 30342, elementOrHash.elementID: 4371095584.115>
+                                      StaticText, 0x1016a95f0, {{34.0, 484.3}, {336.0, 18.0}}, identifier: 'ledger.accounts', label: 'Street income, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4370843360.98>
+                                        Image, 0x1016a9710, {{34.0, 488.0}, {11.0, 11.0}}, identifier: 'arrow.down.left', label: 'arrow.down.left' <AX element pid: 30342, elementOrHash.elementID: 4371081136.116>
+                                        StaticText, 0x1016a9830, {{54.7, 484.3}, {95.7, 18.0}}, label: 'Street income' <AX element pid: 30342, elementOrHash.elementID: 4371078368.117>
+                                        StaticText, 0x1016a9950, {{329.3, 484.3}, {40.7, 18.0}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4371073488.118>
+                                      StaticText, 0x1016a9a70, {{31.7, 514.3}, {338.3, 18.0}}, identifier: 'ledger.accounts', label: 'Laundering, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4370796624.99>
+                                        Image, 0x1016a9b90, {{31.7, 516.0}, {18.3, 15.0}}, identifier: 'arrow.triangle.2.circlepath', label: 'Syncing' <AX element pid: 30342, elementOrHash.elementID: 4371025840.119>
+                                        StaticText, 0x1016a9cb0, {{57.7, 514.3}, {77.3, 18.0}}, label: 'Laundering' <AX element pid: 30342, elementOrHash.elementID: 4371052096.120>
+                                        StaticText, 0x1016a9dd0, {{329.3, 514.3}, {40.7, 18.0}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4370814112.121>
+                                      StaticText, 0x1016a9ef0, {{34.0, 544.3}, {336.0, 18.0}}, identifier: 'ledger.accounts', label: 'Wages, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4371109248.100>
+                                        Image, 0x1016aa010, {{34.0, 546.0}, {21.7, 14.7}}, identifier: 'person.2', label: 'person.2' <AX element pid: 30342, elementOrHash.elementID: 4370732928.122>
+                                        StaticText, 0x1016aa130, {{64.7, 544.3}, {46.7, 18.0}}, label: 'Wages' <AX element pid: 30342, elementOrHash.elementID: 4371111760.123>
+                                        StaticText, 0x1016aa250, {{329.3, 544.3}, {40.7, 18.0}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4371110512.124>
+                                      StaticText, 0x1016aa370, {{34.0, 574.3}, {336.0, 18.0}}, identifier: 'ledger.accounts', label: 'Cover, 5' <AX element pid: 30342, elementOrHash.elementID: 4371103008.101>
+                                        Image, 0x1016aa490, {{34.0, 576.0}, {12.3, 15.0}}, identifier: 'shield', label: 'Shield' <AX element pid: 30342, elementOrHash.elementID: 4371108000.125>
+                                        StaticText, 0x1016aa5b0, {{56.3, 574.3}, {40.3, 18.0}}, label: 'Cover' <AX element pid: 30342, elementOrHash.elementID: 4371105520.126>
+                                        StaticText, 0x1016aa6d0, {{360.3, 574.3}, {9.7, 18.0}}, label: '5' <AX element pid: 30342, elementOrHash.elementID: 4371104272.127>
+                                      StaticText, 0x1016aa7f0, {{32.0, 640.3}, {74.0, 20.3}}, identifier: 'ledger.journal', label: 'Bookings' <AX element pid: 30342, elementOrHash.elementID: 4370928752.102>
+                                      StaticText, 0x1016aa910, {{32.0, 672.7}, {211.3, 18.0}}, identifier: 'ledger.journal', label: 'No bookings yet. Start the line.' <AX element pid: 30342, elementOrHash.elementID: 4371083344.103>
+                                    Other, 0x1016aaa30, {{369.0, 196.7}, {30.0, 408.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 30342, elementOrHash.elementID: 4371023360.70>
+                                      Other, 0x1016aab50, {{396.0, 199.7}, {3.0, 348.7}} <AX element pid: 30342, elementOrHash.elementID: 4371023824.104>
+                                    Other, 0x1016aac70, {{369.0, 196.7}, {30.0, 408.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 30342, elementOrHash.elementID: 4371023360.70>
+                                      Other, 0x1016aad90, {{396.0, 199.7}, {3.0, 348.7}} <AX element pid: 30342, elementOrHash.elementID: 4371023824.104>
+                                  StaticText, 0x1016aaeb0, {{16.0, 108.3}, {45.3, 48.0}}, identifier: 'screen.ledger', label: 'Dirty 150, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4371059360.64>
+                                    Image, 0x1016a5c90, {{16.0, 108.7}, {14.0, 14.0}}, label: 'StatusDirtyCash' <AX element pid: 30342, elementOrHash.elementID: 4371132736.71>
+                                    StaticText, 0x1016a5db0, {{34.0, 108.3}, {27.3, 14.3}}, label: 'Dirty' <AX element pid: 30342, elementOrHash.elementID: 4371114128.72>
+                                    StaticText, 0x1016a5ed0, {{16.0, 122.7}, {32.3, 20.3}}, identifier: 'hud.acc_dirty', label: '150' <AX element pid: 30342, elementOrHash.elementID: 4371064448.73>
+                                    StaticText, 0x1016a5ff0, {{16.0, 143.0}, {29.3, 13.3}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4371061968.74>
+                                  StaticText, 0x1016a6110, {{143.3, 108.3}, {50.3, 48.0}}, identifier: 'screen.ledger', label: 'Clean 0, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4370768144.65>
+                                    Image, 0x1016a6230, {{143.3, 108.7}, {14.0, 14.0}}, label: 'StatusCleanCash' <AX element pid: 30342, elementOrHash.elementID: 4371056864.75>
+                                    StaticText, 0x1016a6350, {{161.3, 108.3}, {32.3, 14.3}}, label: 'Clean' <AX element pid: 30342, elementOrHash.elementID: 4371054384.76>
+                                    StaticText, 0x1016a6470, {{143.3, 122.7}, {11.0, 20.3}}, identifier: 'hud.acc_clean', label: '0' <AX element pid: 30342, elementOrHash.elementID: 4371031296.77>
+                                    StaticText, 0x1016a70a0, {{143.3, 143.0}, {29.3, 13.3}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4370767712.78>
+                                  StaticText, 0x1016a71c0, {{270.7, 108.3}, {70.3, 48.0}}, identifier: 'screen.ledger', label: 'Influence 0.1, 0/min' <AX element pid: 30342, elementOrHash.elementID: 4371128592.66>
+                                    Image, 0x1016a72e0, {{270.7, 108.7}, {14.0, 14.0}}, label: 'StatusInfluence' <AX element pid: 30342, elementOrHash.elementID: 4370989376.79>
+                                    StaticText, 0x1016a7400, {{288.7, 108.3}, {52.3, 14.3}}, label: 'Influence' <AX element pid: 30342, elementOrHash.elementID: 4370989808.80>
+                                    StaticText, 0x1016a7520, {{270.7, 122.7}, {26.7, 20.3}}, identifier: 'hud.acc_influence', label: '0.1' <AX element pid: 30342, elementOrHash.elementID: 4370996560.81>
+                                    StaticText, 0x1016a7640, {{270.7, 143.0}, {29.3, 13.3}}, label: '0/min' <AX element pid: 30342, elementOrHash.elementID: 4370996992.82>
+                                  Other, 0x1016a7760, {{16.0, 164.3}, {370.0, 24.3}}, identifier: 'screen.ledger', label: 'Heat 0 of 100, trending to 0, Calm' <AX element pid: 30342, elementOrHash.elementID: 4370992432.67>
+                                    Image, 0x1016a7880, {{16.0, 164.3}, {14.0, 14.0}}, label: 'StatusHeat' <AX element pid: 30342, elementOrHash.elementID: 4371129024.83>
+                                    StaticText, 0x1016a79a0, {{34.0, 164.3}, {30.0, 14.3}}, label: 'Calm' <AX element pid: 30342, elementOrHash.elementID: 4370974608.84>
+                                    StaticText, 0x1016a7ac0, {{358.0, 164.3}, {8.3, 14.3}}, label: '0' <AX element pid: 30342, elementOrHash.elementID: 4370975040.85>
+                                    Image, 0x1016a7be0, {{372.0, 166.3}, {12.3, 10.0}}, identifier: 'arrow.right', label: 'Right' <AX element pid: 30342, elementOrHash.elementID: 4370990896.86>
+                                    Other, 0x1016a7d00, {{16.0, 182.7}, {370.0, 6.0}} <AX element pid: 30342, elementOrHash.elementID: 4370992000.87>
+                                  Other, 0x1016a7e20, {{12.0, 604.7}, {378.0, 178.3}}, identifier: 'screen.ledger' <AX element pid: 30342, elementOrHash.elementID: 4370986256.68>
+                                    Button, 0x1016a7f40, {{24.0, 616.7}, {354.0, 28.0}}, identifier: 'coach.toggle', label: 'Briefing 1 of 7' <AX element pid: 30342, elementOrHash.elementID: 4371135168.88>
+                                      StaticText, 0x1016a8060, {{24.0, 623.5}, {81.0, 14.3}}, label: 'Briefing 1 of 7' <AX element pid: 30342, elementOrHash.elementID: 4371030400.105>
+                                      Image, 0x1016a8180, {{361.3, 626.7}, {14.7, 8.3}}, identifier: 'chevron.down', label: 'Go Down' <AX element pid: 30342, elementOrHash.elementID: 4370888672.106>
+                                    StaticText, 0x1016a82a0, {{24.0, 652.7}, {130.7, 20.3}}, identifier: 'coach.title', label: 'Start production' <AX element pid: 30342, elementOrHash.elementID: 4371118112.89>
+                                    StaticText, 0x1016a83c0, {{24.0, 681.0}, {325.0, 38.0}}, label: 'Leopold's line still works. Open Operations and start the Glimmer line.' <AX element pid: 30342, elementOrHash.elementID: 4370984928.90>
+                                    Button, 0x1016a84e0, {{24.0, 727.0}, {354.0, 44.0}}, identifier: 'coach.go', label: 'Show me' <AX element pid: 30342, elementOrHash.elementID: 4370985360.91>
+              TabBar, 0x1016a8600, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 30342, elementOrHash.elementID: 4346859136.42>
+                Button, 0x1016a8720, {{2.0, 792.0}, {76.0, 48.0}}, identifier: 'book.closed', label: 'Ledger', Selected <AX element pid: 30342, elementOrHash.elementID: 4346914704.44>
+                  Image, 0x1016a8840, {{27.0, 795.3}, {25.3, 28.7}}, identifier: 'book.closed.fill', label: 'book.closed.fill' <AX element pid: 30342, elementOrHash.elementID: 4346941296.50>
+                Button, 0x1016a8960, {{82.0, 792.0}, {77.0, 48.0}}, identifier: 'gearshape.2', label: 'Operations' <AX element pid: 30342, elementOrHash.elementID: 4346944832.45>
+                Button, 0x1016a8a80, {{163.0, 792.0}, {76.0, 48.0}}, identifier: 'map', label: 'City' <AX element pid: 30342, elementOrHash.elementID: 4372370544.46>
+                Button, 0x1016a8ba0, {{243.0, 792.0}, {77.0, 48.0}}, identifier: 'banknote', label: 'Money' <AX element pid: 30342, elementOrHash.elementID: 4372375056.47>
+                Button, 0x1016a8cc0, {{324.0, 792.0}, {76.0, 48.0}}, identifier: 'person.3', label: 'Network' <AX element pid: 30342, elementOrHash.elementID: 4372346544.48>

@@ -1,0 +1,147 @@
+Application, 0x101464770, pid: 19706, label: 'NOIR LEDGER' <App element pid: 19706>
+  Window (Main), 0x10164f6c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356187488.4>
+    Other, 0x101651350, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356887776.5>
+      Other, 0x101651470, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356885648.6>
+        Other, 0x101651590, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356322880.7>
+          Other, 0x1016510b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356347952.8>
+            Other, 0x1016511d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4349879616.9>
+              Other, 0x1016521a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356013504.10>
+                Other, 0x1016522c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4355873152.12>
+                  Other, 0x1016523e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4356342512.111>
+                    Other, 0x101652500, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4680983424.113>
+                      Other, 0x101652620, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4350535248.114>
+                        Other, 0x101652740, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4357794960.115>
+                          NavigationBar, 0x101652860, {{0.0, 56.3}, {402.0, 44.0}}, identifier: 'Operations' <AX element pid: 19706, elementOrHash.elementID: 4357595424.116>
+                            StaticText, 0x101652980, {{157.0, 68.0}, {88.0, 20.3}}, label: 'Operations' <AX element pid: 19706, elementOrHash.elementID: 4681027088.118>
+                            Other, 0x101652aa0, {{334.0, 56.3}, {52.0, 44.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 19706, elementOrHash.elementID: 4372688896.119>
+                              Other, 0x101652bc0, {{334.0, 56.3}, {52.0, 44.0}} <AX element pid: 19706, elementOrHash.elementID: 4681080336.121>
+                                Button, 0x101652ce0, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'toolbar.settings', label: 'Settings' <AX element pid: 19706, elementOrHash.elementID: 4681079120.123>
+                          Other, 0x101652e00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4357796400.117>
+                            Other, 0x101652f20, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4681057104.120>
+                              Other, 0x101653040, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4357407952.122>
+                                Other, 0x101653160, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 19706, elementOrHash.elementID: 4681098640.124>
+                                  ScrollView, 0x101653280, {{0.0, 0.0}, {402.0, 874.0}}, identifier: 'screen.ops' <AX element pid: 19706, elementOrHash.elementID: 4364637184.125>
+                                    Other, 0x1016533a0, {{0.0, 196.7}, {402.0, 1640.3}} <AX element pid: 19706, elementOrHash.elementID: 4357782256.130>
+                                      StaticText, 0x1016534c0, {{34.0, 224.7}, {72.3, 20.3}}, label: 'Stash' <AX element pid: 19706, elementOrHash.elementID: 4681344064.149>
+                                      StaticText, 0x1016535e0, {{326.0, 227.7}, {44.0, 14.3}}, label: 'Lv 5/12' <AX element pid: 19706, elementOrHash.elementID: 4349925728.150>
+                                      StaticText, 0x101653700, {{32.0, 275.0}, {109.3, 18.0}}, identifier: 'ops.stashFill', label: '0 of 1,260 units' <AX element pid: 19706, elementOrHash.elementID: 4681079872.151>
+                                      Button, 0x101653820, {{32.0, 317.0}, {338.0, 56.7}}, identifier: 'ops.stash.upgrade', label: 'Expand stash, 2,334 dirty' <AX element pid: 19706, elementOrHash.elementID: 4680905472.152>
+                                        StaticText, 0x101653940, {{147.5, 327.0}, {107.0, 20.3}}, label: 'Expand stash' <AX element pid: 19706, elementOrHash.elementID: 4681358816.201>
+                                        StaticText, 0x101653a60, {{168.5, 349.3}, {65.0, 14.3}}, label: '2,334 dirty' <AX element pid: 19706, elementOrHash.elementID: 4349898448.202>
+                                      StaticText, 0x101653b80, {{16.0, 417.7}, {148.0, 24.0}}, label: 'Production lines' <AX element pid: 19706, elementOrHash.elementID: 4350233824.153>
+                                      StaticText, 0x101653ca0, {{32.0, 473.7}, {103.3, 28.0}}, identifier: 'line.GLIMMER', label: 'Glimmer' <AX element pid: 19706, elementOrHash.elementID: 4681306656.154>
+                                      StaticText, 0x101653dc0, {{291.0, 481.4}, {79.0, 15.7}}, identifier: 'line.GLIMMER', label: 'Running' <AX element pid: 19706, elementOrHash.elementID: 4681284704.155>
+                                      StaticText, 0x101653ee0, {{32.0, 513.7}, {338.0, 18.0}}, identifier: 'line.GLIMMER', label: '26.4 units/min, In stock 0' <AX element pid: 19706, elementOrHash.elementID: 4681244992.156>
+                                        StaticText, 0x101654000, {{32.0, 513.7}, {97.3, 18.0}}, label: '26.4 units/min' <AX element pid: 19706, elementOrHash.elementID: 4681254448.203>
+                                        StaticText, 0x101654120, {{300.0, 513.7}, {70.0, 18.0}}, label: 'In stock 0' <AX element pid: 19706, elementOrHash.elementID: 4681246928.204>
+                                      StaticText, 0x101654240, {{32.0, 543.7}, {338.0, 18.0}}, identifier: 'line.GLIMMER', label: 'Unit cost 2.3, Price 10.6 per unit' <AX element pid: 19706, elementOrHash.elementID: 4681235456.157>
+                                        StaticText, 0x101654360, {{32.0, 543.7}, {87.3, 18.0}}, label: 'Unit cost 2.3' <AX element pid: 19706, elementOrHash.elementID: 4681239248.205>
+                                        StaticText, 0x101654480, {{237.3, 543.7}, {132.7, 18.0}}, label: 'Price 10.6 per unit' <AX element pid: 19706, elementOrHash.elementID: 4681237344.206>
+                                      Button, 0x1016545a0, {{32.0, 573.7}, {338.0, 44.0}}, identifier: 'line.GLIMMER', label: 'Stop line' <AX element pid: 19706, elementOrHash.elementID: 4681222464.158>
+                                        Image, 0x1016546c0, {{156.7, 588.7}, {11.0, 14.7}}, identifier: 'pause.fill', label: 'Pause' <AX element pid: 19706, elementOrHash.elementID: 4681229840.207>
+                                        StaticText, 0x1016547e0, {{32.0, 573.7}, {338.0, 44.0}}, label: 'Stop line' <AX element pid: 19706, elementOrHash.elementID: 4681224288.208>
+                                      StaticText, 0x101654900, {{32.0, 642.7}, {73.7, 18.0}}, identifier: 'line.GLIMMER', label: 'Batch size' <AX element pid: 19706, elementOrHash.elementID: 4681211632.159>
+                                      StaticText, 0x101654a20, {{273.0, 642.7}, {46.7, 18.0}}, identifier: 'line.GLIMMER', label: '3 units' <AX element pid: 19706, elementOrHash.elementID: 4681209856.160>
+                                      StaticText, 0x101654b40, {{327.7, 644.5}, {42.3, 14.3}}, identifier: 'line.GLIMMER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4681208096.161>
+                                      Button, 0x101654c60, {{32.0, 664.7}, {338.0, 56.7}}, identifier: 'line.GLIMMER', label: 'Upgrade, 60 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681196864.162>
+                                        StaticText, 0x101654d80, {{166.5, 674.7}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681204608.209>
+                                        StaticText, 0x101654ea0, {{178.0, 697.0}, {46.0, 14.3}}, label: '60 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681198592.210>
+                                      StaticText, 0x101654fc0, {{32.0, 733.3}, {40.0, 18.0}}, identifier: 'line.GLIMMER', label: 'Cycle' <AX element pid: 19706, elementOrHash.elementID: 4681138800.163>
+                                      StaticText, 0x1016550e0, {{302.7, 733.3}, {17.0, 18.0}}, identifier: 'line.GLIMMER', label: '8s' <AX element pid: 19706, elementOrHash.elementID: 4681300224.164>
+                                      StaticText, 0x101655200, {{327.7, 735.2}, {42.3, 14.3}}, identifier: 'line.GLIMMER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4681298112.165>
+                                      Button, 0x101655320, {{32.0, 755.3}, {338.0, 56.7}}, identifier: 'line.GLIMMER', label: 'Upgrade, 75 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681248864.166>
+                                        StaticText, 0x101655440, {{166.5, 765.3}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681291808.211>
+                                        StaticText, 0x101655560, {{178.0, 787.7}, {46.0, 14.3}}, label: '75 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681256384.212>
+                                      StaticText, 0x101655680, {{32.0, 824.0}, {51.0, 18.0}}, identifier: 'line.GLIMMER', label: 'Quality' <AX element pid: 19706, elementOrHash.elementID: 4681227968.167>
+                                      StaticText, 0x1016557a0, {{262.7, 824.0}, {57.0, 18.0}}, identifier: 'line.GLIMMER', label: '×1 price' <AX element pid: 19706, elementOrHash.elementID: 4681195136.168>
+                                      StaticText, 0x1016558c0, {{327.7, 825.8}, {42.3, 14.3}}, identifier: 'line.GLIMMER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4681258336.169>
+                                      Button, 0x1016559e0, {{32.0, 846.0}, {338.0, 56.7}}, identifier: 'line.GLIMMER', label: 'Upgrade, 90 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681206304.170>
+                                        StaticText, 0x101655b00, {{166.5, 856.0}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681231680.213>
+                                        StaticText, 0x101655c20, {{178.0, 878.3}, {46.0, 14.3}}, label: '90 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681193424.214>
+                                      StaticText, 0x101655d40, {{32.0, 950.7}, {89.0, 28.0}}, identifier: 'line.CINDER', label: 'Cinder' <AX element pid: 19706, elementOrHash.elementID: 4681233552.171>
+                                      StaticText, 0x101655e60, {{291.0, 958.4}, {79.0, 15.7}}, identifier: 'line.CINDER', label: 'Running' <AX element pid: 19706, elementOrHash.elementID: 4681262272.172>
+                                      StaticText, 0x101655f80, {{32.0, 990.7}, {338.0, 18.0}}, identifier: 'line.CINDER', label: '35.2 units/min, In stock 0' <AX element pid: 19706, elementOrHash.elementID: 4681084544.173>
+                                        StaticText, 0x1016560a0, {{32.0, 990.7}, {97.0, 18.0}}, label: '35.2 units/min' <AX element pid: 19706, elementOrHash.elementID: 4681243008.215>
+                                        StaticText, 0x1016561c0, {{300.0, 990.7}, {70.0, 18.0}}, label: 'In stock 0' <AX element pid: 19706, elementOrHash.elementID: 4681171328.216>
+                                      StaticText, 0x1016562e0, {{32.0, 1020.7}, {338.0, 18.0}}, identifier: 'line.CINDER', label: 'Unit cost 6.3, Price 27.5 per unit' <AX element pid: 19706, elementOrHash.elementID: 4681137488.174>
+                                        StaticText, 0x101656400, {{32.0, 1020.7}, {87.3, 18.0}}, label: 'Unit cost 6.3' <AX element pid: 19706, elementOrHash.elementID: 4681266240.217>
+                                        StaticText, 0x101656520, {{237.3, 1020.7}, {132.7, 18.0}}, label: 'Price 27.5 per unit' <AX element pid: 19706, elementOrHash.elementID: 4681202784.218>
+                                      Button, 0x101656640, {{32.0, 1050.7}, {338.0, 44.0}}, identifier: 'line.CINDER', label: 'Stop line' <AX element pid: 19706, elementOrHash.elementID: 4681270256.175>
+                                        Image, 0x101656760, {{156.7, 1065.7}, {11.0, 14.7}}, identifier: 'pause.fill', label: 'Pause' <AX element pid: 19706, elementOrHash.elementID: 4350528352.219>
+                                        StaticText, 0x101656880, {{32.0, 1050.7}, {338.0, 44.0}}, label: 'Stop line' <AX element pid: 19706, elementOrHash.elementID: 4681272272.220>
+                                      StaticText, 0x101656af0, {{32.0, 1119.7}, {73.7, 18.0}}, identifier: 'line.CINDER', label: 'Batch size' <AX element pid: 19706, elementOrHash.elementID: 4681123136.176>
+                                      StaticText, 0x101656c10, {{273.0, 1119.7}, {46.7, 18.0}}, identifier: 'line.CINDER', label: '6 units' <AX element pid: 19706, elementOrHash.elementID: 4681124176.177>
+                                      StaticText, 0x101656d30, {{327.7, 1121.5}, {42.3, 14.3}}, identifier: 'line.CINDER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4681125232.178>
+                                      Button, 0x101656e50, {{32.0, 1141.7}, {338.0, 56.7}}, identifier: 'line.CINDER', label: 'Upgrade, 250 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681327232.179>
+                                        StaticText, 0x101656f70, {{166.5, 1151.7}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681136048.221>
+                                        StaticText, 0x101657090, {{174.2, 1174.0}, {53.7, 14.3}}, label: '250 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681348336.222>
+                                      StaticText, 0x1016573e0, {{32.0, 1210.3}, {40.0, 18.0}}, identifier: 'line.CINDER', label: 'Cycle' <AX element pid: 19706, elementOrHash.elementID: 4681326176.180>
+                                      StaticText, 0x101657500, {{293.3, 1210.3}, {26.3, 18.0}}, identifier: 'line.CINDER', label: '12s' <AX element pid: 19706, elementOrHash.elementID: 4681322368.181>
+                                      StaticText, 0x101657620, {{327.7, 1212.2}, {42.3, 14.3}}, identifier: 'line.CINDER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4681317440.182>
+                                      Button, 0x101657740, {{32.0, 1232.3}, {338.0, 56.7}}, identifier: 'line.CINDER', label: 'Upgrade, 313 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681276336.183>
+                                        StaticText, 0x101657860, {{166.5, 1242.3}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681312464.223>
+                                        StaticText, 0x101657980, {{174.2, 1264.7}, {53.7, 14.3}}, label: '313 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681307584.224>
+                                      StaticText, 0x101657aa0, {{32.0, 1301.0}, {51.0, 18.0}}, identifier: 'line.CINDER', label: 'Quality' <AX element pid: 19706, elementOrHash.elementID: 4681274288.184>
+                                      StaticText, 0x101657bc0, {{262.7, 1301.0}, {57.0, 18.0}}, identifier: 'line.CINDER', label: '×1 price' <AX element pid: 19706, elementOrHash.elementID: 4681160304.185>
+                                      StaticText, 0x101657ce0, {{327.7, 1302.8}, {42.3, 14.3}}, identifier: 'line.CINDER', label: 'Lv 1/10' <AX element pid: 19706, elementOrHash.elementID: 4680985168.186>
+                                      Button, 0x101657e00, {{32.0, 1323.0}, {338.0, 56.7}}, identifier: 'line.CINDER', label: 'Upgrade, 375 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681163392.187>
+                                        StaticText, 0x101657f20, {{166.5, 1333.0}, {69.0, 20.3}}, label: 'Upgrade' <AX element pid: 19706, elementOrHash.elementID: 4681164944.225>
+                                        StaticText, 0x101658040, {{174.2, 1355.3}, {53.7, 14.3}}, label: '375 dirty' <AX element pid: 19706, elementOrHash.elementID: 4681168080.226>
+                                      StaticText, 0x101658160, {{32.0, 1427.7}, {85.3, 28.0}}, identifier: 'line.VELVET', label: 'Velvet' <AX element pid: 19706, elementOrHash.elementID: 4681315232.188>
+                                      StaticText, 0x101658280, {{32.0, 1467.7}, {311.0, 38.0}}, identifier: 'line.VELVET', label: 'Club-grade goods for the night trade. Strong margin, sharper attention.' <AX element pid: 19706, elementOrHash.elementID: 4681320208.189>
+                                      StaticText, 0x1016583a0, {{32.0, 1517.7}, {31.3, 32.3}}, identifier: 'line.VELVET', label: 'Price, high' <AX element pid: 19706, elementOrHash.elementID: 4681278384.190>
+                                        StaticText, 0x1016584c0, {{32.0, 1517.7}, {29.0, 14.3}}, label: 'Price' <AX element pid: 19706, elementOrHash.elementID: 4681325136.227>
+                                        StaticText, 0x101659130, {{32.0, 1532.0}, {31.3, 18.0}}, label: 'high' <AX element pid: 19706, elementOrHash.elementID: 4681128752.228>
+                                      StaticText, 0x101659250, {{79.3, 1517.7}, {31.3, 32.3}}, identifier: 'line.VELVET', label: 'Risk, high' <AX element pid: 19706, elementOrHash.elementID: 4350262864.191>
+                                        StaticText, 0x101659370, {{79.3, 1517.7}, {23.7, 14.3}}, label: 'Risk' <AX element pid: 19706, elementOrHash.elementID: 4680887152.229>
+                                        StaticText, 0x101659490, {{79.3, 1532.0}, {31.3, 18.0}}, label: 'high' <AX element pid: 19706, elementOrHash.elementID: 4681268160.230>
+                                      StaticText, 0x1016569a0, {{126.7, 1517.7}, {57.7, 32.3}}, identifier: 'line.VELVET', label: 'Volume, medium' <AX element pid: 19706, elementOrHash.elementID: 4350151616.192>
+                                        StaticText, 0x1016597d0, {{126.7, 1517.7}, {42.0, 14.3}}, label: 'Volume' <AX element pid: 19706, elementOrHash.elementID: 4681341872.231>
+                                        StaticText, 0x1016598f0, {{126.7, 1532.0}, {57.7, 18.0}}, label: 'medium' <AX element pid: 19706, elementOrHash.elementID: 4350150832.232>
+                                      Button, 0x101659a10, {{32.0, 1562.0}, {338.0, 56.7}}, identifier: 'line.VELVET', label: 'Open line, 15k dirty' <AX element pid: 19706, elementOrHash.elementID: 4350252672.193>
+                                        StaticText, 0x101659b30, {{163.5, 1572.0}, {75.0, 20.3}}, label: 'Open line' <AX element pid: 19706, elementOrHash.elementID: 4350130672.233>
+                                        StaticText, 0x101659d10, {{174.7, 1594.3}, {52.7, 14.3}}, label: '15k dirty' <AX element pid: 19706, elementOrHash.elementID: 4350251568.234>
+                                      StaticText, 0x101659e30, {{32.0, 1666.7}, {72.3, 28.0}}, identifier: 'line.HALO', label: 'Halo' <AX element pid: 19706, elementOrHash.elementID: 4350254656.194>
+                                      StaticText, 0x101659f50, {{221.7, 1672.9}, {148.3, 15.7}}, identifier: 'line.HALO', label: 'Unlocks in chapter 5' <AX element pid: 19706, elementOrHash.elementID: 4350469728.195>
+                                      StaticText, 0x10165a070, {{32.0, 1706.7}, {308.7, 38.0}}, identifier: 'line.HALO', label: 'Rare luxury goods for the hill. Small batches, enormous margin, the highest risk.' <AX element pid: 19706, elementOrHash.elementID: 4350470832.196>
+                                      StaticText, 0x10165a190, {{32.0, 1756.7}, {58.7, 32.3}}, identifier: 'line.HALO', label: 'Price, extreme' <AX element pid: 19706, elementOrHash.elementID: 4350473344.197>
+                                        StaticText, 0x10165a2b0, {{32.0, 1756.7}, {29.0, 14.3}}, label: 'Price' <AX element pid: 19706, elementOrHash.elementID: 4350472480.235>
+                                        StaticText, 0x10165a3d0, {{32.0, 1771.0}, {58.7, 18.0}}, label: 'extreme' <AX element pid: 19706, elementOrHash.elementID: 4350472912.236>
+                                      StaticText, 0x10165a4f0, {{106.7, 1756.7}, {58.7, 32.3}}, identifier: 'line.HALO', label: 'Risk, extreme' <AX element pid: 19706, elementOrHash.elementID: 4350476032.198>
+                                        StaticText, 0x10165a610, {{106.7, 1756.7}, {23.7, 14.3}}, label: 'Risk' <AX element pid: 19706, elementOrHash.elementID: 4350473776.237>
+                                        StaticText, 0x10165a730, {{106.7, 1771.0}, {58.7, 18.0}}, label: 'extreme' <AX element pid: 19706, elementOrHash.elementID: 4350474208.238>
+                                      StaticText, 0x10165a850, {{181.3, 1756.7}, {42.0, 32.3}}, identifier: 'line.HALO', label: 'Volume, low' <AX element pid: 19706, elementOrHash.elementID: 4350481056.199>
+                                        StaticText, 0x10165a970, {{181.3, 1756.7}, {42.0, 14.3}}, label: 'Volume' <AX element pid: 19706, elementOrHash.elementID: 4350476816.239>
+                                        StaticText, 0x10165aa90, {{181.3, 1771.0}, {24.7, 18.0}}, label: 'low' <AX element pid: 19706, elementOrHash.elementID: 4350477600.240>
+                                    Other, 0x10165adb0, {{369.0, 196.7}, {30.0, 586.3}}, label: 'Vertical scroll bar, 3 pages', value: 0% <AX element pid: 19706, elementOrHash.elementID: 4680902720.131>
+                                      Other, 0x10165afb0, {{396.0, 199.7}, {3.0, 263.0}} <AX element pid: 19706, elementOrHash.elementID: 4680903184.200>
+                                    Other, 0x10165b0d0, {{369.0, 196.7}, {30.0, 586.3}}, label: 'Vertical scroll bar, 3 pages', value: 0% <AX element pid: 19706, elementOrHash.elementID: 4680902720.131>
+                                      Other, 0x10165b1f0, {{396.0, 199.7}, {3.0, 263.0}} <AX element pid: 19706, elementOrHash.elementID: 4680903184.200>
+                                  StaticText, 0x10165b310, {{16.0, 108.3}, {57.7, 48.0}}, identifier: 'screen.ops', label: 'Dirty 204.9k, 103/min' <AX element pid: 19706, elementOrHash.elementID: 4681050592.126>
+                                    Image, 0x10165b430, {{16.0, 108.7}, {14.0, 14.0}}, label: 'StatusDirtyCash' <AX element pid: 19706, elementOrHash.elementID: 4681031344.132>
+                                    StaticText, 0x10165b550, {{34.0, 108.3}, {27.3, 14.3}}, label: 'Dirty' <AX element pid: 19706, elementOrHash.elementID: 4681052592.133>
+                                    StaticText, 0x10165b670, {{16.0, 122.7}, {57.7, 20.3}}, identifier: 'hud.acc_dirty', label: '204.9k' <AX element pid: 19706, elementOrHash.elementID: 4681053024.134>
+                                    StaticText, 0x10165b790, {{16.0, 143.0}, {43.3, 13.3}}, label: '103/min' <AX element pid: 19706, elementOrHash.elementID: 4681050160.135>
+                                  StaticText, 0x10165b8b0, {{143.3, 108.3}, {57.7, 48.0}}, identifier: 'screen.ops', label: 'Clean 153.7k, 70/min' <AX element pid: 19706, elementOrHash.elementID: 4681010496.127>
+                                    Image, 0x10165b9d0, {{143.3, 108.7}, {14.0, 14.0}}, label: 'StatusCleanCash' <AX element pid: 19706, elementOrHash.elementID: 4681182080.136>
+                                    StaticText, 0x10165baf0, {{161.3, 108.3}, {32.3, 14.3}}, label: 'Clean' <AX element pid: 19706, elementOrHash.elementID: 4681158288.137>
+                                    StaticText, 0x10165bc10, {{143.3, 122.7}, {57.7, 20.3}}, identifier: 'hud.acc_clean', label: '153.7k' <AX element pid: 19706, elementOrHash.elementID: 4681158720.138>
+                                    StaticText, 0x10165bd30, {{143.3, 143.0}, {36.3, 13.3}}, label: '70/min' <AX element pid: 19706, elementOrHash.elementID: 4681010064.139>
+                                  StaticText, 0x10165be50, {{270.7, 108.3}, {70.3, 48.0}}, identifier: 'screen.ops', label: 'Influence 361, 0.2/min' <AX element pid: 19706, elementOrHash.elementID: 4681097856.128>
+                                    Image, 0x10165bf70, {{270.7, 108.7}, {14.0, 14.0}}, label: 'StatusInfluence' <AX element pid: 19706, elementOrHash.elementID: 4681011952.140>
+                                    StaticText, 0x10165c090, {{288.7, 108.3}, {52.3, 14.3}}, label: 'Influence' <AX element pid: 19706, elementOrHash.elementID: 4681095536.141>
+                                    StaticText, 0x10165c1b0, {{270.7, 122.7}, {32.3, 20.3}}, identifier: 'hud.acc_influence', label: '361' <AX element pid: 19706, elementOrHash.elementID: 4681095968.142>
+                                    StaticText, 0x10165c2d0, {{270.7, 143.0}, {39.7, 13.3}}, label: '0.2/min' <AX element pid: 19706, elementOrHash.elementID: 4681097424.143>
+                                  Other, 0x10165c3f0, {{16.0, 164.3}, {370.0, 24.3}}, identifier: 'screen.ops', label: 'Heat 2 of 100, trending to 6, Calm' <AX element pid: 19706, elementOrHash.elementID: 4681103520.129>
+                                    Image, 0x10165c510, {{16.0, 164.3}, {14.0, 14.0}}, label: 'StatusHeat' <AX element pid: 19706, elementOrHash.elementID: 4681099312.144>
+                                    StaticText, 0x10165c630, {{34.0, 164.3}, {30.0, 14.3}}, label: 'Calm' <AX element pid: 19706, elementOrHash.elementID: 4681100416.145>
+                                    StaticText, 0x10165c750, {{360.3, 164.3}, {8.3, 14.3}}, label: '2' <AX element pid: 19706, elementOrHash.elementID: 4681100848.146>
+                                    Image, 0x10165c870, {{374.3, 166.3}, {10.0, 10.0}}, identifier: 'arrow.up.right', label: 'arrow.up.right' <AX element pid: 19706, elementOrHash.elementID: 4681101632.147>
+                                    Other, 0x10165c990, {{16.0, 182.7}, {370.0, 6.0}} <AX element pid: 19706, elementOrHash.elementID: 4681103088.148>
+              TabBar, 0x10165cab0, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 19706, elementOrHash.elementID: 4357064496.11>
+                Button, 0x10165cbd0, {{2.0, 792.0}, {76.0, 48.0}}, identifier: 'book.closed', label: 'Ledger' <AX element pid: 19706, elementOrHash.elementID: 4357032512.13>
+                Button, 0x10165ccf0, {{82.0, 792.0}, {77.0, 48.0}}, identifier: 'gearshape.2', label: 'Operations', Selected <AX element pid: 19706, elementOrHash.elementID: 4356337408.14>
+                  Image, 0x10165ce10, {{102.3, 795.0}, {35.3, 29.0}}, identifier: 'gearshape.2.fill', label: 'advanced' <AX element pid: 19706, elementOrHash.elementID: 4356341728.112>
+                Button, 0x10165cf30, {{163.0, 792.0}, {76.0, 48.0}}, identifier: 'map', label: 'City' <AX element pid: 19706, elementOrHash.elementID: 4349888416.15>
+                Button, 0x10165d050, {{243.0, 792.0}, {77.0, 48.0}}, identifier: 'banknote', label: 'Money' <AX element pid: 19706, elementOrHash.elementID: 4349902128.16>
+                Button, 0x10165d170, {{324.0, 792.0}, {76.0, 48.0}}, identifier: 'person.3', label: 'Network' <AX element pid: 19706, elementOrHash.elementID: 4357138992.17>
