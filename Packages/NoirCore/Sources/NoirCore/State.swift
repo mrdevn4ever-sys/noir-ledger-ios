@@ -325,19 +325,32 @@ public enum JournalKind: String, Codable, Sendable, CaseIterable {
     case protection = "PROTECTION", wagesUnpaid = "WAGES_UNPAID", donation = "DONATION"
 }
 
-public struct JournalEntry: Codable, Sendable, Equatable {
+public struct JournalEntry: Codable, Sendable, Equatable, Identifiable {
+    /// Monotonic booking number, stable across saves (used as list identity).
+    public var seq: Int
     public var time: Double
     public var kind: JournalKind
     public var ref: String
     public var amount: Double
     public var amount2: Double
 
-    public init(time: Double, kind: JournalKind, ref: String = "", amount: Double = 0, amount2: Double = 0) {
+    public var id: Int { seq }
+
+    public init(seq: Int = 0, time: Double, kind: JournalKind, ref: String = "", amount: Double = 0, amount2: Double = 0) {
+        self.seq = seq
         self.time = time
         self.kind = kind
         self.ref = ref
         self.amount = amount
         self.amount2 = amount2
+    }
+}
+
+extension JournalEntry {
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(seq: c.value(.seq, 0), time: c.value(.time, 0.0), kind: c.value(.kind, JournalKind.chapterComplete),
+                  ref: c.value(.ref, ""), amount: c.value(.amount, 0.0), amount2: c.value(.amount2, 0.0))
     }
 }
 
@@ -405,6 +418,8 @@ public struct GameState: Codable, Sendable, Equatable {
     public var legacy = LegacyState()
     /// Newest first, at most 60 entries.
     public var journal: [JournalEntry] = []
+    /// Number of bookings ever written (the next entry's sequence number).
+    public var journalCount = 0
 
     public init() {}
 
@@ -435,7 +450,8 @@ public struct GameState: Codable, Sendable, Equatable {
     }
 
     public mutating func log(_ kind: JournalKind, ref: String = "", amount: Double = 0, amount2: Double = 0) {
-        journal.insert(JournalEntry(time: time, kind: kind, ref: ref, amount: amount, amount2: amount2), at: 0)
+        journalCount += 1
+        journal.insert(JournalEntry(seq: journalCount, time: time, kind: kind, ref: ref, amount: amount, amount2: amount2), at: 0)
         if journal.count > 60 { journal.removeLast(journal.count - 60) }
     }
 }
@@ -483,5 +499,6 @@ extension GameState {
         campaign = c.value(.campaign, CampaignState())
         legacy = c.value(.legacy, LegacyState())
         journal = c.value(.journal, [JournalEntry]())
+        journalCount = c.value(.journalCount, journal.map(\.seq).max() ?? 0)
     }
 }

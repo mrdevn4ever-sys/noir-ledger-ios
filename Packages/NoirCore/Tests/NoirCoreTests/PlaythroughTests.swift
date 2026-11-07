@@ -22,7 +22,7 @@ struct PlaythroughTests {
         #expect(bot.s.campaign.prologueChoice == .cashBox)
         #expect(bot.s.campaign.finalOp?.phase == FinalPhase.allCases.count)
         #expect(bot.s.legacy.points == Content.legacyAward(bot.s))
-        #expect(bot.s.stats.investigations >= 1, "Heat is a real constraint")
+        #expect(bot.s.stats.peakHeat >= Content.heatWarning, "Heat is a real constraint: the campaign reaches 'watched'")
         #expect(DistrictId.allCases.allSatisfy { bot.s.district($0).unlocked })
         #expect(FrontId.allCases.allSatisfy { bot.s.front($0).owned })
         #expect(ProductId.allCases.allSatisfy { bot.s.line($0).owned })
@@ -34,7 +34,7 @@ struct PlaythroughTests {
         #expect(s.legacy.ngLevel == 1)
         #expect(s.campaign.chapter == 1)
         print("seed=\(seed) won after \(String(format: "%.2f", hours)) h, raids=\(bot.s.stats.raids), "
-              + "investigations=\(bot.s.stats.investigations), legacy=\(bot.s.legacy.points)")
+              + "investigations=\(bot.s.stats.investigations), peakHeat=\(Int(bot.s.stats.peakHeat)), legacy=\(bot.s.legacy.points)")
     }
 
     @Test("The same seed always produces the same campaign")

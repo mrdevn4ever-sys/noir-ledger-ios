@@ -207,7 +207,7 @@ public struct Cost: Sendable, Equatable {
     public var isFree: Bool { dirty <= 0 && clean <= 0 && influence <= 0 }
 }
 
-public enum Objective: Sendable, Equatable {
+public enum Objective: Sendable, Hashable {
     case earnDirty(Double)
     case lineLevels(ProductId, Int)
     case crewCount(Int)

@@ -155,7 +155,8 @@ struct HeatAndRaidTests {
 
     @Test("Raid losses: exact fractions, Muscle halves the control loss, Fallback stash and Counsel shrink seizures")
     func raidModifiers() {
-        var base = TS.rich(chapter: 3)
+        let rich = TS.rich(chapter: 3)
+        var base = rich
         base.inventory = [.glimmer: 100]
         base.dirty = 1000
         var plain = base
@@ -163,7 +164,7 @@ struct HeatAndRaidTests {
         #expect(abs(plain.stock(.glimmer) - 50) < 1e-9)
         #expect(abs(plain.dirty - 800) < 1e-9)
 
-        var guarded = base
+        var guarded = rich
         guarded = TS.ok(guarded, .buyUpgrade(.lookouts))
         guarded = TS.ok(guarded, .buyUpgrade(.fallbackStash))
         guarded = TS.ok(guarded, .hire("feld"))
