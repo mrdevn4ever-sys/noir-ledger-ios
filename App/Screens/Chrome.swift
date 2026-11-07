@@ -115,27 +115,30 @@ struct HUDView: View {
 
     @ViewBuilder
     private func accounts(_ s: GameState) -> some View {
-        let cells = [
-            AccountCell(account: .dirty, value: s.dirty, rate: s.incomeRate),
-            AccountCell(account: .clean, value: s.clean, rate: s.cleanRate),
-            AccountCell(account: .influence, value: s.influence, rate: s.influenceRateEma),
-        ]
         if typeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: Noir.s1) { ForEach(cells) { $0 } }
+            VStack(alignment: .leading, spacing: Noir.s1) { accountCells(s) }
         } else {
-            HStack(alignment: .top, spacing: Noir.s3) { ForEach(cells) { $0 } }
+            HStack(alignment: .top, spacing: Noir.s3) { accountCells(s) }
+        }
+    }
+
+    private func accountCells(_ s: GameState) -> some View {
+        ForEach(Account.allCases, id: \.self) { account in
+            switch account {
+            case .dirty: AccountCell(account: account, value: s.dirty, rate: s.incomeRate)
+            case .clean: AccountCell(account: account, value: s.clean, rate: s.cleanRate)
+            case .influence: AccountCell(account: account, value: s.influence, rate: s.influenceRateEma)
+            }
         }
     }
 }
 
-struct AccountCell: View, Identifiable {
+struct AccountCell: View {
     let account: Account
     let value: Double
     let rate: Double
     @Environment(\.l10n) private var t
     @Environment(\.dynamicTypeSize) private var typeSize
-
-    var id: String { account.key }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
