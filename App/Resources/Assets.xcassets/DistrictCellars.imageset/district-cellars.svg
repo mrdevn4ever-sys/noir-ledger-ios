@@ -2,8 +2,9 @@
 <title>NOIR LEDGER district.cellars</title>
 <defs>
 <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
-<stop offset="0" stop-color="#1B1813"/>
-<stop offset="1" stop-color="#0F0D0B"/>
+<stop offset="0" stop-color="#2A2118"/>
+<stop offset="0.55" stop-color="#5E4626"/>
+<stop offset="1" stop-color="#3A2C1C"/>
 </linearGradient>
 </defs>
 <path d="M0 0h400v120h-400z" fill="url(#sky)"/>

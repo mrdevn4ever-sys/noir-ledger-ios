@@ -2,13 +2,14 @@
 <title>NOIR LEDGER district.docks</title>
 <defs>
 <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
-<stop offset="0" stop-color="#1B1813"/>
-<stop offset="1" stop-color="#0F0D0B"/>
+<stop offset="0" stop-color="#2A2118"/>
+<stop offset="0.55" stop-color="#5E4626"/>
+<stop offset="1" stop-color="#3A2C1C"/>
 </linearGradient>
 </defs>
 <path d="M0 0h400v120h-400z" fill="url(#sky)"/>
 <path d="M124.054 62.23L120.054 76.23M370.22 23.661L366.22 37.661M317.774 39.01L313.774 53.01M131.786 47.488L127.786 61.488M254.487 22.113L250.487 36.113M299.427 56.086L295.427 70.086M30.867 59.01L26.867 73.01M37.588 48.894L33.588 62.894M210.778 73.966L206.778 87.966M301.598 49.511L297.598 63.511M90.726 75.604L86.726 89.604M274.41 3.886L270.41 17.886M84.457 59.722L80.457 73.722M338.115 4.414L334.115 18.414M82.936 54.932L78.936 68.932M86.461 37.995L82.461 51.995M145.983 23.67L141.983 37.67M384.646 73.142L380.646 87.142M381.778 24.152L377.778 38.152M182.622 62.179L178.622 76.179M170.527 51.837L166.527 65.837M88.169 43.601L84.169 57.601M188.508 7.945L184.508 21.945M5.978 46.653L1.978 60.653M388.756 11.621L384.756 25.621M249.008 25.204L245.008 39.204" fill="none" stroke-opacity="0.12" stroke="#8A7F6C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M0 93.6h400v26.4h-400z" fill="#0C0D10"/>
+<path d="M0 93.6h400v26.4h-400z" fill="#1A1C22"/>
 <path d="M20 83.6h26v10h-26zM20 72.6h26v10h-26zM20 61.6h26v10h-26zM49 83.6h26v10h-26zM49 72.6h26v10h-26zM78 83.6h26v10h-26zM107 83.6h26v10h-26zM107 72.6h26v10h-26zM107 61.6h26v10h-26zM136 83.6h26v10h-26zM165 83.6h26v10h-26zM165 72.6h26v10h-26zM194 83.6h26v10h-26zM223 83.6h26v10h-26zM223 72.6h26v10h-26zM223 61.6h26v10h-26zM252 83.6h26v10h-26z" fill="#07060A"/>
 <path d="M248 93.6L248 14.4" fill="none" stroke="#07060A" stroke-width="4" stroke-linecap="butt" stroke-linejoin="round"/>
 <path d="M214 22.4L270 22.4" fill="none" stroke="#07060A" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
@@ -18,5 +19,5 @@
 <path d="M310 22.4L366 22.4" fill="none" stroke="#07060A" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
 <path d="M316 22.4L316 63.6" fill="none" stroke="#07060A" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round"/>
 <path d="M342 14.4a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z" fill="#E0A43A"/>
-<path d="M163.747 97.6L163.747 120M269.828 97.6L269.828 120M248.841 97.6L248.841 120M86.076 97.6L86.076 120M200.193 97.6L200.193 120" fill="none" stroke-opacity="0.35" stroke="#E0A43A" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M163.747 97.6L163.747 120M269.828 97.6L269.828 120M248.841 97.6L248.841 120M86.076 97.6L86.076 120M200.193 97.6L200.193 120" fill="none" stroke-opacity="0.55" stroke="#E0A43A" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round"/>
 </svg>

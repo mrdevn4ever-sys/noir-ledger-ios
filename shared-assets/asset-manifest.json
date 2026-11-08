@@ -207,19 +207,18 @@
       "id": "district.cellars",
       "kind": "illustration",
       "source": "districts/district-cellars.svg",
-      "sha256": "b0c76af6080e8a0020cfbc1a408625d6c17c2e514136c9bcfb7aeda08bf30be2",
+      "sha256": "d8085c20b508d1c307ae1168d25b58db628067ae51e802aa4a022c616bad5754",
       "geometryVersion": 1,
       "viewBox": "0 0 400 120",
       "colors": [
         "amber",
-        "ground",
         "inkFaint",
         "night"
       ],
       "png": {
         "source": "districts/district-cellars-1600.png",
         "width": 1600,
-        "sha256": "fcf816080bff2c8104335160dd55401bd48c9e46983453a91db37a9963f47ffd"
+        "sha256": "2d63fbe8c54767a3873b55e365aeb345c252d7f00b54ff92809dbe6e4e4776d2"
       },
       "exports": {
         "android": [
@@ -234,19 +233,18 @@
       "id": "district.docks",
       "kind": "illustration",
       "source": "districts/district-docks.svg",
-      "sha256": "c1f64a99fd29a1a7a8af333e5dce213e49304862d93d7cef95cbee21dd0c785c",
+      "sha256": "725d89db848cd906f88c2ed2d1fd7e9225d439af10c9c03b5b8639b8a4e78f92",
       "geometryVersion": 1,
       "viewBox": "0 0 400 120",
       "colors": [
         "amber",
-        "ground",
         "inkFaint",
         "night"
       ],
       "png": {
         "source": "districts/district-docks-1600.png",
         "width": 1600,
-        "sha256": "d665998933a875c8caf71cb7e71ed47109b0057bb090b5abcf390f7ccb8a6cf9"
+        "sha256": "5a643ee2fa54fbdbb0fa87dfe31b81fff0f2382c09806ba001223bfac7a6fd73"
       },
       "exports": {
         "android": [
@@ -261,12 +259,11 @@
       "id": "district.neon",
       "kind": "illustration",
       "source": "districts/district-neon.svg",
-      "sha256": "b9dcd086243808ed61f523f39097b184294262bf8c2fa4a8e04b4fc6b1768dbb",
+      "sha256": "2386cc95705eeab754aef1b9a63be9fbf2237ecad7cd932701a2a46b8c5c99e4",
       "geometryVersion": 1,
       "viewBox": "0 0 400 120",
       "colors": [
         "amber",
-        "ground",
         "inkFaint",
         "night",
         "teal"
@@ -274,7 +271,7 @@
       "png": {
         "source": "districts/district-neon-1600.png",
         "width": 1600,
-        "sha256": "6fa6e9688eee988bb4cf6910a307bddc8b37729c4012dfbd1cd2e0c4e7a1c4d5"
+        "sha256": "b53c9fa84ed7b043b14ac2ff2545c99adde6c863e51738b9196548c4abeabb9a"
       },
       "exports": {
         "android": [
@@ -289,19 +286,19 @@
       "id": "district.foundry",
       "kind": "illustration",
       "source": "districts/district-foundry.svg",
-      "sha256": "4acd25a94abad84b00d3681d8ae079b1958d9956da7c8c4564f43fefd1639cc4",
+      "sha256": "b1f2768edd7edb2db07b41cac31eb94ed845d577ddd6934e5a3182fda7f2270f",
       "geometryVersion": 1,
       "viewBox": "0 0 400 120",
       "colors": [
         "amber",
-        "ground",
         "inkFaint",
+        "inkSoft",
         "night"
       ],
       "png": {
         "source": "districts/district-foundry-1600.png",
         "width": 1600,
-        "sha256": "3e4a2f223636d27a34de1c0fa64b8b7a1d6d73de0bde980007756a2949fd8424"
+        "sha256": "3f2e78021245a2089399d77d3426a7850b797413a7922509edf5de477adaa048"
       },
       "exports": {
         "android": [
@@ -316,19 +313,18 @@
       "id": "district.crown",
       "kind": "illustration",
       "source": "districts/district-crown.svg",
-      "sha256": "8a84efbb60bbb8d88590c5ad030990c0e33421bc11b6d6b387eb7f6474ed375b",
+      "sha256": "be53c9e87ab7b61ebdd63d64c496d195b6e990477d318da4270e80920aa8eec1",
       "geometryVersion": 1,
       "viewBox": "0 0 400 120",
       "colors": [
         "amber",
-        "ground",
         "inkFaint",
         "night"
       ],
       "png": {
         "source": "districts/district-crown-1600.png",
         "width": 1600,
-        "sha256": "b4cbdfb9e609a10186a9efd881a6a0021f81341b66ac700e25b40d1cc15713ec"
+        "sha256": "03dd2406f25474ae21626b1a5cf3d6e77e1bbdae29dc712fa6ea9a3e2e4a4435"
       },
       "exports": {
         "android": [

@@ -2,8 +2,9 @@
 <title>NOIR LEDGER district.foundry</title>
 <defs>
 <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
-<stop offset="0" stop-color="#1B1813"/>
-<stop offset="1" stop-color="#0F0D0B"/>
+<stop offset="0" stop-color="#2A2118"/>
+<stop offset="0.55" stop-color="#5E4626"/>
+<stop offset="1" stop-color="#3A2C1C"/>
 </linearGradient>
 </defs>
 <path d="M0 0h400v120h-400z" fill="url(#sky)"/>
@@ -11,18 +12,18 @@
 <path d="M0 120L0 86L17.6 74L17.6 86L22 86L39.6 74L39.6 86L44 86L61.6 74L61.6 86L66 86L83.6 74L83.6 86L88 86L105.6 74L105.6 86L110 86L127.6 74L127.6 86L132 86L149.6 74L149.6 86L154 86L171.6 74L171.6 86L176 86L193.6 74L193.6 86L198 86L215.6 74L215.6 86L220 86L237.6 74L237.6 86L242 86L259.6 74L259.6 86L264 86L281.6 74L281.6 86L286 86L303.6 74L303.6 86L308 86L325.6 74L325.6 86L330 86L347.6 74L347.6 86L352 86L369.6 74L369.6 86L374 86L391.6 74L391.6 86L396 86L413.6 74L413.6 86L418 86L400 120z" fill="#07060A"/>
 <path d="M67.2 99h3.15v4.2h-3.15zM123.2 99h3.15v4.2h-3.15zM137.2 99h3.15v4.2h-3.15zM151.2 99h3.15v4.2h-3.15zM193.2 99h3.15v4.2h-3.15zM298.2 99h3.15v4.2h-3.15zM361.2 99h3.15v4.2h-3.15zM389.2 99h3.15v4.2h-3.15zM4.2 108.1h3.15v4.2h-3.15zM11.2 108.1h3.15v4.2h-3.15zM67.2 108.1h3.15v4.2h-3.15zM88.2 108.1h3.15v4.2h-3.15zM116.2 108.1h3.15v4.2h-3.15zM123.2 108.1h3.15v4.2h-3.15zM130.2 108.1h3.15v4.2h-3.15zM263.2 108.1h3.15v4.2h-3.15zM284.2 108.1h3.15v4.2h-3.15zM291.2 108.1h3.15v4.2h-3.15zM298.2 108.1h3.15v4.2h-3.15zM375.2 108.1h3.15v4.2h-3.15z" fill="#E0A43A" fill-opacity="0.8"/>
 <path d="M88 12h9v108h-9z" fill="#07060A"/>
-<path d="M87 6a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#8A7F6C" fill-opacity="0.1"/>
-<path d="M92 -1a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#8A7F6C" fill-opacity="0.08"/>
-<path d="M97 -8a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#8A7F6C" fill-opacity="0.06"/>
-<path d="M102 -15a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#8A7F6C" fill-opacity="0.04"/>
+<path d="M87 6a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#B9AC93" fill-opacity="0.24"/>
+<path d="M92 -1a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#B9AC93" fill-opacity="0.19"/>
+<path d="M97 -8a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#B9AC93" fill-opacity="0.14"/>
+<path d="M102 -15a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#B9AC93" fill-opacity="0.09"/>
 <path d="M192 19.2h9v100.8h-9z" fill="#07060A"/>
-<path d="M191 13.2a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#8A7F6C" fill-opacity="0.1"/>
-<path d="M196 6.2a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#8A7F6C" fill-opacity="0.08"/>
-<path d="M201 -0.8a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#8A7F6C" fill-opacity="0.06"/>
-<path d="M206 -7.8a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#8A7F6C" fill-opacity="0.04"/>
+<path d="M191 13.2a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#B9AC93" fill-opacity="0.24"/>
+<path d="M196 6.2a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#B9AC93" fill-opacity="0.19"/>
+<path d="M201 -0.8a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#B9AC93" fill-opacity="0.14"/>
+<path d="M206 -7.8a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#B9AC93" fill-opacity="0.09"/>
 <path d="M296 26.4h9v93.6h-9z" fill="#07060A"/>
-<path d="M295 20.4a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#8A7F6C" fill-opacity="0.1"/>
-<path d="M300 13.4a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#8A7F6C" fill-opacity="0.08"/>
-<path d="M305 6.4a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#8A7F6C" fill-opacity="0.06"/>
-<path d="M310 -0.6a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#8A7F6C" fill-opacity="0.04"/>
+<path d="M295 20.4a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z" fill="#B9AC93" fill-opacity="0.24"/>
+<path d="M300 13.4a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#B9AC93" fill-opacity="0.19"/>
+<path d="M305 6.4a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#B9AC93" fill-opacity="0.14"/>
+<path d="M310 -0.6a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#B9AC93" fill-opacity="0.09"/>
 </svg>

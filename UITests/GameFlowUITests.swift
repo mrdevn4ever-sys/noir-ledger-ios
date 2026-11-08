@@ -34,12 +34,12 @@ final class GameFlowUITests: NoirUITestCase {
         wait("screen.money")
         tapRevealed("front.LAUNDROMAT.buy")
         shot("en_07_briefing_front")
-        // 6 Wash; 7 Heat briefing on the Ledger.
-        wait("coach.go", 40).tap()
-        wait("screen.ledger")
+        // 6 Wash; 7 the Heat briefing is acknowledged wherever the player is.
+        let understood = wait("coach.ack", 40)
         shot("en_08_briefing_heat")
-        wait("coach.ack").tap()
+        understood.tap()
         XCTAssertFalse(element("coach.title").waitForExistence(timeout: 2), "the briefing is finished")
+        tab(0)
         wait("ledger.chapterTitle")
         shot("en_09_chapter1")
     }
@@ -76,10 +76,24 @@ final class GameFlowUITests: NoirUITestCase {
         element("money.reserve").buttons.element(boundBy: 2).tap()
         tapRevealed("money.protection")
         tapRevealed("money.donate")
-        // Network: hire, an improvement and the legacy section.
+        // Network: dismiss a specialist (confirmed), rehire at 1.5x the fee, an improvement and the legacy section.
         tab(4)
         wait("screen.network")
-        tapRevealed("crew.hire.feld")
+        tapRevealed("crew.ENFORCER.dismiss")
+        let confirm = element("crew.dismiss.confirm")
+        if confirm.waitForExistence(timeout: 5) {
+            confirm.tap()
+        } else {
+            // Dialog buttons may not carry SwiftUI identifiers on every OS: take the dialog's own "Dismiss",
+            // never one of the crew panels' buttons.
+            let dialogButton = app.buttons.matching(NSPredicate(format: "label == 'Dismiss' AND NOT (identifier BEGINSWITH 'crew.')")).firstMatch
+            XCTAssertTrue(dialogButton.waitForExistence(timeout: 3), "the dismissal asks for confirmation")
+            dialogButton.tap()
+        }
+        let rehire = element("crew.hire.feld")
+        reveal(rehire)
+        XCTAssertTrue(rehire.label.contains("6,000"), "a returning specialist costs 1.5x the 4,000 fee: \(rehire.label)")
+        rehire.tap()
         wait("crew.ENFORCER.name")
         element("network.section").buttons.element(boundBy: 1).tap()
         tapRevealed("upgrade.LOOKOUTS")
@@ -110,13 +124,25 @@ final class GameFlowUITests: NoirUITestCase {
         XCTAssertEqual(before, after, "the expanded stash survived termination and relaunch")
     }
 
-    func testInvestigationRaidAndRecovery() {
-        launch(["-qa-reset", "-qa-seed", "31", "-qa-scenario", "investigation", "-qa-quiet", "-qa-timescale", "8"])
+    func testInvestigationCountermeasuresDropTheCase() {
+        // Real time: the 45 s countdown leaves room to respond. A bribe (-18) plus lying low brings Heat under 60.
+        launch(["-qa-reset", "-qa-seed", "31", "-qa-scenario", "investigation", "-qa-quiet"])
         wait("hud.investigation").tap()
         wait("screen.money")
         wait("money.investigation")
         shot("en_21_investigation")
         tapRevealed("money.bribe")
+        tapRevealed("money.layLow")
+        let gone = NSPredicate(format: "exists == false")
+        expectation(for: gone, evaluatedWith: element("hud.investigation"))
+        waitForExpectations(timeout: 30)
+        XCTAssertFalse(element("raid.title").exists, "the case was dropped before any raid")
+    }
+
+    func testInvestigationRaidAndRecovery() {
+        // Accelerated: nobody responds, the countdown runs out and the raid lands.
+        launch(["-qa-reset", "-qa-seed", "31", "-qa-scenario", "investigation", "-qa-quiet", "-qa-timescale", "8"])
+        wait("hud.investigation")
         wait("raid.title", 40)
         wait("raid.recover")
         shot("en_22_raid")

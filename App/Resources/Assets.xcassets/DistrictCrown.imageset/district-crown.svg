@@ -2,14 +2,16 @@
 <title>NOIR LEDGER district.crown</title>
 <defs>
 <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
-<stop offset="0" stop-color="#1B1813"/>
-<stop offset="1" stop-color="#0F0D0B"/>
+<stop offset="0" stop-color="#2A2118"/>
+<stop offset="0.55" stop-color="#5E4626"/>
+<stop offset="1" stop-color="#3A2C1C"/>
 </linearGradient>
 </defs>
 <path d="M0 0h400v120h-400z" fill="url(#sky)"/>
 <path d="M206.887 49.575L202.887 63.575M215.99 57.077L211.99 71.077M13.328 69.844L9.328 83.844M190.497 51.344L186.497 65.344M72.656 5.637L68.656 19.637M363.518 63.035L359.518 77.035M147.837 2.836L143.837 16.836M180.358 50.93L176.358 64.93M4.626 83.525L0.626 97.525M87.655 70.49L83.655 84.49M152.122 2.077L148.122 16.077M161.636 54.339L157.636 68.339M91.521 68.625L87.521 82.625M22.687 38.433L18.687 52.433M354.324 11.748L350.324 25.748M367.509 58.215L363.509 72.215M311.25 29.172L307.25 43.172M150.095 52.066L146.095 66.066M233.097 48.304L229.097 62.304M342.797 46.373L338.797 60.373M184.813 43.413L180.813 57.413M108.707 77.526L104.707 91.526M34.013 77.264L30.013 91.264M116.625 83.144L112.625 97.144M155.207 16.023L151.207 30.023M229.856 15.864L225.856 29.864" fill="none" stroke-opacity="0.12" stroke="#8A7F6C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M0 120L0 86.4C100 54 220 42 400 72L400 120z" fill="#07060A"/>
-<path d="M168 27.6h80v20h-80zM162 13.6h10v34h-10zM244 15.6h10v32h-10zM194 25.6a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#07060A"/>
+<path d="M0 120L0 86.4C100 54 220 42 400 72L400 120z" fill="#1C1611"/>
+<path d="M168 27.6h80v34h-80zM162 13.6h10v34h-10zM244 15.6h10v32h-10z" fill="#07060A"/>
+<path d="M194 25.6a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#07060A"/>
 <path d="M208 11.6L208 -0.4" fill="none" stroke="#07060A" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round"/>
 <path d="M172.2 36.6h3.15v4.2h-3.15zM186.2 36.6h3.15v4.2h-3.15zM193.2 36.6h3.15v4.2h-3.15zM207.2 36.6h3.15v4.2h-3.15zM214.2 36.6h3.15v4.2h-3.15zM235.2 36.6h3.15v4.2h-3.15z" fill="#E0A43A" fill-opacity="0.8"/>
 <path d="M108.842 85.668h4v3h-4zM316.897 97.332h4v3h-4zM233.558 105.547h4v3h-4zM373.663 88.173h4v3h-4zM310.892 107.767h4v3h-4zM164.33 103.774h4v3h-4zM107.709 99.988h4v3h-4z" fill="#E0A43A" fill-opacity="0.7"/>

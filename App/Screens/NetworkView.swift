@@ -108,6 +108,7 @@ private struct RolePanel: View {
             .accessibilityIdentifier("crew.\(role.rawValue).dismiss")
             .confirmationDialog(Text(verbatim: t("crew_dismiss_title", def.name)), isPresented: $confirmDismiss, titleVisibility: .visible) {
                 Button(role: .destructive) { store.dispatch(.dismiss(member.defId)) } label: { Text(verbatim: t("crew_dismiss")) }
+                    .accessibilityIdentifier("crew.dismiss.confirm")
                 Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
             } message: {
                 Text(verbatim: t("crew_dismiss_body"))
