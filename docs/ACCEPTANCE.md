@@ -12,8 +12,12 @@ Hash-bound acceptance record for NOIR LEDGER iOS 1.0 (1).
 | Android canonical source | `F:/Projects/NoirLedger` at `438e316c06ede34a04b0b90f058cbbdd3cb1ced3` (read-only) |
 | `shared-assets/manifest.json` SHA-256 | `9018da2f4825ef40d9ca9cd813fa01776c06ebbbd2026d928c34a7899c941636` |
 
-Every commit after `aed8f35` changes documentation and evidence files only (`docs/`); each is pushed and
-re-verified by its own full CI run before completion is declared.
+Every commit after `aed8f35` changes files under `docs/` only. The trees `App`, `Packages`, `AppTests`, `UITests`,
+`scripts`, `.github`, `project.yml` and `shared-assets` are byte-identical to `aed8f35` (same git tree hashes), so
+the build inputs proven by run 42458444443 are unchanged. The CI rerun dispatched for the first docs commit `5081b1c`
+(run 42460957805) did not start any job: GitHub refused the macOS runners because the account's Actions spending
+limit or payment needs attention. Paid overage is not authorized, so that rerun is outstanding until the owner's
+Actions minutes are available again.
 
 ## Gates
 
