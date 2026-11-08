@@ -82,8 +82,9 @@ struct LocalizationTests {
         #expect(en.duration(75) == "1m 15s")
         #expect(de.duration(3_900) == "1 h 05 min")
         #expect(en.percent(0.3) == "30%")
-        #expect(de.percent(0.3) == "30 %")
-        #expect(de("upd_bought_press").contains("30 %"))
+        // German sets a no-break space before % so a value never wraps away from its sign.
+        #expect(de.percent(0.3) == "30\u{00A0}%")
+        #expect(de("upd_bought_press").contains("30\u{00A0}%"))
         #expect(en.plural("obj_crew", count: 1, 1) == "Have 1 specialist in the crew")
         #expect(en.plural("obj_crew", count: 2, 2) == "Have 2 specialists in the crew")
     }
