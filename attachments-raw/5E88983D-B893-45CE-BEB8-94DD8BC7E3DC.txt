@@ -1,0 +1,5 @@
+Query chain:
+ →Find: Target Application 'io.puredevn.noirledger'
+  ↪︎Find: Descendants matching type Any
+    ↪︎Find: Elements matching predicate '"final.choice.votes" IN identifiers'
+      ↪︎Find: First Match
