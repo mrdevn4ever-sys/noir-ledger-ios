@@ -1,0 +1,259 @@
+{
+  "method": "normalized cross-correlation of grayscale capture pixels; best scale/offset search; each pair with a negative control",
+  "masters_vs_runtime": [
+    {
+      "platform": "android",
+      "capture": "33_crew_portraits.png",
+      "box": [
+        70,
+        870,
+        250,
+        1040
+      ],
+      "reference": "crew/portrait-brandt-384.png",
+      "ncc": 0.893,
+      "match": [
+        148,
+        14,
+        10
+      ],
+      "negative_control": "crew/portrait-varga-384.png",
+      "ncc_negative": 0.474
+    },
+    {
+      "platform": "android",
+      "capture": "33_crew_portraits.png",
+      "box": [
+        70,
+        1950,
+        250,
+        2120
+      ],
+      "reference": "crew/portrait-varga-384.png",
+      "ncc": 0.877,
+      "match": [
+        148,
+        14,
+        12
+      ],
+      "negative_control": "crew/portrait-brandt-384.png",
+      "ncc_negative": 0.475
+    },
+    {
+      "platform": "ios",
+      "capture": "en_tour_15_crew.png",
+      "box": [
+        80,
+        1000,
+        300,
+        1220
+      ],
+      "reference": "crew/portrait-brandt-384.png",
+      "ncc": 0.815,
+      "match": [
+        194,
+        14,
+        24
+      ],
+      "negative_control": "crew/portrait-varga-384.png",
+      "ncc_negative": 0.378
+    },
+    {
+      "platform": "ios",
+      "capture": "en_tour_16_crew_candidates.png",
+      "box": [
+        80,
+        1080,
+        300,
+        1280
+      ],
+      "reference": "crew/portrait-varga-384.png",
+      "ncc": 0.529,
+      "match": [
+        186,
+        20,
+        14
+      ],
+      "negative_control": "crew/portrait-brandt-384.png",
+      "ncc_negative": 0.229
+    },
+    {
+      "platform": "android",
+      "capture": "05_ops_line_started.png",
+      "box": [
+        70,
+        1010,
+        200,
+        1140
+      ],
+      "reference": "products/seal-glimmer-256.png",
+      "ncc": 0.932,
+      "match": [
+        106,
+        14,
+        14
+      ],
+      "negative_control": "products/seal-halo-256.png",
+      "ncc_negative": 0.732
+    },
+    {
+      "platform": "android",
+      "capture": "28_ops_locked_lines_en.png",
+      "box": [
+        70,
+        1690,
+        200,
+        1820
+      ],
+      "reference": "products/seal-velvet-256.png",
+      "ncc": 0.942,
+      "match": [
+        106,
+        14,
+        18
+      ],
+      "negative_control": "products/seal-cinder-256.png",
+      "ncc_negative": 0.417
+    },
+    {
+      "platform": "ios",
+      "capture": "en_tour_06_operations.png",
+      "box": [
+        80,
+        1455,
+        200,
+        1575
+      ],
+      "reference": "products/seal-glimmer-256.png",
+      "ncc": 0.998,
+      "match": [
+        84,
+        16,
+        20
+      ],
+      "negative_control": "products/seal-halo-256.png",
+      "ncc_negative": 0.693
+    },
+    {
+      "platform": "ios",
+      "capture": "en_tour_07_operations_lines.png",
+      "box": [
+        80,
+        1120,
+        200,
+        1240
+      ],
+      "reference": "products/seal-velvet-256.png",
+      "ncc": 0.895,
+      "match": [
+        84,
+        16,
+        18
+      ],
+      "negative_control": "products/seal-cinder-256.png",
+      "ncc_negative": 0.423
+    }
+  ],
+  "android_vs_ios_marks": [
+    {
+      "mark": "front.laundromat",
+      "android": "35_money_fronts.png",
+      "android_box": [
+        70,
+        1250,
+        200,
+        1380
+      ],
+      "ios": "en_tour_14_fronts.png",
+      "ios_box": [
+        85,
+        945,
+        175,
+        1035
+      ],
+      "ncc": 0.922,
+      "match": [
+        48,
+        42,
+        46
+      ],
+      "negative_control": "front.taxi",
+      "ncc_negative": 0.318
+    },
+    {
+      "mark": "front.taxi",
+      "android": "35_money_fronts.png",
+      "android_box": [
+        70,
+        1750,
+        200,
+        1880
+      ],
+      "ios": "en_tour_14_fronts.png",
+      "ios_box": [
+        85,
+        1805,
+        175,
+        1895
+      ],
+      "ncc": 0.934,
+      "match": [
+        50,
+        42,
+        48
+      ],
+      "negative_control": "front.laundromat",
+      "ncc_negative": 0.306
+    },
+    {
+      "mark": "role.production",
+      "android": "33_crew_portraits.png",
+      "android_box": [
+        75,
+        755,
+        190,
+        875
+      ],
+      "ios": "en_tour_15_crew.png",
+      "ios_box": [
+        85,
+        905,
+        175,
+        995
+      ],
+      "ncc": 0.888,
+      "match": [
+        44,
+        34,
+        40
+      ],
+      "negative_control": "role.logistics",
+      "ncc_negative": 0.456
+    },
+    {
+      "mark": "role.logistics",
+      "android": "33_crew_portraits.png",
+      "android_box": [
+        75,
+        1835,
+        190,
+        1955
+      ],
+      "ios": "en_tour_15_crew.png",
+      "ios_box": [
+        85,
+        2058,
+        175,
+        2148
+      ],
+      "ncc": 0.919,
+      "match": [
+        44,
+        36,
+        40
+      ],
+      "negative_control": "role.production",
+      "ncc_negative": 0.463
+    }
+  ]
+}

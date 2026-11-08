@@ -62,3 +62,7 @@ Visual review runs in at most two batched passes; results are recorded in [ACCEP
 - `scripts/qa/parity_sheet.py <android repo> <ios screenshots> <ios contact sheet> <out.png>`: composes real Android
   and iOS runtime captures plus both canonical contact sheets side by side (no redrawing); the accepted sheet is
   [parity/android-ios-parity-sheet.jpg](parity/android-ios-parity-sheet.jpg).
+- Runtime art coverage (product seals, crew portraits and role marks, front marks) is paired from real captures on
+  both platforms and pixel-matched with negative controls:
+  [parity/runtime-art-parity-sheet.jpg](parity/runtime-art-parity-sheet.jpg) and
+  [parity/runtime-art-match.json](parity/runtime-art-match.json); provenance is in [ACCEPTANCE.md](ACCEPTANCE.md).
