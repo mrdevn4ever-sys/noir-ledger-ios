@@ -1,0 +1,872 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "0CCDCBFD-FBC8-4F01-9D8B-B7DB04557ED0.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_42_save_recovered_0_07E29546-2C1C-4DF5-A365-B0B100A435B6.png",
+        "timestamp" : 1794123317.843
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testDamagedSaveIsRecoveredFromBackup()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testDamagedSaveIsRecoveredFromBackup"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "93EA9569-8383-4681-BAFE-00C1EC0BE05A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_35_new_game_plus_0_9C5BE370-ACF3-4730-ABC9-FDF0A00CBDE2.png",
+        "timestamp" : 1794123419.234
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "7201CBB8-27AD-4EE3-9478-ABEC86C77AA8.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_34_legacy_0_40CF6C50-30B3-412F-BF47-E697B20E3A5D.png",
+        "timestamp" : 1794123393.626
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "A7AD26D1-90CC-4060-8869-731BA37C408A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_33_epilogue_books_0_37909421-3A97-4D50-AB21-6B45FFC7DF34.png",
+        "timestamp" : 1794123375.9
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "AAA75C87-B927-465A-828D-A5C421B28E5C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_32_epilogue_0_88E035E3-906E-4C69-8FEF-E9714659C68E.png",
+        "timestamp" : 1794123366.11
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "2D7803D5-F6BD-4497-877E-B2D76D188AC9.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_31_final_phase3_0_99645203-899B-43B5-8ECC-8D20DC161D3D.png",
+        "timestamp" : 1794123358.093
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "4A941E0F-9D96-4E15-8163-972D609AD6C6.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_30_final_requirements_0_9CAE6A69-D08F-4B5C-B01D-52DA2BF674F3.png",
+        "timestamp" : 1794123336.239
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testFinalOperationEpilogueAndNewGamePlus()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testFinalOperationEpilogueAndNewGamePlus"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "1A2DC77C-F31D-4FB5-87C7-4715BEF4C730.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_09_chapter1_0_CE56D3C6-BDF5-4907-8C6A-4EFE0ABE8B0B.png",
+        "timestamp" : 1794123492.813
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "402DB2CD-75BC-432F-8AE5-49F21F2BC25B.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_08_briefing_heat_0_5A7E27DE-F7B8-4FA1-B91B-AC6184DFDE39.png",
+        "timestamp" : 1794123484.848
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "59B0ED9D-6662-4665-8A61-A8568C1D9EA3.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_07_briefing_front_0_7A5ABEC2-D028-42AB-A819-177E7FE3BD73.png",
+        "timestamp" : 1794123482.418
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "58DACF27-97AC-4B9D-AC04-28FA2314C683.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_06_briefing_route_0_BA2234B5-62C5-4DE4-A417-1758A4B61BBB.png",
+        "timestamp" : 1794123463.499
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "B5E82B2D-4B11-4EFC-89D6-D27F4BC89667.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_05_briefing_coach_0_15E3102A-AC92-467D-81C8-A57194AC9930.png",
+        "timestamp" : 1794123435.686
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "9A32B978-C270-43DB-B89A-CDB3EDF75348.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_04_prologue_cellar_0_4E12F276-84BC-4DB9-896D-FF0CDEC600AA.png",
+        "timestamp" : 1794123432.51
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "3A36EAEE-DAF3-4A6D-AC09-19E2AC323C2F.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_03_prologue_choice_0_D4B2D438-20C8-4275-8461-AC25173D673A.png",
+        "timestamp" : 1794123431.748
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "4943EBD7-40EB-4885-9104-10A56217CE1D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_02_prologue_ledger_0_BC714B2E-9D5C-4E7B-A0BD-A0F3154F30D7.png",
+        "timestamp" : 1794123429.356
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "B03EFAE3-25E4-420E-85F5-66F8F3131505.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_01_prologue_funeral_0_04F6DC5D-89C4-4B81-BF2B-853BBE95E2F7.png",
+        "timestamp" : 1794123428.776
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testFreshInstallPrologueAndSevenStepBriefing()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testFreshInstallPrologueAndSevenStepBriefing"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "3445EA34-3336-48CA-BA8D-0E89EA680F3B.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_60_home_screen_icon_0_2FE96B69-F154-4943-9B1A-6CA5295D5186.png",
+        "timestamp" : 1794123506.586
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testHomeScreenIcon()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testHomeScreenIcon"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "4C65497C-A155-4ADD-A71D-DBB67A392226.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_21_investigation_0_ABC76916-5E19-4038-A53F-64AF6418A9A0.png",
+        "timestamp" : 1794123522.428
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testInvestigationCountermeasuresDropTheCase()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testInvestigationCountermeasuresDropTheCase"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "26735BD4-83C2-4731-8862-361B0C1085E5.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_23_raid_recovery_district_0_26357799-C586-4AB3-8E76-D33ED2AB5DF7.png",
+        "timestamp" : 1794123567.05
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "5D92806D-2C47-4F31-BFEB-3C1EF7C3D500.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_22_raid_0_81777B2B-643F-4EDC-8FD6-41C7B83C242C.png",
+        "timestamp" : 1794123550.781
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testInvestigationRaidAndRecovery()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testInvestigationRaidAndRecovery"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "E8BCF0E8-B35A-4DEB-8696-1829CB0BA01C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_40_settings_0_9E0BC1AB-C6C9-429C-BFC1-7208439D8885.png",
+        "timestamp" : 1794123586.264
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "30D9DB4F-C4AD-4003-84CF-89C937280B26.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_40_settings_0_20829D89-5783-468B-950F-2A0EFFAD57FB.png",
+        "timestamp" : 1794123580.211
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testLanguageSwitchInSettings()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testLanguageSwitchInSettings"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "F44208D7-24EE-4588-804A-3F9AC7FA4BE0.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_52_large_text_money_0_3D4F3343-BEC2-4327-B070-6C98584E3674.png",
+        "timestamp" : 1794123638.743
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "44F51D99-ABE1-4AB0-AF1D-D1D243F9D77A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_51_large_text_ops_0_FCCE34BD-E2E3-47AD-9563-1914C7F77E7F.png",
+        "timestamp" : 1794123622.687
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "9F2CC08F-CB47-4B9C-929C-A9C17D4E9E9D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_50_large_text_ledger_0_7EE5BF89-0A2E-442F-8690-AD0A1C02B9E4.png",
+        "timestamp" : 1794123597.88
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testLargeDynamicType()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testLargeDynamicType"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "04CB27EC-81D0-4376-A92D-D418DA23833D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_20_offline_return_0_B7098DF9-4A76-4B49-A890-1E981AEF08FC.png",
+        "timestamp" : 1794123664.999
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testPersistenceAcrossRelaunchAndOfflineReturn()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testPersistenceAcrossRelaunchAndOfflineReturn"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "CE09C129-2DA7-4BBA-89E7-F6AC15418577.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_41_reset_confirm_0_C9F4DD13-7398-4157-8827-738E8DF32159.png",
+        "timestamp" : 1794123692.538
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testResetNeedsConfirmation()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testResetNeedsConfirmation"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "676A416D-7A1F-499C-A57B-431F7A33D1DE.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_43_future_save_0_30D51C5C-8FE9-418F-92BD-2A543ADB15AA.png",
+        "timestamp" : 1794123712.734
+      }
+    ],
+    "testIdentifier" : "GameFlowUITests/testSaveFromNewerVersionIsProtected()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/GameFlowUITests/testSaveFromNewerVersionIsProtected"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "C7FA4854-BB4D-4E3C-97FA-354444A9FB6F.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_30_large_text_ops_0_430A85D2-D1AA-4186-8B6E-BE8E21140D6C.png",
+        "timestamp" : 1794123995.664
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "BC01990B-402B-400A-9531-5B93CAF038BD.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_29_large_text_0_56431F57-13D4-43F7-A825-50359C7CA53B.png",
+        "timestamp" : 1794123992.371
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "2E414CB4-8CA3-46E9-8A30-ED0D393AE2F1.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_28_new_game_plus_0_44EAF1BC-3507-4A15-BA3B-71BDEF104D07.png",
+        "timestamp" : 1794123985.089
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "A6F048F8-2C8B-4F5E-809B-CE04E39E34B6.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_27_epilogue_books_credits_0_C4FA2B92-C146-4652-A838-22BD05F072DE.png",
+        "timestamp" : 1794123977.744
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "8A1C78F6-9573-4D9F-B9BA-968A8268221C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_26_epilogue_0_EE019C0F-5CDE-4C78-9593-5CFB499AAAAA.png",
+        "timestamp" : 1794123956.202
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "D356767E-5FBB-40C3-B1F5-7F824FCDE652.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_25_final_phase_0_60502CE0-D8AA-4BAF-A2D1-386391DE6FB7.png",
+        "timestamp" : 1794123948.996
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "F91A2136-EE6A-4D67-A7EB-09D95B759981.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_24_final_requirements_0_5CFD3CE9-E382-4168-834B-9D3528272737.png",
+        "timestamp" : 1794123942.107
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "4852C77F-E67A-4E43-B015-E24301F1E9AF.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_23_offline_return_0_C82D861E-BCED-447F-8511-5A0F7828A9EE.png",
+        "timestamp" : 1794123930.786
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "0E24A399-EB53-4B65-883B-844276C2ADE8.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_22_raid_0_C56A4A0E-B52A-4E31-B8A5-C8CE89D4D3B1.png",
+        "timestamp" : 1794123913.804
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "5D86926F-27F3-48E0-AE02-B0847487E9BF.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_21_investigation_0_CB1F0D6B-D460-42C7-921C-92A8BB003EB0.png",
+        "timestamp" : 1794123906.47
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "D8AAECD0-6424-4626-895F-DFCB5608D410.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_20_event_0_90886DA1-C2B8-41BB-8776-856D1925CD7C.png",
+        "timestamp" : 1794123897.249
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "81F06069-AE19-48A3-B09D-E8B6444D53AB.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_19_settings_0_7FCDACB5-5879-4403-B4C3-058032C1E056.png",
+        "timestamp" : 1794123886.056
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "EB878842-7019-4061-BCA9-30FBD8C94C6D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_18_legacy_summary_0_E81DEEFA-C323-47BF-A2AC-4B599261A0E1.png",
+        "timestamp" : 1794123883.321
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "3E3F58E8-F024-4836-965E-8A8192FA41E4.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_17_improvements_0_8C21D8B8-6BA6-4E26-A0CB-756B9171B231.png",
+        "timestamp" : 1794123882.108
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "E09058A3-C5FB-4BEE-852B-F4F3994F0BB1.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_16_crew_candidates_0_43AB966E-E140-44D2-B17D-B0F4CC9B2A9A.png",
+        "timestamp" : 1794123880.709
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "422F173A-0A59-4084-AB6A-8FD8DAD4CE20.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_15_crew_0_F902D60A-75EE-4FF9-B853-F06F6900762F.png",
+        "timestamp" : 1794123867.141
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "B7562836-7B58-4E5F-B259-FA9BF1D31903.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_14_fronts_0_6BE755BB-8563-457F-ADA0-643610EAEDB4.png",
+        "timestamp" : 1794123863.852
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "A61F98B8-E001-4C18-9B8E-3E6E35E3C883.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_13_money_heat_0_4524BFF7-B84F-41C3-B01B-EC854FFB08A8.png",
+        "timestamp" : 1794123850.743
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "002911E7-C1F6-4920-97EE-DB8DDB4E2340.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_12_routes_0_3EE189AA-FDC4-4F13-857D-17CFDF670C03.png",
+        "timestamp" : 1794123847.444
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "C9312935-E715-4E53-8AD6-70B3ABB48519.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_11_district_0_66DAC64B-37D7-4A6E-85BC-6637DBA4572A.png",
+        "timestamp" : 1794123837.018
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "373DE451-5B6B-4718-B530-8468C1D0247C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_10_city_districts_end_0_C6DC4240-BF71-4BEC-9115-0FE48A9DC683.png",
+        "timestamp" : 1794123811.368
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "7E527613-D49D-4E49-A231-74D98EABE2FB.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_09_city_districts_0_C31CF1CE-BAD2-4BE4-B435-E46BC1844137.png",
+        "timestamp" : 1794123808.289
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "9AC03953-C074-4489-B191-5D96968F7C60.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_08_city_0_2E3A38BE-C81C-41E5-BA5A-17822479348C.png",
+        "timestamp" : 1794123795.481
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "6B5D79FD-5D3E-4360-B0D2-0106AF15C532.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_07_operations_lines_0_5B4D9D04-4DAC-4FFC-87E6-2E9AE9C25A19.png",
+        "timestamp" : 1794123792.294
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "37FE5522-C119-4468-B940-8E07BB117ED4.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_06_operations_0_A1A75C34-7655-4D92-884A-F883CC43CA49.png",
+        "timestamp" : 1794123753.922
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "445AF851-2B8B-49DA-ACA6-8135B75F863A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_05_ledger_books_0_A518B53D-55C7-4BA9-9F18-3A20CD57F5A8.png",
+        "timestamp" : 1794123750.863
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "F72A2394-B6A4-4A13-B0DA-977C937E65B9.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_04_ledger_0_C7D4CB98-9F23-4494-97A6-FE4C0471F08B.png",
+        "timestamp" : 1794123740.45
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "512E77FE-F260-4C90-9954-6B27B99366D0.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_03_briefing_0_18ABF14A-CFD8-440A-846F-3278862856D6.png",
+        "timestamp" : 1794123732.435
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "7B9E471A-B357-47D8-9961-EDFBB1E94B07.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_02_prologue_choice_0_92716E76-0D0C-4D80-9523-FC339711647F.png",
+        "timestamp" : 1794123729.604
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "50510D19-6D84-4B0E-94D2-65E5B526477B.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "en_tour_01_prologue_0_8E15BD9C-2CCD-4061-9FD6-8F3F2C09BE80.png",
+        "timestamp" : 1794123727.457
+      }
+    ],
+    "testIdentifier" : "ScreenshotTourUITests/testTourEnglish()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/ScreenshotTourUITests/testTourEnglish"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "1666F82A-1436-4921-95D2-A56117E630B7.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_30_large_text_ops_0_8EBF7C8E-7319-4F2E-86F4-1CFC44B957C4.png",
+        "timestamp" : 1794124283.538
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "3792A8DD-51CF-4DD2-ACE3-25BD9CE30B53.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_29_large_text_0_E4D93F07-CFA7-4F50-B38F-1E756646127C.png",
+        "timestamp" : 1794124280.106
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "89331BBA-FE6E-4443-B858-8C655EE6FBCB.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_28_new_game_plus_0_6C987E20-ACA8-4098-AC64-08B1D6C43C53.png",
+        "timestamp" : 1794124273.239
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "248DFC4F-C0D2-4B63-B4C4-486D12A02350.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_27_epilogue_books_credits_0_DC40C06A-CCDA-4175-B1EC-FC483A77866B.png",
+        "timestamp" : 1794124265.631
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "4507BFCA-C0F5-4E4F-B54B-BCCC5874332A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_26_epilogue_0_C1517E34-04D6-4441-959D-95FCF46AC263.png",
+        "timestamp" : 1794124244.836
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "AA127F4E-EEB0-4C66-BE0E-24C25275977F.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_25_final_phase_0_4B9B420C-3CC2-4CA7-B548-8A8C9F596641.png",
+        "timestamp" : 1794124237.42
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "7A1751A8-0BB2-499F-83C6-288334B0B920.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_24_final_requirements_0_210A748F-0DBA-460F-B6F3-B4B45BE8A19E.png",
+        "timestamp" : 1794124226.434
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "DD0A8C9A-110C-427C-9A45-39B895ADCB2D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_23_offline_return_0_E289265F-B289-40E8-A57B-304F5ED68A47.png",
+        "timestamp" : 1794124215.144
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "166DED13-B4BC-4D83-9021-6AEA45505CA4.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_22_raid_0_B0283B3F-1C28-4C5C-9C50-171FD4664F88.png",
+        "timestamp" : 1794124198.242
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "480944E3-D269-41C5-BD91-FB00DD4878F5.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_21_investigation_0_1D426081-182B-471E-B4F9-F26B4B14C86D.png",
+        "timestamp" : 1794124190.661
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "286C195F-ECB4-4481-A5E4-447494F0A952.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_20_event_0_DF8DECF1-8380-49B4-9AC3-17F7D1D76055.png",
+        "timestamp" : 1794124181.009
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "D9B24B3A-0316-4C61-8224-95A2DCBEAE57.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_19_settings_0_A30AABB7-DBCB-430D-87C0-B2881E3E133B.png",
+        "timestamp" : 1794124171.318
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "98E46099-507F-4898-8944-D72C1983907A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_18_legacy_summary_0_54A468C5-DEAA-4BA3-939C-8052648BE842.png",
+        "timestamp" : 1794124168.873
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "1B766881-42FA-4813-8C58-4FBFF1A50F1E.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_17_improvements_0_87F0BCFB-BC4C-44BB-A6E2-1C488A94EFD9.png",
+        "timestamp" : 1794124167.619
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "CBFB9956-4099-4738-9FE4-86FDC05C079F.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_16_crew_candidates_0_AF373540-1134-41D6-A8A7-A95BE6034AF3.png",
+        "timestamp" : 1794124166.154
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "A1BE9DA3-E46F-481B-B5B8-B966B89BC9E4.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_15_crew_0_7B29E4AF-BC0A-44B0-B0DF-CD866D6F93FB.png",
+        "timestamp" : 1794124153.818
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "481D1B6E-1071-4420-A911-B77C348BC395.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_14_fronts_0_8B5257B4-3370-4E01-8399-E74E80A94282.png",
+        "timestamp" : 1794124150.477
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "F978CA28-342E-4168-A5C7-59BD7D761800.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_13_money_heat_0_381990F7-44D0-4C2D-9D56-2DD2889E5BAF.png",
+        "timestamp" : 1794124134.396
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "6B373676-626E-40D7-96F0-B2A5AA7CD6DC.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_12_routes_0_BFFB2C24-9887-404E-973E-2BED46197CD8.png",
+        "timestamp" : 1794124130.956
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "0EB55483-FC8B-4C74-9EFB-74902C510C27.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_11_district_0_34B28843-7D5F-403E-A4B3-D57B6C8D9CC4.png",
+        "timestamp" : 1794124113.551
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "B87CB727-9BD6-4CE7-B12C-53DFCFE969E8.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_10_city_districts_end_0_BEE874A4-1A29-470F-BB95-847E09A92290.png",
+        "timestamp" : 1794124088.013
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "5BA495E9-73A8-4B1B-BE01-61653D8D567C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_09_city_districts_0_CBE8D503-9AA4-4D7D-AE6E-EFAEC33B61A9.png",
+        "timestamp" : 1794124084.352
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "19197E5F-DD93-4227-890E-1555CF7F0097.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_08_city_0_8DC17702-5B78-4B69-A450-AD077B93B148.png",
+        "timestamp" : 1794124071.098
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "BA8803DF-5EDC-4DAD-AEAF-178FCFCDCE48.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_07_operations_lines_0_93B6476B-5D1C-4237-B8F0-5E94DADD53EA.png",
+        "timestamp" : 1794124067.815
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "FA2F2B53-5153-4A1B-89DC-6C38F1554455.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_06_operations_0_2C5010BB-0897-45FC-9A00-D7B4BE138D43.png",
+        "timestamp" : 1794124030.102
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "DBF131F0-109F-48C3-ABEB-835806EB7E81.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_05_ledger_books_0_4179A12D-EB69-42C1-BE88-FA9940AF13D8.png",
+        "timestamp" : 1794124026.898
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "F428DA56-DE60-4C29-96B0-887C4E6547FC.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_04_ledger_0_342B3E4A-79F0-45DC-83D6-186E58912C94.png",
+        "timestamp" : 1794124015.521
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "27F02D5A-B548-4AE8-A0D6-25277F8098E5.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_03_briefing_0_D33395B9-63D4-49D9-9200-F136BCA2E6F6.png",
+        "timestamp" : 1794124008.66
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "FC1092EB-7018-49BC-A5AF-C3D71A3F07BC.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_02_prologue_choice_0_70B7C339-B65B-4B8A-971F-D00A2A5D3C03.png",
+        "timestamp" : 1794124006.007
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06",
+        "deviceName" : "iPhone 17",
+        "exportedFileName" : "8FA0EBC8-F1D1-460B-A826-C83B4A89F45D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "de_tour_01_prologue_0_044C5199-352C-4E7B-B72A-7972D6DA4AB6.png",
+        "timestamp" : 1794124003.873
+      }
+    ],
+    "testIdentifier" : "ScreenshotTourUITests/testTourGerman()",
+    "testIdentifierURL" : "test://com.apple.xcode/NoirLedger/NoirLedgerUITests/ScreenshotTourUITests/testTourGerman"
+  }
+]
