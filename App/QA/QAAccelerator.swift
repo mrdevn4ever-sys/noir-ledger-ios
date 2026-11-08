@@ -141,6 +141,9 @@ enum QAAccelerator {
         s.influence = Content.finalInfluenceRequired(ng: ng) * 2.0
         s.dirty = 2_500_000 * (1 + 0.25 * Double(ng))
         s.heat = 12
+        // A late-game empire runs a protection network (the deterministic playthrough bot always builds one); without
+        // it the prepared exposure would push Heat over the operation's limit within seconds at accelerated time.
+        s.protectionLevel = max(s.protectionLevel, 6)
         s.investigation = nil
         s.pendingEvent = nil
         s.crew = Content.crew.filter { $0.tier == 2 }.map { CrewMember(defId: $0.id, loyalty: 85, hiredAt: s.time) }

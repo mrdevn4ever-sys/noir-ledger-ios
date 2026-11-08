@@ -52,7 +52,8 @@ The brand wordmark is the shared `brand/wordmark.svg`.
 Branded artwork is never an SF Symbol. From `shared-assets/` via the asset catalog:
 
 - four product seals (Glimmer six-dot ring, Cinder hexagon with bar, Velvet diamond with centre dot, Halo rings);
-- five district illustrations as card banners and detail headers;
+- five district illustrations as card banners and detail headers (final Android masters from `438e316`: dark
+  silhouettes against a warm, backlit horizon haze, legible on the anthracite cards);
 - twelve crew portraits; five front, six role, five branch and seven status marks (template-tinted);
 - ledger emblem, wordmark, app icon (leather ledger, double gold frame, lozenge, clasp).
 

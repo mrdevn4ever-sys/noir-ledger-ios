@@ -13,7 +13,9 @@
 
 UI flows (`GameFlowUITests`): fresh install → prologue choice → all seven briefing steps; core systems (line, stash,
 new line, route, push, front pause, reserve, protection, donation, hire, improvements, legacy); stash upgrade survives
-termination + relaunch with an offline return summary; investigation → bribe → raid → recovery; final operation
+termination + relaunch with an offline return summary; investigation countermeasures in real time (bribe + lie low drop the
+case before the countdown ends); an unanswered investigation at accelerated time → raid → recovery; dismissal with
+confirmation and rehiring at 1.5× the fee; final operation
 (three phases, regroup after a failure) → epilogue → legacy perk → New Game+; manual language switch and system German
 detection; accessibility XL text; reset confirmation; damaged-save recovery; newer-version save protection; the
 installed home-screen icon.
