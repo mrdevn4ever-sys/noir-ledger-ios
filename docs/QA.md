@@ -52,3 +52,13 @@ Screenshots are XCTest attachments captured from the running app on the simulato
   `en_4x_*`/`de_40_*` settings, reset, recovery, future save, `en_5x_*` large text, `en_60_home_screen_icon`.
 
 Visual review runs in at most two batched passes; results are recorded in [ACCEPTANCE.md](ACCEPTANCE.md).
+
+## Cross-platform parity evidence
+
+- `scripts/shared_assets.py check` (every CI run): manifest hashes, byte-identical iOS exports, asset names used in
+  Swift, and the shared token map.
+- Android `tools/assets/compare_parity.py <this repo>`, run read-only with `python -I -B`: byte comparison of both
+  `shared-assets/` trees.
+- `scripts/qa/parity_sheet.py <android repo> <ios screenshots> <ios contact sheet> <out.png>`: composes real Android
+  and iOS runtime captures plus both canonical contact sheets side by side (no redrawing); the accepted sheet is
+  [parity/android-ios-parity-sheet.jpg](parity/android-ios-parity-sheet.jpg).
