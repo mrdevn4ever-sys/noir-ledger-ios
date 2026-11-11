@@ -29,6 +29,23 @@ public enum Action: Sendable, Equatable {
     case markEpilogueSeen
     case startNewGamePlus
     case buyPerk(PerkId)
+    // Idle layer
+    /// A tap on a running line: adds a little work.
+    case hustle(ProductId)
+    /// The one-button line upgrade: buys up to `count` steps (cheapest track first, then mastery).
+    case upgradeLineAuto(ProductId, Int)
+    /// Go to ground: end the run for reputation and start over.
+    case prestige
+    case claimAchievement(AchievementId)
+    /// `day` is the calendar day (days since 1970 in the player's time zone), supplied by the app.
+    case claimDaily(day: Int)
+    case buyFavorItem(FavorItem)
+    /// Books the reward of a finished sponsor video (or directly, for players who bought the ad-free upgrade).
+    case adReward(AdReward, day: Int)
+    /// Books a verified store purchase.
+    case grant(Grant)
+    /// Collects the return summary; `doubled` pays the street cash earned while away a second time.
+    case collectOffline(doubled: Bool)
 }
 
 public enum ActionError: String, Sendable, Equatable, CaseIterable {
@@ -71,8 +88,14 @@ public enum Engine {
     /// Online ticks never credit more than this per call; longer gaps go through `applyOffline`.
     public static let maxOnlineTick = 5.0
 
-    public static func newGame(seed: UInt64, nowMs: Int64, legacy: LegacyState = LegacyState()) -> GameState {
+    /// `meta` carries the progress that outlives a run. `skipIntro` starts in chapter 1 with the first line running
+    /// (New Game+ and going to ground); by default only New Game+ levels skip the prologue and the briefing.
+    public static func newGame(seed: UInt64, nowMs: Int64, legacy: LegacyState = LegacyState(), meta: MetaState = MetaState(),
+                               skipIntro: Bool? = nil) -> GameState {
         var s = GameState()
+        s.meta = meta
+        s.meta.payoutRatio = 1
+        s.meta.offlineBonus = 0
         s.seed = UInt64Box(seed)
         s.rng = UInt64Box(seed)
         s.lastWallClockMs = nowMs
@@ -89,8 +112,8 @@ public enum Engine {
         for f in FrontId.allCases { s.fronts[f] = FrontState() }
         s.dirty = startDirty + 2000 * Double(legacy.rank(.startingCapital))
         s.nextEventAt = 300
-        if legacy.ngLevel > 0 {
-            // New Game+: the player already knows the ropes; skip the prologue and the briefing.
+        if skipIntro ?? (legacy.ngLevel > 0) {
+            // New Game+ and going to ground: the player already knows the ropes; skip the prologue and the briefing.
             s.campaign.prologueDone = true
             s.campaign.prologueChoice = nil
             s.campaign.tutorial = .done
@@ -128,12 +151,14 @@ public enum Engine {
         }
         let away = elapsedMs / 1000
         if away < 5 { return (s, nil) }
-        let credited = min(away, Content.offlineCapSeconds)
+        let cap = Idle.offlineCapSeconds(s)
+        let credited = min(away, cap)
         let heatBefore = s.heat
         let r = Simulation.advance(&s, seconds: Double(credited) * Content.offlineEfficiency, offline: true, step: 2)
         if away < 60 { return (s, nil) }
         s.log(.offlineReturn, amount: Double(credited), amount2: r.dirtyEarned)
-        let report = OfflineReport(awaySeconds: away, creditedSeconds: credited, capped: away > Content.offlineCapSeconds,
+        s.meta.offlineBonus += r.dirtyEarned
+        let report = OfflineReport(awaySeconds: away, creditedSeconds: credited, capped: away > cap,
                                    clockMovedBack: false, produced: r.produced, sold: r.sold, dirtyEarned: r.dirtyEarned,
                                    dirtyLaundered: r.dirtyLaundered, cleanGained: r.cleanGained, wagesPaid: r.wagesPaid,
                                    productionSpent: r.productionSpent, influenceGained: r.influenceGained,
@@ -154,13 +179,18 @@ public enum Engine {
         case .setFrontActive: return true
         case .ackTutorial: return step == .heatBriefing
         case .ackRaid: return true
+        case .hustle(let p): return p == .glimmer
+        case .claimAchievement, .claimDaily, .buyFavorItem, .adReward, .grant, .collectOffline: return true
         default: return false
         }
     }
 
     public static func apply(_ state: GameState, _ a: Action) -> ActionResult {
         if !state.campaign.prologueDone {
-            if case .choosePrologue = a {} else { return err(state, .locked) }
+            switch a {
+            case .choosePrologue, .grant: break
+            default: return err(state, .locked)
+            }
         }
         if !tutorialAllows(state, a) { return err(state, .tutorial) }
         var s = state
@@ -394,10 +424,8 @@ public enum Engine {
 
         case .startNewGamePlus:
             guard s.campaign.won else { return err(state, .requirements) }
-            let legacy = LegacyState(ngLevel: s.legacy.ngLevel + 1, points: s.legacy.points, perks: s.legacy.perks, wins: s.legacy.wins)
-            let seed = Rng.next(&s)
-            var fresh = newGame(seed: seed, nowMs: s.lastWallClockMs, legacy: legacy)
-            fresh.log(.newGamePlus, amount: Double(legacy.ngLevel))
+            var fresh = restart(s, ngLevel: s.legacy.ngLevel + 1)
+            fresh.log(.newGamePlus, amount: Double(fresh.legacy.ngLevel))
             return ActionResult(state: fresh, error: nil, outcome: 0, success: true)
 
         case .buyPerk(let perk):
@@ -407,6 +435,110 @@ public enum Engine {
             if s.legacy.points < cost { return err(state, .notAffordable) }
             s.legacy.points -= cost
             s.legacy.perks[perk] = rank + 1
+
+        case .hustle(let p):
+            let l = s.line(p)
+            guard l.owned, l.running, l.status != .storageFull, l.status != .noCash else { return err(state, .invalid) }
+            s.updateLine(p) { $0.progress += Idle.hustleSeconds }
+            s.meta.taps += 1
+
+        case .upgradeLineAuto(let p, let count):
+            guard s.line(p).owned else { return err(state, .locked) }
+            guard Idle.nextLineStep(s, p) != nil else { return err(state, .maxLevel) }
+            let milestonesBefore = Idle.milestonesReached(stage: Idle.stage(s, p))
+            var bought = 0
+            while bought < max(1, count), let next = Idle.nextLineStep(s, p), pay(Cost(dirty: next.cost), from: &s) {
+                Idle.applyLineStep(&s, p, next.step)
+                bought += 1
+            }
+            if bought == 0 { return err(state, .notAffordable) }
+            if Idle.milestonesReached(stage: Idle.stage(s, p)) > milestonesBefore {
+                s.log(.milestone, ref: p.rawValue, amount: Double(Idle.previousMilestone(stage: Idle.stage(s, p))))
+            }
+
+        case .prestige:
+            guard Idle.canPrestige(s) else { return err(state, .requirements) }
+            return ActionResult(state: restart(s, ngLevel: s.legacy.ngLevel), error: nil, outcome: 0, success: true)
+
+        case .claimAchievement(let a):
+            Idle.refreshAchievements(&s)
+            guard Idle.achievementUnlocked(s, a) else { return err(state, .requirements) }
+            if Idle.achievementClaimed(s, a) { return err(state, .invalid) }
+            s.meta.claimed.append(a)
+            s.meta.favors += Idle.achievementReward(a)
+
+        case .claimDaily(let day):
+            guard Idle.dailyAvailable(s, day: day) else { return err(state, .cooldown) }
+            let reward = Idle.dailyReward(claims: s.meta.dailyClaims)
+            s.meta.dailyLastDay = day
+            s.meta.dailyClaims += 1
+            switch reward {
+            case .favors(let n): s.meta.favors += n
+            case .boost(let seconds): Idle.addBoost(&s, seconds: seconds)
+            case .warp(let seconds): warp(&s, seconds: seconds)
+            }
+
+        case .buyFavorItem(let item):
+            if s.meta.favors < item.price { return err(state, .notAffordable) }
+            switch item {
+            case .boost4h:
+                if s.meta.boostSeconds >= Idle.boostCapSeconds - 1 { return err(state, .maxLevel) }
+                Idle.addBoost(&s, seconds: 4 * 3600)
+            case .warp2h, .warp8h, .warp24h:
+                warp(&s, seconds: item.warpSeconds)
+            case .coolHeat:
+                if s.heat <= 0.5 && s.investigation == nil { return err(state, .invalid) }
+                relieveHeat(&s, by: Idle.favorHeatRelief, mods: m)
+            case .loyalty:
+                if s.crew.isEmpty || s.crew.allSatisfy({ $0.loyalty >= 100 }) { return err(state, .invalid) }
+                for i in s.crew.indices { s.crew[i].loyalty = 100 }
+            }
+            s.meta.favors -= item.price
+
+        case .adReward(let reward, let day):
+            switch reward {
+            case .boost:
+                if s.meta.boostSeconds >= Idle.boostCapSeconds - 1 { return err(state, .maxLevel) }
+                Idle.addBoost(&s, seconds: Idle.adBoostSeconds)
+            case .coolHeat:
+                if s.meta.heatAidCooldown > 0 { return err(state, .cooldown) }
+                if s.heat <= 0.5 && s.investigation == nil { return err(state, .invalid) }
+                relieveHeat(&s, by: Idle.adHeatRelief, mods: m)
+                s.meta.heatAidCooldown = Idle.adHeatCooldown
+            case .favors:
+                if Idle.adFavorsLeft(s, day: day) <= 0 { return err(state, .cooldown) }
+                if s.meta.adFavorsDay != day {
+                    s.meta.adFavorsDay = day
+                    s.meta.adFavorsToday = 0
+                }
+                s.meta.adFavorsToday += 1
+                s.meta.favors += Idle.adFavors
+            case .offlineDouble:
+                if s.meta.offlineBonus <= 0 { return err(state, .invalid) }
+                s.dirty += s.meta.offlineBonus
+                s.meta.offlineBonus = 0
+            }
+            s.meta.adsWatched += 1
+
+        case .grant(let grant):
+            switch grant {
+            case .favors(let n):
+                if n <= 0 { return err(state, .invalid) }
+                s.meta.favors += n
+            case .premium:
+                s.meta.premium = true
+            case .noAds:
+                s.meta.noAds = true
+            case .starter:
+                if s.meta.starterBought { return ok(&s) }
+                s.meta.starterBought = true
+                s.meta.favors += Idle.starterFavors
+                Idle.addBoost(&s, seconds: Idle.starterBoostSeconds)
+            }
+
+        case .collectOffline(let doubled):
+            if doubled { s.dirty += s.meta.offlineBonus }
+            s.meta.offlineBonus = 0
         }
         return ok(&s)
     }
@@ -422,8 +554,41 @@ public enum Engine {
         ActionResult(state: s, error: e, outcome: 0, success: false)
     }
 
+    /// Ends the run: books the reputation it earned and starts a fresh city that keeps legacy and meta progress.
+    private static func restart(_ state: GameState, ngLevel: Int) -> GameState {
+        var s = state
+        Idle.refreshAchievements(&s)
+        let gain = Idle.prestigeGain(s)
+        var meta = s.meta
+        meta.reputation += gain
+        meta.prestiges += 1
+        let legacy = LegacyState(ngLevel: ngLevel, points: s.legacy.points, perks: s.legacy.perks, wins: s.legacy.wins)
+        let seed = Rng.next(&s)
+        var fresh = newGame(seed: seed, nowMs: s.lastWallClockMs, legacy: legacy, meta: meta, skipIntro: true)
+        fresh.log(.prestige, amount: Double(gain), amount2: Double(meta.reputation))
+        Idle.refreshAchievements(&fresh)
+        return fresh
+    }
+
+    /// A paid time jump: simulated like time away (no events, no raids), without the offline cap.
+    private static func warp(_ s: inout GameState, seconds: Double) {
+        guard s.campaign.prologueDone else { return }
+        Simulation.advance(&s, seconds: seconds, offline: true, step: 2)
+    }
+
+    /// Lowers Heat and drops an open investigation once Heat is under its clearing threshold.
+    private static func relieveHeat(_ s: inout GameState, by amount: Double, mods m: Mods) {
+        s.heat = max(0, s.heat - amount)
+        if let inv = s.investigation, s.heat < m.clearThreshold {
+            s.investigation = nil
+            s.stats.investigationsSurvived += 1
+            s.log(.investigationCleared, ref: inv.district.rawValue)
+        }
+    }
+
     private static func ok(_ s: inout GameState, outcome: Int = 0, success: Bool = true) -> ActionResult {
         Campaign.update(&s)
+        Idle.refreshAchievements(&s)
         return ActionResult(state: s, error: nil, outcome: outcome, success: success)
     }
 

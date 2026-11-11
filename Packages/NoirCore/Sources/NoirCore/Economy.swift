@@ -222,6 +222,13 @@ public enum Economy {
     public static func frontCapacity(_ s: GameState, _ f: FrontId, _ m: Mods) -> Double {
         let fs = s.front(f)
         guard fs.owned else { return 0 }
+        return baseFrontCapacity(s, f, m) * Idle.payoutRatio(s)
+    }
+
+    /// Washing capacity in the base economy, before payout multipliers. Exposure is computed from this scale.
+    public static func baseFrontCapacity(_ s: GameState, _ f: FrontId, _ m: Mods) -> Double {
+        let fs = s.front(f)
+        guard fs.owned else { return 0 }
         return Content.front(f).capacity * (1 + 0.5 * Double(fs.level - 1)) * m.launderCap
     }
 

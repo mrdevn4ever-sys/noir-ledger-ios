@@ -41,6 +41,10 @@ public enum Simulation {
         if offline { s.stats.offlineSeconds += dt } else { s.stats.onlineSeconds += dt }
         let now = s.time
         s.modifiers.removeAll { $0.until <= now }
+        // Payout multipliers are fixed for the step, before the boost clock runs down.
+        let globalMult = Idle.globalMultiplier(s)
+        if s.meta.boostSeconds > 0 { s.meta.boostSeconds = max(0, s.meta.boostSeconds - dt) }
+        if s.meta.heatAidCooldown > 0 { s.meta.heatAidCooldown = max(0, s.meta.heatAidCooldown - dt) }
 
         // ---- Production ----
         let cap = Economy.stashCapacity(s, m)
@@ -83,6 +87,7 @@ public enum Simulation {
         // ---- Sales ----
         var exposure = 0.0
         var revenueTotal = 0.0
+        var baseRevenueTotal = 0.0
         var desired: [(DistrictId, ProductId, Double)] = []
         var desiredByProduct: [ProductId: Double] = [:]
         for d in DistrictId.allCases {
@@ -101,8 +106,10 @@ public enum Simulation {
             let ratio = want <= 0 ? 0 : min(1, s.stock(p) / want)
             let sold = u * ratio
             if sold <= 0 { continue }
+            // `revenue` is the base street economy and drives exposure; the payout multipliers only raise the cash.
             let revenue = sold * Economy.price(s, d, p, m)
-            revenueTotal += revenue
+            baseRevenueTotal += revenue
+            revenueTotal += revenue * Idle.lineMultiplier(s, p) * globalMult
             soldInDistrict[d, default: 0] += sold
             exposure += revenue / dt * Content.product(p).risk * Content.district(d).police
                 * m.salesExposure * Economy.timed(s, .exposure, district: d, product: p)
@@ -117,6 +124,9 @@ public enum Simulation {
         }
         s.dirty += revenueTotal
         s.stats.dirtyEarned += revenueTotal
+        s.meta.lifetimeDirty += revenueTotal
+        if baseRevenueTotal > 0 { s.meta.payoutRatio = max(1, revenueTotal / baseRevenueTotal) }
+        let payoutRatio = Idle.payoutRatio(s)
         r.dirtyEarned += revenueTotal
         if s.campaign.tutorial == .earn { s.stats.tutorialEarned += revenueTotal }
 
@@ -142,9 +152,10 @@ public enum Simulation {
             let gained = amount * (1 - Economy.frontFee(s, f, m))
             s.clean += gained
             s.stats.cleanLaundered += gained
+            s.meta.lifetimeClean += gained
             r.dirtyLaundered += amount
             r.cleanGained += gained
-            exposure += amount / dt * Content.front(f).risk * m.launderRisk
+            exposure += amount / payoutRatio / dt * Content.front(f).risk * m.launderRisk
         }
         exposure *= m.allExposure
         let cleanThisStep = r.cleanGained - cleanBefore
@@ -247,6 +258,7 @@ public enum Simulation {
         }
 
         Campaign.update(&s)
+        Idle.refreshAchievements(&s)
     }
 
     public static func mostExposedDistrict(_ s: GameState) -> DistrictId {

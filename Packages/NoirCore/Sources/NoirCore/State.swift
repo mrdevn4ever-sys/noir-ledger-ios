@@ -1,6 +1,6 @@
 import Foundation
 
-public let saveSchemaVersion = 1
+public let saveSchemaVersion = 2
 
 // MARK: - Tolerant decoding
 
@@ -46,6 +46,8 @@ public struct LineState: Codable, Sendable, Equatable {
     public var capacityLevel = 1
     public var speedLevel = 1
     public var qualityLevel = 1
+    /// Levels bought after all three tracks reached their cap (see `Idle`).
+    public var masteryLevel = 0
     public var progress = 0.0
     public var status: LineStatus = .idle
 
@@ -71,6 +73,7 @@ extension LineState {
         capacityLevel = c.value(.capacityLevel, 1)
         speedLevel = c.value(.speedLevel, 1)
         qualityLevel = c.value(.qualityLevel, 1)
+        masteryLevel = c.value(.masteryLevel, 0)
         progress = c.value(.progress, 0.0)
         status = c.value(.status, LineStatus.idle)
     }
@@ -323,6 +326,7 @@ public enum JournalKind: String, Codable, Sendable, CaseIterable {
     case finalPhaseWon = "FINAL_PHASE_WON", finalPhaseLost = "FINAL_PHASE_LOST", campaignWon = "CAMPAIGN_WON"
     case newGamePlus = "NEW_GAME_PLUS", offlineReturn = "OFFLINE_RETURN", layLowOn = "LAY_LOW_ON", layLowOff = "LAY_LOW_OFF"
     case protection = "PROTECTION", wagesUnpaid = "WAGES_UNPAID", donation = "DONATION"
+    case prestige = "PRESTIGE", milestone = "MILESTONE"
 }
 
 public struct JournalEntry: Codable, Sendable, Equatable, Identifiable {
@@ -416,6 +420,8 @@ public struct GameState: Codable, Sendable, Equatable {
     public var stats = Stats()
     public var campaign = CampaignState()
     public var legacy = LegacyState()
+    /// Progress that outlives the run: favors, reputation, purchases, boosts, daily rewards and achievements.
+    public var meta = MetaState()
     /// Newest first, at most 60 entries.
     public var journal: [JournalEntry] = []
     /// Number of bookings ever written (the next entry's sequence number).
@@ -498,6 +504,7 @@ extension GameState {
         stats = c.value(.stats, Stats())
         campaign = c.value(.campaign, CampaignState())
         legacy = c.value(.legacy, LegacyState())
+        meta = c.value(.meta, MetaState())
         journal = c.value(.journal, [JournalEntry]())
         journalCount = c.value(.journalCount, journal.map(\.seq).max() ?? 0)
     }

@@ -38,7 +38,7 @@ struct SaveTests {
         #expect(decoded.rng.raw == 0xFEDC_BA98_7654_3210)
         #expect(codec.savedAt(data) == 123_456)
         let text = try #require(String(data: data, encoding: .utf8))
-        #expect(text.contains("\"schema\":1"))
+        #expect(text.contains("\"schema\":\(saveSchemaVersion)"))
     }
 
     @Test("Saves from a newer version are recognised and never decoded")
@@ -92,7 +92,7 @@ struct SaveTests {
     @Test("Migrations run in order on the raw JSON before decoding")
     func migrationPipeline() throws {
         // A schema-1 save as written today, read by a hypothetical schema-3 app.
-        let v1 = try SaveCodec().encode(midGame(), savedAtMs: 9)
+        let v1 = try SaveCodec(currentVersion: 1).encode(midGame(), savedAtMs: 9)
         let codec = SaveCodec(currentVersion: 3, migrations: [
             1: { obj in var o = obj; o["dirty"] = 42.0; return o },
             2: { obj in var o = obj; o["clean"] = 7.0; return o },
@@ -110,7 +110,7 @@ struct SaveTests {
 
     @Test("A missing or throwing migration marks the save corrupt instead of crashing")
     func brokenMigration() throws {
-        let v1 = try SaveCodec().encode(GameState(), savedAtMs: 1)
+        let v1 = try SaveCodec(currentVersion: 1).encode(GameState(), savedAtMs: 1)
         guard case .corrupt = SaveCodec(currentVersion: 2, migrations: [:]).decode(v1) else {
             Issue.record("expected corrupt without migration")
             return

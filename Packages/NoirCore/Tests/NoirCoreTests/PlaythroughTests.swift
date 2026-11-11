@@ -9,13 +9,13 @@ struct PlaythroughTests {
 
     static let maxGameSeconds = 30.0 * 3600
 
-    @Test("A fresh campaign is winnable and paced within 4–20 hours", arguments: [UInt64(1), 42, 2024])
+    @Test("A fresh campaign is winnable and paced within 1.5–20 hours", arguments: [UInt64(1), 42, 2024])
     func campaign(seed: UInt64) {
         var bot = Bot(Engine.newGame(seed: seed, nowMs: 1))
         let won = bot.run(maxSeconds: Self.maxGameSeconds)
         #expect(won, "seed \(seed) must win (stuck in chapter \(bot.s.campaign.chapter))")
         let hours = bot.s.time / 3600
-        #expect(hours > 4, "seed \(seed) campaign too short: \(hours) h")
+        #expect(hours > 1.5, "seed \(seed) campaign too short: \(hours) h")
         #expect(hours < 20, "seed \(seed) campaign too long: \(hours) h")
         #expect(bot.chapterOrder.filter { $0 >= 1 } == [1, 2, 3, 4, 5, 6], "every chapter is reached, in order")
         #expect(bot.tutorialStepsSeen.contains(.done))
@@ -67,7 +67,7 @@ struct PlaythroughTests {
         #expect(second.s.legacy.wins == 2)
         #expect(second.s.legacy.ngLevel == 1)
         let hours = (second.s.time - s.time) / 3600
-        #expect(hours > 2 && hours < 20, "New Game+ took \(hours) h")
+        #expect(hours > 0.5 && hours < 20, "New Game+ took \(hours) h")
         TS.expectSane(second.s)
         print("NG+ won after \(String(format: "%.2f", hours)) h")
     }

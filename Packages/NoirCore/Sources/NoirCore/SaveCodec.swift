@@ -8,8 +8,7 @@ public typealias SaveMigration = @Sendable (JSONObject) throws -> JSONObject
 /// `{"schema": <int>, "savedAt": <epoch ms>, "state": { ...GameState... }}`.
 ///
 /// Migrations transform the raw JSON object of schema N into schema N+1 before decoding, so old saves never need
-/// old Swift types. Schema 1 is the first shipped format; the registry is therefore empty today, and the migration
-/// pipeline is exercised by tests with an injected registry.
+/// old Swift types. Schema 1 was the first shipped format; schema 2 added the idle layer.
 public struct SaveCodec: Sendable {
     public enum Decoded: Sendable {
         case ok(GameState, migratedFrom: Int?)
@@ -20,7 +19,8 @@ public struct SaveCodec: Sendable {
     public let currentVersion: Int
     public let migrations: [Int: SaveMigration]
 
-    public static let shippedMigrations: [Int: SaveMigration] = [:]
+    /// Schema 2 added the idle layer (`meta`, line mastery). Every new field has a default, so schema 1 passes through.
+    public static let shippedMigrations: [Int: SaveMigration] = [1: { $0 }]
 
     public init(currentVersion: Int = saveSchemaVersion, migrations: [Int: SaveMigration] = SaveCodec.shippedMigrations) {
         self.currentVersion = currentVersion
@@ -121,6 +121,7 @@ public struct SaveCodec: Sendable {
             l.capacityLevel = clampInt(l.capacityLevel, 1, Content.maxLineLevel)
             l.speedLevel = clampInt(l.speedLevel, 1, Content.maxLineLevel)
             l.qualityLevel = clampInt(l.qualityLevel, 1, Content.maxLineLevel)
+            l.masteryLevel = clampInt(l.masteryLevel, 0, Idle.maxMastery)
             l.progress = fix(l.progress, -1000, 1000)
             s.lines[p] = l
             s.inventory[p] = fix(s.inventory[p] ?? 0)
@@ -157,5 +158,21 @@ public struct SaveCodec: Sendable {
         for (p, v) in s.legacy.perks { s.legacy.perks[p] = clampInt(v, 0, p.maxRank) }
         s.legacy.points = max(0, s.legacy.points)
         s.legacy.ngLevel = max(0, s.legacy.ngLevel)
+        s.meta.favors = clampInt(s.meta.favors, 0, 1_000_000_000)
+        s.meta.reputation = clampInt(s.meta.reputation, 0, 1_000_000_000)
+        s.meta.prestiges = max(0, s.meta.prestiges)
+        s.meta.boostSeconds = fix(s.meta.boostSeconds, 0, Idle.boostCapSeconds)
+        s.meta.heatAidCooldown = fix(s.meta.heatAidCooldown, 0, Idle.adHeatCooldown)
+        s.meta.lifetimeDirty = fix(s.meta.lifetimeDirty)
+        s.meta.lifetimeClean = fix(s.meta.lifetimeClean)
+        s.meta.offlineBonus = fix(s.meta.offlineBonus)
+        s.meta.payoutRatio = fix(s.meta.payoutRatio, 1, 1e30)
+        s.meta.taps = max(0, s.meta.taps)
+        s.meta.dailyClaims = max(0, s.meta.dailyClaims)
+        s.meta.adFavorsToday = clampInt(s.meta.adFavorsToday, 0, Idle.adFavorsPerDay)
+        var seenUnlocked = Set<AchievementId>()
+        s.meta.unlocked = s.meta.unlocked.filter { seenUnlocked.insert($0).inserted }
+        var seenClaimed = Set<AchievementId>()
+        s.meta.claimed = s.meta.claimed.filter { seenUnlocked.contains($0) && seenClaimed.insert($0).inserted }
     }
 }

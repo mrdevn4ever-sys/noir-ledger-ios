@@ -113,6 +113,7 @@ public enum Campaign {
             if objs.isEmpty || !objs.allSatisfy(\.done) { break }
             Content.chapterReward(s.campaign.chapter).grant(&s)
             s.log(.chapterComplete, ref: String(s.campaign.chapter))
+            s.meta.favors += Idle.chapterFavors
             s.campaign.chapter += 1
         }
     }
