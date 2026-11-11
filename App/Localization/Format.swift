@@ -7,7 +7,8 @@ extension L10n {
         v.formatted(.number.precision(.fractionLength(0...digits)).grouping(.automatic).locale(locale))
     }
 
-    /// Compact money/quantity: full grouping below 10,000, then k / M / B with one or two decimals.
+    /// Compact money/quantity: full grouping below 10,000, then k / M / B / T with one or two decimals, and powers of
+    /// ten beyond that.
     func money(_ v: Double) -> String {
         let a = abs(v)
         let sign = v < -0.0049 ? "−" : ""
@@ -18,8 +19,13 @@ extension L10n {
             body = self("num_thousand", decimal(a / 1_000, digits: 1))
         } else if a < 1_000_000_000 {
             body = self("num_million", decimal(a / 1_000_000, digits: 2))
+        } else if a < 1e12 {
+            body = self("num_billion", decimal(a / 1e9, digits: 2))
+        } else if a < 1e15 {
+            body = self("num_trillion", decimal(a / 1e12, digits: 2))
         } else {
-            body = self("num_billion", decimal(a / 1_000_000_000, digits: 2))
+            let exponent = Int(log10(a).rounded(.down))
+            body = self("num_power", decimal(a / pow(10, Double(exponent)), digits: 2), exponent)
         }
         return sign + body
     }

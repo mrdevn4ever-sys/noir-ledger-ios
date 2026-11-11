@@ -18,6 +18,9 @@ struct LedgerView: View {
                     .accessibilityIdentifier("ledger.ngLevel")
             }
             ChapterPanel(state: s)
+            if s.campaign.tutorial == .done && s.campaign.chapter >= Idle.prestigeMinChapter {
+                PrestigePanel(state: s)
+            }
             if s.campaign.chapter >= Content.finalChapter && !s.campaign.won {
                 FinalOpEntry(state: s)
             }
@@ -32,6 +35,52 @@ struct LedgerView: View {
             }
             AccountsPanel(state: s)
             JournalPanel(journal: s.journal)
+        }
+    }
+}
+
+/// Going to ground: end the run for reputation, which raises every payout for good.
+private struct PrestigePanel: View {
+    let state: GameState
+    @Environment(GameStore.self) private var store
+    @Environment(Router.self) private var router
+    @Environment(\.l10n) private var t
+    @State private var confirm = false
+
+    var body: some View {
+        let gain = Idle.prestigeGain(state)
+        let ready = Idle.canPrestige(state)
+        Panel(.leather) {
+            HeaderRow {
+                Label { Text(verbatim: t("prestige_title")).font(.headline) } icon: { Image(systemName: "star.fill") }
+                    .accessibilityAddTraits(.isHeader)
+            } trailing: {
+                Text(verbatim: t("prestige_have", state.meta.reputation)).font(.caption.weight(.semibold)).monospacedDigit()
+                    .foregroundStyle(Noir.inkSoft)
+            }
+            Text(verbatim: t("prestige_body")).font(.subheadline).foregroundStyle(Noir.inkSoft)
+                .fixedSize(horizontal: false, vertical: true)
+            ValueRow(label: t("prestige_now"), value: t("empire_payout", t.decimal(Idle.reputationMultiplier(state), digits: 2)))
+            ValueRow(label: t("prestige_gain"), value: "+" + t.decimal(Double(gain), digits: 0), valueColor: Noir.amber)
+            if !ready {
+                Text(verbatim: t("prestige_need", Idle.prestigeMinGain)).font(.caption).foregroundStyle(Noir.inkSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Button { confirm = true } label: { Text(verbatim: t("prestige_button", gain)) }
+                .noirButton(.primary)
+                .disabled(!ready)
+                .accessibilityIdentifier("ledger.prestige")
+        }
+        .confirmationDialog(Text(verbatim: t("prestige_confirm_title")), isPresented: $confirm, titleVisibility: .visible) {
+            Button(role: .destructive) {
+                if store.dispatch(.prestige) { router.resetNavigation() }
+            } label: {
+                Text(verbatim: t("prestige_confirm_btn", gain))
+            }
+            .accessibilityIdentifier("ledger.prestige.confirm")
+            Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
+        } message: {
+            Text(verbatim: t("prestige_confirm_body"))
         }
     }
 }
@@ -286,6 +335,9 @@ enum JournalText {
         case .protection: return (t("j_protection", t.decimal(e.amount, digits: 0)), false)
         case .wagesUnpaid: return (t("j_wages"), true)
         case .donation: return (t("j_donation", t.money(e.amount), t.decimal(e.amount2, digits: 1)), false)
+        case .prestige: return (t("j_prestige", t.decimal(e.amount, digits: 0)), false)
+        case .milestone:
+            return (t("j_milestone", ProductId(rawValue: e.ref).map { t(Labels.product($0)) } ?? e.ref, t.decimal(e.amount, digits: 0)), false)
         }
     }
 

@@ -57,7 +57,7 @@ final class GameStore {
     /// Increments on every tap on a line (drives the tap haptic).
     private(set) var tapCount = 0
     /// Called for every sound-worthy moment.
-    @ObservationIgnored var onFeedback: ((Feedback) -> Void)?
+    @ObservationIgnored var onFeedback: (@MainActor (Feedback) -> Void)?
     @ObservationIgnored private var celebrationCounter = 0
 
     @ObservationIgnored let saveStore: SaveStore

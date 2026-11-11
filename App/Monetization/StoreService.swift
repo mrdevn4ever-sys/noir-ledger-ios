@@ -22,7 +22,7 @@ final class StoreService {
     private(set) var restoring = false
 
     /// Books a verified purchase in the game. Returns false while the game is not ready to take it.
-    @ObservationIgnored var deliver: ((StoreItem) -> Bool)?
+    @ObservationIgnored var deliver: (@MainActor (StoreItem) -> Bool)?
     @ObservationIgnored private var products: [StoreItem: Product] = [:]
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private let defaults: UserDefaults

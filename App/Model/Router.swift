@@ -3,7 +3,7 @@ import Observation
 import SwiftUI
 
 enum AppTab: Hashable, CaseIterable {
-    case ledger, ops, city, money, network
+    case ops, ledger, city, money, network
 
     var titleKey: String {
         switch self {
@@ -18,7 +18,7 @@ enum AppTab: Hashable, CaseIterable {
     var symbol: String {
         switch self {
         case .ledger: "book.closed"
-        case .ops: "gearshape.2"
+        case .ops: "building.2"
         case .city: "map"
         case .money: "banknote"
         case .network: "person.3"
@@ -42,6 +42,8 @@ enum Route: Hashable {
     case finalOp
     case legacy
     case epilogue
+    /// The fine controls of the production lines (start/stop and the three tracks).
+    case workshop
 }
 
 enum NetworkSection: String, CaseIterable, Identifiable {
@@ -61,18 +63,23 @@ enum NetworkSection: String, CaseIterable, Identifiable {
 @MainActor
 @Observable
 final class Router {
-    var tab: AppTab = .ledger
+    var tab: AppTab = .ops
+    var opsPath: [Route] = []
     var ledgerPath: [Route] = []
     var cityPath: [Route] = []
     var networkPath: [Route] = []
     var networkSection: NetworkSection = .crew
     var showSettings = false
+    var showShop = false
+    var showRewards = false
     var eventOpen = false
+    var buyMode: BuyMode = .one
 
     /// "Show me" from the briefing coach: jump to where the current step is played.
     func showTutorialTarget(_ step: TutorialStep) {
         guard let target = AppTab.forTutorial(step) else { return }
         tab = target
+        if target == .ops { opsPath = [] }
         if step == .openRoute { cityPath = [.district(.cellars)] }
     }
 
@@ -82,7 +89,10 @@ final class Router {
     }
 
     func resetNavigation() {
-        tab = .ledger
+        tab = .ops
+        opsPath = []
+        showShop = false
+        showRewards = false
         ledgerPath = []
         cityPath = []
         networkPath = []

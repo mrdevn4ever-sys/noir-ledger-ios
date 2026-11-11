@@ -129,6 +129,29 @@ enum Labels {
     static func upgrade(_ u: UpgradeId) -> String { "up_" + u.rawValue.lowercased() }
     static func upgradeDesc(_ u: UpgradeId) -> String { "upd_" + u.rawValue.lowercased() }
 
+    static func achievement(_ a: AchievementId) -> String { "ach_" + a.rawValue.lowercased() }
+
+    /// What an achievement asks for, with its target filled in.
+    static func achievementGoal(_ a: AchievementId, _ t: L10n) -> String {
+        let target = Idle.achievementTarget(a)
+        let count = Int(target)
+        switch a {
+        case .earn1, .earn2, .earn3, .earn4, .earn5: return t("achg_earn", t.money(target))
+        case .clean1, .clean2, .clean3: return t("achg_clean", t.money(target))
+        case .districts2, .districts5: return t("achg_districts", count)
+        case .fronts3, .fronts5: return t("achg_fronts", count)
+        case .crew3, .crew6: return t("achg_crew", count)
+        case .allLines: return t("achg_lines")
+        case .stage25, .stage50, .stage100: return t("achg_stage", count)
+        case .survivor: return t("achg_survivor")
+        case .raided: return t("achg_raided")
+        case .decisions10: return t("achg_decisions", count)
+        case .prestige1, .prestige5, .prestige10: return t("achg_prestige", count)
+        case .win1, .win3: return t("achg_win", count)
+        case .taps100, .taps2500: return t("achg_taps", count)
+        }
+    }
+
     static func perk(_ p: PerkId) -> String { "perk_" + p.rawValue.lowercased() }
     static func perkDesc(_ p: PerkId) -> String { "perkd_" + p.rawValue.lowercased() }
 

@@ -8,6 +8,8 @@ struct RootView: View {
     @Environment(AppSettings.self) private var settings
     @Environment(Router.self) private var router
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
+    @Environment(StoreService.self) private var shop
+    @Environment(AdService.self) private var ads
 
     var body: some View {
         content
@@ -17,6 +19,17 @@ struct RootView: View {
             .tint(Noir.amber)
             .sensoryFeedback(.selection, trigger: store.acceptedCount) { _, _ in settings.haptics }
             .sensoryFeedback(.warning, trigger: store.rejectedCount) { _, _ in settings.haptics }
+            .sensoryFeedback(.impact(weight: .light), trigger: store.tapCount) { _, _ in settings.haptics }
+            .sensoryFeedback(.success, trigger: store.celebration?.id) { _, new in settings.haptics && new != nil }
+            .overlay(alignment: .top) {
+                CelebrationBanner()
+                    .environment(\.l10n, settings.l10n)
+                    .environment(\.noirReduceMotion, settings.reduceMotion(system: systemReduceMotion))
+            }
+            .task {
+                shop.start()
+                ads.start()
+            }
     }
 
     @ViewBuilder
@@ -96,18 +109,18 @@ private struct GameTabs: View {
     var body: some View {
         @Bindable var router = router
         TabView(selection: $router.tab) {
+            NavigationStack(path: $router.opsPath) {
+                EmpireView().navigationDestination(for: Route.self, destination: destination)
+            }
+            .tabItem { tabLabel(.ops) }
+            .tag(AppTab.ops)
+
             NavigationStack(path: $router.ledgerPath) {
                 LedgerView().navigationDestination(for: Route.self, destination: destination)
             }
             .tabItem { tabLabel(.ledger) }
             .tag(AppTab.ledger)
             .badge(store.state.pendingEvent != nil ? 1 : 0)
-
-            NavigationStack {
-                OperationsView()
-            }
-            .tabItem { tabLabel(.ops) }
-            .tag(AppTab.ops)
 
             NavigationStack(path: $router.cityPath) {
                 CityView().navigationDestination(for: Route.self, destination: destination)
@@ -152,6 +165,14 @@ private struct GameTabs: View {
             NavigationStack { SettingsView() }
                 .environment(\.l10n, t)
         }
+        .sheet(isPresented: $router.showShop) {
+            NavigationStack { ShopView() }
+                .environment(\.l10n, t)
+        }
+        .sheet(isPresented: $router.showRewards) {
+            NavigationStack { RewardsView() }
+                .environment(\.l10n, t)
+        }
         .alert(Text(verbatim: t("save_restored_title")), isPresented: restoredAlert) {
             Button(role: .cancel) {} label: { Text(verbatim: t("btn_continue")) }
         } message: {
@@ -170,6 +191,7 @@ private struct GameTabs: View {
         case .finalOp: FinalOpView()
         case .legacy: LegacyView()
         case .epilogue: EpilogueView(isCover: false)
+        case .workshop: OperationsView()
         }
     }
 }

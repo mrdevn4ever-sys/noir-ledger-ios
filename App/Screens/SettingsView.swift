@@ -6,6 +6,8 @@ struct SettingsView: View {
     @Environment(GameStore.self) private var store
     @Environment(AppSettings.self) private var settings
     @Environment(Router.self) private var router
+    @Environment(StoreService.self) private var shop
+    @Environment(AdService.self) private var ads
     @Environment(\.dismiss) private var dismiss
     @State private var confirmReset = false
 
@@ -41,6 +43,37 @@ struct SettingsView: View {
                 .accessibilityIdentifier("settings.motion")
                 Toggle(isOn: $settings.haptics) { Text(verbatim: t("set_haptics")) }
                     .accessibilityIdentifier("settings.haptics")
+            }
+
+            Section {
+                Toggle(isOn: $settings.sound) { Text(verbatim: t("set_sound")) }
+                    .accessibilityIdentifier("settings.sound")
+                Toggle(isOn: $settings.music) { Text(verbatim: t("set_music")) }
+                    .accessibilityIdentifier("settings.music")
+                Toggle(isOn: $settings.notifications) { Text(verbatim: t("set_notifications")) }
+                    .accessibilityIdentifier("settings.notifications")
+            } header: {
+                Text(verbatim: t("set_audio"))
+            }
+
+            Section {
+                Button {
+                    Task { await shop.restore() }
+                } label: {
+                    Text(verbatim: t(shop.restoring ? "shop_restoring" : "shop_restore"))
+                }
+                .disabled(shop.restoring)
+                .accessibilityIdentifier("settings.restore")
+                if ads.hasPrivacyOptions {
+                    Button {
+                        ads.presentPrivacyOptions()
+                    } label: {
+                        Text(verbatim: t("set_ad_privacy"))
+                    }
+                    .accessibilityIdentifier("settings.adPrivacy")
+                }
+            } header: {
+                Text(verbatim: t("set_purchases"))
             }
 
             Section {

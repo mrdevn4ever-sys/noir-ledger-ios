@@ -109,6 +109,7 @@ struct HUDView: View {
     var body: some View {
         let s = store.state
         VStack(spacing: Noir.s2) {
+            if s.campaign.tutorial == .done { MetaBar(state: s) }
             accounts(s)
             HeatGauge(heat: s.heat, trend: s.heatTarget, status: HeatStatus.of(s), compact: typeSize.isAccessibilitySize)
             if let inv = s.investigation {
@@ -165,9 +166,8 @@ struct AccountCell: View {
                 Text(verbatim: t(account.key)).font(.caption)
             }
             .foregroundStyle(Noir.inkSoft)
-            Text(verbatim: t.money(value))
+            RollingText(text: t.money(value), value: value)
                 .font(.headline)
-                .monospacedDigit()
                 .foregroundStyle(account.ink)
                 .accessibilityIdentifier("hud.\(account.key)")
             if !typeSize.isAccessibilitySize {
@@ -180,6 +180,69 @@ struct AccountCell: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text(verbatim: "\(t(account.key)) \(t.money(value)), \(t("per_min", t.money(rate * 60)))"))
+    }
+}
+
+/// The line above the accounts: favors (opens the shop), the running payout and the rewards waiting to be collected.
+struct MetaBar: View {
+    let state: GameState
+    @Environment(GameStore.self) private var store
+    @Environment(Router.self) private var router
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let waiting = Idle.claimableAchievements(state) + (Idle.dailyAvailable(state, day: store.today) ? 1 : 0)
+        HStack(spacing: Noir.s2) {
+            Button {
+                router.showShop = true
+            } label: {
+                HStack(spacing: Noir.s1) {
+                    Image(systemName: "seal.fill").foregroundStyle(Noir.brass).accessibilityHidden(true)
+                    RollingText(text: t.decimal(Double(state.meta.favors), digits: 0), value: Double(state.meta.favors))
+                        .font(.subheadline.weight(.bold))
+                    Image(systemName: "plus.circle.fill").foregroundStyle(Noir.amber).accessibilityHidden(true)
+                }
+                .padding(.horizontal, Noir.s3)
+                .frame(minHeight: 36)
+                .background(Noir.raised, in: Capsule())
+                .overlay(Capsule().strokeBorder(Noir.hairline, lineWidth: 1))
+                .frame(minHeight: Noir.minTarget)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(Text(verbatim: t("cd_favors", state.meta.favors)))
+            .accessibilityIdentifier("hud.favors")
+            if state.meta.reputation > 0 {
+                Label { Text(verbatim: t.decimal(Double(state.meta.reputation), digits: 0)).monospacedDigit() } icon: {
+                    Image(systemName: "star.fill")
+                }
+                .font(.caption.weight(.bold))
+                .foregroundStyle(Noir.brass)
+                .accessibilityLabel(Text(verbatim: t("cd_reputation", state.meta.reputation)))
+            }
+            Spacer(minLength: 0)
+            Button {
+                router.showRewards = true
+            } label: {
+                HStack(spacing: Noir.s1) {
+                    Image(systemName: waiting > 0 ? "gift.fill" : "gift")
+                    if waiting > 0 {
+                        Text(verbatim: t.decimal(Double(waiting), digits: 0)).font(.caption.weight(.heavy)).monospacedDigit()
+                    }
+                }
+                .padding(.horizontal, Noir.s3)
+                .frame(minHeight: 36)
+                .foregroundStyle(waiting > 0 ? Noir.onAmber : Noir.ink)
+                .background(waiting > 0 ? Noir.amberFill : Noir.raised, in: Capsule())
+                .overlay(Capsule().strokeBorder(Noir.hairline, lineWidth: 1))
+                .frame(minHeight: Noir.minTarget)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(Text(verbatim: t("cd_rewards", waiting)))
+            .accessibilityIdentifier("hud.rewards")
+        }
+        .foregroundStyle(Noir.ink)
     }
 }
 

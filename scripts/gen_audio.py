@@ -70,7 +70,6 @@ def sweep(f0, f1, seconds, decay=3.0):
 
 def effects():
     save("sfx_tap", mix((0, noise(0.02, 3) * env(int(0.02 * SR), 0.001, 160)), (0, tone(880, 0.06, 55) * 0.6)), 0.6)
-    save("sfx_batch", mix((0, tone(110, 0.12, 30, harmonics=(1, 0.5))), (0, noise(0.03, 8) * env(int(0.03 * SR), 0.001, 90) * 0.4)), 0.6)
     save("sfx_buy", mix((0, tone(1318, 0.16, 22)), (0.06, tone(1976, 0.22, 16))), 0.7)
     save("sfx_reject", mix((0, np.sign(np.sin(2 * np.pi * 130 * t(0.16))) * env(int(0.16 * SR), 0.005, 14) * 0.5),
                            (0, tone(98, 0.16, 12))), 0.55)

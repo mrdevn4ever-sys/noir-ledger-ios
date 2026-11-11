@@ -6,13 +6,13 @@ import Foundation
 @MainActor
 final class SoundEngine {
     enum Effect: String, CaseIterable {
-        case tap, buy, milestone, reject, claim, chapter, raid, alarm, decision, prestige, purchase, boost, batch
+        case tap, buy, milestone, reject, claim, chapter, raid, alarm, decision, prestige, purchase, boost
 
         var file: String { "sfx_" + rawValue }
 
         var volume: Float {
             switch self {
-            case .tap, .batch: 0.35
+            case .tap: 0.35
             case .buy, .reject, .decision: 0.6
             default: 0.85
             }
@@ -49,7 +49,7 @@ final class SoundEngine {
         try? AVAudioSession.sharedInstance().setActive(true)
         for effect in Effect.allCases {
             guard let url = Self.url(effect.file) else { continue }
-            let voices = effect == .tap || effect == .batch || effect == .buy ? 4 : 2
+            let voices = effect == .tap || effect == .buy ? 4 : 2
             pools[effect] = (0..<voices).compactMap { _ in
                 let player = try? AVAudioPlayer(contentsOf: url)
                 player?.prepareToPlay()
@@ -72,7 +72,7 @@ final class SoundEngine {
 
     func play(_ effect: Effect) {
         guard active, effectsEnabled, let pool = pools[effect], !pool.isEmpty else { return }
-        // Bursts (taps, batches) are thinned so they never turn into a buzz.
+        // Bursts of taps are thinned so they never turn into a buzz.
         let now = ProcessInfo.processInfo.systemUptime
         if let last = lastPlayed[effect], now - last < 0.05 { return }
         lastPlayed[effect] = now

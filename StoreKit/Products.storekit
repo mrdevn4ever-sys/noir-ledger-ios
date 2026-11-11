@@ -1,0 +1,122 @@
+{
+  "identifier": "4E4F4952",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "3.99",
+      "familyShareable": false,
+      "internalID": "6700000001",
+      "localizations": [
+        {
+          "description": "200 favors and a 4 hour boost",
+          "displayName": "Starter crate",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.starter",
+      "referenceName": "Starter crate",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "6.99",
+      "familyShareable": false,
+      "internalID": "6700000002",
+      "localizations": [
+        {
+          "description": "Every payout doubled, permanently",
+          "displayName": "Silent partner",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.premium2x",
+      "referenceName": "Silent partner",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "6700000003",
+      "localizations": [
+        {
+          "description": "Sponsor rewards without watching",
+          "displayName": "No videos",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.noads",
+      "referenceName": "No videos",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "6700000004",
+      "localizations": [
+        {
+          "description": "80 favors",
+          "displayName": "A handful of favors",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.favors.small",
+      "referenceName": "A handful of favors",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "6700000005",
+      "localizations": [
+        {
+          "description": "500 favors",
+          "displayName": "A drawer of favors",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.favors.medium",
+      "referenceName": "A drawer of favors",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "6700000006",
+      "localizations": [
+        {
+          "description": "1200 favors",
+          "displayName": "A safe of favors",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.favors.large",
+      "referenceName": "A safe of favors",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "19.99",
+      "familyShareable": false,
+      "internalID": "6700000007",
+      "localizations": [
+        {
+          "description": "3000 favors",
+          "displayName": "The vault",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "io.puredevn.noirledger.favors.vault",
+      "referenceName": "The vault",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

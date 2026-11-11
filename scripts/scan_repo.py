@@ -4,7 +4,8 @@
 Scans shipped source and resources (App/, Packages/NoirCore/Sources/, AppTests/, UITests/, project.yml, scripts/) for:
   - unfinished-work markers (TODO, FIXME, XXX, placeholder, coming soon, lorem ipsum, "tbd");
   - real drug terminology (English and German);
-  - network, advertising, billing, analytics or tracking APIs;
+  - network, analytics or tracking APIs anywhere, and store or advertising APIs outside App/Monetization
+    (the only place allowed to talk to the App Store and to the rewarded-video SDK);
   - accidental secrets (private keys, tokens, Apple credentials).
 The binding brief and reference docs are excluded: they name these terms in order to forbid them.
 """
@@ -23,15 +24,19 @@ DRUGS = re.compile(
     r"\blsd\b|mdma|ecstasy|opium|opioid|ketamin|ketamine|amphetamine|amphetamin|crack cocaine|speedball|narcotic|"
     r"betäubungsmittel|rauschgift)\b", re.I)
 NETWORK = re.compile(
-    r"\b(URLSession|URLRequest|NWConnection|import Network|WKWebView|import WebKit|StoreKit|SKPayment|AdSupport|"
+    r"\b(URLSession|URLRequest|NWConnection|import Network|WKWebView|import WebKit|AdSupport|"
     r"ASIdentifierManager|AppTrackingTransparency|ATTrackingManager|Firebase|Crashlytics|Mixpanel|Amplitude|"
-    r"GoogleMobileAds|AppsFlyer|Adjust\b|Sentry|analytics)\b")
+    r"AppsFlyer|Adjust\b|Sentry|analytics)\b")
+# Purchases and rewarded videos live in one folder; nothing else may reach the store or the advertising SDK.
+MONETIZATION = re.compile(r"\b(StoreKit|SKPayment|GoogleMobileAds|UserMessagingPlatform|GADMobileAds|GADRewardedAd)\b")
+MONETIZATION_HOME = ("App/Monetization/", "project.yml", "App/Info.plist", "StoreKit/")
 URLS = re.compile(r"https?://", re.I)
 SECRETS = re.compile(r"BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|"
                      r"xox[baprs]-|\.p12\b|\.mobileprovision\b|APPLE_ID_PASSWORD|app-specific password", re.I)
 
 # Benign, documented exceptions (file suffix, rule, reason).
 ALLOW = [
+    ("project.yml", "urls", "Swift package URLs of the advertising SDK and its consent library"),
     ("scripts/shared_assets.py", "urls", "none expected"),
     (".github/workflows/ios.yml", "urls", "GitHub run URL in the evidence report"),
     ("scripts/ci/report.py", "urls", "builds the GitHub Actions run URL for the report"),
@@ -54,6 +59,8 @@ def main() -> int:
             continue
         rel = f.relative_to(ROOT).as_posix()
         for n, line in enumerate(f.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+            if MONETIZATION.search(line) and not rel.startswith(MONETIZATION_HOME):
+                hits.append(f"{rel}:{n}: [monetization outside App/Monetization] {line.strip()[:140]}")
             for rule, rx in (("unfinished", UNFINISHED), ("drugs", DRUGS), ("network", NETWORK), ("urls", URLS), ("secrets", SECRETS)):
                 if rx.search(line) and not allowed(rel, rule):
                     if rule == "urls" and ("apple.com/DTDs" in line or "www.w3.org/2000/svg" in line):

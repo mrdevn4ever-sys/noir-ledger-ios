@@ -11,6 +11,14 @@ options:
 packages:
   NoirCore:
     path: Packages/NoirCore
+  # Rewarded videos (App/Monetization/AdMobProvider.swift). The provider compiles only while this package is present:
+  # removing these two entries and the two dependencies below builds the game without any advertising SDK.
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads
+    majorVersion: 11.2.0
+  GoogleUserMessagingPlatform:
+    url: https://github.com/googleads/swift-package-manager-google-user-messaging-platform
+    majorVersion: 2.1.0
 settings:
   base:
     SWIFT_VERSION: "6.0"
@@ -30,9 +38,14 @@ targets:
           - Info.plist
     dependencies:
       - package: NoirCore
+      - package: GoogleMobileAds
+        product: GoogleMobileAds
+      - package: GoogleUserMessagingPlatform
+        product: GoogleUserMessagingPlatform
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: io.puredevn.noirledger
+        OTHER_LDFLAGS: $(inherited) -ObjC
         PRODUCT_NAME: NoirLedger
         INFOPLIST_FILE: App/Info.plist
         TARGETED_DEVICE_FAMILY: "1"
@@ -88,6 +101,7 @@ schemes:
         NoirLedgerUITests: [test]
     run:
       config: Debug
+      storeKitConfiguration: StoreKit/Products.storekit
     test:
       config: Debug
       gatherCoverageData: false

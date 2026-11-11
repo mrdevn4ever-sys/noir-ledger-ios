@@ -189,6 +189,7 @@ struct RaidSheet: View {
 struct OfflineSheet: View {
     let report: OfflineReport
     @Environment(GameStore.self) private var store
+    @Environment(AdService.self) private var ads
     @Environment(\.l10n) private var t
 
     var body: some View {
@@ -203,6 +204,15 @@ struct OfflineSheet: View {
                 } else {
                     Text(verbatim: t("offline_away", t.duration(Double(report.awaySeconds)), t.duration(Double(report.creditedSeconds))))
                         .font(.subheadline).foregroundStyle(Noir.inkSoft)
+                    VStack(spacing: 2) {
+                        Text(verbatim: t("offline_haul")).font(.caption).foregroundStyle(Noir.inkSoft)
+                        Text(verbatim: "+" + t.money(report.dirtyEarned))
+                            .font(.system(.largeTitle, design: .serif, weight: .bold)).monospacedDigit()
+                            .foregroundStyle(Noir.amber)
+                            .accessibilityIdentifier("offline.haul")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, Noir.s2)
                     if report.capped {
                         Label { Text(verbatim: t("offline_capped")) } icon: { Image(systemName: "hourglass.bottomhalf.filled") }
                             .font(.subheadline).foregroundStyle(Noir.amber)
@@ -218,12 +228,44 @@ struct OfflineSheet: View {
                     }
                     Text(verbatim: t("offline_rules")).font(.footnote).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
                 }
-                Button { store.offlineReport = nil } label: { Text(verbatim: t("offline_ok")) }
+                if store.state.meta.offlineBonus > 0, store.rewardOffered(ads: ads) {
+                    Button {
+                        store.claimReward(.offlineDouble, ads: ads)
+                    } label: {
+                        Label {
+                            Text(verbatim: t(store.state.meta.noAds ? "offline_double_free" : "offline_double_video",
+                                             t.money(store.state.meta.offlineBonus)))
+                        } icon: {
+                            Image(systemName: store.state.meta.noAds ? "bolt.fill" : "play.rectangle.fill")
+                        }
+                    }
+                    .noirButton(.primary)
+                    .accessibilityIdentifier("offline.double")
+                    Button {
+                        store.dispatch(.collectOffline(doubled: false))
+                        store.offlineReport = nil
+                    } label: {
+                        Text(verbatim: t("offline_ok"))
+                    }
+                    .noirButton(.secondary)
+                    .accessibilityIdentifier("offline.ok")
+                } else {
+                    Button {
+                        store.dispatch(.collectOffline(doubled: false))
+                        store.offlineReport = nil
+                    } label: {
+                        Text(verbatim: t("offline_ok"))
+                    }
                     .noirButton(.primary)
                     .accessibilityIdentifier("offline.ok")
+                }
             }
             .padding(Noir.s4)
         }
         .background(Noir.ground)
+        .onChange(of: store.state.meta.offlineBonus) { old, new in
+            // The bonus was paid out a second time: the summary has done its job.
+            if old > 0 && new <= 0 { store.offlineReport = nil }
+        }
     }
 }

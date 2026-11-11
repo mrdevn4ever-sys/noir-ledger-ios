@@ -1,7 +1,7 @@
 import NoirCore
 import SwiftUI
 
-/// The workshop: the shared stash and the four production lines.
+/// The workshop details behind the empire screen: the shared stash and the fine controls of the four production lines.
 struct OperationsView: View {
     @Environment(GameStore.self) private var store
     @Environment(\.l10n) private var t
@@ -9,7 +9,7 @@ struct OperationsView: View {
     var body: some View {
         let s = store.state
         let m = Economy.mods(s)
-        TabScreen("nav_ops", identifier: "screen.ops") {
+        DetailScreen(t("empire_workshop"), identifier: "screen.workshop") {
             StashPanel(state: s, mods: m)
             SectionHeading(title: t("ops_lines"))
             ForEach(ProductId.allCases, id: \.self) { p in
@@ -85,7 +85,11 @@ private struct LinePanel: View {
             }
             ValueRow(label: t("line_rate", t.decimal(rate.isFinite ? rate * 60 : 0, digits: 1)), value: t("line_stock", t.money(state.stock(product))))
             ValueRow(label: t("line_unit_cost", t.money(Economy.unitCost(state, product, mods))),
-                     value: t("route_price", t.money(Content.product(product).basePrice * Economy.qualityMult(state, product) * mods.price)))
+                     value: t("route_price", t.money(Content.product(product).basePrice * Economy.qualityMult(state, product) * mods.price
+                                                         * Idle.lineMultiplier(line) * Idle.globalMultiplier(state))))
+            if line.masteryLevel > 0 {
+                ValueRow(label: t("line_mastery"), value: t("level_open", line.masteryLevel))
+            }
             Button {
                 store.dispatch(.setLineRunning(product, !line.running))
             } label: {
