@@ -180,10 +180,10 @@ public enum Idle {
         var best: (step: LineStep, cost: Double)?
         for t in LineTrack.allCases where l.level(t) < Content.maxLineLevel {
             let c = Content.lineUpgradeCost(p, t, currentLevel: l.level(t))
-            if best == nil || c < best!.cost { best = (.track(t), c) }
+            if best == nil || c < best!.cost { best = (step: LineStep.track(t), cost: c) }
         }
         if let best { return best }
-        if l.masteryLevel < maxMastery { return (.mastery, masteryCost(p, currentLevel: l.masteryLevel)) }
+        if l.masteryLevel < maxMastery { return (step: LineStep.mastery, cost: masteryCost(p, currentLevel: l.masteryLevel)) }
         return nil
     }
 

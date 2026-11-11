@@ -45,7 +45,7 @@ final class Notifier {
         }
         let pending = requests
         Task {
-            guard await authorize() else { return }
+            guard await self.authorize() else { return }
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: Self.ids)
             for item in pending {

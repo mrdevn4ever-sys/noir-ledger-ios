@@ -58,6 +58,20 @@ enum SceneTint {
     }
 }
 
+/// Draws a delivered plate so that it fills the scene without distortion (centred, cropped at the edges).
+@MainActor
+private func drawPlate(_ ctx: inout GraphicsContext, _ plate: Image, _ size: CGSize) {
+    let resolved = ctx.resolve(plate)
+    let source = resolved.size
+    guard source.width > 0, source.height > 0, size.width > 0, size.height > 0 else { return }
+    let scale = max(size.width / source.width, size.height / source.height)
+    let fitted = CGSize(width: source.width * scale, height: source.height * scale)
+    let origin = CGPoint(x: (size.width - fitted.width) / 2, y: (size.height - fitted.height) / 2)
+    var clipped = ctx
+    clipped.clip(to: Path(CGRect(origin: .zero, size: size)))
+    clipped.draw(resolved, in: CGRect(origin: origin, size: fitted))
+}
+
 /// Cheap deterministic noise in 0..<1, so skylines, rain and flicker look the same on every launch.
 private func grain(_ n: Int) -> Double {
     let x = sin(Double(n) * 127.1 + 311.7) * 43_758.5453
@@ -83,7 +97,7 @@ struct RoomScene: View {
             let time = reduceMotion ? 0 : timeline.date.timeIntervalSinceReferenceDate
             Canvas { ctx, size in
                 if let plate {
-                    ctx.draw(plate, in: CGRect(origin: .zero, size: size))
+                    drawPlate(&ctx, plate, size)
                 } else {
                     drawRoom(&ctx, size, time)
                     drawApparatus(&ctx, size, time)
@@ -355,7 +369,7 @@ struct StreetScene: View {
             let time = reduceMotion ? 0 : timeline.date.timeIntervalSinceReferenceDate
             Canvas { ctx, size in
                 if let plate {
-                    ctx.draw(plate, in: CGRect(origin: .zero, size: size))
+                    drawPlate(&ctx, plate, size)
                 } else {
                     drawSky(&ctx, size, time)
                 }
@@ -487,7 +501,7 @@ struct StashScene: View {
         Canvas { ctx, size in
             let w = size.width, h = size.height
             if let plate {
-                ctx.draw(plate, in: CGRect(origin: .zero, size: size))
+                drawPlate(&ctx, plate, size)
             } else {
                 ctx.fill(Path(CGRect(origin: .zero, size: size)),
                          with: .linearGradient(Gradient(colors: [SceneTint.wall, SceneTint.wallDeep]),

@@ -1,9 +1,13 @@
 # NOIR LEDGER — iOS
 
-A complete premium offline management game for iPhone: inherit a cellar operation in the fictional river city of
-Varnholm, build production, routes and laundering fronts, manage Heat, crew and rivals across six chapters, win the
-three-phase final operation, read the epilogue and start New Game+ with permanent legacy perks. Native Swift and
-SwiftUI, portrait iPhone, German and English, no account, network, ads, analytics, tracking or in-app purchases.
+A free-to-play idle tycoon for iPhone with a full campaign: inherit a cellar operation in the fictional river city of
+Varnholm, tap and grow your production lines on an animated empire screen, build routes and laundering fronts, manage
+Heat, crew and rivals across six chapters, win the three-phase final operation, then go to ground for reputation or
+start New Game+. Native Swift and SwiftUI, portrait iPhone, German and English, fully playable offline without an
+account. Optional rewarded sponsor videos and in-app purchases (StoreKit 2); no analytics, no cross-app tracking.
+
+**Status of version 2.0 ("Idle Empire"):** written without a local Swift toolchain and not yet built on a macOS
+runner. Run the workflow in `.github/workflows/ios.yml` and fix what it reports before trusting it.
 
 - Binding brief: [IOS_GAME_BRIEF.md](IOS_GAME_BRIEF.md) · rules and numbers: [docs/reference-game-rules.md](docs/reference-game-rules.md)
 - Provenance (Android parity): [docs/PORT_REFERENCE.md](docs/PORT_REFERENCE.md) · shared art: [shared-assets/](shared-assets/)
@@ -14,7 +18,8 @@ SwiftUI, portrait iPhone, German and English, no account, network, ads, analytic
 | --- | --- |
 | Bundle ID | `io.puredevn.noirledger` |
 | Minimum iOS | 17.0 (iPhone, portrait) |
-| Language | Swift 6 (app, core, unit tests), SwiftUI, zero third-party dependencies |
+| Language | Swift 6 (app, core, unit tests), SwiftUI |
+| Dependencies | Google Mobile Ads 11 and User Messaging Platform 2 (rewarded videos only, `App/Monetization/`) |
 | Project | generated from `project.yml` with XcodeGen |
 
 ## Build and test (macOS with Xcode 16 or newer)
@@ -71,3 +76,14 @@ Deutsch, English), motion, haptics and a confirmed campaign reset.
 Source, simulator build, tests and simulator evidence only. No code signing, certificates or provisioning, no
 TestFlight, App Store upload or App Store Connect changes, no releases. The game is fiction: every person, place,
 organisation and good is invented.
+
+## Monetisation set-up (before a release)
+
+- **Rewarded videos:** `App/Info.plist` ships Google's public *test* identifiers in `GADApplicationIdentifier` and
+  `NoirRewardedAdUnit`. Replace both with the real AdMob app id and rewarded ad unit. To build without any advertising
+  SDK, remove the two Google packages and their two dependencies from `project.yml`; the game then reports that no
+  video is available.
+- **In-app purchases:** create the seven products of `App/Monetization/StoreCatalog.swift` in App Store Connect with the
+  same identifiers. `StoreKit/Products.storekit` provides them to the simulator when the app is run from Xcode.
+- **Sound and artwork:** `scripts/gen_audio.py` synthesises the built-in sound set. Better recordings and rendered
+  scenes are commissioned in `docs/HERMES_ASSET_BRIEF.md` and replace the built-in ones by file name.
