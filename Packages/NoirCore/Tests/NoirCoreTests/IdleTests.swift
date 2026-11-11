@@ -45,21 +45,37 @@ struct IdleTests {
 
     @Test("Payout multipliers raise cash but leave Heat exposure alone")
     func multipliersDoNotMoveHeat() {
-        var base = TS.rich(chapter: 2)
-        base.dirty = 0
+        // Fronts paused: exposure comes from street sales only, which must be identical at any multiplier.
+        var base = TS.ok(TS.rich(chapter: 2), .setFrontActive(.laundromat, false))
         var boosted = base
         boosted.meta.premium = true
         boosted.meta.reputation = 50
         boosted.meta.boostSeconds = 3600
         #expect(Idle.globalMultiplier(boosted) == 8)
+        let earnedBefore = base.stats.dirtyEarned
         Simulation.advance(&base, seconds: 600, offline: false)
         Simulation.advance(&boosted, seconds: 600, offline: false)
-        #expect(boosted.stats.dirtyEarned > base.stats.dirtyEarned * 7.9)
+        let baseEarned = base.stats.dirtyEarned - earnedBefore
+        let boostedEarned = boosted.stats.dirtyEarned - earnedBefore
+        #expect(baseEarned > 0)
+        #expect(abs(boostedEarned - 8 * baseEarned) < 1e-6 * boostedEarned)
         #expect(abs(boosted.stats.unitsSold - base.stats.unitsSold) < 1e-6, "the same goods move")
-        #expect(abs(boosted.heatTarget - base.heatTarget) < 1e-6, "exposure comes from the base economy")
+        #expect(abs(boosted.heatTarget - base.heatTarget) < 1e-9, "exposure comes from the base economy")
         #expect(boosted.meta.boostSeconds == 3000)
         #expect(Idle.payoutRatio(boosted) == 8)
-        #expect(boosted.stats.cleanLaundered > base.stats.cleanLaundered, "fronts wash boosted cash faster")
+    }
+
+    @Test("Fronts wash boosted cash at the boosted pace")
+    func frontsFollowThePayout() {
+        var base = TS.rich(chapter: 2)
+        var boosted = base
+        boosted.meta.premium = true
+        let m = Economy.mods(base)
+        Simulation.advance(&base, seconds: 120, offline: false)
+        Simulation.advance(&boosted, seconds: 120, offline: false)
+        #expect(Economy.frontCapacity(boosted, .laundromat, m) == 2 * Economy.frontCapacity(base, .laundromat, m))
+        #expect(Economy.baseFrontCapacity(boosted, .laundromat, m) == Economy.baseFrontCapacity(base, .laundromat, m))
+        #expect(boosted.stats.cleanLaundered > base.stats.cleanLaundered)
     }
 
     @Test("Tapping adds work to a running line only")

@@ -27,7 +27,22 @@ final class AppSettings {
         didSet { defaults.set(haptics, forKey: Keys.haptics) }
     }
 
+    var sound: Bool {
+        didSet { defaults.set(sound, forKey: Keys.sound) }
+    }
+
+    var music: Bool {
+        didSet { defaults.set(music, forKey: Keys.music) }
+    }
+
+    var notifications: Bool {
+        didSet { defaults.set(notifications, forKey: Keys.notifications) }
+    }
+
     private enum Keys {
+        static let sound = "settings.sound"
+        static let music = "settings.music"
+        static let notifications = "settings.notifications"
         static let language = "settings.language"
         static let motion = "settings.motion"
         static let haptics = "settings.haptics"
@@ -40,12 +55,18 @@ final class AppSettings {
         l10n = L10n(language: lang.resolved)
         motion = MotionChoice(rawValue: defaults.string(forKey: Keys.motion) ?? "") ?? .system
         haptics = defaults.object(forKey: Keys.haptics) as? Bool ?? true
+        sound = defaults.object(forKey: Keys.sound) as? Bool ?? true
+        music = defaults.object(forKey: Keys.music) as? Bool ?? true
+        notifications = defaults.object(forKey: Keys.notifications) as? Bool ?? true
     }
 
     func resetToDefaults() {
         language = .system
         motion = .system
         haptics = true
+        sound = true
+        music = true
+        notifications = true
     }
 
     /// The resolved text table for the current choice (reloaded only when the language changes).
