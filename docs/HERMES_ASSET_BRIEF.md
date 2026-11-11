@@ -155,7 +155,7 @@ Filmic, Look „Medium High Contrast“, Belichtung −0,5. Rückwand: Ziegel, d
 
 | Dateiname | Größe | Inhalt |
 | --- | --- | --- |
-| `SceneStreet` | 1440 × 528 px | nächtliche Straße in Varnholm im Regen, frontal. Obere 80 %: Häuserzeile und dahinter die Silhouette der Altstadt mit einzelnen warm leuchtenden Fenstern. Untere 20 %: nasse, dunkle, **leere** Fahrbahn (das Spiel lässt dort einen Lieferwagen fahren und zeichnet Leuchtschilder auf Höhe 76–80 %). Keine Autos, keine Menschen, keine lesbaren Schilder. Unten links ruhig und dunkel (dort steht eine große Zahl). |
+| `SceneStreet` | 1440 × 528 px | nächtliche Straße in Varnholm im Regen, frontal. Obere 80 %: Häuserzeile und dahinter die Silhouette der Altstadt mit einzelnen warm leuchtenden Fenstern. Untere 20 %: nasse, dunkle, **leere** Fahrbahn (das Spiel lässt dort einen Lieferwagen fahren und zeichnet Leuchtschilder auf Höhe 65–73 %). Keine Autos, keine Menschen, keine lesbaren Schilder. Unten links ruhig und dunkel (dort steht eine große Zahl). |
 | `SceneStash` | 1488 × 240 px | nur die Rückwand eines Lagerkellers: dunkler Ziegel, etwas Licht von oben. **Keine Regale, keine Kisten** (die zeichnet das Spiel). |
 
 ### 5.3 Arbeiter-Animation (1 Bild)
