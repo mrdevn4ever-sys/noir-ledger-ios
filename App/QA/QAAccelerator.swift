@@ -14,6 +14,9 @@ import NoirCore
 /// - `-qa-away SECONDS`       pretend the app was closed this long (offline return summary)
 /// - `-qa-timescale X`        game seconds per real second
 /// - `-qa-quiet`              no new decisions during the session (stable screenshots)
+/// - `-qa-ads`                sponsor videos finish instantly (read by `AdService`)
+///
+/// Any `-qa-` argument also makes the app open on the books instead of the empire (see `Router.startTab`).
 enum QAAccelerator {
     private static var args: [String] { ProcessInfo.processInfo.arguments }
 

@@ -40,10 +40,13 @@ random punishment.
 
 ## Operating Context
 
-- Paid upfront, one purchase. No ads, no in-app purchases, no subscription, no StoreKit, no account, no network,
-  no analytics or tracking, no third-party SDKs.
-- Sessions alternate between active play (decisions, events, Heat management) and up to eight hours of offline time
-  credited on return with a summary; clocks set backwards credit nothing.
+- Free to play (owner decision, version 2.0). Revenue: optional rewarded sponsor videos, in-app purchases for favors
+  (premium currency) and boosts, a permanent ×2 "silent partner" and an ad-free upgrade. StoreKit 2 and the
+  rewarded-video SDK live only in `App/Monetization/`. No forced ads, no loot boxes, no account, no analytics,
+  no cross-app tracking. The whole campaign is playable without paying or watching anything.
+- Sessions alternate between active play (tapping lines, upgrades, decisions, Heat management) and up to eight hours
+  of offline time (sixteen with the silent partner) credited on return with a summary that a sponsor video can
+  double; clocks set backwards credit nothing. Local reminders bring the player back; nothing is sent to a server.
 - German and English, following the system language with a manual override in Settings.
 - This commission ships source, a simulator build, green tests and simulator screenshots; it never signs, uploads or
   touches App Store Connect.

@@ -47,9 +47,11 @@ final class GameFlowUITests: NoirUITestCase {
     func testCoreSystemsThroughTheUI() {
         launch(["-qa-reset", "-qa-seed", "11", "-qa-scenario", "chapter3", "-qa-quiet"])
         wait("screen.ledger")
-        // Operations: upgrade a line track and expand the stash.
+        // Empire, then the workshop details: upgrade a line track and expand the stash.
         tab(1)
         wait("screen.ops")
+        tapRevealed("empire.workshop")
+        wait("screen.workshop")
         tapRevealed("line.GLIMMER.SPEED")
         tapRevealed("ops.stash.upgrade")
         tapRevealed("line.VELVET.buy")
@@ -226,7 +228,7 @@ final class GameFlowUITests: NoirUITestCase {
         shot("en_50_large_text_ledger")
         tab(1)
         wait("screen.ops")
-        tapRevealed("line.GLIMMER.toggle")
+        tapRevealed("line.GLIMMER.room")
         shot("en_51_large_text_ops")
         tab(3)
         wait("screen.money")

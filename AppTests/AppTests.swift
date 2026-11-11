@@ -28,6 +28,8 @@ struct LocalizationTests {
         for b in UpgradeBranch.allCases { keys.append(Labels.branch(b)) }
         for u in UpgradeId.allCases { keys += [Labels.upgrade(u), Labels.upgradeDesc(u)] }
         for p in PerkId.allCases { keys += [Labels.perk(p), Labels.perkDesc(p)] }
+        for a in AchievementId.allCases { keys.append(Labels.achievement(a)) }
+        for item in StoreItem.allCases { keys.append(item.titleKey) }
         for s in LineStatus.allCases { keys.append(Labels.lineStatus(s)) }
         for t in LineTrack.allCases { keys.append(Labels.track(t)) }
         for c in 0...6 { keys += [Labels.chapterTitle(c), Labels.chapterIntro(c)] }
@@ -203,6 +205,35 @@ struct GameStoreTests {
         store.resetEverything()
         #expect(!store.state.campaign.prologueDone)
         #expect(store.state.legacy.points == 0)
+    }
+
+    @Test("Reset keeps what was paid for and clears reputation")
+    func resetKeepsWallet() {
+        let store = makeStore(tempDir(), clock: Clock())
+        store.load()
+        #expect(store.deliver(.premium))
+        #expect(store.deliver(.favors(80)))
+        store.dispatch(.choosePrologue(.cashBox))
+        store.resetEverything()
+        #expect(!store.state.campaign.prologueDone)
+        #expect(store.state.meta.premium)
+        #expect(store.state.meta.favors == 80)
+        #expect(store.state.meta.reputation == 0)
+    }
+
+    @Test("Taps and milestones are reported for sound and banners")
+    func feedback() {
+        let store = makeStore(tempDir(), clock: Clock())
+        store.load()
+        var heard: [Feedback] = []
+        store.onFeedback = { heard.append($0) }
+        store.dispatch(.choosePrologue(.cashBox))
+        store.dispatch(.setLineRunning(.glimmer, true))
+        #expect(store.dispatch(.hustle(.glimmer)))
+        #expect(store.tapCount == 1)
+        #expect(heard.contains(.tap))
+        #expect(!store.dispatch(.upgradeLineAuto(.glimmer, 1)), "the briefing does not allow upgrades yet")
+        #expect(heard.contains(.reject))
     }
 
     @Test("Online ticks run the simulation in real time")

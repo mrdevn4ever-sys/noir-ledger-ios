@@ -3,7 +3,7 @@ import Observation
 import SwiftUI
 
 enum AppTab: Hashable, CaseIterable {
-    case ops, ledger, city, money, network
+    case ledger, ops, city, money, network
 
     var titleKey: String {
         switch self {
@@ -63,7 +63,8 @@ enum NetworkSection: String, CaseIterable, Identifiable {
 @MainActor
 @Observable
 final class Router {
-    var tab: AppTab = .ops
+    /// Players start on the empire. Automated runs driven by the Debug-only QA accelerator start on the books.
+    var tab: AppTab = Router.startTab
     var opsPath: [Route] = []
     var ledgerPath: [Route] = []
     var cityPath: [Route] = []
@@ -88,8 +89,15 @@ final class Router {
         ledgerPath = [.legacy]
     }
 
+    static var startTab: AppTab {
+        #if NOIR_QA
+        if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-qa-") }) { return .ledger }
+        #endif
+        return .ops
+    }
+
     func resetNavigation() {
-        tab = .ops
+        tab = Router.startTab
         opsPath = []
         showShop = false
         showRewards = false

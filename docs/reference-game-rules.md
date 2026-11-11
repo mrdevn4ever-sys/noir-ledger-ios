@@ -146,3 +146,26 @@ absurd forward jumps are capped. Gaps under 60 s are credited silently; longer o
   each; a New Game+ run with perks also wins. The test fails if any seed loses, finishes under 4 h or over 20 h,
   or skips a chapter.
 - The briefing takes about five minutes of real time.
+
+## Idle layer (iOS version 2.0)
+
+Everything in this section multiplies **payouts** (the cash a sale or a wash brings in), never the units that move.
+Exposure and Heat are always computed from the base street economy, so the Heat balance above holds at any multiplier.
+
+- **Stage.** A line's stage is 1 plus every track level and mastery level bought. The one-button upgrade on the empire
+  screen buys the cheapest open track, then **mastery** (after all tracks are at 10): +8 % payout per level, cost
+  `line upgrade base × 250 × 1.25^level`, up to stage 500. Buy modes ×1, ×10, ×25, MAX.
+- **Milestones.** At stages 10, 25, 50, 75, 100, 150, 200, 250, 300, 400 and 500 a line's payout doubles.
+- **Tapping** a running line adds one second of work.
+- **Global payout** = (1 + 2 % × reputation) × 2 with the silent partner × 2 while a boost runs. Fronts wash boosted
+  cash at the same boosted pace.
+- **Going to ground** (from chapter 2, at least 10 reputation to gain): ends the run and starts chapter 1 with the
+  briefing skipped. Reputation gained = `25 × (dirty earned this run / 250,000)^0.4`, ×1.5 after a campaign win;
+  New Game+ books it too. Favors, purchases, legacy perks, achievements and reputation survive.
+- **Favors** (premium currency) come from achievements (28, 5–100 each), the daily envelope (7-day cycle: 10 favors,
+  1 h boost, 15, 1 h time jump, 20, 2 h boost, 50), each finished chapter (10) and the store. They buy: ×2 boost 4 h
+  (40), time jumps 2/8/24 h (30/100/250, simulated like time away), Heat −30 (25), full crew loyalty (20).
+- **Sponsor rewards** (one finished video each, or directly with the ad-free upgrade): ×2 boost 30 min (stacks to
+  8 h), 3 favors (5 a day), Heat −15 (10 min cooldown), and the street cash earned while away a second time.
+- **Store:** starter crate (200 favors + 4 h boost, once), silent partner (permanent ×2, offline cap 16 h), no videos,
+  four favor packs (80 / 500 / 1,200 / 3,000).

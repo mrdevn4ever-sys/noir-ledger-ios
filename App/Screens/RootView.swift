@@ -109,18 +109,18 @@ private struct GameTabs: View {
     var body: some View {
         @Bindable var router = router
         TabView(selection: $router.tab) {
-            NavigationStack(path: $router.opsPath) {
-                EmpireView().navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { tabLabel(.ops) }
-            .tag(AppTab.ops)
-
             NavigationStack(path: $router.ledgerPath) {
                 LedgerView().navigationDestination(for: Route.self, destination: destination)
             }
             .tabItem { tabLabel(.ledger) }
             .tag(AppTab.ledger)
             .badge(store.state.pendingEvent != nil ? 1 : 0)
+
+            NavigationStack(path: $router.opsPath) {
+                EmpireView().navigationDestination(for: Route.self, destination: destination)
+            }
+            .tabItem { tabLabel(.ops) }
+            .tag(AppTab.ops)
 
             NavigationStack(path: $router.cityPath) {
                 CityView().navigationDestination(for: Route.self, destination: destination)

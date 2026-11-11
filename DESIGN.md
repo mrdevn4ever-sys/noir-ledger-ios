@@ -71,10 +71,22 @@ SF Symbols remain only for system chrome: settings, chevrons, locks, play/pause,
   epilogue; sheets for decisions, raid, return summary and settings; segmented pickers; `Toggle`; `Form` for settings;
   alerts and confirmation dialogs for reset, dismissal and New Game+.
 
+## Empire scene (version 2.0)
+
+The home tab is the operation in cross-section: the rainy street with the skyline, the signs of the owned fronts and
+the delivery van; the stash as filling shelves; one lit room per production line with its apparatus, crew silhouettes
+and a crate belt. Rooms grow through four tiers as the line passes milestones. Everything is drawn in
+`App/Design/EmpireArt.swift` (Canvas + TimelineView at 30 fps, frozen under Reduce Motion). Delivered artwork replaces
+the drawings without code changes: `Room<Product>0…3`, `SceneStreet`, `SceneStash`, `SpriteWorker` (see
+`docs/HERMES_ASSET_BRIEF.md`). Scene-only tints (`SceneTint`): ember for Cinder, plum for Velvet, ice for Halo.
+
+Feel: numbers roll (`RollingText`), taps and finished batches throw floaters, milestones/chapters/new starts raise a
+gold banner with a burst, and every moment has a sound (`SoundEngine`, files in `App/Resources/Audio`).
+
 ## Motion
 
-Short and purposeful: press feedback 80–160 ms (scale 0.97, or a dim under reduced motion), prologue page fades
-200 ms, no decorative loops. The Motion setting (system / reduced / full) combines with the system Reduce Motion flag.
+Press feedback 80–160 ms (scale 0.97, or a dim under reduced motion), prologue page fades 200 ms. The empire scene
+loops continuously by design (rain, lamps, crew, van); all of it stops under Reduce Motion. The Motion setting (system / reduced / full) combines with the system Reduce Motion flag.
 Haptics: selection on accepted actions, warning on rejected ones (setting-controlled).
 
 ## Layout

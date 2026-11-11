@@ -1,5 +1,22 @@
 # NOIR LEDGER iOS — verbindlicher Spielauftrag
 
+> **Änderungsbeschluss des Eigentümers (Version 2.0, „Idle Empire“).** Dieser Beschluss geht den älteren Abschnitten
+> unten vor, wo sie sich widersprechen:
+>
+> 1. **Geschäftsmodell:** kostenlos spielbar. Erlaubt und gewollt sind Belohnungsvideos (Rewarded Ads),
+>    In-App-Käufe für Boosts und Premium-Währung („Gefallen“) sowie ein dauerhafter Premium-×2-Kauf. StoreKit 2 und
+>    ein Werbe-SDK sind dafür zugelassen, ausschließlich in `App/Monetization/`. Weiterhin verboten: Analytics,
+>    Attribution und Tracking über Apps hinweg, erzwungene Werbung (Interstitials, Banner), Lootboxen.
+> 2. **Android-Parität ist ausgesetzt.** Die iOS-Fassung darf in Regeln und Darstellung von der Android-Referenz
+>    abweichen. `docs/reference-game-rules.md` beschreibt die iOS-Regeln einschließlich der Idle-Schicht.
+> 3. **Spielgefühl:** ein echtes Idle-Tycoon-Spiel mit animierter Imperium-Szene, Ton, Meilensteinen, Prestige,
+>    Tagesbelohnung und Erfolgen. Die Vorgabe „keine dekorative Daueranimation“ gilt nicht mehr; Reduce Motion wird
+>    weiter respektiert.
+> 4. **Fairness bleibt:** Die Kampagne ist ohne Kauf und ohne Video vollständig spielbar. Kaufbar sind Tempo und
+>    Komfort, nie Schutz vor einer künstlich erzeugten Strafe.
+> 5. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
+>    Freiminuten). Stand dieses Beschlusses: Version 2.0 ist geschrieben, aber noch nicht auf einem Runner gebaut.
+
 ## Produktentscheidung
 
 - **Titel:** NOIR LEDGER
