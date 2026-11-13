@@ -1,0 +1,30 @@
+[
+  {
+    "file": "App/Resources/Assets.xcassets/RoomGlimmer0.imageset/RoomGlimmer0.png",
+    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomGlimmer1.imageset/RoomGlimmer1.png",
+    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and selective compositing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomGlimmer2.imageset/RoomGlimmer2.png",
+    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and selective compositing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomGlimmer3.imageset/RoomGlimmer3.png",
+    "origin": "OpenAI-Codex image generation and edit/crop by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  }
+]
