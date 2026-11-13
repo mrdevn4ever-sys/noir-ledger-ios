@@ -13,8 +13,8 @@ final class Notifier {
         let seconds: Double
     }
 
-    private static let ids = ["noir.offlineFull", "noir.boostOver", "noir.daily"]
-    private static let askedKey = "notifier.asked"
+    private nonisolated static let ids = ["noir.offlineFull", "noir.boostOver", "noir.daily"]
+    private nonisolated static let askedKey = "notifier.asked"
 
     /// Schedules the reminders for the state the player is leaving behind.
     func schedule(state: GameState, today: Int, enabled: Bool, t: L10n) {
