@@ -1,0 +1,109 @@
+# CI evidence — 38ba8154206d63066e6e436bcfaf2ee9b261c5b8
+
+- Run: https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/43453032149 (attempt 1)
+- Generated: 2026-11-13T16:23:51+00:00
+- Runner: {'os': 'macOS', 'image': 'macos15', 'image_version': '20261104.0514.1', 'macos': '15.8.2'}
+- Xcode: Xcode 16.4 Build version 16F6
+- Swift: swift-driver version: 1.120.5 Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+- Simulator: {'name': 'iPhone 17', 'runtime': 'iOS 26.2', 'udid': 'BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06'}
+- Xcode tests: {'result': 'Passed', 'totalTestCount': 33, 'passedTests': 33, 'failedTests': 0, 'skippedTests': 0}
+- Core tests: ✔ Test run with 111 tests passed after 33.044 seconds.
+- Playthroughs:
+  - seed=1 won after 5.08 h, raids=0, investigations=2, peakHeat=79, legacy=20
+  - seed=2024 won after 5.35 h, raids=0, investigations=1, peakHeat=85, legacy=19
+  - seed=42 won after 5.30 h, raids=0, investigations=2, peakHeat=87, legacy=22
+  - NG+ won after 5.41 h
+- Checks:
+  - l10n: L10N_OK
+  - asset-parity: ASSET_PARITY_OK
+  - release-exclusion: RELEASE_EXCLUSION_OK
+  - scan: SCAN_OK
+- Screenshots (88):
+  - de_40_settings.png
+  - de_tour_01_prologue.png
+  - de_tour_02_prologue_choice.png
+  - de_tour_03_briefing.png
+  - de_tour_04_ledger.png
+  - de_tour_05_ledger_books.png
+  - de_tour_06_operations.png
+  - de_tour_07_operations_lines.png
+  - de_tour_08_city.png
+  - de_tour_09_city_districts.png
+  - de_tour_10_city_districts_end.png
+  - de_tour_11_district.png
+  - de_tour_12_routes.png
+  - de_tour_13_money_heat.png
+  - de_tour_14_fronts.png
+  - de_tour_15_crew.png
+  - de_tour_16_crew_candidates.png
+  - de_tour_17_improvements.png
+  - de_tour_18_legacy_summary.png
+  - de_tour_19_settings.png
+  - de_tour_20_event.png
+  - de_tour_21_investigation.png
+  - de_tour_22_raid.png
+  - de_tour_23_offline_return.png
+  - de_tour_24_final_requirements.png
+  - de_tour_25_final_phase.png
+  - de_tour_26_epilogue.png
+  - de_tour_27_epilogue_books_credits.png
+  - de_tour_28_new_game_plus.png
+  - de_tour_29_large_text.png
+  - de_tour_30_large_text_ops.png
+  - en_01_prologue_funeral.png
+  - en_02_prologue_ledger.png
+  - en_03_prologue_choice.png
+  - en_04_prologue_cellar.png
+  - en_05_briefing_coach.png
+  - en_06_briefing_route.png
+  - en_07_briefing_front.png
+  - en_08_briefing_heat.png
+  - en_09_chapter1.png
+  - en_20_offline_return.png
+  - en_21_investigation.png
+  - en_22_raid.png
+  - en_23_raid_recovery_district.png
+  - en_30_final_requirements.png
+  - en_31_final_phase3.png
+  - en_32_epilogue.png
+  - en_33_epilogue_books.png
+  - en_34_legacy.png
+  - en_35_new_game_plus.png
+  - en_40_settings.png
+  - en_41_reset_confirm.png
+  - en_42_save_recovered.png
+  - en_43_future_save.png
+  - en_50_large_text_ledger.png
+  - en_51_large_text_ops.png
+  - en_52_large_text_money.png
+  - en_60_home_screen_icon.png
+  - en_tour_01_prologue.png
+  - en_tour_02_prologue_choice.png
+  - en_tour_03_briefing.png
+  - en_tour_04_ledger.png
+  - en_tour_05_ledger_books.png
+  - en_tour_06_operations.png
+  - en_tour_07_operations_lines.png
+  - en_tour_08_city.png
+  - en_tour_09_city_districts.png
+  - en_tour_10_city_districts_end.png
+  - en_tour_11_district.png
+  - en_tour_12_routes.png
+  - en_tour_13_money_heat.png
+  - en_tour_14_fronts.png
+  - en_tour_15_crew.png
+  - en_tour_16_crew_candidates.png
+  - en_tour_17_improvements.png
+  - en_tour_18_legacy_summary.png
+  - en_tour_19_settings.png
+  - en_tour_20_event.png
+  - en_tour_21_investigation.png
+  - en_tour_22_raid.png
+  - en_tour_23_offline_return.png
+  - en_tour_24_final_requirements.png
+  - en_tour_25_final_phase.png
+  - en_tour_26_epilogue.png
+  - en_tour_27_epilogue_books_credits.png
+  - en_tour_28_new_game_plus.png
+  - en_tour_29_large_text.png
+  - en_tour_30_large_text_ops.png
