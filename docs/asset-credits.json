@@ -26,5 +26,33 @@
     "generated_at": "2026-11-13",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
     "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomCinder0.imageset/RoomCinder0.png",
+    "origin": "OpenAI-Codex image edit from RoomCinder3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomCinder1.imageset/RoomCinder1.png",
+    "origin": "OpenAI-Codex image edit from RoomCinder3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomCinder2.imageset/RoomCinder2.png",
+    "origin": "OpenAI-Codex image edit from RoomCinder3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomCinder3.imageset/RoomCinder3.png",
+    "origin": "OpenAI-Codex image generation; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
   }
 ]
