@@ -54,5 +54,33 @@
     "generated_at": "2026-11-13",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
     "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomVelvet0.imageset/RoomVelvet0.png",
+    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomVelvet1.imageset/RoomVelvet1.png",
+    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomVelvet2.imageset/RoomVelvet2.png",
+    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomVelvet3.imageset/RoomVelvet3.png",
+    "origin": "OpenAI-Codex image generation; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
   }
 ]
