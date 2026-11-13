@@ -10,7 +10,12 @@ import UIKit
 ///
 /// The ad unit comes from the Info.plist key `NoirRewardedAdUnit`; the app id from `GADApplicationIdentifier`.
 /// Both ship with Google's public test identifiers and must be replaced with the real ones before release.
-/// The SDK calls every completion handler and delegate method on the main thread.
+/// Every SDK callback is taken as `@Sendable` and hops to the main actor itself, so it does not matter which queue
+/// the SDK answers on.
+private struct Unchecked<Value>: @unchecked Sendable {
+    let value: Value
+}
+
 @MainActor
 final class AdMobProvider: NSObject, AdProvider {
     var onReadyChange: (@MainActor (Bool) -> Void)?
@@ -37,8 +42,8 @@ final class AdMobProvider: NSObject, AdProvider {
         guard !started else { return }
         started = true
         #if canImport(UserMessagingPlatform)
-        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: UMPRequestParameters()) { [weak self] _ in
-            MainActor.assumeIsolated { self?.presentConsentIfRequired() }
+        UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: UMPRequestParameters()) { @Sendable [weak self] _ in
+            Task { @MainActor in self?.presentConsentIfRequired() }
         }
         #else
         startSDK()
@@ -51,8 +56,8 @@ final class AdMobProvider: NSObject, AdProvider {
             startSDK()
             return
         }
-        UMPConsentForm.loadAndPresentIfRequired(from: controller) { [weak self] _ in
-            MainActor.assumeIsolated { self?.startSDK() }
+        UMPConsentForm.loadAndPresentIfRequired(from: controller) { @Sendable [weak self] _ in
+            Task { @MainActor in self?.startSDK() }
         }
     }
     #endif
@@ -68,8 +73,9 @@ final class AdMobProvider: NSObject, AdProvider {
     private func load() {
         guard !loading, ad == nil, !unitId.isEmpty else { return }
         loading = true
-        GADRewardedAd.load(withAdUnitID: unitId, request: GADRequest()) { [weak self] loaded, _ in
-            MainActor.assumeIsolated { self?.finishLoad(loaded) }
+        GADRewardedAd.load(withAdUnitID: unitId, request: GADRequest()) { @Sendable [weak self] loaded, _ in
+            let box = Unchecked(value: loaded)
+            Task { @MainActor in self?.finishLoad(box.value) }
         }
     }
 
@@ -98,8 +104,8 @@ final class AdMobProvider: NSObject, AdProvider {
         }
         self.completion = completion
         earned = false
-        ad.present(fromRootViewController: controller) { [weak self] in
-            MainActor.assumeIsolated { self?.earned = true }
+        ad.present(fromRootViewController: controller) { @Sendable [weak self] in
+            Task { @MainActor in self?.earned = true }
         }
     }
 
@@ -115,18 +121,18 @@ final class AdMobProvider: NSObject, AdProvider {
     func presentPrivacyOptions() {
         #if canImport(UserMessagingPlatform)
         guard let controller = Presenter.top else { return }
-        UMPConsentForm.presentPrivacyOptionsForm(from: controller) { _ in }
+        UMPConsentForm.presentPrivacyOptionsForm(from: controller) { @Sendable _ in }
         #endif
     }
 }
 
 extension AdMobProvider: GADFullScreenContentDelegate {
     nonisolated func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        MainActor.assumeIsolated { finish(earned ? .rewarded : .dismissed) }
+        Task { @MainActor in self.finish(self.earned ? .rewarded : .dismissed) }
     }
 
     nonisolated func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        MainActor.assumeIsolated { finish(.unavailable) }
+        Task { @MainActor in self.finish(.unavailable) }
     }
 }
 #endif

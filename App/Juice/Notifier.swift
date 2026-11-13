@@ -35,10 +35,15 @@ final class Notifier {
 
     /// Removes reminders that are no longer true now that the player is back.
     func clear() {
+        // Off the main actor on purpose: the notification centre answers on its own queue.
+        Task.detached { await Self.removeAll() }
+    }
+
+    private nonisolated static func removeAll() async {
         let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: Self.ids)
-        center.removeDeliveredNotifications(withIdentifiers: Self.ids)
-        center.setBadgeCount(0) { _ in }
+        center.removePendingNotificationRequests(withIdentifiers: ids)
+        center.removeDeliveredNotifications(withIdentifiers: ids)
+        try? await center.setBadgeCount(0)
     }
 
     private nonisolated static func authorizationStatus() async -> UNAuthorizationStatus {
