@@ -110,5 +110,12 @@
     "generated_at": "2026-11-13",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
     "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SpriteWorker.imageset/SpriteWorker.png",
+    "origin": "own low-poly Blender 4.5.15 LTS rig and renders; own Pillow sprite assembly",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
   }
 ]
