@@ -232,6 +232,11 @@ private struct LineFloor: View {
             ZStack(alignment: .topLeading) {
                 RoomScene(product: product, tier: min(3, reached), workers: 1 + min(3, reached), running: working)
                     .frame(height: 118)
+                // A shade under the title, so it stays legible on any delivered room plate.
+                LinearGradient(colors: [Noir.ground.opacity(0.8), Noir.ground.opacity(0)], startPoint: .top, endPoint: .bottom)
+                    .frame(height: 58)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
                 header(line: line, stage: stage)
                 FloaterLayer(floaters: floaters)
             }

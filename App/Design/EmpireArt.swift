@@ -300,7 +300,8 @@ struct RoomScene: View {
         let w = size.width, h = size.height
         let floor = h * 0.82
         let count = min(4, max(1, workers))
-        let slots: [CGFloat] = [0.20, 0.50, 0.66, 0.84]
+        // The first worker stands at the bench in the middle; later ones fill the room to both sides.
+        let slots: [CGFloat] = [0.50, 0.24, 0.70, 0.88]
         for i in 0..<count {
             let x = w * slots[i]
             let height = h * 0.44
