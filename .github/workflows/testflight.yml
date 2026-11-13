@@ -26,12 +26,15 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 60
     env:
-      KEYCHAIN: ${{ runner.temp }}/noir-signing.keychain-db
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
       TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
     steps:
       - uses: actions/checkout@v4
+
+      # The runner context is not available in job-level env, so the keychain path is set here.
+      - name: Prepare paths
+        run: echo "KEYCHAIN=$RUNNER_TEMP/noir-signing.keychain-db" >> "$GITHUB_ENV"
 
       - name: Check that every secret is set
         env:
