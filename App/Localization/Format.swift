@@ -35,8 +35,9 @@ extension L10n {
     func duration(_ seconds: Double) -> String {
         let s = Int(max(0, seconds).rounded())
         if s < 60 { return self("dur_s", s) }
-        if s < 3600 { return self("dur_ms", s / 60, s % 60) }
-        return self("dur_hm", s / 3600, (s % 3600) / 60)
+        // Whole minutes and whole hours read as such ("30 min", "4 h"), never "30 min 00 s".
+        if s < 3600 { return s % 60 == 0 ? self("dur_m", s / 60) : self("dur_ms", s / 60, s % 60) }
+        return s % 3600 == 0 ? self("dur_h", s / 3600) : self("dur_hm", s / 3600, (s % 3600) / 60)
     }
 
     func percent(_ fraction: Double, digits: Int = 0) -> String {

@@ -83,6 +83,9 @@ struct LocalizationTests {
         #expect(en.money(2_500_000) == "2.5M")
         #expect(en.duration(75) == "1m 15s")
         #expect(de.duration(3_900) == "1 h 05 min")
+        #expect(de.duration(1_800) == "30 min")
+        #expect(de.duration(4 * 3_600) == "4 h")
+        #expect(en.duration(7_200) == "2h")
         #expect(en.percent(0.3) == "30%")
         // German sets a no-break space before % so a value never wraps away from its sign.
         #expect(de.percent(0.3) == "30\u{00A0}%")

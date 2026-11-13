@@ -25,6 +25,8 @@
 "num_million" = "%1$@ Mio.";
 "num_billion" = "%1$@ Mrd.";
 "dur_s" = "%1$ld s";
+"dur_m" = "%1$ld min";
+"dur_h" = "%1$ld h";
 "dur_ms" = "%1$ld min %2$02ld s";
 "dur_hm" = "%1$ld h %2$02ld min";
 "time_now" = "gerade eben";
