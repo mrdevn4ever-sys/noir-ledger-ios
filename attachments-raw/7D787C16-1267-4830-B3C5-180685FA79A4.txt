@@ -1,0 +1,123 @@
+Application, 0x1062858e0, pid: 2586, label: ' ' <App element pid: 2586>
+  Window, 0x106283610, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4376961152.5>
+    Other, 0x1062839d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379996704.17>
+      Other, 0x106283af0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380073424.32>
+        Other, 0x106283730, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4376952672.45>
+          Other, 0x106283850, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4376953136.56>
+  Window, 0x106283c10, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4376937376.6>
+    Other, 0x106283d30, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379058688.18>
+      Other, 0x106283e50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4376948944.33>
+        Other, 0x106283f70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379995392.46>
+          Other, 0x106287530, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4500665568.57>
+            Other, 0x106287650, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380058624.70>
+            Other, 0x106287770, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380059600.71>
+              Other, 0x106287890, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4500671168.92>
+            Other, 0x1062879b0, {{139.3, 15.0}, {123.3, 34.7}} <AX element pid: 2586, elementOrHash.elementID: 4380052736.72>
+        Other, 0x106287ad0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380093968.47>
+          Other, 0x106287bf0, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380004304.58>
+            Other, 0x106287d10, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380108496.73>
+          Other, 0x106287e30, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4379849088.59>
+            Other, 0x106287f50, {{139.0, 14.7}, {124.0, 35.3}} <AX element pid: 2586, elementOrHash.elementID: 4502765680.74>
+        Other, 0x106288070, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379988080.48>
+          Other, 0x106288190, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380051968.60>
+            Other, 0x106284b00, {{128.3, 10.0}, {145.3, 52.0}} <AX element pid: 2586, elementOrHash.elementID: 4500740208.75>
+            Other, 0x106284c20, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4500674704.76>
+              Other, 0x106284d40, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4379298352.93>
+                Other, 0x106284e60, {{138.3, 14.0}, {125.3, 36.7}} <AX element pid: 2586, elementOrHash.elementID: 4380078592.98>
+        Other, 0x106284f80, {{218.0, 28.0}, {9.0, 9.0}} <AX element pid: 2586, elementOrHash.elementID: 4376949872.49>
+  Window, 0x1062850a0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4395943936.7>
+    Other, 0x10627fc30, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380005840.19>
+      Other, 0x10627fd50, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4377100496.34>
+        Other, 0x10627fe70, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379707776.50>
+          Other, 0x106284360, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4502979584.61>
+            Other, 0x106284480, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379230688.77>
+            Other, 0x1062845a0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4502963168.78>
+            Other, 0x1062846c0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380427088.79>
+            Other, 0x1062847e0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379409856.80>
+            Other, 0x1062885b0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379090832.81>
+            Other, 0x1062886d0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379367568.82>
+            Other, 0x1062887f0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379451872.83>
+            Other, 0x106288910, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4504554000.84>
+      Other, 0x106288a30, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380106160.35>
+        Other, 0x106288b50, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4376934864.51>
+          Other, 0x106288c70, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4376954272.62>
+            Other, 0x106288d90, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4503994080.85>
+            Other, 0x106288eb0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380138464.86>
+      Other, 0x106288fd0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379064080.36>
+        Other, 0x1062890f0, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379056720.52>
+          Other, 0x106289210, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4378922560.63>
+            Other, 0x106289330, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4379054528.87>
+            Other, 0x106289450, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380112784.88>
+  Window, 0x106289570, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4404258304.8>
+    Other, 0x106289690, {{0.0, 0.0}, {1206.0, 2622.0}} <AX element pid: 2586, elementOrHash.elementID: 4380105744.20>
+  Window, 0x1062897b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4396940288.9>
+    Other, 0x1062898d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379978768.21>
+      Other, 0x1062899f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380123168.37>
+  Window, 0x106289b10, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4396107264.10>
+    Other, 0x106289c30, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380140432.22>
+      Other, 0x106289d50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380179744.38>
+  Window, 0x106289e70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4398133248.11>
+    Other, 0x106289f90, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380428048.23>
+      Other, 0x10628a0b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380620656.39>
+  Window, 0x10628a1d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4398157824.12>
+    Other, 0x10628a2f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4377639328.24>
+      Other, 0x10628a410, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380632112.40>
+  Window, 0x10628a530, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4376826064.13>
+    StatusBar, 0x10628a650, {{0.0, 0.0}, {402.0, 54.0}} <AX element pid: 2586, elementOrHash.elementID: 4378949952.25>
+      Other, 0x10628a770, {{0.0, 0.0}, {402.0, 54.0}} <AX element pid: 2586, elementOrHash.elementID: 4378952064.41>
+        Other, 0x10628a890, {{0.0, 0.0}, {402.0, 54.0}} <AX element pid: 2586, elementOrHash.elementID: 4823689216.53>
+          StaticText, 0x10628a9b0, {{55.7, 22.3}, {36.7, 20.3}}, label: '2:26 PM' <AX element pid: 2586, elementOrHash.elementID: 4503311152.64>
+          Other, 0x10617c1c0, {{288.3, 26.3}, {19.3, 12.3}}, label: 'Cellular', value: No signal <AX element pid: 2586, elementOrHash.elementID: 4503358352.65>
+          Other, 0x10617c8a0, {{315.0, 26.3}, {17.0, 12.3}}, identifier: '3 of 3 Wi-Fi bars', value: SSID, 3 of 3 Wi-Fi... <AX element pid: 2586, elementOrHash.elementID: 4503358848.66>
+          Other, 0x10615f6c0, {{339.3, 26.0}, {27.3, 13.0}}, label: '100% battery power', value: Not charging <AX element pid: 2586, elementOrHash.elementID: 4823721792.67>
+  Window, 0x10615fa10, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380845568.14>
+    Other, 0x1061780c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380844400.26>
+  Window, 0x106160eb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4380862096.15>
+    Other, 0x10615b220, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379796832.27>
+  Window, 0x106153d70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4377588512.16>
+    Other, 0x1061a2cf0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4376870144.28>
+  Window (Main), 0x10615d480, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379772512.4>
+    Other, 0x106158570, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4379785088.29>
+    Other, 0x106157450, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4504554448.30>
+    Other, 0x10616ee70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4823758864.31>
+      Other, 0x10616d980, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4504543936.42>
+      Other, 0x10615cd80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4823602816.43>
+      Alert, 0x10616cf60, {{41.0, 344.0}, {320.0, 214.0}}, label: '“NOIR LEDGER” Would Like to Send You Notifications' <AX element pid: 2586, elementOrHash.elementID: 4396471808.44>
+        Other, 0x106158fc0, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4823725360.54>
+          Other, 0x106157100, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4823649904.68>
+            Other, 0x1061832e0, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4823664576.89>
+            Other, 0x106169f20, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503080784.90>
+              ScrollView, 0x1061731d0, {{41.0, 344.0}, {320.0, 134.0}} <AX element pid: 2586, elementOrHash.elementID: 4399244800.94>
+                Other, 0x10615c360, {{41.0, 344.0}, {320.0, 134.0}} <AX element pid: 2586, elementOrHash.elementID: 4823736496.99>
+                  StaticText, 0x10616a960, {{71.0, 366.0}, {260.0, 42.3}}, label: '“NOIR LEDGER” Would Like to Send You Notifications' <AX element pid: 2586, elementOrHash.elementID: 4823741776.108>
+                  StaticText, 0x106179fd0, {{71.0, 415.7}, {260.0, 58.0}}, label: 'Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.' <AX element pid: 2586, elementOrHash.elementID: 4823742592.109>
+                Other, 0x10616be30, {{41.0, 476.0}, {320.0, 2.0}} <AX element pid: 2586, elementOrHash.elementID: 4503382320.100>
+                Other, 0x106161c30, {{328.0, 344.0}, {30.0, 134.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503282848.101>
+                  Other, 0x10616e400, {{355.0, 305.0}, {3.0, 36.0}} <AX element pid: 2586, elementOrHash.elementID: 4503283616.110>
+                Other, 0x106168e10, {{41.0, 445.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503167824.102>
+                  Other, 0x10617f120, {{2.0, 472.0}, {36.0, 3.0}} <AX element pid: 2586, elementOrHash.elementID: 4503168592.111>
+                Other, 0x106168080, {{328.0, 344.0}, {30.0, 134.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503282848.101>
+                  Other, 0x106170980, {{355.0, 305.0}, {3.0, 36.0}} <AX element pid: 2586, elementOrHash.elementID: 4503283616.110>
+                Other, 0x106159350, {{41.0, 445.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503167824.102>
+                  Other, 0x106169860, {{2.0, 472.0}, {36.0, 3.0}} <AX element pid: 2586, elementOrHash.elementID: 4503168592.111>
+              ScrollView, 0x10615f360, {{41.0, 478.0}, {320.0, 80.0}} <AX element pid: 2586, elementOrHash.elementID: 4404416000.95>
+                Other, 0x10615a7f0, {{41.0, 478.0}, {320.0, 80.0}} <AX element pid: 2586, elementOrHash.elementID: 4823652656.103>
+                  Other, 0x1061563a0, {{57.0, 494.0}, {288.0, 48.0}} <AX element pid: 2586, elementOrHash.elementID: 4823653664.112>
+                    Button, 0x106158c70, {{57.0, 494.0}, {140.0, 48.0}}, label: 'Don’t Allow' <AX element pid: 2586, elementOrHash.elementID: 4503251888.116>
+                    Button, 0x106173c20, {{205.0, 494.0}, {140.0, 48.0}}, label: 'Allow' <AX element pid: 2586, elementOrHash.elementID: 4503252912.117>
+                Other, 0x10628aad0, {{328.0, 478.0}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503292416.104>
+                  Other, 0x10628abf0, {{355.0, 568.0}, {3.0, 7.0}} <AX element pid: 2586, elementOrHash.elementID: 4503293184.113>
+                Other, 0x10628ad10, {{41.0, 525.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503289584.105>
+                  Other, 0x10628ae30, {{131.0, 552.0}, {7.0, 3.0}} <AX element pid: 2586, elementOrHash.elementID: 4503290352.114>
+                Other, 0x10628af50, {{328.0, 478.0}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503292416.104>
+                  Other, 0x10628b070, {{355.0, 568.0}, {3.0, 7.0}} <AX element pid: 2586, elementOrHash.elementID: 4503293184.113>
+                Other, 0x10628b190, {{41.0, 525.0}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 2586, elementOrHash.elementID: 4503289584.105>
+                  Other, 0x10628b2b0, {{131.0, 552.0}, {7.0, 3.0}} <AX element pid: 2586, elementOrHash.elementID: 4503290352.114>
+        Other, 0x10628b3d0, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503298192.55>
+          Other, 0x10628b4f0, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503298960.69>
+            Other, 0x10628b610, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503301984.91>
+              Other, 0x10628b730, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503302400.96>
+                Other, 0x10628b850, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503300432.106>
+                  Other, 0x10628b970, {{41.0, 344.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4503302816.115>
+              Other, 0x10628ba90, {{41.0, 344.0}, {320.0, 214.0}} <AX element pid: 2586, elementOrHash.elementID: 4503306480.97>
+                Other, 0x10628bbb0, {{41.0, 344.0}, {402.0, 874.0}} <AX element pid: 2586, elementOrHash.elementID: 4503250672.107>

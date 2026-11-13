@@ -1,0 +1,4 @@
+Query chain:
+ →Find: Application 'com.apple.springboard'
+  ↪︎Find: Descendants matching type Icon
+    ↪︎Find: Elements matching predicate '"NOIR LEDGER" IN identifiers'
