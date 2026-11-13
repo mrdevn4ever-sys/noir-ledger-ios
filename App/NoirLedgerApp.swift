@@ -59,7 +59,7 @@ struct NoirLedgerApp: App {
             case .background:
                 store.enterBackground()
                 sound.pause()
-                if store.phase == .ready {
+                if store.phase == .ready, !Router.isAutomatedRun {
                     notifier.schedule(state: store.state, today: store.today, enabled: settings.notifications, t: settings.l10n)
                 }
             default:

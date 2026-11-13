@@ -240,6 +240,8 @@ final class GameFlowUITests: NoirUITestCase {
         launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
         element("toolbar.settings").tap()
         wait("settings.done")
+        // The reset row sits below the fold of the lazy settings list: bring it into the hierarchy first.
+        app.swipeUp()
         tapRevealed("settings.reset")
         let erase = app.alerts.buttons["Erase"].firstMatch
         XCTAssertTrue(erase.waitForExistence(timeout: 5))

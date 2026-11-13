@@ -89,12 +89,17 @@ final class Router {
         ledgerPath = [.legacy]
     }
 
-    static var startTab: AppTab {
+    /// True only in Debug builds launched by the QA accelerator. Automated runs open on the books and never ask for
+    /// notification permission (the system prompt would cover the screen under test).
+    static var isAutomatedRun: Bool {
         #if NOIR_QA
-        if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-qa-") }) { return .ledger }
+        return ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-qa-") })
+        #else
+        return false
         #endif
-        return .ops
     }
+
+    static var startTab: AppTab { isAutomatedRun ? .ledger : .ops }
 
     func resetNavigation() {
         tab = Router.startTab
