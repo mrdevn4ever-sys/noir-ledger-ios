@@ -1,0 +1,9 @@
+Release binary: build/release/Build/Products/Release-iphonesimulator/NoirLedger.app/NoirLedger (15721624 bytes)
+marker '-qa-scenario': 0
+marker '-qa-timescale': 0
+marker '-qa-reset': 0
+marker 'QAAccelerator': 0
+marker 'playFinalOperation': 0
+marker 'replaceState': 0
+marker 'final_ready': 0
+RELEASE_EXCLUSION_OK
