@@ -82,10 +82,10 @@ Die Produkt-IDs müssen exakt stimmen, der Code findet sie nur darüber.
 | `io.puredevn.noirledger.favors.large` | Verbrauchsartikel | Ein Tresor Gefallen / A safe of favors | 9,99 € |
 | `io.puredevn.noirledger.favors.vault` | Verbrauchsartikel | Das Gewölbe / The vault | 19,99 € |
 
-Beschreibungen (DE / EN):
+Beschreibungen (DE / EN), jeweils höchstens 45 Zeichen (Apple lehnt längere mit HTTP 409 ab):
 
 - starter: „200 Gefallen und 4 Stunden doppelter Ertrag. Einmalig.“ / „200 favors and a 4 hour ×2 boost. Once.“
-- premium2x: „Jeder Ertrag dauerhaft verdoppelt, 16 Stunden Offline-Zeit.“ / „Every payout doubled for good, 16 hours offline.“
+- premium2x: „Jeder Ertrag dauerhaft ×2, 16 h offline.“ / „Every payout ×2 for good, 16 h offline.“
 - noads: „Alle Sponsorenbelohnungen ohne Video.“ / „Every sponsor reward without a video.“
 - favors.*: „80 / 500 / 1.200 / 3.000 Gefallen“ / „80 / 500 / 1,200 / 3,000 favors“
 
