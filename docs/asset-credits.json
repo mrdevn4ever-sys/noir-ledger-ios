@@ -117,5 +117,19 @@
     "generated_at": "2026-11-13",
     "license": "own work",
     "source_url": ""
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SceneStreet.imageset/SceneStreet.png",
+    "origin": "OpenAI-Codex generated image and direct road edit; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SceneStash.imageset/SceneStash.png",
+    "origin": "OpenAI-Codex generated image; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
   }
 ]
