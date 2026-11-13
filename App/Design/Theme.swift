@@ -80,6 +80,7 @@ enum Noir {
     static let river = T.teal.opacity(0.22)
     static let silhouette = T.night
     static let brass = T.brass
+    static let brassDark = T.brassDark
 
     // MARK: Spacing (4 pt rhythm)
     static let s1: CGFloat = 4
