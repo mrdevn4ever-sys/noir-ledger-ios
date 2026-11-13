@@ -439,7 +439,7 @@
 "btn_freeplay" = "Die Stadt weiter führen";
 "btn_epilogue" = "Epilog lesen";
 "credits_title" = "Mitwirkende";
-"credits_body" = "NOIR LEDGER ist ein fiktives Werk. Alle Personen, Orte, Organisationen und Waren sind erfunden; Ähnlichkeiten sind zufällig.\n\nGestaltung, Texte, Code, Symbole und Illustrationen sind Originalarbeit für dieses Spiel.\n\nNativ gebaut mit Swift und SwiftUI. Kein Konto, keine Werbung, kein Tracking.";
+"credits_body" = "NOIR LEDGER ist ein fiktives Werk. Alle Personen, Orte, Organisationen und Waren sind erfunden; Ähnlichkeiten sind zufällig.\n\nGestaltung, Texte, Code, Symbole und Illustrationen sind Originalarbeit für dieses Spiel.\n\nNativ gebaut mit Swift und SwiftUI. Ohne Konto; Sponsorenvideos und Käufe sind freiwillig.";
 "legacy_title" = "Vermächtnis";
 "legacy_points_one" = "%1$ld Vermächtnispunkt";
 "legacy_points_other" = "%1$ld Vermächtnispunkte";
@@ -586,6 +586,9 @@
 "empire_boost_free" = "×2 für 30 Min.";
 "empire_stage" = "Stufe %1$ld";
 "empire_tap_hint" = "Tippen beschleunigt die Linie";
+"empire_tap_full" = "Lager voll";
+"empire_tap_idle" = "Nichts zu verkaufen";
+"empire_bottleneck" = "Die Straße nimmt weniger %1$@ ab, als du herstellst. Mehr Routen bringen mehr Ertrag.";
 "empire_hustle" = "+Tempo";
 "empire_line_income" = "≈ %1$@/Min.";
 "empire_next_milestone" = "Stufe %1$ld verdoppelt den Ertrag";

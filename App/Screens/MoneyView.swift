@@ -63,6 +63,7 @@ private struct HeatPanel: View {
                 if state.bribeReadyAt > state.time {
                     StatusChip(text: t("turf_ready_in", t.duration(state.bribeReadyAt - state.time)), symbol: "hourglass")
                 }
+                SponsorHeatButton(state: state)
                 UpgradeButton(title: t("bribe_btn", t.decimal(Economy.bribeHeat, digits: 0)), cost: bribe,
                               affordable: bribe.affordable(state) && state.bribeReadyAt <= state.time && state.heat > 0.5,
                               primary: state.investigation != nil, identifier: "money.bribe") {
@@ -207,6 +208,31 @@ private struct DonationPanel: View {
                     store.dispatch(.donate)
                 }
             }
+        }
+    }
+}
+
+/// The sponsor's Heat relief, offered where Heat is managed, only while it matters.
+private struct SponsorHeatButton: View {
+    let state: GameState
+    @Environment(GameStore.self) private var store
+    @Environment(AdService.self) private var ads
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        if (state.investigation != nil || state.heat >= Content.heatWarning), state.meta.heatAidCooldown <= 0,
+           store.rewardOffered(ads: ads) {
+            Button {
+                store.claimReward(.coolHeat, ads: ads)
+            } label: {
+                Label {
+                    Text(verbatim: t("reward_heat_t", t.decimal(Idle.adHeatRelief, digits: 0)))
+                } icon: {
+                    Image(systemName: state.meta.noAds ? "snowflake" : "play.rectangle.fill")
+                }
+            }
+            .noirButton(.primary)
+            .accessibilityIdentifier("money.sponsorHeat")
         }
     }
 }

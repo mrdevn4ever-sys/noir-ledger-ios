@@ -439,7 +439,7 @@
 "btn_freeplay" = "Keep running the city";
 "btn_epilogue" = "Read the epilogue";
 "credits_title" = "Credits";
-"credits_body" = "NOIR LEDGER is a work of fiction. Every person, place, organization and product in it is invented; any resemblance is coincidental.\n\nDesign, writing, code, icons and illustrations are original work made for this game.\n\nBuilt natively with Swift and SwiftUI. No account, no ads, no tracking.";
+"credits_body" = "NOIR LEDGER is a work of fiction. Every person, place, organization and product in it is invented; any resemblance is coincidental.\n\nDesign, writing, code, icons and illustrations are original work made for this game.\n\nBuilt natively with Swift and SwiftUI. No account needed; sponsor videos and purchases are optional.";
 "legacy_title" = "Legacy";
 "legacy_points_one" = "%1$ld legacy point";
 "legacy_points_other" = "%1$ld legacy points";
@@ -586,6 +586,9 @@
 "empire_boost_free" = "×2 for 30 min";
 "empire_stage" = "Stage %1$ld";
 "empire_tap_hint" = "Tap to speed up the line";
+"empire_tap_full" = "Stash full";
+"empire_tap_idle" = "Nothing to sell";
+"empire_bottleneck" = "The streets take less %1$@ than you make. More routes raise income.";
 "empire_hustle" = "+speed";
 "empire_line_income" = "≈ %1$@/min";
 "empire_next_milestone" = "Stage %1$ld doubles the payout";

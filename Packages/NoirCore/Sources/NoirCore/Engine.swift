@@ -157,7 +157,8 @@ public enum Engine {
         let r = Simulation.advance(&s, seconds: Double(credited) * Content.offlineEfficiency, offline: true, step: 2)
         if away < 60 { return (s, nil) }
         s.log(.offlineReturn, amount: Double(credited), amount2: r.dirtyEarned)
-        s.meta.offlineBonus += r.dirtyEarned
+        // Only this absence can be doubled, never earlier ones that were swiped away.
+        s.meta.offlineBonus = r.dirtyEarned
         let report = OfflineReport(awaySeconds: away, creditedSeconds: credited, capped: away > cap,
                                    clockMovedBack: false, produced: r.produced, sold: r.sold, dirtyEarned: r.dirtyEarned,
                                    dirtyLaundered: r.dirtyLaundered, cleanGained: r.cleanGained, wagesPaid: r.wagesPaid,
@@ -438,8 +439,17 @@ public enum Engine {
 
         case .hustle(let p):
             let l = s.line(p)
-            guard l.owned, l.running, l.status != .storageFull, l.status != .noCash else { return err(state, .invalid) }
-            s.updateLine(p) { $0.progress += Idle.hustleSeconds }
+            guard l.owned, l.running else { return err(state, .invalid) }
+            let canWork = l.status != .storageFull && l.status != .noCash
+            let cash = Idle.hustleCash(s, p, m)
+            if !canWork && cash <= 0 { return err(state, .invalid) }
+            if canWork { s.updateLine(p) { $0.progress += Idle.hustleSeconds } }
+            if cash > 0 {
+                s.dirty += cash
+                s.stats.dirtyEarned += cash
+                s.meta.lifetimeDirty += cash
+                if s.campaign.tutorial == .earn { s.stats.tutorialEarned += cash }
+            }
             s.meta.taps += 1
 
         case .upgradeLineAuto(let p, let count):
@@ -573,7 +583,7 @@ public enum Engine {
     /// A paid time jump: simulated like time away (no events, no raids), without the offline cap.
     private static func warp(_ s: inout GameState, seconds: Double) {
         guard s.campaign.prologueDone else { return }
-        Simulation.advance(&s, seconds: seconds, offline: true, step: 2)
+        Simulation.advance(&s, seconds: seconds, offline: true, step: 5)
     }
 
     /// Lowers Heat and drops an open investigation once Heat is under its clearing threshold.

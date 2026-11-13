@@ -285,13 +285,16 @@ struct RoomScene: View {
         let y = h * 0.93
         ctx.fill(Path(CGRect(x: 0, y: y, width: w, height: 2)), with: .color(Noir.hairline))
         guard running else { return }
-        let spacing: CGFloat = 54
+        let spacing: CGFloat = 64
         let shift = CGFloat((time * 26).truncatingRemainder(dividingBy: Double(spacing)))
         var x = -spacing + shift
         while x < w {
-            let crate = CGRect(x: x, y: y - 9, width: 12, height: 9)
-            ctx.fill(Path(roundedRect: crate, cornerRadius: 1.5), with: .color(accent.opacity(0.85)))
-            ctx.fill(Path(CGRect(x: crate.minX, y: crate.midY - 0.5, width: crate.width, height: 1)), with: .color(SceneTint.wallDeep.opacity(0.6)))
+            // A small wooden crate with slats and a glint of the goods inside.
+            let crate = CGRect(x: x, y: y - 8, width: 11, height: 8)
+            ctx.fill(Path(roundedRect: crate, cornerRadius: 1), with: .color(Color(hex: 0x5A4128)))
+            ctx.stroke(Path(roundedRect: crate, cornerRadius: 1), with: .color(Color(hex: 0x2A1D14)), lineWidth: 0.8)
+            ctx.fill(Path(CGRect(x: crate.minX + 1, y: crate.minY + 2.5, width: crate.width - 2, height: 0.8)), with: .color(Color(hex: 0x2A1D14)))
+            ctx.fill(Path(CGRect(x: crate.midX - 1.5, y: crate.minY - 1.5, width: 3, height: 1.5)), with: .color(accent.opacity(0.9)))
             x += spacing
         }
     }
@@ -435,8 +438,8 @@ struct StreetScene: View {
             ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: h - horizon)), with: .color(SceneTint.wallDeep))
             ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: 1)), with: .color(Noir.brass.opacity(0.3)))
         }
-        // Signs of the fronts the house owns.
-        for k in 0..<min(5, fronts) {
+        // Signs of the fronts the house owns (a delivered street plate is painted with its own lit shopfronts).
+        for k in 0..<(onPlate ? 0 : min(5, fronts)) {
             // The signs hang on the right half; the left belongs to the income plate.
             let sx = w * (0.50 + 0.10 * CGFloat(k))
             let sign = CGRect(x: sx, y: horizon - 20, width: 26, height: 10)

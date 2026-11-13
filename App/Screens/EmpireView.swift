@@ -37,6 +37,8 @@ struct EmpireView: View {
                 }
             }
             .background(Noir.leather)
+            // The floors are a picture with captions: past this size the captions would cover the scenes.
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
             .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.leatherEdge, lineWidth: 1))
             Button {
@@ -111,8 +113,9 @@ private struct StreetFloor: View {
                 .frame(height: 132)
             VStack(alignment: .leading, spacing: Noir.s1) {
                 Text(verbatim: t("empire_income")).font(.caption).foregroundStyle(Noir.inkSoft)
-                RollingText(text: t("per_min", t.money(state.incomeRate * 60)), value: state.incomeRate)
+                Text(verbatim: t("per_min", t.money(state.incomeRate * 60)))
                     .font(.title2.weight(.bold))
+                    .monospacedDigit()
                     .foregroundStyle(Noir.amber)
                     .accessibilityIdentifier("empire.income")
                 HStack(spacing: Noir.s2) {
@@ -188,7 +191,9 @@ private struct StashFloor: View {
                         .accessibilityIdentifier("ops.stashFill")
                 }
                 Spacer(minLength: Noir.s2)
-                if state.storageLevel < Content.maxStorageLevel {
+                if state.campaign.tutorial != .done {
+                    EmptyView()
+                } else if state.storageLevel < Content.maxStorageLevel {
                     let cost = Cost(dirty: Content.storageCost(currentLevel: state.storageLevel))
                     UpgradeButton(title: t("stash_upgrade"), cost: cost, affordable: cost.affordable(state), identifier: "ops.stash.upgrade") {
                         store.dispatch(.upgradeStorage)
@@ -253,6 +258,9 @@ private struct LineFloor: View {
             .accessibilityIdentifier("line.\(product.rawValue).room")
             Meter(fraction: fraction, tint: SceneTint.product(product), height: 4)
             controls(line: line, stage: stage)
+            if state.campaign.tutorial == .done, line.running, Idle.salesBound(state, product, mods) {
+                BottleneckHint(product: product, state: state)
+            }
         }
         .foregroundStyle(Noir.ink)
         .environment(\.noirSurface, .leather)
@@ -319,6 +327,10 @@ private struct LineFloor: View {
                 .noirButton(.primary)
                 .frame(maxWidth: 170)
                 .accessibilityIdentifier("line.\(product.rawValue).toggle")
+            } else if state.campaign.tutorial != .done {
+                // The briefing teaches the street first; upgrades open with chapter 1.
+                Text(verbatim: t("empire_tap_hint")).font(.caption).foregroundStyle(Noir.inkSoft)
+                    .frame(maxWidth: 170, alignment: .trailing)
             } else if let next = Idle.nextLineStep(state, product) {
                 let plan = Idle.lineUpgradePlan(state, product, limit: router.buyMode.limit)
                 let count = max(1, plan.count)
@@ -344,23 +356,15 @@ private struct LineFloor: View {
     }
 
     /// What this line brings in per second at the current routes, stock aside.
-    private var income: Double {
-        var wanted = 0.0
-        var revenue = 0.0
-        for d in DistrictId.allCases {
-            let units = Economy.desiredSales(state, d, product, mods)
-            wanted += units
-            revenue += units * Economy.price(state, d, product, mods)
-        }
-        guard wanted > 0 else { return 0 }
-        let produced = state.line(product).running ? Economy.productionRate(state, product, mods) : 0
-        let share = produced.isFinite ? min(1, produced / wanted) : 1
-        return revenue * share * Idle.lineMultiplier(state, product) * Idle.globalMultiplier(state)
-    }
+    private var income: Double { Idle.lineIncome(state, product, mods) }
 
     private func tap(at location: CGPoint) {
+        let before = store.state.dirty
         if store.dispatch(.hustle(product)) {
-            float(t("empire_hustle"), at: location)
+            let gained = store.state.dirty - before
+            float(gained > 0.005 ? "+" + t.money(gained) : t("empire_hustle"), at: location)
+        } else {
+            float(t(state.line(product).status == .storageFull ? "empire_tap_full" : "empire_tap_idle"), at: location)
         }
     }
 
@@ -373,6 +377,39 @@ private struct LineFloor: View {
             try? await Task.sleep(for: .seconds(0.9))
             floaters.removeAll { $0.id == id }
         }
+    }
+}
+
+// MARK: - Bottleneck
+
+/// Shown when a line makes more than the streets take: the honest answer is more routes, so say so and go there.
+private struct BottleneckHint: View {
+    let product: ProductId
+    let state: GameState
+    @Environment(Router.self) private var router
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        Button {
+            router.tab = .city
+            router.cityPath = []
+        } label: {
+            HStack(spacing: Noir.s2) {
+                Image(systemName: "point.topleft.down.to.point.bottomright.curvepath").accessibilityHidden(true)
+                Text(verbatim: t("empire_bottleneck", t(Labels.product(product))))
+                    .font(.caption.weight(.semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                Image(systemName: "chevron.right").imageScale(.small).accessibilityHidden(true)
+            }
+            .padding(.horizontal, Noir.s3)
+            .padding(.vertical, Noir.s2)
+            .frame(minHeight: Noir.minTarget)
+            .foregroundStyle(Noir.amber)
+            .background(Noir.amberContainer.opacity(0.35))
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("line.\(product.rawValue).bottleneck")
     }
 }
 

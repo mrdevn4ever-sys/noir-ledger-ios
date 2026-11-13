@@ -14,11 +14,17 @@ struct IdleTests {
         #expect(Idle.payoutRatio(s) == 1)
     }
 
-    @Test("The one-button upgrade buys the cheapest track first and continues into mastery")
+    @Test("The one-button upgrade buys what raises income and continues into mastery")
     func autoUpgrade() {
         var s = TS.rich(chapter: 3)
+        // One route sells less than the line makes: price is what pays.
+        #expect(Idle.salesBound(s, .glimmer, Economy.mods(s)))
         let first = Idle.nextLineStep(s, .glimmer)
-        #expect(first?.step == .track(.capacity))
+        #expect(first?.step == .track(.quality))
+        var wide = s
+        wide.updateDistrict(.cellars) { $0.routes[.glimmer] = 10 }
+        #expect(!Idle.salesBound(wide, .glimmer, Economy.mods(wide)))
+        #expect(Idle.nextLineStep(wide, .glimmer)?.step == .track(.capacity), "the streets want more goods: batch size first")
         s = TS.ok(s, .upgradeLineAuto(.glimmer, 9))
         #expect(Idle.stage(s, .glimmer) == 10)
         #expect(Idle.lineMultiplier(s, .glimmer) == 2, "stage 10 is the first milestone")
@@ -88,6 +94,22 @@ struct IdleTests {
         s = TS.ok(s, .setLineRunning(.glimmer, false))
         #expect(TS.error(s, .hustle(.glimmer)) == .invalid)
         #expect(TS.error(s, .hustle(.cinder)) == .invalid)
+    }
+
+    @Test("A tap pays half a second of the line's street income while it has goods")
+    func hustlePays() {
+        var s = TS.rich(chapter: 2)
+        s.inventory[.glimmer] = 50
+        let m = Economy.mods(s)
+        let income = Idle.lineIncome(s, .glimmer, m)
+        #expect(income > 0)
+        let before = s.dirty
+        s = TS.ok(s, .hustle(.glimmer))
+        #expect(abs(s.dirty - before - Idle.hustleIncomeSeconds * income) < 1e-6)
+        s.inventory[.glimmer] = 0
+        let dry = s.dirty
+        s = TS.ok(s, .hustle(.glimmer))
+        #expect(s.dirty == dry, "no goods, no cash; the tap still speeds up the line")
     }
 
     @Test("Going to ground needs chapter 2 and enough earnings, then restarts with reputation")

@@ -150,6 +150,43 @@ public enum Idle {
     public static let milestones = [10, 25, 50, 75, 100, 150, 200, 250, 300, 400, 500]
     /// Seconds of work one tap adds to a running line.
     public static let hustleSeconds = 1.0
+    /// Seconds of the line's street income one tap pays out at once.
+    public static let hustleIncomeSeconds = 0.5
+
+    // MARK: Line income and bottleneck
+
+    /// Units per second the open streets would take of this product (route capacity and demand, stock aside).
+    public static func salesDemand(_ s: GameState, _ p: ProductId, _ m: Mods) -> Double {
+        DistrictId.allCases.reduce(0) { $0 + Economy.desiredSales(s, $1, p, m) }
+    }
+
+    /// True when the line makes more than the streets take: then only price (quality) and routes raise income.
+    public static func salesBound(_ s: GameState, _ p: ProductId, _ m: Mods) -> Bool {
+        let demand = salesDemand(s, p, m)
+        let rate = Economy.productionRate(s, p, m)
+        return demand > 0 && rate.isFinite && rate >= demand * 0.999
+    }
+
+    /// Street income of one line per second at the current routes, with all payout multipliers (stock aside).
+    public static func lineIncome(_ s: GameState, _ p: ProductId, _ m: Mods) -> Double {
+        var wanted = 0.0
+        var revenue = 0.0
+        for d in DistrictId.allCases {
+            let units = Economy.desiredSales(s, d, p, m)
+            wanted += units
+            revenue += units * Economy.price(s, d, p, m)
+        }
+        guard wanted > 0 else { return 0 }
+        let produced = s.line(p).running ? Economy.productionRate(s, p, m) : 0
+        let share = produced.isFinite ? min(1, produced / wanted) : 1
+        return revenue * share * lineMultiplier(s, p) * globalMultiplier(s)
+    }
+
+    /// Cash one tap brings in: half a second of the line's street income, while it has goods to sell.
+    public static func hustleCash(_ s: GameState, _ p: ProductId, _ m: Mods) -> Double {
+        guard s.line(p).owned, s.line(p).running, s.stock(p) > 0.05 else { return 0 }
+        return hustleIncomeSeconds * lineIncome(s, p, m)
+    }
 
     /// One number for a line's progress: 1 for a new line, +1 per track level and per mastery level.
     public static func stage(_ l: LineState) -> Int { l.totalLevels - 2 + l.masteryLevel }
@@ -173,12 +210,16 @@ public enum Idle {
         Content.product(p).lineUpgradeBase * 250 * pow(1.25, Double(currentLevel))
     }
 
-    /// The next purchase of the one-button upgrade: the cheapest open track, then mastery. Nil when everything is maxed.
+    /// The next purchase of the one-button upgrade, chosen so that it raises income: quality while the streets are
+    /// the bottleneck, otherwise the cheaper of batch size and cycle; then mastery. Nil when everything is maxed.
     public static func nextLineStep(_ s: GameState, _ p: ProductId) -> (step: LineStep, cost: Double)? {
         let l = s.line(p)
         guard l.owned else { return nil }
+        let open = LineTrack.allCases.filter { l.level($0) < Content.maxLineLevel }
+        let preferred: [LineTrack] = salesBound(s, p, Economy.mods(s)) ? [.quality] : [.capacity, .speed]
+        let pool = open.contains(where: preferred.contains) ? open.filter(preferred.contains) : open
         var best: (step: LineStep, cost: Double)?
-        for t in LineTrack.allCases where l.level(t) < Content.maxLineLevel {
+        for t in pool {
             let c = Content.lineUpgradeCost(p, t, currentLevel: l.level(t))
             if best == nil || c < best!.cost { best = (step: LineStep.track(t), cost: c) }
         }

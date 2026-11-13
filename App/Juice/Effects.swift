@@ -16,10 +16,11 @@ struct RollingText: View {
     @Environment(\.noirReduceMotion) private var reduceMotion
 
     var body: some View {
+        // Keyed on the shown text, short: values move several times a second and must never look smeared.
         Text(verbatim: text)
             .monospacedDigit()
             .contentTransition(reduceMotion ? .identity : .numericText(value: value))
-            .animation(reduceMotion ? nil : .snappy(duration: 0.3), value: value)
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: text)
     }
 }
 
