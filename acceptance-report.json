@@ -1,0 +1,50 @@
+{
+  "sha": "6aba99e359be5104fdc6d72eaa9320c15b08b6a0",
+  "run_id": "43427154699",
+  "run_attempt": "1",
+  "run_url": "https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/43427154699",
+  "generated_utc": "2026-11-13T12:48:37+00:00",
+  "runner": {
+    "os": "macOS",
+    "image": "macos15",
+    "image_version": "20261104.0514.1",
+    "macos": "15.8.2"
+  },
+  "xcode": "Xcode 16.4 Build version 16F6",
+  "swift": "swift-driver version: 1.120.5 Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)",
+  "simulator": {
+    "name": "iPhone 17",
+    "runtime": "iOS 26.2",
+    "udid": "BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06"
+  },
+  "xcode_tests": {
+    "result": "unknown",
+    "totalTestCount": 0,
+    "passedTests": 0,
+    "failedTests": 0,
+    "skippedTests": 0
+  },
+  "core_tests": "\u2714 Test run with 111 tests passed after 44.484 seconds.",
+  "playthroughs": [
+    "seed=1 won after 5.08 h, raids=0, investigations=2, peakHeat=79, legacy=20",
+    "seed=2024 won after 5.35 h, raids=0, investigations=1, peakHeat=85, legacy=19",
+    "seed=42 won after 5.30 h, raids=0, investigations=2, peakHeat=87, legacy=22",
+    "NG+ won after 5.41 h"
+  ],
+  "checks": {
+    "l10n": "L10N_OK",
+    "asset-parity": "ASSET_PARITY_OK",
+    "scan": "SCAN_OK"
+  },
+  "screenshots": [],
+  "artifacts": [
+    "asset-parity.log",
+    "core-tests.log",
+    "inventory.txt",
+    "l10n.log",
+    "scan.log",
+    "test-summary.json",
+    "tests.json",
+    "xcodebuild-test.log"
+  ]
+}
