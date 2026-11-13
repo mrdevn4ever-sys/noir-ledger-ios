@@ -31,3 +31,19 @@ NoirLedger.xcodeproj/
 evidence/
 .venv/
 sim.env
+
+# Signing material and release tooling: never in this public repository
+*.p8
+*.p12
+*.pfx
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
+AuthKey_*
+.noir-signing/
+asc-*/
+asc_*.py
+create_*.py
+*.env
+.env*
