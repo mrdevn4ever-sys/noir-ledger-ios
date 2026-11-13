@@ -374,7 +374,7 @@ struct StreetScene: View {
                 } else {
                     drawSky(&ctx, size, time)
                 }
-                drawStreet(&ctx, size, time)
+                drawStreet(&ctx, size, time, onPlate: plate != nil)
                 if !reduceMotion { drawRain(&ctx, size, time) }
             }
         }
@@ -427,11 +427,14 @@ struct StreetScene: View {
         }
     }
 
-    private func drawStreet(_ ctx: inout GraphicsContext, _ size: CGSize, _ time: Double) {
+    private func drawStreet(_ ctx: inout GraphicsContext, _ size: CGSize, _ time: Double, onPlate: Bool) {
         let w = size.width, h = size.height
-        let horizon = h * 0.80
-        ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: h - horizon)), with: .color(SceneTint.wallDeep))
-        ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: 1)), with: .color(Noir.brass.opacity(0.3)))
+        // A delivered street plate brings its own roadway (starting a little higher); the drawn one is painted here.
+        let horizon = h * (onPlate ? 0.74 : 0.80)
+        if !onPlate {
+            ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: h - horizon)), with: .color(SceneTint.wallDeep))
+            ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: 1)), with: .color(Noir.brass.opacity(0.3)))
+        }
         // Signs of the fronts the house owns.
         for k in 0..<min(5, fronts) {
             // The signs hang on the right half; the left belongs to the income plate.
@@ -504,6 +507,8 @@ struct StashScene: View {
             let w = size.width, h = size.height
             if let plate {
                 drawPlate(&ctx, plate, size)
+                // The wall stays in the background: the stock on the shelves has to read first.
+                ctx.fill(Path(CGRect(origin: .zero, size: size)), with: .color(SceneTint.wallDeep.opacity(0.55)))
             } else {
                 ctx.fill(Path(CGRect(origin: .zero, size: size)),
                          with: .linearGradient(Gradient(colors: [SceneTint.wall, SceneTint.wallDeep]),
