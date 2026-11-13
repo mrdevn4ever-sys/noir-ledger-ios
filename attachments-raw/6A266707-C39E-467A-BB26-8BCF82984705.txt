@@ -1,0 +1,60 @@
+Application, 0x1011d8a10, pid: 23164, label: 'NOIR LEDGER' <App element pid: 23164>
+  Window (Main), 0x1016dbd50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4314050864.4>
+    Other, 0x1016ce800, {{-1.0, -1.0}, {1.0, 1.0}} <AX element pid: 23164, elementOrHash.elementID: 4311144768.5>
+      WebView, 0x1011cb7b0, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4338680320.8>
+        WebView, 0x1011cf110, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4338736640.11>
+          WebView, 0x1011cca30, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4338445312.14>
+            Other, 0x1011eb4a0, {{0.0, 0.0}, {165.0, 359.0}} <AX element pid: 23164, elementOrHash.elementID: 723983885897262843.9999>
+              Other, 0x1011cb390, {{0.0, 0.0}, {165.0, 359.0}} <AX element pid: 23355, elementOrHash.elementID: 105553150902592.3>
+                Other, 0x1011d9ec0, {{0.0, -1.0}, {165.0, 359.0}} <AX element pid: 23355, elementOrHash.elementID: 105553118824480.4>
+                  Other, 0x1011dad20, {{0.0, -1.0}, {402.0, 875.0}}, Focused <AX element pid: 23355, elementOrHash.elementID: 105553118839072.5>
+          Other, 0x1011dae40, {{368.0, 61.0}, {30.0, 812.0}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311167264.15>
+            Other, 0x1011d7130, {{395.0, 863.0}, {3.0, 7.0}} <AX element pid: 23164, elementOrHash.elementID: 4311168288.19>
+          Other, 0x1011d7250, {{-1.0, 840.0}, {402.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311145184.16>
+            Other, 0x1011bedb0, {{391.0, 867.0}, {7.0, 3.0}} <AX element pid: 23164, elementOrHash.elementID: 4311154320.20>
+          Other, 0x1011beed0, {{368.0, 61.0}, {30.0, 812.0}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311167264.15>
+            Other, 0x1011cfca0, {{395.0, 863.0}, {3.0, 7.0}} <AX element pid: 23164, elementOrHash.elementID: 4311168288.19>
+          Other, 0x1011cfdc0, {{-1.0, 840.0}, {402.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311145184.16>
+            Other, 0x1011d78e0, {{391.0, 867.0}, {7.0, 3.0}} <AX element pid: 23164, elementOrHash.elementID: 4311154320.20>
+    Other, 0x1011d7a00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315116352.6>
+      Other, 0x1011e3d50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315121952.9>
+        Other, 0x1011e3e70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4314430320.12>
+          Other, 0x1011eb840, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315414720.17>
+            ScrollView, 0x1011eb960, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4355599360.21>
+              Other, 0x1011eba80, {{0.0, 62.0}, {402.0, 576.7}} <AX element pid: 23164, elementOrHash.elementID: 4315198272.23>
+                Other, 0x1011ebba0, {{0.0, 62.0}, {1.0, 1.0}}, identifier: 'screen.prologue', label: 'NOIR LEDGER' <AX element pid: 23164, elementOrHash.elementID: 4315405744.28>
+                StaticText, 0x1011ebcc0, {{81.0, 102.0}, {240.0, 107.0}}, label: 'NOIR LEDGER' <AX element pid: 23164, elementOrHash.elementID: 4315409056.29>
+                  Image, 0x1011ebde0, {{169.0, 102.0}, {64.0, 64.0}}, label: 'BrandLedgerEmblem' <AX element pid: 23164, elementOrHash.elementID: 4315407520.37>
+                  Image, 0x1011ebf00, {{81.0, 174.0}, {240.0, 35.0}}, label: 'BrandWordmark' <AX element pid: 23164, elementOrHash.elementID: 4315408624.38>
+                Other, 0x1011ec020, {{16.0, 233.0}, {370.0, 3.0}}, label: 'Page 1 of 4' <AX element pid: 23164, elementOrHash.elementID: 4315410512.30>
+                StaticText, 0x1011ec140, {{16.0, 426.0}, {225.3, 26.3}}, identifier: 'prologue.title', label: 'Varnholm, November' <AX element pid: 23164, elementOrHash.elementID: 4315412048.31>
+                StaticText, 0x1011ec260, {{16.0, 468.3}, {370.0, 86.3}}, label: 'Rain on the river. Your uncle Leopold was buried this morning. His notary hands you a key, the address of a cellar in the old town, and a leather-bound ledger.' <AX element pid: 23164, elementOrHash.elementID: 4315413504.32>
+                Button, 0x1011ec380, {{16.0, 578.7}, {370.0, 44.0}}, identifier: 'prologue.next', label: 'Continue' <AX element pid: 23164, elementOrHash.elementID: 4315413936.33>
+              Other, 0x1011ec4a0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4310927680.24>
+                Other, 0x1011ec5c0, {{396.0, 260.0}, {3.0, 555.0}} <AX element pid: 23164, elementOrHash.elementID: 4310946864.34>
+              Other, 0x1011ec6e0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4310927680.24>
+                Other, 0x1011ec800, {{396.0, 260.0}, {3.0, 555.0}} <AX element pid: 23164, elementOrHash.elementID: 4310946864.34>
+    Other, 0x1011ec920, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315387040.7>
+      Other, 0x1011eca40, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315326240.10>
+        Other, 0x1011e4170, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4315365568.13>
+          WebView, 0x1011e4290, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4355879424.18>
+            WebView, 0x1011e43b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4338665984.22>
+              WebView, 0x1011e44d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 4346375168.25>
+                Other, 0x1011e45f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23164, elementOrHash.elementID: 5370416309261017531.9999>
+                  Other, 0x1011e4710, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23358, elementOrHash.elementID: 105553150883344.3>
+                    Other, 0x1011e8450, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23358, elementOrHash.elementID: 105553118935104.4>
+                      Other, 0x1011e8570, {{0.0, 0.0}, {402.0, 874.0}}, Focused <AX element pid: 23358, elementOrHash.elementID: 105553118935200.5>
+                        Other, 0x1011e8690, {{20.0, 280.0}, {362.0, 314.0}}, label: 'Our app wants to stay free for you, web dialog', Focused <AX element pid: 23358, elementOrHash.elementID: 105553118935968.6>
+                          Other, 0x1011e87b0, {{52.0, 312.0}, {298.0, 56.0}}, label: 'Our app wants to stay free for you', value: 1, Focused <AX element pid: 23358, elementOrHash.elementID: 105553118936224.7>
+                            StaticText, 0x1011e88d0, {{55.0, 312.0}, {291.0, 56.0}}, label: 'Our app wants to stay free for you', value: Our app wants to s..., Focused <AX element pid: 23358, elementOrHash.elementID: 105553118936704.10>
+                          Other, 0x1011e89f0, {{52.0, 384.0}, {298.0, 96.0}}, Focused <AX element pid: 23358, elementOrHash.elementID: 105553118936288.8>
+                            StaticText, 0x1011e8b10, {{61.0, 384.0}, {280.0, 96.0}}, label: 'Ads help support our business. Tap “Allow” on the next screen to give permission to show ads that are more relevant to you.', value: Ads help support o..., Focused <AX element pid: 23358, elementOrHash.elementID: 105553118936992.11>
+                          Button, 0x1011e8c30, {{52.0, 512.0}, {298.0, 42.0}}, label: 'Continue', Focused <AX element pid: 23358, elementOrHash.elementID: 105553118936352.9>
+              Other, 0x1011e8d50, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311235264.26>
+                Other, 0x1011e8e70, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 23164, elementOrHash.elementID: 4311235728.35>
+              Other, 0x1011e8f90, {{56.0, 841.0}, {290.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311229744.27>
+                Other, 0x1011e90b0, {{336.0, 868.0}, {7.0, 3.0}} <AX element pid: 23164, elementOrHash.elementID: 4311234544.36>
+              Other, 0x1011e91d0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311235264.26>
+                Other, 0x1011e92f0, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 23164, elementOrHash.elementID: 4311235728.35>
+              Other, 0x1011e9410, {{56.0, 841.0}, {290.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0% <AX element pid: 23164, elementOrHash.elementID: 4311229744.27>
+                Other, 0x1011e9530, {{336.0, 868.0}, {7.0, 3.0}} <AX element pid: 23164, elementOrHash.elementID: 4311234544.36>

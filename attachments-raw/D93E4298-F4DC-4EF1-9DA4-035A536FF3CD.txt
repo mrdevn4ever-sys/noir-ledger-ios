@@ -1,0 +1,60 @@
+Application, 0x1011fce60, pid: 23838, label: 'NOIR LEDGER' <App element pid: 23838>
+  Window (Main), 0x1011edb10, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4301730400.4>
+    Other, 0x1011ee150, {{-1.0, -1.0}, {1.0, 1.0}} <AX element pid: 23838, elementOrHash.elementID: 4305893808.5>
+      WebView, 0x1011f4ff0, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4338534400.7>
+        WebView, 0x1011f43d0, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4347042816.10>
+          WebView, 0x1011f47b0, {{-1.0, -1.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4330650112.13>
+            Other, 0x1011f4bd0, {{0.0, 0.0}, {165.0, 359.0}} <AX element pid: 23838, elementOrHash.elementID: 12322425902754887661.9999>
+              Other, 0x1011f4190, {{0.0, 0.0}, {165.0, 359.0}} <AX element pid: 23856, elementOrHash.elementID: 105553150873904.3>
+                Other, 0x1011f42b0, {{0.0, -1.0}, {165.0, 359.0}} <AX element pid: 23856, elementOrHash.elementID: 105553118674144.4>
+                  Other, 0x1011e99c0, {{0.0, -1.0}, {402.0, 875.0}}, Focused <AX element pid: 23856, elementOrHash.elementID: 105553118674240.5>
+          Other, 0x1011e9ae0, {{368.0, 61.0}, {30.0, 812.0}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305905360.14>
+            Other, 0x1011f5700, {{395.0, 863.0}, {3.0, 7.0}} <AX element pid: 23838, elementOrHash.elementID: 4305905824.20>
+          Other, 0x1011f5820, {{-1.0, 840.0}, {402.0, 30.0}}, label: 'Horizontaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305904896.15>
+            Other, 0x1011f5940, {{391.0, 867.0}, {7.0, 3.0}} <AX element pid: 23838, elementOrHash.elementID: 4305899776.21>
+          Other, 0x1011f5a60, {{368.0, 61.0}, {30.0, 812.0}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305905360.14>
+            Other, 0x1011f5b80, {{395.0, 863.0}, {3.0, 7.0}} <AX element pid: 23838, elementOrHash.elementID: 4305905824.20>
+          Other, 0x1011f5ca0, {{-1.0, 840.0}, {402.0, 30.0}}, label: 'Horizontaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305904896.15>
+            Other, 0x1011f5dc0, {{391.0, 867.0}, {7.0, 3.0}} <AX element pid: 23838, elementOrHash.elementID: 4305899776.21>
+    Other, 0x1011f5ee0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4305739856.6>
+      Other, 0x1011f6000, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4305672736.9>
+        Other, 0x1011f6120, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4301725296.12>
+          Other, 0x1011f6240, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4302002464.19>
+            ScrollView, 0x1011f6360, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4330647040.24>
+              Other, 0x1011f6480, {{0.0, 62.0}, {402.0, 576.7}} <AX element pid: 23838, elementOrHash.elementID: 4301803632.25>
+                Other, 0x1011f65a0, {{0.0, 62.0}, {1.0, 1.0}}, identifier: 'screen.prologue', label: 'NOIR LEDGER' <AX element pid: 23838, elementOrHash.elementID: 4301992448.27>
+                StaticText, 0x1011f6910, {{81.0, 102.0}, {240.0, 107.0}}, label: 'NOIR LEDGER' <AX element pid: 23838, elementOrHash.elementID: 4301995776.28>
+                  Image, 0x1011f6a30, {{169.0, 102.0}, {64.0, 64.0}}, label: 'BrandLedgerEmblem' <AX element pid: 23838, elementOrHash.elementID: 4301994240.37>
+                  Image, 0x1011f6b50, {{81.0, 174.0}, {240.0, 35.0}}, label: 'BrandWordmark' <AX element pid: 23838, elementOrHash.elementID: 4301995344.38>
+                Other, 0x1011f6c70, {{16.0, 233.0}, {370.0, 3.0}}, label: 'Seite 1 von 4' <AX element pid: 23838, elementOrHash.elementID: 4301997232.29>
+                StaticText, 0x1011f6d90, {{16.0, 426.0}, {225.3, 26.3}}, identifier: 'prologue.title', label: 'Varnholm, November' <AX element pid: 23838, elementOrHash.elementID: 4301998768.30>
+                StaticText, 0x1011f6eb0, {{16.0, 468.3}, {367.7, 86.3}}, label: 'Regen auf dem Fluss. Heute Morgen wurde dein Onkel Leopold beerdigt. Sein Notar gibt dir einen Schlüssel, die Adresse eines Kellers in der Altstadt und ein ledergebundenes Hauptbuch.' <AX element pid: 23838, elementOrHash.elementID: 4302000224.31>
+                Button, 0x1011f7160, {{16.0, 578.7}, {370.0, 44.0}}, identifier: 'prologue.next', label: 'Weiter' <AX element pid: 23838, elementOrHash.elementID: 4302000656.32>
+              Other, 0x1011f7280, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4301823712.26>
+                Other, 0x1011f73a0, {{396.0, 260.0}, {3.0, 555.0}} <AX element pid: 23838, elementOrHash.elementID: 4301824688.36>
+              Other, 0x1011f74c0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4301823712.26>
+                Other, 0x1011f75e0, {{396.0, 260.0}, {3.0, 555.0}} <AX element pid: 23838, elementOrHash.elementID: 4301824688.36>
+    Other, 0x1011f7700, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4305950416.33>
+      Other, 0x1011f7820, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4305939904.34>
+        Other, 0x1011f7940, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4305910752.35>
+          WebView, 0x1011f7a60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4338805248.8>
+            WebView, 0x1011f7b80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4338236416.11>
+              WebView, 0x1011f7ca0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 4347194368.16>
+                Other, 0x1011f7dc0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23838, elementOrHash.elementID: 3509659165279576457.9999>
+                  Other, 0x1011f7ee0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23861, elementOrHash.elementID: 105553150889968.3>
+                    Other, 0x1011f8000, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 23861, elementOrHash.elementID: 105553118823808.4>
+                      Other, 0x1011f8120, {{0.0, 0.0}, {402.0, 874.0}}, Focused <AX element pid: 23861, elementOrHash.elementID: 105553118823840.5>
+                        Other, 0x1011f8240, {{20.0, 280.0}, {362.0, 314.0}}, label: 'Our app wants to stay free for you, Webdialog', Focused <AX element pid: 23861, elementOrHash.elementID: 105553118824576.6>
+                          Other, 0x1011f8360, {{52.0, 312.0}, {298.0, 56.0}}, label: 'Our app wants to stay free for you', value: 1, Focused <AX element pid: 23861, elementOrHash.elementID: 105553118824832.7>
+                            StaticText, 0x1011f8480, {{55.0, 312.0}, {291.0, 56.0}}, label: 'Our app wants to stay free for you', value: Our app wants to s..., Focused <AX element pid: 23861, elementOrHash.elementID: 105553118825312.10>
+                          Other, 0x1011f85a0, {{52.0, 384.0}, {298.0, 96.0}}, Focused <AX element pid: 23861, elementOrHash.elementID: 105553118824896.8>
+                            StaticText, 0x1011f86c0, {{61.0, 384.0}, {280.0, 96.0}}, label: 'Ads help support our business. Tap “Allow” on the next screen to give permission to show ads that are more relevant to you.', value: Ads help support o..., Focused <AX element pid: 23861, elementOrHash.elementID: 105553118825600.11>
+                          Button, 0x1011f8a00, {{52.0, 512.0}, {298.0, 42.0}}, label: 'Continue', Focused <AX element pid: 23861, elementOrHash.elementID: 105553118824960.9>
+              Other, 0x1011f8b20, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305958048.17>
+                Other, 0x1011f8c40, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 23838, elementOrHash.elementID: 4305958512.22>
+              Other, 0x1011f8d60, {{56.0, 841.0}, {290.0, 30.0}}, label: 'Horizontaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305952528.18>
+                Other, 0x1011f8e80, {{336.0, 868.0}, {7.0, 3.0}} <AX element pid: 23838, elementOrHash.elementID: 4305957328.23>
+              Other, 0x1011f8fa0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertikaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305958048.17>
+                Other, 0x1011f90c0, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 23838, elementOrHash.elementID: 4305958512.22>
+              Other, 0x1011f91e0, {{56.0, 841.0}, {290.0, 30.0}}, label: 'Horizontaler Rollbalken, 1 Seite', value: 0 % <AX element pid: 23838, elementOrHash.elementID: 4305952528.18>
+                Other, 0x1011f9300, {{336.0, 868.0}, {7.0, 3.0}} <AX element pid: 23838, elementOrHash.elementID: 4305957328.23>

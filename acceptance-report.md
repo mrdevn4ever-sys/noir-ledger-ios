@@ -1,0 +1,28 @@
+# CI evidence — 168f0aa3a152d06226503e505f6c5d7aa15effcc
+
+- Run: https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/43481918786 (attempt 1)
+- Generated: 2026-11-13T18:45:35+00:00
+- Runner: {'os': 'macOS', 'image': 'macos15', 'image_version': '20261104.0514.1', 'macos': '15.8.2'}
+- Xcode: Xcode 16.4 Build version 16F6
+- Swift: swift-driver version: 1.120.5 Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+- Simulator: {'name': 'iPhone 17', 'runtime': 'iOS 26.2', 'udid': 'BC7CEBFB-6B90-4D7E-B85E-BB0102C99F06'}
+- Xcode tests: {'result': 'Failed', 'totalTestCount': 33, 'passedTests': 22, 'failedTests': 11, 'skippedTests': 0}
+- Core tests: ✔ Test run with 112 tests passed after 23.177 seconds.
+- Playthroughs:
+  - seed=1 won after 5.08 h, raids=0, investigations=2, peakHeat=79, legacy=20
+  - seed=42 won after 5.30 h, raids=0, investigations=2, peakHeat=87, legacy=22
+  - seed=2024 won after 5.35 h, raids=0, investigations=1, peakHeat=85, legacy=19
+  - NG+ won after 5.41 h
+- Checks:
+  - l10n: L10N_OK
+  - asset-parity: ASSET_PARITY_OK
+  - scan: SCAN_OK
+- Screenshots (8):
+  - de_tour_01_prologue.png
+  - en_01_prologue_funeral.png
+  - en_22_raid.png
+  - en_23_raid_recovery_district.png
+  - en_43_future_save.png
+  - en_50_large_text_ledger.png
+  - en_60_home_screen_icon.png
+  - en_tour_01_prologue.png
