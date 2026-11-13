@@ -131,5 +131,103 @@
     "generated_at": "2026-11-13",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
     "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Audio/music_main.m4a",
+    "origin": "own deterministic synthesis: 71.9961 bpm, circular upright-bass plucks, brushed kit, sparse Rhodes voicings, muted horn and filtered room air; no samples; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/amb_rain.m4a",
+    "origin": "own deterministic synthesis: periodic filtered-noise cobblestone patter, corrugated-sheet hiss, subdued city air, isolated decaying droplets; no thunder/people/vehicles or samples; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_tap.m4a",
+    "origin": "own deterministic synthesis: wooden tool on bench: damped wood-body partials and a short filtered grain-noise click; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_buy.m4a",
+    "origin": "own deterministic synthesis: two metal coin pings at separated times with dry woody contact; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_milestone.m4a",
+    "origin": "own deterministic synthesis: cash-register mechanical click, high bell, short bright multi-note chord; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_reject.m4a",
+    "origin": "own deterministic synthesis: single muted low wood strike with a short dark thump; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_claim.m4a",
+    "origin": "own deterministic synthesis: paper-envelope tear of filtered grains followed by two rising tones; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_chapter.m4a",
+    "origin": "own deterministic synthesis: heavy stamp and paper thump followed by a warm minor electric-piano chord; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_raid.m4a",
+    "origin": "own deterministic synthesis: door kick impact, splintering thuds and short irregular metallic confusion, no voices; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_alarm.m4a",
+    "origin": "own deterministic synthesis: distant window-damped alternating European two-tone police siren; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_decision.m4a",
+    "origin": "own deterministic synthesis: close paper rustles and a letter dropped onto a wooden tabletop; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_prestige.m4a",
+    "origin": "own deterministic synthesis: approaching train-like hiss and low rumble followed by an open clear bell chord; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_purchase.m4a",
+    "origin": "own deterministic synthesis: polished register bell with a springy till drawer opening; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
+  },
+  {
+    "file": "App/Resources/Audio/sfx_boost.m4a",
+    "origin": "own deterministic synthesis: abrasive match strike followed by a brief soft flame flare; no samples or recordings; AAC LC encoded with FFmpeg",
+    "generated_at": "2026-11-13",
+    "license": "own work",
+    "source_url": ""
   }
 ]
