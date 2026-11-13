@@ -60,6 +60,11 @@ targets:
         Release:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: ""
           SWIFT_OPTIMIZATION_LEVEL: -O
+          # Distribution signing for TestFlight, on the app target only (package targets must stay unsigned).
+          # Empty unless .github/workflows/testflight.yml passes NOIR_TEAM, NOIR_PROFILE and NOIR_SIGN_IDENTITY.
+          DEVELOPMENT_TEAM: $(NOIR_TEAM)
+          PROVISIONING_PROFILE_SPECIFIER: $(NOIR_PROFILE)
+          CODE_SIGN_IDENTITY: $(NOIR_SIGN_IDENTITY)
   NoirLedgerTests:
     type: bundle.unit-test
     platform: iOS

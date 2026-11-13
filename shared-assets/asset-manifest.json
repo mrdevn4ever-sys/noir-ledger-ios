@@ -38,7 +38,7 @@
       "png": {
         "source": "brand/app-icon-master-1024.png",
         "width": 1024,
-        "sha256": "15be57a6ae283cadd927cf258c76dd6b1cce42ac43c758dd18c5de3ecc92a9d0"
+        "sha256": "b4c15944bbaf24545aeced3add656ce740bc33c59c888df491dc67e940a1f0f5"
       },
       "exports": {
         "android": [

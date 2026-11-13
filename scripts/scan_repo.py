@@ -36,6 +36,7 @@ SECRETS = re.compile(r"BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{20,
 
 # Benign, documented exceptions (file suffix, rule, reason).
 ALLOW = [
+    (".github/workflows/testflight.yml", "secrets", "names the signing files it decodes from GitHub secrets; holds no secret"),
     ("project.yml", "urls", "Swift package URLs of the advertising SDK and its consent library"),
     ("scripts/shared_assets.py", "urls", "none expected"),
     (".github/workflows/ios.yml", "urls", "GitHub run URL in the evidence report"),

@@ -14,7 +14,10 @@
 >    weiter respektiert.
 > 4. **Fairness bleibt:** Die Kampagne ist ohne Kauf und ohne Video vollständig spielbar. Kaufbar sind Tempo und
 >    Komfort, nie Schutz vor einer künstlich erzeugten Strafe.
-> 5. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
+> 5. **Verteilung:** Signieren und Hochladen zu TestFlight ist ab Version 2.0 erlaubt und läuft ausschließlich über
+>    `.github/workflows/testflight.yml` mit Zugangsdaten aus GitHub-Secrets. Keine Schlüssel, Zertifikate oder Profile
+>    im Repository. Anleitung: `docs/TESTFLIGHT.md`.
+> 6. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
 >    Freiminuten). Stand dieses Beschlusses: Version 2.0 ist geschrieben, aber noch nicht auf einem Runner gebaut.
 
 ## Produktentscheidung

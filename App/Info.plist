@@ -36,6 +36,8 @@
 			<string>cstr6suwn9.skadnetwork</string>
 		</dict>
 	</array>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Sponsor videos can be matched to your interests. NOIR LEDGER itself never tracks you.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
