@@ -82,5 +82,33 @@
     "generated_at": "2026-11-13",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
     "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomHalo0.imageset/RoomHalo0.png",
+    "origin": "OpenAI-Codex direct image edit from RoomHalo3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomHalo1.imageset/RoomHalo1.png",
+    "origin": "OpenAI-Codex direct image edit from RoomHalo3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomHalo2.imageset/RoomHalo2.png",
+    "origin": "OpenAI-Codex direct image edit from RoomHalo3; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RoomHalo3.imageset/RoomHalo3.png",
+    "origin": "OpenAI-Codex image generation; crop and tonal processing by Hermes",
+    "generated_at": "2026-11-13",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/"
   }
 ]
