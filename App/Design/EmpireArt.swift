@@ -434,7 +434,8 @@ struct StreetScene: View {
         ctx.fill(Path(CGRect(x: 0, y: horizon, width: w, height: 1)), with: .color(Noir.brass.opacity(0.3)))
         // Signs of the fronts the house owns.
         for k in 0..<min(5, fronts) {
-            let sx = w * (0.10 + 0.19 * CGFloat(k))
+            // The signs hang on the right half; the left belongs to the income plate.
+            let sx = w * (0.50 + 0.10 * CGFloat(k))
             let sign = CGRect(x: sx, y: horizon - 20, width: 26, height: 10)
             let tint = [Noir.amber, Noir.influenceInk, SceneTint.plum, Noir.cleanInk, SceneTint.ice][k]
             let glow = 0.75 + 0.25 * sin(time * (1.7 + Double(k) * 0.4) + Double(k))

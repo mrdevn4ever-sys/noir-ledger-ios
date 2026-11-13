@@ -124,8 +124,11 @@ private struct StreetFloor: View {
                     }
                 }
             }
-            .padding(Noir.s3)
-            .shadow(color: Noir.ground, radius: 3)
+            .padding(.horizontal, Noir.s3)
+            .padding(.vertical, Noir.s2)
+            // A solid plate: the number must read over lit windows, signs and rain.
+            .background(Noir.ground.opacity(0.78), in: RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
+            .padding(Noir.s2)
         }
         .overlay(alignment: .topTrailing) {
             if state.campaign.tutorial == .done, !Idle.boostActive(state), store.rewardOffered(ads: ads) {
