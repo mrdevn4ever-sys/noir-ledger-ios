@@ -85,20 +85,21 @@ final class SoundEngine {
     }
 
     func play(_ feedback: Feedback) {
-        switch feedback {
-        case .tap: play(.tap)
-        case .buy: play(.buy)
-        case .milestone: play(.milestone)
-        case .reject: play(.reject)
-        case .claim: play(.claim)
-        case .chapter: play(.chapter)
-        case .raid: play(.raid)
-        case .alarm: play(.alarm)
-        case .decision: play(.decision)
-        case .prestige: play(.prestige)
-        case .purchase: play(.purchase)
-        case .boost: play(.boost)
+        let effect: Effect = switch feedback {
+        case .tap: .tap
+        case .buy: .buy
+        case .milestone: .milestone
+        case .reject: .reject
+        case .claim: .claim
+        case .chapter: .chapter
+        case .raid: .raid
+        case .alarm: .alarm
+        case .decision: .decision
+        case .prestige: .prestige
+        case .purchase: .purchase
+        case .boost: .boost
         }
+        play(effect)
     }
 
     /// Called when the app leaves the foreground.
