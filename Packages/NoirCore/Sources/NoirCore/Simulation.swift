@@ -142,7 +142,8 @@ public enum Simulation {
         // ---- Laundering ----
         let cleanBefore = r.cleanGained
         // No working reserve during the briefing, so the first wash happens right away.
-        let reserve = s.campaign.tutorial != .done ? 0 : s.incomeRate * 60 * Double(s.reserveMinutes)
+        // The reserve covers minutes of material costs, so the lines never run dry, and everything above is washed.
+        let reserve = s.campaign.tutorial != .done ? 0 : Economy.materialCostRate(s, m) * 60 * Double(s.reserveMinutes)
         for f in FrontId.allCases {
             guard let fs = s.fronts[f], fs.owned, fs.active else { continue }
             let avail = max(0, s.dirty - reserve)

@@ -142,7 +142,7 @@
 "money_launder_title" = "Laundering";
 "launder_summary" = "Front capacity %1$@/min · street income %2$@/min";
 "reserve_title" = "Working reserve";
-"reserve_desc" = "Fronts only wash dirty cash above this many minutes of street income.";
+"reserve_desc" = "Fronts only wash dirty cash above this many minutes of material costs. Everything else gets washed.";
 "reserve_none" = "None";
 "reserve_min" = "%1$ld min";
 "protection_title" = "Protection network";

@@ -285,7 +285,7 @@ public enum Content {
     public static func front(_ f: FrontId) -> FrontDef {
         switch f {
         case .laundromat:
-            FrontDef(id: .laundromat, district: .cellars, buy: Cost(dirty: 120), capacity: 1.5, fee: 0.30, risk: 0.25, cover: 1, upgradeCleanBase: 150)
+            FrontDef(id: .laundromat, district: .cellars, buy: Cost(dirty: 120), capacity: 4, fee: 0.30, risk: 0.25, cover: 1, upgradeCleanBase: 150)
         case .taxi:
             FrontDef(id: .taxi, district: .docks, buy: Cost(clean: 4000), capacity: 7, fee: 0.22, risk: 0.30, cover: 4, upgradeCleanBase: 1500)
         case .nightclub:

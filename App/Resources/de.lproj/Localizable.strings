@@ -142,7 +142,7 @@
 "money_launder_title" = "Geldwäsche";
 "launder_summary" = "Kapazität der Fronten %1$@/min · Straßeneinnahmen %2$@/min";
 "reserve_title" = "Betriebsreserve";
-"reserve_desc" = "Fronten waschen nur Schwarzgeld oberhalb so vieler Minuten Straßeneinnahmen.";
+"reserve_desc" = "Fronten waschen nur Schwarzgeld oberhalb so vieler Minuten Materialkosten. Der Rest wird gewaschen.";
 "reserve_none" = "Keine";
 "reserve_min" = "%1$ld min";
 "protection_title" = "Schutznetz";

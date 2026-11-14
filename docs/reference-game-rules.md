@@ -48,12 +48,12 @@ in proportion to the district's police.
 ## Laundering
 
 Fronts wash dirty cash into clean money automatically (each can be paused). Capacity grows by +50 % per
-level (10 levels, paid in clean cash). A working reserve (none / 2 / 10 / 30 minutes of street income) keeps
+level (10 levels, paid in clean cash). A working reserve (none / 2 / 10 / 30 minutes of the lines' material costs; iOS 2.0) keeps
 dirty cash for materials; during the briefing no reserve applies.
 
 | Front | District | Price | Washes/s | Fee | Risk | Cover |
 | --- | --- | --- | --- | --- | --- | --- |
-| Clearwater Laundromat | Cellar Quarter | 120 dirty | 1.5 | 30 % | 0.25 | 1 |
+| Clearwater Laundromat | Cellar Quarter | 120 dirty | 4 | 30 % | 0.25 | 1 |
 | Quay Cabs | North Quay | 4,000 clean | 7 | 22 % | 0.30 | 4 |
 | Club Half Moon | Neon Mile | 30,000 clean | 32 | 15 % | 0.60 | 10 |
 | Stahlmann Construction | Foundry Row | 150,000 clean | 120 | 25 % | 0.15 | 40 |

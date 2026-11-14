@@ -85,7 +85,7 @@ struct SimulationTests {
         s.updateDistrict(.cellars) { $0.routes = [:] }
         let cleanBefore = s.clean
         let r = Simulation.advance(&s, seconds: 10, offline: false)
-        #expect(abs(r.dirtyLaundered - 1.5 * 10) < 1e-9)
+        #expect(abs(r.dirtyLaundered - 4.0 * 10) < 1e-9)
         let gained = s.clean - cleanBefore
         #expect(abs(gained - 15 * 0.7) < 1e-6)
         #expect(s.heatTarget > 0)
@@ -99,19 +99,21 @@ struct SimulationTests {
         #expect(r.dirtyLaundered == 0)
     }
 
-    @Test("The working reserve keeps minutes of street income as dirty cash", arguments: [0, 2, 10, 30])
+    @Test("The working reserve keeps minutes of material costs as dirty cash", arguments: [0, 2, 10, 30])
     func workingReserve(_ minutes: Int) {
         var s = TS.rich(chapter: 1)
         s = TS.ok(s, .setReserve(minutes))
-        s.incomeRate = 5
         s.dirty = 1000
-        s.updateLine(.glimmer) { $0.running = false }
         s.crew = []
         s.updateDistrict(.cellars) { $0.routes = [:] }
+        // The line runs (so it counts for the reserve) but the stash is full, so it buys nothing this step.
+        s.updateLine(.glimmer) { $0.running = true }
+        s.inventory[.glimmer] = Economy.stashCapacity(s, Economy.mods(s))
+        let reserve = Economy.materialCostRate(s, Economy.mods(s)) * 60 * Double(minutes)
+        #expect(minutes == 0 || reserve > 0)
         var report = TickReport()
         Simulation.step(&s, dt: 1, offline: false, report: &report)
-        let reserve = 5.0 * 60 * Double(minutes)
-        let expected = min(1.5, max(0, 1000 - reserve))
+        let expected = min(4.0, max(0, 1000 - reserve))
         #expect(abs(report.dirtyLaundered - expected) < 1e-9)
         #expect(TS.error(s, .setReserve(7)) == .invalid)
     }

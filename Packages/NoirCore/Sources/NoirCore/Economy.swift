@@ -236,6 +236,16 @@ public enum Economy {
         min(0.6, max(0.03, Content.front(f).fee + m.feeDelta))
     }
 
+    /// Dirty cash per second the running lines spend on materials. The working reserve keeps minutes of this.
+    public static func materialCostRate(_ s: GameState, _ m: Mods) -> Double {
+        ProductId.allCases.reduce(0) { acc, p in
+            let l = s.line(p)
+            guard l.owned, l.running else { return acc }
+            let rate = productionRate(s, p, m)
+            return rate.isFinite ? acc + rate * unitCost(s, p, m) : acc
+        }
+    }
+
     public static func launderCapacity(_ s: GameState, _ m: Mods) -> Double {
         FrontId.allCases.filter { s.front($0).owned && s.front($0).active }.reduce(0) { $0 + frontCapacity(s, $1, m) }
     }

@@ -52,7 +52,7 @@ struct ContentContractTests {
     }
 
     @Test("Five laundering fronts", arguments: [
-        (FrontId.laundromat, Cost(dirty: 120), 1.5, 0.30, 0.25, 1.0),
+        (FrontId.laundromat, Cost(dirty: 120), 4.0, 0.30, 0.25, 1.0),
         (FrontId.taxi, Cost(clean: 4000), 7.0, 0.22, 0.30, 4.0),
         (FrontId.nightclub, Cost(clean: 30000), 32.0, 0.15, 0.60, 10.0),
         (FrontId.construction, Cost(clean: 150_000), 120.0, 0.25, 0.15, 40.0),
