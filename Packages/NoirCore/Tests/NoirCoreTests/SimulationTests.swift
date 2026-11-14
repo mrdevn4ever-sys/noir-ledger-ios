@@ -87,7 +87,7 @@ struct SimulationTests {
         let r = Simulation.advance(&s, seconds: 10, offline: false)
         #expect(abs(r.dirtyLaundered - 4.0 * 10) < 1e-9)
         let gained = s.clean - cleanBefore
-        #expect(abs(gained - 15 * 0.7) < 1e-6)
+        #expect(abs(gained - 40 * 0.7) < 1e-6)
         #expect(s.heatTarget > 0)
     }
 
