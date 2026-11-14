@@ -7,6 +7,9 @@ on:
   push:
     tags:
       - "testflight-*"
+    # A commit on the working branch whose message contains [testflight] uploads too (no tag needed).
+    branches:
+      - "claude/exciting-cori-5r0kcv"
   workflow_dispatch:
 
 permissions:
@@ -23,6 +26,8 @@ defaults:
 jobs:
   upload:
     name: Archive, sign and upload to TestFlight
+    # Tags and manual runs always upload; branch pushes only when the commit message asks for it.
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[testflight]')
     runs-on: macos-15
     timeout-minutes: 60
     env:
