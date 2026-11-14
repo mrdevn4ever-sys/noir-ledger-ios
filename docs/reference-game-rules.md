@@ -31,7 +31,8 @@ in dirty cash. A line without cash stops (`No cash`); the starter Glimmer line i
 
 Each district has a route level (0–10) per product. Sales per second are
 `min(route capacity, demand)`, limited by stock and shared fairly between districts. Price is
-`base × district price × quality × modifiers`. Demand is `base × district taste × (0.5 + 0.5 × control) × quality`.
+`base × district price × quality × modifiers`. Demand is `base × district taste × (0.5 + 0.5 × control) × quality × route reach`, where route reach is
+`1 + 15 % × (route level − 1)` (iOS 2.0: every route level raises sales, not only capacity).
 Selling in a district slowly pushes rivals back, up to a presence cap of `15 + 5 × route levels` (max 85 %).
 Pushing rivals (60 s cooldown) costs dirty cash and influence, gains 9 control (6 in Foundry Row) and adds Heat
 in proportion to the district's police.

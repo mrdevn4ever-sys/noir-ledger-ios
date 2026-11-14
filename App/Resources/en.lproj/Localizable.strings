@@ -111,6 +111,8 @@
 "district_locked" = "Locked";
 "routes_title" = "Routes";
 "route_flow" = "Selling %1$@ of %2$@ demand per min";
+"route_gain" = "Next level: +%1$@/min";
+"route_gain_line" = "Pays off once the line makes more.";
 "route_price" = "Price %1$@ per unit";
 "route_open" = "Open route";
 "route_expand" = "Expand route";
@@ -590,7 +592,7 @@
 "empire_tap_hint" = "Tap to speed up the line";
 "empire_tap_full" = "Stash full";
 "empire_tap_idle" = "Nothing to sell";
-"empire_bottleneck" = "The streets take less %1$@ than you make. More routes raise income.";
+"empire_bottleneck" = "The streets take less %1$@ than you make. More routes or pushing rivals back sells more.";
 "empire_hustle" = "+speed";
 "empire_line_income" = "≈ %1$@/min";
 "empire_next_milestone" = "Stage %1$ld doubles the payout";

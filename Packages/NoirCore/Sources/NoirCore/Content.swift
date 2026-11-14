@@ -339,6 +339,10 @@ public enum Content {
         return product(p).lineUpgradeBase * trackMult * pow(1.75, Double(currentLevel - 1))
     }
 
+    /// Every route level past the first reaches more corners and buyers: +15 % demand in that district per level.
+    /// Without it a route stops paying as soon as it can carry more than the street buys.
+    public static func routeReach(level: Int) -> Double { level <= 1 ? 1 : 1 + 0.15 * Double(level - 1) }
+
     public static func routeCost(_ d: DistrictId, _ p: ProductId, currentLevel: Int) -> Double {
         product(p).routeCostBase * district(d).tier * pow(1.55, Double(currentLevel))
     }

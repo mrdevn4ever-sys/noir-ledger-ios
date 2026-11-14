@@ -212,6 +212,18 @@ private struct RouteRow: View {
                 }
                 Text(verbatim: t("route_price", t.money(Economy.price(state, district, product, mods))))
                     .font(.subheadline).monospacedDigit().foregroundStyle(Noir.inkSoft)
+                if level > 0 && level < Content.maxRouteLevel {
+                    let gain = Idle.routeGain(state, district, product, mods)
+                    Label {
+                        Text(verbatim: gain > 0.0005 ? t("route_gain", t.money(gain * 60)) : t("route_gain_line"))
+                    } icon: {
+                        Image(systemName: gain > 0.0005 ? "arrow.up.right" : "gearshape.2")
+                    }
+                    .font(.subheadline.weight(.semibold)).monospacedDigit()
+                    .foregroundStyle(gain > 0.0005 ? Noir.amber : Noir.inkSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("route.\(district.rawValue).\(product.rawValue).gain")
+                }
                 if level < Content.maxRouteLevel {
                     let free = state.campaign.tutorial != .done && level == 0
                     let cost = free ? Cost() : Cost(dirty: Content.routeCost(district, product, currentLevel: level))

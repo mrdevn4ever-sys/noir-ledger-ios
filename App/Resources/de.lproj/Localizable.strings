@@ -111,6 +111,8 @@
 "district_locked" = "Gesperrt";
 "routes_title" = "Routen";
 "route_flow" = "Absatz %1$@ von %2$@ Nachfrage pro min";
+"route_gain" = "Nächste Stufe: +%1$@/Min.";
+"route_gain_line" = "Bringt erst mehr, wenn die Linie mehr herstellt.";
 "route_price" = "Preis %1$@ pro Einheit";
 "route_open" = "Route eröffnen";
 "route_expand" = "Route ausbauen";
@@ -590,7 +592,7 @@
 "empire_tap_hint" = "Tippen beschleunigt die Linie";
 "empire_tap_full" = "Lager voll";
 "empire_tap_idle" = "Nichts zu verkaufen";
-"empire_bottleneck" = "Die Straße nimmt weniger %1$@ ab, als du herstellst. Mehr Routen bringen mehr Ertrag.";
+"empire_bottleneck" = "Die Straße nimmt weniger %1$@ ab, als du herstellst. Routen ausbauen oder Rivalen verdrängen bringt mehr Absatz.";
 "empire_hustle" = "+Tempo";
 "empire_line_income" = "≈ %1$@/Min.";
 "empire_next_milestone" = "Stufe %1$ld verdoppelt den Ertrag";

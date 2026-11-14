@@ -96,6 +96,25 @@ struct IdleTests {
         #expect(TS.error(s, .hustle(.cinder)) == .invalid)
     }
 
+    @Test("Every route level raises income while the line has goods to spare")
+    func routesAlwaysPay() {
+        var s = TS.rich(chapter: 2)
+        // A line that out-produces the street, as on the device report: route 6 already carries more than demand.
+        s.updateLine(.glimmer) { $0.capacityLevel = 10; $0.speedLevel = 10 }
+        s.updateDistrict(.cellars) { $0.routes[.glimmer] = 6 }
+        let m = Economy.mods(s)
+        var last = Idle.lineIncome(s, .glimmer, m)
+        for level in 7...Content.maxRouteLevel {
+            #expect(Idle.routeGain(s, .cellars, .glimmer, m) > 0, "route level \(level) must pay")
+            s.updateDistrict(.cellars) { $0.routes[.glimmer] = level }
+            let now = Idle.lineIncome(s, .glimmer, m)
+            #expect(now > last)
+            last = now
+        }
+        #expect(Idle.routeGain(s, .cellars, .glimmer, m) == 0, "maxed route")
+        #expect(Content.routeReach(level: 1) == 1 && Content.routeReach(level: 10) > 2.3)
+    }
+
     @Test("A tap pays half a second of the line's street income while it has goods")
     func hustlePays() {
         var s = TS.rich(chapter: 2)

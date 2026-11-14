@@ -199,7 +199,7 @@ public enum Economy {
         let ds = s.district(d)
         let def = Content.district(d)
         return Content.product(p).demandPerMin / 60 * (def.demandMod[p] ?? 0) * (0.5 + 0.5 * ds.control / 100)
-            * qualityDemand(s, p) * timed(s, .demand, district: d, product: p)
+            * qualityDemand(s, p) * Content.routeReach(level: ds.route(p)) * timed(s, .demand, district: d, product: p)
     }
 
     public static func salesActive(_ s: GameState, _ d: DistrictId) -> Bool {

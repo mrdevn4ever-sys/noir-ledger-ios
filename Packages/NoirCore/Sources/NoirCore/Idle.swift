@@ -182,6 +182,15 @@ public enum Idle {
         return revenue * share * lineMultiplier(s, p) * globalMultiplier(s)
     }
 
+    /// Extra street income per second the next route level in `d` would bring for `p` (0 when maxed or not owned).
+    public static func routeGain(_ s: GameState, _ d: DistrictId, _ p: ProductId, _ m: Mods) -> Double {
+        let level = s.district(d).route(p)
+        guard s.line(p).owned, level < Content.maxRouteLevel else { return 0 }
+        var next = s
+        next.updateDistrict(d) { $0.routes[p] = level + 1 }
+        return max(0, lineIncome(next, p, m) - lineIncome(s, p, m))
+    }
+
     /// Cash one tap brings in: half a second of the line's street income, while it has goods to sell.
     public static func hustleCash(_ s: GameState, _ p: ProductId, _ m: Mods) -> Double {
         guard s.line(p).owned, s.line(p).running, s.stock(p) > 0.05 else { return 0 }
