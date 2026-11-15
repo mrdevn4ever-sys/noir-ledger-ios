@@ -314,7 +314,8 @@ struct RoomScene: View {
         for i in 0..<count {
             let column = CGFloat(i % 4)
             let row = CGFloat(i / 4)
-            let x: CGFloat = w - 62 + column * 13 + (row.truncatingRemainder(dividingBy: 2) == 0 ? 0 : 4)
+            // Left of the pick-up badge in the corner, so the bundles stay visible.
+            let x: CGFloat = w - 178 + column * 13 + (row.truncatingRemainder(dividingBy: 2) == 0 ? 0 : 4)
             let bundle = CGRect(x: x, y: floor - 6 - row * 6, width: 12, height: 5.5)
             ctx.fill(Path(roundedRect: bundle, cornerRadius: 1), with: .color(Color(hex: 0xB9C58A)))
             ctx.stroke(Path(roundedRect: bundle, cornerRadius: 1), with: .color(Color(hex: 0x3D4A2A)), lineWidth: 0.7)
