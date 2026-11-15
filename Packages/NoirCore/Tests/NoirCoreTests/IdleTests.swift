@@ -119,6 +119,7 @@ struct IdleTests {
     func hustlePays() {
         var s = TS.rich(chapter: 2)
         s.inventory[.glimmer] = 50
+        s.updateLine(.glimmer) { $0.pile = 0 }
         let m = Economy.mods(s)
         let income = Idle.lineIncome(s, .glimmer, m)
         #expect(income > 0)
@@ -129,6 +130,25 @@ struct IdleTests {
         let dry = s.dirty
         s = TS.ok(s, .hustle(.glimmer))
         #expect(s.dirty == dry, "no goods, no cash; the tap still speeds up the line")
+    }
+
+    @Test("A share of every sale piles up in the room, capped, and one tap picks it up")
+    func pile() {
+        var s = TS.rich(chapter: 2)
+        s.updateLine(.glimmer) { $0.pile = 0 }
+        let earned = s.stats.dirtyEarned
+        Simulation.advance(&s, seconds: 60, offline: false)
+        let sold = s.stats.dirtyEarned - earned
+        #expect(sold > 0)
+        #expect(abs(s.line(.glimmer).pile - sold * Idle.pileShare) < 1e-6)
+        Simulation.advance(&s, seconds: 3 * 3600, offline: true, step: 2)
+        let full = s.line(.glimmer).pile
+        Simulation.advance(&s, seconds: 600, offline: true, step: 2)
+        #expect(abs(s.line(.glimmer).pile - full) < full * 0.05, "the pile stops growing at its cap")
+        let before = s.dirty
+        s = TS.ok(s, .hustle(.glimmer))
+        #expect(s.dirty - before >= full)
+        #expect(s.line(.glimmer).pile == 0)
     }
 
     @Test("Going to ground needs chapter 2 and enough earnings, then restarts with reputation")

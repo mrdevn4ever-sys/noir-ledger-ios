@@ -1,17 +1,32 @@
 import NoirCore
 import SwiftUI
+import UIKit
 
 // MARK: - Shared brand assets (shared-assets/ -> Assets.xcassets, see scripts/shared_assets.py)
 
 /// Asset-catalog names of the canonical cross-platform artwork. Branded game marks always come from here, never from
 /// SF Symbols; SF Symbols remain only for ordinary system chrome (navigation, settings, chevrons, locks).
 enum Glyph {
+    /// The product mark: a delivered drug icon (`DrugWeed`, `DrugCrystal`, `DrugPills`, `DrugCoke`) when the asset
+    /// catalog has one, otherwise the original abstract seal.
     static func product(_ p: ProductId) -> String {
+        let delivered = "Drug" + drugName(p)
+        // UIImage(named:) is cached by the system and safe off the main actor.
+        if UIImage(named: delivered) != nil { return delivered }
         switch p {
-        case .glimmer: "ProductGlimmer"
-        case .cinder: "ProductCinder"
-        case .velvet: "ProductVelvet"
-        case .halo: "ProductHalo"
+        case .glimmer: return "ProductGlimmer"
+        case .cinder: return "ProductCinder"
+        case .velvet: return "ProductVelvet"
+        case .halo: return "ProductHalo"
+        }
+    }
+
+    private static func drugName(_ p: ProductId) -> String {
+        switch p {
+        case .glimmer: "Weed"
+        case .cinder: "Crystal"
+        case .velvet: "Pills"
+        case .halo: "Coke"
         }
     }
 

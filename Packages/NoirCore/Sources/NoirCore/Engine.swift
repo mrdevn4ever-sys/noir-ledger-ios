@@ -441,9 +441,13 @@ public enum Engine {
             let l = s.line(p)
             guard l.owned, l.running else { return err(state, .invalid) }
             let canWork = l.status != .storageFull && l.status != .noCash
-            let cash = Idle.hustleCash(s, p, m)
+            // A tap pays a moment of the line's income and picks up whatever cash piled up in the room.
+            let cash = Idle.hustleCash(s, p, m) + l.pile
             if !canWork && cash <= 0 { return err(state, .invalid) }
-            if canWork { s.updateLine(p) { $0.progress += Idle.hustleSeconds } }
+            s.updateLine(p) { l in
+                if canWork { l.progress += Idle.hustleSeconds }
+                l.pile = 0
+            }
             if cash > 0 {
                 s.dirty += cash
                 s.stats.dirtyEarned += cash

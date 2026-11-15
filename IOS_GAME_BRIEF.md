@@ -17,7 +17,11 @@
 > 5. **Verteilung:** Signieren und Hochladen zu TestFlight ist ab Version 2.0 erlaubt und läuft ausschließlich über
 >    `.github/workflows/testflight.yml` mit Zugangsdaten aus GitHub-Secrets. Keine Schlüssel, Zertifikate oder Profile
 >    im Repository. Anleitung: `docs/TESTFLIGHT.md`.
-> 6. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
+> 6. **Ware und Ton (Version 2.1):** Die erfundenen Waren sind gestrichen. Das Spiel zeigt echte Drogen beim Namen
+>    (Gras, Crystal, Pillen, Koks) mit schwarzem Humor, als Satire. Weiterhin ausgeschlossen: Herstellungsanleitungen,
+>    Dosierungen, Bezugsquellen, Darstellung oder Bewerbung von Konsum, Minderjährige. Altersfreigabe 18+. Das Risiko
+>    einer Ablehnung durch Apple und eingeschränkter Werbung ist dem Eigentümer bekannt.
+> 7. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
 >    Freiminuten). Stand dieses Beschlusses: Version 2.0 ist geschrieben, aber noch nicht auf einem Runner gebaut.
 
 ## Produktentscheidung

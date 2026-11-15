@@ -48,6 +48,8 @@ public struct LineState: Codable, Sendable, Equatable {
     public var qualityLevel = 1
     /// Levels bought after all three tracks reached their cap (see `Idle`).
     public var masteryLevel = 0
+    /// Cash lying around in the room, waiting to be picked up with a tap (see `Idle.pileShare`).
+    public var pile = 0.0
     public var progress = 0.0
     public var status: LineStatus = .idle
 
@@ -74,6 +76,7 @@ extension LineState {
         speedLevel = c.value(.speedLevel, 1)
         qualityLevel = c.value(.qualityLevel, 1)
         masteryLevel = c.value(.masteryLevel, 0)
+        pile = c.value(.pile, 0.0)
         progress = c.value(.progress, 0.0)
         status = c.value(.status, LineStatus.idle)
     }

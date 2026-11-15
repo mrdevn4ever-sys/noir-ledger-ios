@@ -109,7 +109,8 @@ private struct StreetFloor: View {
         let owned = FrontId.allCases.filter { state.front($0).owned }.count
         let multiplier = Idle.globalMultiplier(state)
         ZStack(alignment: .bottomLeading) {
-            StreetScene(fronts: owned, selling: selling, danger: state.investigation != nil)
+            StreetScene(fronts: owned, selling: selling, danger: state.investigation != nil,
+                        police: state.investigation != nil ? 2 : (state.heat >= Content.heatWarning ? 1 : 0))
                 .frame(height: 132)
             VStack(alignment: .leading, spacing: Noir.s1) {
                 Text(verbatim: t("empire_income")).font(.caption).foregroundStyle(Noir.inkSoft)
@@ -238,7 +239,8 @@ private struct LineFloor: View {
         VStack(spacing: 0) {
             FloorEdge()
             ZStack(alignment: .topLeading) {
-                RoomScene(product: product, tier: min(3, reached), workers: 1 + min(3, reached), running: working)
+                RoomScene(product: product, tier: min(3, reached), workers: 1 + min(3, reached), running: working,
+                          pile: pileFraction(line))
                     .frame(height: 118)
                 // A shade under the title, so it stays legible on any delivered room plate.
                 LinearGradient(colors: [Noir.ground.opacity(0.8), Noir.ground.opacity(0)], startPoint: .top, endPoint: .bottom)
@@ -246,6 +248,17 @@ private struct LineFloor: View {
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
                 header(line: line, stage: stage)
+                if line.pile >= 1 {
+                    Label { Text(verbatim: "+" + t.money(line.pile)).monospacedDigit() } icon: { Image(systemName: "hand.tap.fill") }
+                        .font(.caption.weight(.heavy))
+                        .padding(.horizontal, Noir.s2).padding(.vertical, 3)
+                        .foregroundStyle(Noir.onAmber)
+                        .background(Noir.amberFill, in: Capsule())
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                        .padding(Noir.s2)
+                        .accessibilityLabel(Text(verbatim: t("empire_pile", t.money(line.pile))))
+                        .accessibilityIdentifier("line.\(product.rawValue).pile")
+                }
                 FloaterLayer(floaters: floaters)
             }
             .frame(height: 118)
@@ -357,6 +370,12 @@ private struct LineFloor: View {
 
     /// What this line brings in per second at the current routes, stock aside.
     private var income: Double { Idle.lineIncome(state, product, mods) }
+
+    /// How full the room's cash pile is, against its cap at the current income.
+    private func pileFraction(_ line: LineState) -> Double {
+        let cap = income * Idle.pileShare * Idle.pileCapSeconds
+        return cap > 0 ? min(1, line.pile / cap) : (line.pile > 0 ? 1 : 0)
+    }
 
     private func tap(at location: CGPoint) {
         let before = store.state.dirty

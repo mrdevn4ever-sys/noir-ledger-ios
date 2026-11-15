@@ -122,6 +122,7 @@ public struct SaveCodec: Sendable {
             l.speedLevel = clampInt(l.speedLevel, 1, Content.maxLineLevel)
             l.qualityLevel = clampInt(l.qualityLevel, 1, Content.maxLineLevel)
             l.masteryLevel = clampInt(l.masteryLevel, 0, Idle.maxMastery)
+            l.pile = fix(l.pile)
             l.progress = fix(l.progress, -1000, 1000)
             s.lines[p] = l
             s.inventory[p] = fix(s.inventory[p] ?? 0)

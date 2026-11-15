@@ -153,6 +153,11 @@ public enum Idle {
     /// Seconds of the line's street income one tap pays out at once.
     public static let hustleIncomeSeconds = 0.5
 
+    /// On top of every sale, this share of the cash lands as a pile in the room; a tap picks it up.
+    public static let pileShare = 0.25
+    /// A room holds at most this many seconds' worth of piled cash, so coming back is worth a round of taps.
+    public static let pileCapSeconds = 600.0
+
     // MARK: Line income and bottleneck
 
     /// Units per second the open streets would take of this product (route capacity and demand, stock aside).

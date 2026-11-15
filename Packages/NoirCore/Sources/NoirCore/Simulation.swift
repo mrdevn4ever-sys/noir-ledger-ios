@@ -88,6 +88,7 @@ public enum Simulation {
         var exposure = 0.0
         var revenueTotal = 0.0
         var baseRevenueTotal = 0.0
+        var cashByLine: [ProductId: Double] = [:]
         var desired: [(DistrictId, ProductId, Double)] = []
         var desiredByProduct: [ProductId: Double] = [:]
         for d in DistrictId.allCases {
@@ -109,7 +110,9 @@ public enum Simulation {
             // `revenue` is the base street economy and drives exposure; the payout multipliers only raise the cash.
             let revenue = sold * Economy.price(s, d, p, m)
             baseRevenueTotal += revenue
-            revenueTotal += revenue * Idle.lineMultiplier(s, p) * globalMult
+            let cash = revenue * Idle.lineMultiplier(s, p) * globalMult
+            revenueTotal += cash
+            cashByLine[p, default: 0] += cash
             soldInDistrict[d, default: 0] += sold
             exposure += revenue / dt * Content.product(p).risk * Content.district(d).police
                 * m.salesExposure * Economy.timed(s, .exposure, district: d, product: p)
@@ -124,6 +127,13 @@ public enum Simulation {
         }
         s.dirty += revenueTotal
         s.stats.dirtyEarned += revenueTotal
+        // A bonus share of every sale piles up in the room until the player picks it up.
+        for (p, cash) in cashByLine where cash > 0 {
+            let cap = cash / dt * Idle.pileShare * Idle.pileCapSeconds
+            s.updateLine(p) { l in
+                if l.pile < cap { l.pile = min(cap, l.pile + cash * Idle.pileShare) }
+            }
+        }
         s.meta.lifetimeDirty += revenueTotal
         if baseRevenueTotal > 0 { s.meta.payoutRatio = max(1, revenueTotal / baseRevenueTotal) }
         let payoutRatio = Idle.payoutRatio(s)

@@ -48,12 +48,15 @@ enum SceneTint {
     static let wallDeep = Color(hex: 0x0C0A08)
     static let figure = Color(hex: 0x090807)
 
+    static let leaf = Color(hex: 0x86B86B)
+
+    /// One light per line: green for weed, ice for crystal, plum for pills, paper white for coke.
     static func product(_ p: ProductId) -> Color {
         switch p {
-        case .glimmer: Noir.amber
-        case .cinder: ember
+        case .glimmer: leaf
+        case .cinder: ice
         case .velvet: plum
-        case .halo: ice
+        case .halo: Noir.paper
         }
     }
 }
@@ -88,6 +91,8 @@ struct RoomScene: View {
     let tier: Int
     let workers: Int
     let running: Bool
+    /// 0–1: how much cash is lying around waiting to be picked up.
+    var pile: Double = 0
     @Environment(\.noirReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -104,6 +109,7 @@ struct RoomScene: View {
                 }
                 drawBelt(&ctx, size, time)
                 drawCrew(&ctx, size, time, sprite: sprite)
+                drawPile(&ctx, size)
                 if !running {
                     ctx.fill(Path(CGRect(origin: .zero, size: size)), with: .color(SceneTint.wallDeep.opacity(0.55)))
                 }
@@ -299,6 +305,23 @@ struct RoomScene: View {
         }
     }
 
+    /// Bundles of banknotes stacking up on the floor at the right, up to twelve.
+    private func drawPile(_ ctx: inout GraphicsContext, _ size: CGSize) {
+        let count = Int((max(0, min(1, pile)) * 12).rounded(.up))
+        guard count > 0 else { return }
+        let w = size.width, h = size.height
+        let floor = h * 0.82
+        for i in 0..<count {
+            let column = CGFloat(i % 4)
+            let row = CGFloat(i / 4)
+            let x: CGFloat = w - 62 + column * 13 + (row.truncatingRemainder(dividingBy: 2) == 0 ? 0 : 4)
+            let bundle = CGRect(x: x, y: floor - 6 - row * 6, width: 12, height: 5.5)
+            ctx.fill(Path(roundedRect: bundle, cornerRadius: 1), with: .color(Color(hex: 0xB9C58A)))
+            ctx.stroke(Path(roundedRect: bundle, cornerRadius: 1), with: .color(Color(hex: 0x3D4A2A)), lineWidth: 0.7)
+            ctx.fill(Path(CGRect(x: bundle.midX - 1.5, y: bundle.minY, width: 3, height: bundle.height)), with: .color(Noir.paper))
+        }
+    }
+
     private func drawCrew(_ ctx: inout GraphicsContext, _ size: CGSize, _ time: Double, sprite: Image?) {
         let w = size.width, h = size.height
         let floor = h * 0.82
@@ -365,6 +388,8 @@ struct StreetScene: View {
     let fronts: Int
     let selling: Bool
     let danger: Bool
+    /// The police on the street: 0 nobody, 1 a patrol car passing (watched), 2 parked with its light on (case open).
+    var police: Int = 0
     @Environment(\.noirReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -458,6 +483,26 @@ struct StreetScene: View {
             // Blue-less noir: a slow red sweep when the law is close.
             let sweep = 0.5 + 0.5 * sin(time * 4)
             ctx.fill(Path(CGRect(x: 0, y: 0, width: w, height: h)), with: .color(Noir.danger.opacity(0.10 * sweep)))
+        }
+        if police > 0 {
+            // The law: a patrol car rolling the other way, or parked across the street with its light turning.
+            let lane = horizon + (h - horizon) * 0.30
+            let span = w + 140
+            let px: CGFloat = police == 2 ? w * 0.62 : w + 50 - CGFloat((time * 30).truncatingRemainder(dividingBy: Double(span)))
+            var car = Path()
+            car.addRoundedRect(in: CGRect(x: px, y: lane - 9, width: 38, height: 9), cornerSize: CGSize(width: 3, height: 3))
+            car.addRoundedRect(in: CGRect(x: px + 9, y: lane - 16, width: 19, height: 8), cornerSize: CGSize(width: 3, height: 3))
+            ctx.fill(car, with: .color(Color(hex: 0x10141A)))
+            ctx.stroke(car, with: .color(Noir.ink.opacity(0.55)), lineWidth: 0.8)
+            ctx.fill(Path(CGRect(x: px + 2, y: lane - 5.5, width: 34, height: 1.5)), with: .color(Noir.ink.opacity(0.7)))
+            for wheel in [px + 5, px + 27] {
+                ctx.fill(Path(ellipseIn: CGRect(x: wheel, y: lane - 3, width: 6, height: 6)), with: .color(SceneTint.figure))
+            }
+            let blink = 0.35 + 0.65 * abs(sin(time * (police == 2 ? 6 : 3)))
+            let lamp = CGPoint(x: px + 18.5, y: lane - 18)
+            ctx.fill(Path(ellipseIn: CGRect(x: lamp.x - 22, y: lamp.y - 22, width: 44, height: 44)),
+                     with: .radialGradient(Gradient(colors: [Noir.danger.opacity(0.55 * blink), .clear]), center: lamp, startRadius: 1, endRadius: 22))
+            ctx.fill(Path(ellipseIn: CGRect(x: lamp.x - 2.5, y: lamp.y - 2, width: 5, height: 4)), with: .color(Noir.danger.opacity(0.5 + 0.5 * blink)))
         }
         guard selling else { return }
         // The van.

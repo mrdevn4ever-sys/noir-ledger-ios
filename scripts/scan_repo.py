@@ -3,7 +3,7 @@
 
 Scans shipped source and resources (App/, Packages/NoirCore/Sources/, AppTests/, UITests/, project.yml, scripts/) for:
   - unfinished-work markers (TODO, FIXME, XXX, placeholder, coming soon, lorem ipsum, "tbd");
-  - real drug terminology (English and German);
+  - (the former ban on real drug names was lifted by the owner's decision for version 2.1; see IOS_GAME_BRIEF.md)
   - network, analytics or tracking APIs anywhere, and store or advertising APIs outside App/Monetization
     (the only place allowed to talk to the App Store and to the rewarded-video SDK);
   - accidental secrets (private keys, tokens, Apple credentials).
@@ -62,7 +62,7 @@ def main() -> int:
         for n, line in enumerate(f.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
             if MONETIZATION.search(line) and not rel.startswith(MONETIZATION_HOME):
                 hits.append(f"{rel}:{n}: [monetization outside App/Monetization] {line.strip()[:140]}")
-            for rule, rx in (("unfinished", UNFINISHED), ("drugs", DRUGS), ("network", NETWORK), ("urls", URLS), ("secrets", SECRETS)):
+            for rule, rx in (("unfinished", UNFINISHED), ("network", NETWORK), ("urls", URLS), ("secrets", SECRETS)):
                 if rx.search(line) and not allowed(rel, rule):
                     if rule == "urls" and ("apple.com/DTDs" in line or "www.w3.org/2000/svg" in line):
                         continue
