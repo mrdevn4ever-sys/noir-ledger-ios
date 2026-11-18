@@ -47,15 +47,15 @@ class NoirUITestCase: XCTestCase {
         var bottom = app.frame.maxY
         let tabBar = app.tabBars.firstMatch
         if tabBar.exists { bottom = min(bottom, tabBar.frame.minY) }
-        let coach = element("coach.toggle")
-        if coach.exists && coach.frame.height > 0 { bottom = min(bottom, coach.frame.minY - 8) }
+        let notice = element("notice")
+        if notice.exists && notice.frame.height > 0 { bottom = min(bottom, notice.frame.minY - 8) }
         return bottom - 8
     }
 
     /// The highest y below the pinned header (accounts, Heat gauge and any alert strip under it).
     private func visibleTop() -> CGFloat {
         var top = app.frame.minY + 120
-        for id in ["heat.gauge", "hud.investigation", "hud.event"] {
+        for id in ["top.heat"] {
             let e = element(id)
             if e.exists && e.frame.height > 0 { top = max(top, e.frame.maxY + 8) }
         }

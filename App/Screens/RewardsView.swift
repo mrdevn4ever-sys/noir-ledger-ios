@@ -1,57 +1,29 @@
 import NoirCore
 import SwiftUI
 
-/// The daily reward and the achievements with their favors.
+/// The daily envelope and the board of missions.
 struct RewardsView: View {
-    @Environment(GameStore.self) private var store
-    @Environment(Router.self) private var router
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
         let s = store.state
-        ScrollView {
-            VStack(alignment: .leading, spacing: Noir.s4) {
-                DailyPanel(state: s)
-                SectionHeading(title: t("ach_title"), detail: t("ach_detail", s.meta.claimed.count, AchievementId.allCases.count))
-                ForEach(sorted(s), id: \.self) { a in
-                    AchievementRow(achievement: a, state: s)
-                }
-            }
-            .padding(Noir.s4)
-            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.rewards", title: t("rewards_title")) }
+        SheetFrame("rewards_title", identifier: "screen.rewards") {
+            DailyPanel(state: s)
+            MissionBoard(state: s)
+            Text(verbatim: t("ty_missions_done", s.claimedMissions.count, TycoonContent.missions.count))
+                .font(.footnote).foregroundStyle(Noir.inkSoft)
         }
-        .background(Noir.ground)
-        .navigationTitle(Text(verbatim: t("rewards_title")))
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(Noir.ground, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button { router.showRewards = false } label: { Text(verbatim: t("btn_done")) }
-                    .accessibilityIdentifier("rewards.done")
-            }
-        }
-    }
-
-    /// Rewards waiting first, then open ones, collected ones last.
-    private func sorted(_ s: GameState) -> [AchievementId] {
-        func rank(_ a: AchievementId) -> Int {
-            if Idle.achievementClaimed(s, a) { return 2 }
-            return Idle.achievementUnlocked(s, a) ? 0 : 1
-        }
-        return AchievementId.allCases.enumerated().sorted { l, r in
-            (rank(l.element), l.offset) < (rank(r.element), r.offset)
-        }.map(\.element)
     }
 }
 
 private struct DailyPanel: View {
-    let state: GameState
-    @Environment(GameStore.self) private var store
+    let state: TycoonState
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
-        let available = Idle.dailyAvailable(state, day: store.today)
+        let available = store.today > state.meta.dailyLastDay
         let position = state.meta.dailyClaims % Idle.dailyCycle.count
         Panel(.paper) {
             Text(verbatim: t("daily_title")).font(.headline).accessibilityAddTraits(.isHeader)
@@ -111,46 +83,3 @@ private struct DailyPanel: View {
     }
 }
 
-private struct AchievementRow: View {
-    let achievement: AchievementId
-    let state: GameState
-    @Environment(GameStore.self) private var store
-    @Environment(\.l10n) private var t
-
-    var body: some View {
-        let unlocked = Idle.achievementUnlocked(state, achievement)
-        let claimed = Idle.achievementClaimed(state, achievement)
-        let target = Idle.achievementTarget(achievement)
-        let current = min(target, Idle.achievementCurrent(state, achievement))
-        Panel(unlocked && !claimed ? .leather : .anthracite) {
-            HStack(spacing: Noir.s3) {
-                Image(systemName: claimed ? "checkmark.seal.fill" : (unlocked ? "seal.fill" : "seal"))
-                    .font(.title3).foregroundStyle(claimed ? Noir.inkMuted : Noir.brass).frame(width: 30).accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(verbatim: t(Labels.achievement(achievement))).font(.subheadline.weight(.semibold))
-                        .foregroundStyle(claimed ? Noir.inkSoft : Noir.ink)
-                    Text(verbatim: Labels.achievementGoal(achievement, t)).font(.caption).foregroundStyle(Noir.inkSoft)
-                        .fixedSize(horizontal: false, vertical: true)
-                    if !unlocked {
-                        Meter(fraction: target > 0 ? current / target : 0, tint: Noir.brass, height: 4)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                if claimed {
-                    StatusChip(text: t("ach_claimed"), symbol: "checkmark")
-                } else {
-                    Button {
-                        store.dispatch(.claimAchievement(achievement))
-                    } label: {
-                        Label { Text(verbatim: "+" + t.decimal(Double(Idle.achievementReward(achievement)), digits: 0)).monospacedDigit() } icon: {
-                            Image(systemName: "seal.fill")
-                        }
-                    }
-                    .noirButton(unlocked ? .primary : .secondary, fullWidth: false)
-                    .disabled(!unlocked)
-                    .accessibilityIdentifier("rewards.ach.\(achievement.rawValue)")
-                }
-            }
-        }
-    }
-}

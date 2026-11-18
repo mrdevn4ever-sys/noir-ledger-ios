@@ -1,12 +1,11 @@
 import NoirCore
 import SwiftUI
 
-/// How many steps the one-button line upgrade buys at once.
+/// How many units the buy button takes at once (0 = as many as the cash allows).
 enum BuyMode: Int, CaseIterable, Identifiable, Sendable {
-    case one = 1, ten = 10, twentyFive = 25, max = 0
+    case one = 1, ten = 10, hundred = 100, max = 0
 
     var id: Int { rawValue }
-    var limit: Int { self == .max ? 250 : rawValue }
 }
 
 /// A number that rolls to its new value instead of jumping.
@@ -67,7 +66,7 @@ private struct FloaterView: View {
 
 /// The banner for a milestone, a finished chapter or a new start, with a burst of gold.
 struct CelebrationBanner: View {
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
     @Environment(\.noirReduceMotion) private var reduceMotion
 
@@ -109,17 +108,19 @@ struct CelebrationBanner: View {
 
     private func title(_ kind: Celebration.Kind) -> String {
         switch kind {
-        case .milestone: t("celebrate_milestone_t")
-        case .chapter: t("celebrate_chapter_t")
-        case .prestige: t("celebrate_prestige_t")
+        case .milestone: t("ty_cel_milestone_t")
+        case .opened: t("ty_cel_opened_t")
+        case .manager: t("ty_cel_manager_t")
+        case .newCity: t("ty_cel_city_t")
         }
     }
 
     private func detail(_ kind: Celebration.Kind) -> String {
         switch kind {
-        case .milestone(let p, let stage): t("celebrate_milestone_b", t(Labels.product(p)), stage)
-        case .chapter(let c): t("celebrate_chapter_b", t(Labels.chapterTitle(c)))
-        case .prestige(let gain): t("celebrate_prestige_b", gain)
+        case .milestone(let f, let count): t("ty_cel_milestone_b", t(Labels.product(f.product)), count)
+        case .opened(let f): t("ty_cel_opened_b", t(Labels.product(f.product)))
+        case .manager(let f): t("ty_cel_manager_b", Content.crewDef(TycoonContent.floor(f).managerId)?.name ?? "", t(Labels.product(f.product)))
+        case .newCity(let gain): t("ty_cel_city_b", gain)
         }
     }
 }

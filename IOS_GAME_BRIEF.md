@@ -21,7 +21,13 @@
 >    (Gras, Crystal, Pillen, Koks) mit schwarzem Humor, als Satire. Weiterhin ausgeschlossen: Herstellungsanleitungen,
 >    Dosierungen, Bezugsquellen, Darstellung oder Bewerbung von Konsum, Minderjährige. Altersfreigabe 18+. Das Risiko
 >    einer Ablehnung durch Apple und eingeschränkter Werbung ist dem Eigentümer bekannt.
-> 7. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
+> 7. **Version 3.0, klassischer Idle-Tycoon:** Ein Bildschirm, eine Hauptwährung (Bargeld), vier Etagen (Gras,
+>    Pillen, Crystal, Koks) mit Manager je Etage, Meilensteinen, Deals, Polizei und Koffern auf der Straße, Aufträgen
+>    und Stadtwechsel als Prestige (`Packages/NoirCore/Sources/NoirCore/Tycoon.swift`). Die Kampagne der Versionen 1–2
+>    (Kapitel, Bezirke, Frontbetriebe, Crew-Rollen, Finaloperation) ist aus der App entfernt; ihr Code bleibt im
+>    Paket mit seinen Tests, wird aber nicht mehr gespielt. Gefallen und Käufe aus 2.x werden beim ersten Start
+>    übernommen.
+> 8. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
 >    Freiminuten). Stand dieses Beschlusses: Version 2.0 ist geschrieben, aber noch nicht auf einem Runner gebaut.
 
 ## Produktentscheidung

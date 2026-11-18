@@ -41,7 +41,7 @@ final class AdService {
         #if NOIR_QA
         if ProcessInfo.processInfo.arguments.contains("-qa-ads") { return AdService(provider: InstantAdProvider()) }
         // Automated runs never start the advertising SDK: its consent form is a web view that covers the screen.
-        if Router.isAutomatedRun { return AdService(provider: nil) }
+        if QAFlags.isAutomatedRun { return AdService(provider: nil) }
         #endif
         #if canImport(GoogleMobileAds)
         return AdService(provider: AdMobProvider())

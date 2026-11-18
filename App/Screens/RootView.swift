@@ -1,12 +1,11 @@
 import NoirCore
 import SwiftUI
 
-/// Chooses between the save-version guard, the prologue and the five-section game, and hosts the overlays
-/// (decision, raid, return summary, epilogue, save recovery) so they appear wherever the player is.
+/// Chooses between the save-version guard and the game, and hosts what can interrupt play: the return summary, the
+/// raid, the save-recovery note and the celebration banner.
 struct RootView: View {
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(AppSettings.self) private var settings
-    @Environment(Router.self) private var router
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
     @Environment(StoreService.self) private var shop
     @Environment(AdService.self) private var ads
@@ -40,12 +39,62 @@ struct RootView: View {
         case .futureSave(let version):
             FutureSaveView(version: version)
         case .ready:
-            if store.state.campaign.prologueDone {
-                GameTabs()
-            } else {
-                PrologueView()
-            }
+            GameRoot()
         }
+    }
+}
+
+/// The interruptions, one at a time: the return summary first, then a raid.
+private enum Interruption: String, Identifiable {
+    case offline, raid
+    var id: String { rawValue }
+}
+
+private struct GameRoot: View {
+    @Environment(TycoonStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    private var interruption: Binding<Interruption?> {
+        Binding(
+            get: {
+                if store.offline != nil { return .offline }
+                if store.state.lastRaidLoss != nil { return .raid }
+                return nil
+            },
+            set: { newValue in
+                guard newValue == nil else { return }
+                if store.offline != nil {
+                    store.dispatch(.collectOffline(doubled: false))
+                    store.offline = nil
+                } else if store.state.lastRaidLoss != nil {
+                    store.dispatch(.ackRaid)
+                }
+            }
+        )
+    }
+
+    private var restoredAlert: Binding<Bool> {
+        Binding(get: { store.restoredFromBackup }, set: { store.restoredFromBackup = $0 })
+    }
+
+    var body: some View {
+        TycoonView()
+            .sheet(item: interruption) { kind in
+                Group {
+                    switch kind {
+                    case .offline:
+                        if let report = store.offline { OfflineSheet(report: report) }
+                    case .raid:
+                        RaidSheet(loss: store.state.lastRaidLoss ?? 0)
+                    }
+                }
+                .environment(\.l10n, t)
+            }
+            .alert(Text(verbatim: t("save_restored_title")), isPresented: restoredAlert) {
+                Button(role: .cancel) {} label: { Text(verbatim: t("btn_continue")) }
+            } message: {
+                Text(verbatim: t("save_restored"))
+            }
     }
 }
 
@@ -63,143 +112,10 @@ private struct LoadingView: View {
     }
 }
 
-/// The sheet the root currently shows. One at a time, in priority order.
-private enum RootSheet: String, Identifiable {
-    case offline, raid, event
-    var id: String { rawValue }
-}
-
-private struct GameTabs: View {
-    @Environment(GameStore.self) private var store
-    @Environment(Router.self) private var router
-    @Environment(\.l10n) private var t
-
-    private var activeSheet: Binding<RootSheet?> {
-        Binding(
-            get: {
-                if store.offlineReport != nil { return .offline }
-                if store.state.raidUnseen && store.state.lastRaid != nil { return .raid }
-                if router.eventOpen && store.state.pendingEvent != nil { return .event }
-                return nil
-            },
-            set: { newValue in
-                guard newValue == nil else { return }
-                if store.offlineReport != nil {
-                    store.offlineReport = nil
-                } else if store.state.raidUnseen {
-                    store.dispatch(.ackRaid)
-                } else {
-                    router.eventOpen = false
-                }
-            }
-        )
-    }
-
-    private var epilogueOpen: Binding<Bool> {
-        Binding(
-            get: { store.state.campaign.won && !store.state.campaign.epilogueSeen },
-            set: { open in if !open && store.state.campaign.won { store.dispatch(.markEpilogueSeen) } }
-        )
-    }
-
-    private var restoredAlert: Binding<Bool> {
-        Binding(get: { store.restoredFromBackup }, set: { store.restoredFromBackup = $0 })
-    }
-
-    var body: some View {
-        @Bindable var router = router
-        TabView(selection: $router.tab) {
-            NavigationStack(path: $router.ledgerPath) {
-                LedgerView().navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { tabLabel(.ledger) }
-            .tag(AppTab.ledger)
-            .badge(store.state.pendingEvent != nil ? 1 : 0)
-
-            NavigationStack(path: $router.opsPath) {
-                EmpireView().navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { tabLabel(.ops) }
-            .tag(AppTab.ops)
-
-            NavigationStack(path: $router.cityPath) {
-                CityView().navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { tabLabel(.city) }
-            .tag(AppTab.city)
-
-            NavigationStack {
-                MoneyView()
-            }
-            .tabItem { tabLabel(.money) }
-            .tag(AppTab.money)
-
-            NavigationStack(path: $router.networkPath) {
-                NetworkView().navigationDestination(for: Route.self, destination: destination)
-            }
-            .tabItem { tabLabel(.network) }
-            .tag(AppTab.network)
-        }
-        .toolbarBackground(Noir.surface, for: .tabBar)
-        .toolbarBackground(.visible, for: .tabBar)
-        .sheet(item: activeSheet) { sheet in
-            Group {
-                switch sheet {
-                case .offline:
-                    if let report = store.offlineReport { OfflineSheet(report: report) }
-                case .raid:
-                    if let raid = store.state.lastRaid { RaidSheet(report: raid) }
-                case .event:
-                    EventSheet()
-                }
-            }
-            .environment(\.l10n, t)
-        }
-        .fullScreenCover(isPresented: epilogueOpen) {
-            NavigationStack {
-                EpilogueView(isCover: true)
-            }
-            .environment(\.l10n, t)
-        }
-        .sheet(isPresented: $router.showSettings) {
-            NavigationStack { SettingsView() }
-                .environment(\.l10n, t)
-        }
-        .sheet(isPresented: $router.showShop) {
-            NavigationStack { ShopView() }
-                .environment(\.l10n, t)
-        }
-        .sheet(isPresented: $router.showRewards) {
-            NavigationStack { RewardsView() }
-                .environment(\.l10n, t)
-        }
-        .alert(Text(verbatim: t("save_restored_title")), isPresented: restoredAlert) {
-            Button(role: .cancel) {} label: { Text(verbatim: t("btn_continue")) }
-        } message: {
-            Text(verbatim: t("save_restored"))
-        }
-    }
-
-    private func tabLabel(_ tab: AppTab) -> some View {
-        Label { Text(verbatim: t(tab.titleKey)) } icon: { Image(systemName: tab.symbol) }
-    }
-
-    @ViewBuilder
-    private func destination(_ route: Route) -> some View {
-        switch route {
-        case .district(let d): DistrictView(district: d)
-        case .finalOp: FinalOpView()
-        case .legacy: LegacyView()
-        case .epilogue: EpilogueView(isCover: false)
-        case .workshop: OperationsView()
-        }
-    }
-}
-
 /// Shown when the save on disk was written by a newer version: it is left untouched unless the player starts over.
 struct FutureSaveView: View {
     let version: Int
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
     @State private var confirm = false
 

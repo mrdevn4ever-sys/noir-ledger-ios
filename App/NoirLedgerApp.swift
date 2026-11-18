@@ -3,9 +3,8 @@ import SwiftUI
 
 @main
 struct NoirLedgerApp: App {
-    @State private var store: GameStore
+    @State private var store: TycoonStore
     @State private var settings: AppSettings
-    @State private var router = Router()
     @State private var shop: StoreService
     @State private var ads: AdService
     private let sound: SoundEngine
@@ -15,7 +14,7 @@ struct NoirLedgerApp: App {
     init() {
         let directory = (try? SaveStore.defaultDirectory()) ?? FileManager.default.temporaryDirectory
         let settings = AppSettings()
-        let store = GameStore(saveStore: SaveStore(directory: directory))
+        let store = TycoonStore(saveStore: TycoonSaveStore(directory: directory), legacyStore: SaveStore(directory: directory))
         let sound = SoundEngine()
         let shop = StoreService()
         #if NOIR_QA
@@ -43,7 +42,6 @@ struct NoirLedgerApp: App {
             RootView()
                 .environment(store)
                 .environment(settings)
-                .environment(router)
                 .environment(shop)
                 .environment(ads)
                 .preferredColorScheme(.dark)
@@ -59,7 +57,7 @@ struct NoirLedgerApp: App {
             case .background:
                 store.enterBackground()
                 sound.pause()
-                if store.phase == .ready, !Router.isAutomatedRun {
+                if store.phase == .ready, !QAFlags.isAutomatedRun {
                     notifier.schedule(state: store.state, today: store.today, enabled: settings.notifications, t: settings.l10n)
                 }
             default:

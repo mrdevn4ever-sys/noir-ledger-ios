@@ -3,9 +3,8 @@ import SwiftUI
 
 /// Native grouped settings: language, motion, haptics, the save, reset and the credits.
 struct SettingsView: View {
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(AppSettings.self) private var settings
-    @Environment(Router.self) private var router
     @Environment(StoreService.self) private var shop
     @Environment(AdService.self) private var ads
     @Environment(\.dismiss) private var dismiss
@@ -131,7 +130,6 @@ struct SettingsView: View {
         .alert(Text(verbatim: t("reset_confirm_title")), isPresented: $confirmReset) {
             Button(role: .destructive) {
                 store.resetEverything()
-                router.resetNavigation()
                 dismiss()
             } label: {
                 Text(verbatim: t("reset_confirm_btn"))

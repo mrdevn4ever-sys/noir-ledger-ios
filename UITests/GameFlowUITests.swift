@@ -1,280 +1,167 @@
 import XCTest
 
 /// Functional flows on a real simulator, driven through the player UI (taps), with the Debug-only accelerator only
-/// shortening wall-clock waits or preparing a chapter.
+/// preparing a situation or shortening waits.
 final class GameFlowUITests: NoirUITestCase {
 
-    func testFreshInstallPrologueAndSevenStepBriefing() {
-        launch(["-qa-reset", "-qa-seed", "7", "-qa-timescale", "30"])
-        wait("screen.prologue")
-        shot("en_01_prologue_funeral")
-        element("prologue.next").tap()
-        shot("en_02_prologue_ledger")
-        element("prologue.next").tap()
-        XCTAssertFalse(element("prologue.next").isEnabled, "the choice is required")
-        element("prologue.choice.CASH_BOX").tap()
-        shot("en_03_prologue_choice")
-        element("prologue.next").tap()
-        shot("en_04_prologue_cellar")
-        element("prologue.open").tap()
+    func testFirstMinutesTapBuyOpenHire() {
+        launch(["-qa-reset", "-qa-seed", "7", "-qa-quiet"])
+        wait("screen.tycoon")
+        wait("tycoon.hint")
+        shot("en_01_first_launch")
+        element("floor.WEED").tap()
+        sleep(2)
+        XCTAssertNotEqual(element("top.cash").label, "Cash 0", "a tap sells a round")
+        app.terminate()
 
-        // 1 Start the line (Operations).
-        wait("coach.title")
-        shot("en_05_briefing_coach")
-        element("coach.go").tap()
-        wait("screen.ops")
-        tapRevealed("line.GLIMMER.toggle")
-        // 2 Build stock happens on its own; 3 open the route in the Cellar Quarter.
-        wait("coach.go", 30).tap()
-        wait("screen.district.CELLARS")
-        tapRevealed("route.CELLARS.GLIMMER")
-        shot("en_06_briefing_route")
-        // 4 Earn; 5 buy the laundromat (Money).
-        wait("coach.go", 40).tap()
-        wait("screen.money")
-        tapRevealed("front.LAUNDROMAT.buy")
-        shot("en_07_briefing_front")
-        // 6 Wash; 7 the Heat briefing is acknowledged wherever the player is.
-        let understood = wait("coach.ack", 40)
-        shot("en_08_briefing_heat")
-        understood.tap()
-        XCTAssertFalse(element("coach.title").waitForExistence(timeout: 2), "the briefing is finished")
-        tab(0)
-        wait("ledger.chapterTitle")
-        shot("en_09_chapter1")
+        launch(["-qa-scenario", "starter", "-qa-quiet"])
+        wait("screen.tycoon")
+        tapRevealed("floor.WEED.buy")
+        XCTAssertTrue(element("floor.WEED.count").label.contains("2"), "one more plant")
+        tapRevealed("floor.PILLS.open")
+        wait("floor.PILLS.count")
+        shot("en_02_pills_open")
+        tapRevealed("floor.WEED.manager")
+        XCTAssertFalse(element("floor.WEED.manager").waitForExistence(timeout: 2), "the manager is hired")
+        shot("en_03_manager")
     }
 
-    func testCoreSystemsThroughTheUI() {
-        launch(["-qa-reset", "-qa-seed", "11", "-qa-scenario", "chapter3", "-qa-quiet"])
-        wait("screen.ledger")
-        // Empire, then the workshop details: upgrade a line track and expand the stash.
-        tab(1)
-        wait("screen.ops")
-        tapRevealed("empire.workshop")
-        wait("screen.workshop")
-        tapRevealed("line.GLIMMER.SPEED")
-        tapRevealed("ops.stash.upgrade")
-        tapRevealed("line.VELVET.buy")
-        wait("line.VELVET.toggle")
-        // City: open a district, expand a route and push the rivals.
-        tab(2)
+    func testDealsAndChangeOfCity() {
+        launch(["-qa-reset", "-qa-seed", "11", "-qa-scenario", "change", "-qa-quiet"])
+        wait("screen.tycoon")
+        tapRevealed("tycoon.deals")
+        wait("screen.deals")
+        element("deal.crystal_1").tap()
+        shot("en_10_deals")
+        element("sheet.done").tap()
+        tapRevealed("tycoon.city")
         wait("screen.city")
-        tapRevealed("district.DOCKS")
-        wait("screen.district.DOCKS")
-        tapRevealed("route.DOCKS.CINDER")
-        tapRevealed("turf.DOCKS")
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        // Money: pause and resume a front, change the reserve, protection and a donation.
-        tab(3)
-        wait("screen.money")
-        let toggle = element("front.TAXI.active")
-        reveal(toggle)
-        if toggle.switches.firstMatch.exists {
-            toggle.switches.firstMatch.tap()
-        } else {
-            toggle.tap()
-        }
-        reveal(element("money.reserve"))
-        element("money.reserve").buttons.element(boundBy: 2).tap()
-        tapRevealed("money.protection")
-        tapRevealed("money.donate")
-        // Network: dismiss a specialist (confirmed), rehire at 1.5x the fee, an improvement and the legacy section.
-        tab(4)
-        wait("screen.network")
-        tapRevealed("crew.ENFORCER.dismiss")
-        let confirm = element("crew.dismiss.confirm")
-        if confirm.waitForExistence(timeout: 5) {
-            confirm.tap()
-        } else {
-            // Dialog buttons may not carry SwiftUI identifiers on every OS: take the dialog's own "Dismiss",
-            // never one of the crew panels' buttons.
-            let dialogButton = app.buttons.matching(NSPredicate(format: "label == 'Dismiss' AND NOT (identifier BEGINSWITH 'crew.')")).firstMatch
-            XCTAssertTrue(dialogButton.waitForExistence(timeout: 3), "the dismissal asks for confirmation")
-            dialogButton.tap()
-        }
-        let rehire = element("crew.hire.feld")
-        reveal(rehire)
-        XCTAssertTrue(rehire.label.contains("6,000"), "a returning specialist costs 1.5x the 4,000 fee: \(rehire.label)")
-        rehire.tap()
-        wait("crew.ENFORCER.name")
-        element("network.section").buttons.element(boundBy: 1).tap()
-        tapRevealed("upgrade.LOOKOUTS")
-        tapRevealed("upgrade.POLICE_SCANNER")
-        reveal(element("upgrade.row.FALLBACK_STASH"))
-        element("network.section").buttons.element(boundBy: 2).tap()
-        wait("network.legacy.open")
-        XCTAssertFalse(element("notice").exists && element("notice").label.contains("Not enough"), "every tapped action was affordable")
+        shot("en_11_city")
+        element("city.change").tap()
+        let confirm = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Move on'")).firstMatch
+        XCTAssertTrue(confirm.waitForExistence(timeout: 5))
+        confirm.tap()
+        wait("screen.tycoon")
+        XCTAssertTrue(element("floor.PILLS.open").waitForExistence(timeout: 5), "a new city starts with weed only")
+        shot("en_12_new_city")
+    }
+
+    func testPoliceBribeAndSuitcase() {
+        launch(["-qa-reset", "-qa-scenario", "police", "-qa-quiet"])
+        wait("street.bribe")
+        shot("en_20_police")
+        element("street.bribe").tap()
+        XCTAssertFalse(element("street.bribe").waitForExistence(timeout: 2), "the police drive on")
+        app.terminate()
+
+        launch(["-qa-reset", "-qa-scenario", "suitcase"])
+        wait("street.suitcase")
+        shot("en_21_suitcase")
+        element("street.suitcase").tap()
+        XCTAssertFalse(element("street.suitcase").waitForExistence(timeout: 2), "the suitcase is taken")
+    }
+
+    func testRaidIsShownOnce() {
+        launch(["-qa-reset", "-qa-scenario", "raid", "-qa-quiet"])
+        wait("raid.title")
+        shot("en_22_raid")
+        element("raid.ack").tap()
+        wait("screen.tycoon")
+        XCTAssertFalse(element("raid.title").waitForExistence(timeout: 2))
     }
 
     func testPersistenceAcrossRelaunchAndOfflineReturn() {
-        launch(["-qa-reset", "-qa-seed", "21", "-qa-scenario", "chapter2", "-qa-quiet"])
-        tab(1)
-        wait("screen.ops")
-        tapRevealed("ops.stash.upgrade")
-        let before = element("ops.stashFill").label.components(separatedBy: " of ").last ?? ""
-        XCTAssertFalse(before.isEmpty)
+        launch(["-qa-reset", "-qa-seed", "21", "-qa-scenario", "rich", "-qa-quiet"])
+        wait("screen.tycoon")
+        tapRevealed("floor.COKE.buy")
+        let before = element("floor.COKE.count").label
         sleep(2)
         app.terminate()
 
-        launch(["-qa-away", "7200"])
-                wait("offline.title")
-        shot("en_20_offline_return")
+        launch(["-qa-away", "7200", "-qa-quiet"])
+        wait("offline.title")
+        shot("en_30_offline_return")
         element("offline.ok").tap()
-        tab(1)
-        wait("screen.ops")
-        let after = element("ops.stashFill").label.components(separatedBy: " of ").last ?? ""
-        XCTAssertEqual(before, after, "the expanded stash survived termination and relaunch")
+        wait("screen.tycoon")
+        reveal(element("floor.COKE.count"))
+        XCTAssertEqual(element("floor.COKE.count").label, before, "the purchase survived termination and relaunch")
     }
 
-    func testInvestigationCountermeasuresDropTheCase() {
-        // Real time: the 45 s countdown leaves room to respond. A bribe (-18) plus lying low brings Heat under 60.
-        launch(["-qa-reset", "-qa-seed", "31", "-qa-scenario", "investigation", "-qa-quiet"])
-        wait("hud.investigation").tap()
-        wait("screen.money")
-        wait("money.investigation")
-        shot("en_21_investigation")
-        tapRevealed("money.bribe")
-        tapRevealed("money.layLow")
-        let gone = NSPredicate(format: "exists == false")
-        expectation(for: gone, evaluatedWith: element("hud.investigation"))
-        waitForExpectations(timeout: 30)
-        XCTAssertFalse(element("raid.title").exists, "the case was dropped before any raid")
-    }
-
-    func testInvestigationRaidAndRecovery() {
-        // Accelerated: nobody responds, the countdown runs out and the raid lands.
-        launch(["-qa-reset", "-qa-seed", "31", "-qa-scenario", "investigation", "-qa-quiet", "-qa-timescale", "8"])
-        wait("hud.investigation")
-        wait("raid.title", 40)
-        wait("raid.recover")
-        shot("en_22_raid")
-        element("raid.ack").tap()
-        XCTAssertFalse(element("raid.title").waitForExistence(timeout: 3))
-        XCTAssertFalse(element("hud.investigation").exists, "the raid closed the case")
-        tab(2)
-        wait("screen.city")
-        tapRevealed("district.CELLARS")
-        wait("screen.district.CELLARS")
-        shot("en_23_raid_recovery_district")
-    }
-
-    func testFinalOperationEpilogueAndNewGamePlus() {
-        launch(["-qa-reset", "-qa-seed", "41", "-qa-scenario", "final_ready", "-qa-quiet", "-qa-timescale", "20"])
-        tapRevealed("ledger.finalOp")
-        wait("screen.finalOp")
-        shot("en_30_final_requirements")
-        let start = element("final.start")
-        reveal(start)
-        XCTAssertTrue(start.isEnabled, "every requirement (control, clean cash, influence, Heat below 50) is met")
-        start.tap()
-        tapRevealed("final.choice.votes")
-        tapRevealed("final.choice.payoff")
-        shot("en_31_final_phase3")
-        var attempts = 0
-        while !element("screen.epilogue").exists && attempts < 10 {
-            attempts += 1
-            let choice = element("final.choice.lawyer")
-            if choice.exists {
-                reveal(choice)
-                if choice.isEnabled { choice.tap() } else { sleep(2) }
-            }
-            _ = element("screen.epilogue").waitForExistence(timeout: 3)
-        }
-        wait("epilogue.title", 10)
-        shot("en_32_epilogue")
-        reveal(element("epilogue.legacy"))
-        shot("en_33_epilogue_books")
-        tapRevealed("epilogue.newGamePlus")
-        wait("screen.legacy")
-        tapRevealed("perk.STARTING_CAPITAL")
-        shot("en_34_legacy")
-        tapRevealed("legacy.startNewGamePlus")
-        let confirm = app.alerts.buttons["Begin New Game+"]
-        XCTAssertTrue(confirm.waitForExistence(timeout: 5))
-        confirm.tap()
-        wait("ledger.ngLevel")
-        wait("ledger.chapterTitle")
-        shot("en_35_new_game_plus")
-    }
-
-    func testLanguageSwitchInSettings() {
-        launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
-        wait("screen.ledger")
-        XCTAssertTrue(app.tabBars.buttons["Ledger"].exists)
-        element("toolbar.settings").tap()
+    func testShopRewardsAndSettings() {
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
+        wait("screen.tycoon")
+        element("top.favors").tap()
+        wait("screen.shop")
+        shot("en_40_shop")
+        element("shop.done").tap()
+        element("top.rewards").tap()
+        wait("screen.rewards")
+        shot("en_41_rewards")
+        element("sheet.done").tap()
+        element("top.settings").tap()
         wait("settings.done")
         app.buttons["Deutsch"].tap()
         XCTAssertTrue(app.navigationBars["Einstellungen"].waitForExistence(timeout: 5))
-        shot("de_40_settings")
-        element("settings.done").tap()
-        XCTAssertTrue(app.tabBars.buttons["Buch"].waitForExistence(timeout: 5))
-        element("toolbar.settings").tap()
+        shot("de_42_settings")
         app.buttons["English"].tap()
         XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
-        shot("en_40_settings")
         element("settings.done").tap()
-        XCTAssertTrue(app.tabBars.buttons["Ledger"].waitForExistence(timeout: 5))
+        wait("screen.tycoon")
     }
 
     func testSystemGermanIsDetected() {
-        launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"], language: "de")
-        XCTAssertTrue(app.tabBars.buttons["Buch"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.tabBars.buttons["Stadt"].exists)
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"], language: "de")
+        wait("screen.tycoon")
+        XCTAssertTrue(app.staticTexts["Gras"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Aufträge"].exists)
     }
 
     func testLargeDynamicType() {
-        launch(["-qa-reset", "-qa-scenario", "chapter3", "-qa-quiet"], largeText: true)
-        wait("screen.ledger")
-        shot("en_50_large_text_ledger")
-        tab(1)
-        wait("screen.ops")
-        tapRevealed("line.GLIMMER.room")
-        shot("en_51_large_text_ops")
-        tab(3)
-        wait("screen.money")
-        reveal(element("money.bribe"))
-        shot("en_52_large_text_money")
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"], largeText: true)
+        wait("screen.tycoon")
+        shot("en_50_large_text")
+        reveal(element("floor.COKE.buy"))
+        shot("en_51_large_text_floors")
     }
 
     func testResetNeedsConfirmation() {
-        launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
-        element("toolbar.settings").tap()
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
+        element("top.settings").tap()
         wait("settings.done")
-        // The reset row sits below the fold of the lazy settings list: bring it into the hierarchy first.
         app.swipeUp()
         tapRevealed("settings.reset")
         let erase = app.alerts.buttons["Erase"].firstMatch
         XCTAssertTrue(erase.waitForExistence(timeout: 5))
-        shot("en_41_reset_confirm")
+        shot("en_43_reset_confirm")
         app.alerts.buttons["Cancel"].firstMatch.tap()
         tapRevealed("settings.reset")
         app.alerts.buttons["Erase"].firstMatch.tap()
-        wait("screen.prologue")
+        wait("screen.tycoon")
+        XCTAssertTrue(element("tycoon.hint").waitForExistence(timeout: 5), "a fresh city starts with the first hint")
     }
 
     func testDamagedSaveIsRecoveredFromBackup() {
-        launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
-        wait("screen.ledger")
-        tab(1)
-        tapRevealed("ops.stash.upgrade")
-        sleep(1)
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
+        wait("screen.tycoon")
+        tapRevealed("floor.WEED.buy")
+        sleep(6)
         app.terminate()
         launch(["-qa-corrupt-save"])
         XCTAssertTrue(app.alerts["Save recovered"].waitForExistence(timeout: 10))
-        shot("en_42_save_recovered")
+        shot("en_44_save_recovered")
         app.alerts.buttons.firstMatch.tap()
-        wait("ledger.chapterTitle")
+        wait("screen.tycoon")
     }
 
     func testSaveFromNewerVersionIsProtected() {
         launch(["-qa-reset", "-qa-future-save"])
         wait("future.restart")
-        shot("en_43_future_save")
+        shot("en_45_future_save")
     }
 
     func testHomeScreenIcon() {
-        launch(["-qa-reset", "-qa-scenario", "chapter2", "-qa-quiet"])
-        wait("screen.ledger")
+        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
+        wait("screen.tycoon")
         XCUIDevice.shared.press(.home)
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
         let icon = springboard.icons["NOIR LEDGER"]

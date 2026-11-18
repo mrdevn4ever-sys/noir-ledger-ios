@@ -3,11 +3,11 @@ import SwiftUI
 
 /// The back room: one-time offers, favor packs, what favors buy, and the free sponsor rewards.
 struct ShopView: View {
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(StoreService.self) private var shop
     @Environment(AdService.self) private var ads
-    @Environment(Router.self) private var router
     @Environment(\.l10n) private var t
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         let s = store.state
@@ -25,7 +25,7 @@ struct ShopView: View {
                 }
 
                 SectionHeading(title: t("shop_market"), detail: t("shop_market_detail"))
-                ForEach(FavorItem.allCases, id: \.self) { item in
+                ForEach(FavorItem.allCases.filter { $0 != .loyalty }, id: \.self) { item in
                     FavorRow(item: item, state: s)
                 }
 
@@ -58,13 +58,13 @@ struct ShopView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button { router.showShop = false } label: { Text(verbatim: t("btn_done")) }
+                Button { dismiss() } label: { Text(verbatim: t("btn_done")) }
                     .accessibilityIdentifier("shop.done")
             }
         }
     }
 
-    private func wallet(_ s: GameState) -> some View {
+    private func wallet(_ s: TycoonState) -> some View {
         Panel(.leather) {
             HStack(spacing: Noir.s3) {
                 Image(systemName: "seal.fill").font(.title).foregroundStyle(Noir.brass).accessibilityHidden(true)
@@ -77,7 +77,7 @@ struct ShopView: View {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {
                     Text(verbatim: t("shop_payout")).font(.caption).foregroundStyle(Noir.inkSoft)
-                    Text(verbatim: t("empire_payout", t.decimal(Idle.globalMultiplier(s), digits: 2)))
+                    Text(verbatim: t("empire_payout", t.decimal(Tycoon.globalMultiplier(s), digits: 2)))
                         .font(.title3.weight(.bold)).monospacedDigit().foregroundStyle(Noir.amber)
                 }
             }
@@ -89,8 +89,8 @@ struct ShopView: View {
 /// A free reward paid by a sponsor video (or directly with the ad-free upgrade).
 private struct RewardRow: View {
     let reward: AdReward
-    let state: GameState
-    @Environment(GameStore.self) private var store
+    let state: TycoonState
+    @Environment(TycoonStore.self) private var store
     @Environment(AdService.self) private var ads
     @Environment(\.l10n) private var t
 
@@ -134,7 +134,7 @@ private struct RewardRow: View {
         switch reward {
         case .boost: t("reward_boost_t", t.duration(Idle.adBoostSeconds))
         case .favors: t("reward_favors_t", Idle.adFavors)
-        case .coolHeat: t("reward_heat_t", t.decimal(Idle.adHeatRelief, digits: 0))
+        case .coolHeat: t("ty_reward_police")
         case .offlineDouble: t("offline_title")
         }
     }
@@ -142,8 +142,8 @@ private struct RewardRow: View {
     private var detail: String {
         switch reward {
         case .boost: t("reward_boost_d", t.duration(Idle.boostCapSeconds))
-        case .favors: t("reward_favors_d", Idle.adFavorsLeft(state, day: store.today), Idle.adFavorsPerDay)
-        case .coolHeat: t("reward_heat_d")
+        case .favors: t("reward_favors_d", ShopRules.adFavorsLeft(state.meta, day: store.today), Idle.adFavorsPerDay)
+        case .coolHeat: t("ty_reward_police_d")
         case .offlineDouble: ""
         }
     }
@@ -154,10 +154,10 @@ private struct RewardRow: View {
         case .boost:
             return state.meta.boostSeconds >= Idle.boostCapSeconds - 1 ? t("reward_boost_full") : nil
         case .favors:
-            return Idle.adFavorsLeft(state, day: store.today) <= 0 ? t("reward_favors_out") : nil
+            return ShopRules.adFavorsLeft(state.meta, day: store.today) <= 0 ? t("reward_favors_out") : nil
         case .coolHeat:
             if state.meta.heatAidCooldown > 0 { return t("reward_heat_wait", t.duration(state.meta.heatAidCooldown)) }
-            return state.heat <= 0.5 && state.investigation == nil ? t("reward_heat_cold") : nil
+            return state.heat <= 0.5 && state.police == nil ? t("reward_heat_cold") : nil
         case .offlineDouble:
             return nil
         }
@@ -167,9 +167,9 @@ private struct RewardRow: View {
 /// A store product with its App Store price.
 private struct OfferCard: View {
     let item: StoreItem
-    let state: GameState
+    let state: TycoonState
     @Environment(StoreService.self) private var shop
-    @Environment(GameStore.self) private var store
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
@@ -220,8 +220,8 @@ private struct OfferCard: View {
 /// Something favors buy.
 private struct FavorRow: View {
     let item: FavorItem
-    let state: GameState
-    @Environment(GameStore.self) private var store
+    let state: TycoonState
+    @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
@@ -261,7 +261,7 @@ private struct FavorRow: View {
         switch item {
         case .boost4h: t("item_boost_t", t.duration(4 * 3600))
         case .warp2h, .warp8h, .warp24h: t("item_warp_t", t.duration(item.warpSeconds))
-        case .coolHeat: t("item_heat_t", t.decimal(Idle.favorHeatRelief, digits: 0))
+        case .coolHeat: t("ty_item_police")
         case .loyalty: t("item_loyalty_t")
         }
     }
@@ -270,8 +270,14 @@ private struct FavorRow: View {
         switch item {
         case .boost4h: t("item_boost_d")
         case .warp2h, .warp8h, .warp24h: t("item_warp_d")
-        case .coolHeat: t("item_heat_d")
+        case .coolHeat: t("ty_reward_police_d")
         case .loyalty: t("item_loyalty_d")
         }
+    }
+}
+
+enum ShopRules {
+    static func adFavorsLeft(_ m: MetaState, day: Int) -> Int {
+        m.adFavorsDay == day ? max(0, Idle.adFavorsPerDay - m.adFavorsToday) : Idle.adFavorsPerDay
     }
 }

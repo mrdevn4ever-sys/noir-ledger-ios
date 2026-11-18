@@ -21,13 +21,18 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      # Newest Xcode on the runner, Xcode 27 or later (the iOS 27 SDK is required for App Store uploads from April 2027).
-      - name: Select Xcode 27 or newer
+      # Newest Xcode on the runner. The iOS 27 SDK (Xcode 27) is required for App Store uploads from April 2027; until the
+      # runner image ships it, the newest Xcode 26 is used and the log carries a warning.
+      - name: Select the newest Xcode (27 when available)
         run: |
           ls -d /Applications/Xcode*.app
           XCODE=$(ls -d /Applications/Xcode_2[7-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -1 || true)
           if [ -z "$XCODE" ]; then
-            echo "No Xcode 27 or newer on this runner image."
+            XCODE=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1 || true)
+            echo "::warning::No Xcode 27 on this runner image yet; using $XCODE. Uploads need the iOS 27 SDK from April 2027."
+          fi
+          if [ -z "$XCODE" ]; then
+            echo "No Xcode 26 or newer on this runner image."
             exit 1
           fi
           sudo xcode-select -s "$XCODE/Contents/Developer"
@@ -61,13 +66,18 @@ jobs:
       EVIDENCE: ${{ github.workspace }}/evidence
     steps:
       - uses: actions/checkout@v4
-      # Newest Xcode on the runner, Xcode 27 or later (the iOS 27 SDK is required for App Store uploads from April 2027).
-      - name: Select Xcode 27 or newer
+      # Newest Xcode on the runner. The iOS 27 SDK (Xcode 27) is required for App Store uploads from April 2027; until the
+      # runner image ships it, the newest Xcode 26 is used and the log carries a warning.
+      - name: Select the newest Xcode (27 when available)
         run: |
           ls -d /Applications/Xcode*.app
           XCODE=$(ls -d /Applications/Xcode_2[7-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -1 || true)
           if [ -z "$XCODE" ]; then
-            echo "No Xcode 27 or newer on this runner image."
+            XCODE=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1 || true)
+            echo "::warning::No Xcode 27 on this runner image yet; using $XCODE. Uploads need the iOS 27 SDK from April 2027."
+          fi
+          if [ -z "$XCODE" ]; then
+            echo "No Xcode 26 or newer on this runner image."
             exit 1
           fi
           sudo xcode-select -s "$XCODE/Contents/Developer"
