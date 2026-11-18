@@ -1,31 +1,43 @@
 [
   {
     "file": "App/Resources/Assets.xcassets/RoomGlimmer0.imageset/RoomGlimmer0.png",
-    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and tonal processing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomGlimmer3 cannabis plantation master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "e592997edf2f094ff81811816058b24602d887a9bae4597748396393e81ece5c",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomGlimmer1.imageset/RoomGlimmer1.png",
-    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and selective compositing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomGlimmer3 cannabis plantation master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "7e885501574d82c96d2c4e2b9ad23759fe0783509ea02aef461a3cb8fab33336",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomGlimmer2.imageset/RoomGlimmer2.png",
-    "origin": "OpenAI-Codex image edit from approved RoomGlimmer3; crop and selective compositing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomGlimmer3 cannabis plantation master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "50b9451ae23fd8c94da798bb1f57cac98bd14e898fc94a56a84ba5de5b57ddf8",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomGlimmer3.imageset/RoomGlimmer3.png",
-    "origin": "OpenAI-Codex image generation and edit/crop by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex image generation: indoor cannabis plantation; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "5128be3a1453ba87412f6b2e3fed5ac0e02b1c582fd1d5dd6046aefa85d47ec6",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomCinder0.imageset/RoomCinder0.png",
@@ -229,5 +241,45 @@
     "generated_at": "2026-11-13",
     "license": "own work",
     "source_url": ""
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DrugWeed.imageset/DrugWeed.png",
+    "origin": "OpenAI-Codex painted noir symbol atlas; individual crop, chroma-unmixed transparent extraction and 512px export by Hermes; leaf subject-only contrast lift for 28px readability",
+    "generated_at": "2026-11-18",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "6c247eec1086fb4254595fbb2d08c7f84b74d8b6c49cd468b7661d5098523931",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DrugCrystal.imageset/DrugCrystal.png",
+    "origin": "OpenAI-Codex painted noir symbol atlas; individual crop, chroma-unmixed transparent extraction and 512px export by Hermes",
+    "generated_at": "2026-11-18",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "b69d3be1bc0205380c92c5094d361a182d736221658eb110e8187d503b69bf8c",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DrugPills.imageset/DrugPills.png",
+    "origin": "OpenAI-Codex painted noir symbol atlas; individual crop, chroma-unmixed transparent extraction and 512px export by Hermes",
+    "generated_at": "2026-11-18",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "a1bd8c7cf854973bfcae81ff4468c29b7a6d12ee8c8bf8197712fbb51143e0e5",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DrugCoke.imageset/DrugCoke.png",
+    "origin": "OpenAI-Codex painted noir symbol atlas; individual crop, chroma-unmixed transparent extraction and 512px export by Hermes",
+    "generated_at": "2026-11-18",
+    "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "aeb22ee6d8d2bac7e90947972b20e9a6e23fad43086c04926dde71b78f93ef21",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   }
 ]
