@@ -21,6 +21,8 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - name: Select stable Xcode 27 and check iOS SDK
+        run: bash scripts/ci/select_xcode27.sh
       - name: Toolchain inventory
         run: |
           echo "SHA=$GITHUB_SHA"
@@ -49,6 +51,9 @@ jobs:
       EVIDENCE: ${{ github.workspace }}/evidence
     steps:
       - uses: actions/checkout@v4
+
+      - name: Select stable Xcode 27 and check iOS SDK
+        run: bash scripts/ci/select_xcode27.sh
 
       - name: Provenance and inventory
         run: |
