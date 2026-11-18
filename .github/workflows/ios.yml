@@ -17,7 +17,7 @@ concurrency:
 jobs:
   core:
     name: NoirCore (swift test on macOS host)
-    runs-on: macos-15
+    runs-on: xcode-27
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
 
   app:
     name: App (Xcode build, unit + UI tests, Release, evidence)
-    runs-on: macos-15
+    runs-on: xcode-27
     timeout-minutes: 120
     permissions:
       # Needed only to push the evidence branch while the account's artifact storage quota is exhausted.
