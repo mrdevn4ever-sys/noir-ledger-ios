@@ -122,7 +122,7 @@ struct TopBar: View {
                     .accessibilityIdentifier("top.cash")
                 Spacer(minLength: Noir.s2)
                 VStack(alignment: .trailing, spacing: 2) {
-                    Text(verbatim: t("ty_per_sec", t.money(state.incomeRate)))
+                    Text(verbatim: t("ty_per_sec", t.money(max(Tycoon.managedRate(state), state.incomeRate))))
                         .font(.subheadline.weight(.semibold)).monospacedDigit()
                         .foregroundStyle(Noir.inkSoft)
                     if state.meta.boostSeconds > 0 {
