@@ -78,7 +78,7 @@ the delivery van; the stash as filling shelves; one lit room per production line
 and a crate belt. Rooms grow through four tiers as the line passes milestones. Everything is drawn in
 `App/Design/EmpireArt.swift` (Canvas + TimelineView at 30 fps, frozen under Reduce Motion). Delivered artwork replaces
 the drawings without code changes: `Room<Product>0…3`, `SceneStreet`, `SceneStash`, `SpriteWorker` (see
-`docs/HERMES_ASSET_BRIEF.md`). Scene-only tints (`SceneTint`): ember for Cinder, plum for Velvet, ice for Halo.
+`docs/HERMES_ASSET_BRIEF.md`). Scene-only tints (`SceneTint`, version 2.1): leaf green for weed, ice for crystal, plum for pills, paper white for coke. Product marks are the painted `DrugWeed`, `DrugCrystal`, `DrugPills`, `DrugCoke` icons; the abstract `Product…` seals remain only as fallback.
 
 Feel: numbers roll (`RollingText`), taps and finished batches throw floaters, milestones/chapters/new starts raise a
 gold banner with a burst, and every moment has a sound (`SoundEngine`, files in `App/Resources/Audio`).
