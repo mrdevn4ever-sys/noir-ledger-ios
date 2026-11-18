@@ -17,10 +17,22 @@ concurrency:
 jobs:
   core:
     name: NoirCore (swift test on macOS host)
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      # Newest Xcode on the runner, Xcode 27 or later (the iOS 27 SDK is required for App Store uploads from April 2027).
+      - name: Select Xcode 27 or newer
+        run: |
+          ls -d /Applications/Xcode*.app
+          XCODE=$(ls -d /Applications/Xcode_2[7-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -1 || true)
+          if [ -z "$XCODE" ]; then
+            echo "No Xcode 27 or newer on this runner image."
+            exit 1
+          fi
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          xcodebuild -version
+          xcodebuild -showsdks | grep -i iphoneos
       - name: Toolchain inventory
         run: |
           echo "SHA=$GITHUB_SHA"
@@ -40,7 +52,7 @@ jobs:
 
   app:
     name: App (Xcode build, unit + UI tests, Release, evidence)
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 120
     permissions:
       # Needed only to push the evidence branch while the account's artifact storage quota is exhausted.
@@ -49,6 +61,18 @@ jobs:
       EVIDENCE: ${{ github.workspace }}/evidence
     steps:
       - uses: actions/checkout@v4
+      # Newest Xcode on the runner, Xcode 27 or later (the iOS 27 SDK is required for App Store uploads from April 2027).
+      - name: Select Xcode 27 or newer
+        run: |
+          ls -d /Applications/Xcode*.app
+          XCODE=$(ls -d /Applications/Xcode_2[7-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -1 || true)
+          if [ -z "$XCODE" ]; then
+            echo "No Xcode 27 or newer on this runner image."
+            exit 1
+          fi
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          xcodebuild -version
+          xcodebuild -showsdks | grep -i iphoneos
 
       - name: Provenance and inventory
         run: |
