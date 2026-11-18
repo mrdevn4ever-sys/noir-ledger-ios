@@ -81,31 +81,43 @@
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomVelvet0.imageset/RoomVelvet0.png",
-    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomVelvet3 fictional pill press workshop master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "1a5edfea08354e4b18bb0beefac03ffaf4e2ac5c0df498b9bb4a22aa0a6501eb",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomVelvet1.imageset/RoomVelvet1.png",
-    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomVelvet3 fictional pill press workshop master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "4547497378c1e7d1528946d59c81c4e9ba2ed6bcb82ebd8870ece83a3d4577c8",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomVelvet2.imageset/RoomVelvet2.png",
-    "origin": "OpenAI-Codex direct image edit from RoomVelvet3; crop and tonal processing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex direct image edit from clean RoomVelvet3 fictional pill press workshop master; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "dddbae5424051b98d8102d67513a1e9e7af8991b109455d89c02027b518d5d6c",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomVelvet3.imageset/RoomVelvet3.png",
-    "origin": "OpenAI-Codex image generation; crop and tonal processing by Hermes",
-    "generated_at": "2026-11-13",
+    "origin": "OpenAI-Codex image generation: fictional pill press workshop; raw crop and floor-only tonal processing by Hermes",
+    "generated_at": "2026-11-18",
     "license": "OpenAI Terms of Use: output assigned to user; commercial use without attribution",
-    "source_url": "https://openai.com/policies/terms-of-use/"
+    "source_url": "https://openai.com/policies/terms-of-use/",
+    "sha256": "f1650ad98cebd395dcd9252e67989c91d09ac57a15ecfb64ae3aee328cc6781e",
+    "requested_quality": "high",
+    "provider_reported_quality": "medium"
   },
   {
     "file": "App/Resources/Assets.xcassets/RoomHalo0.imageset/RoomHalo0.png",
