@@ -46,7 +46,7 @@ python3 scripts/scan_repo.py          # TODO/FIXME/placeholders, drug terms, net
 
 ## Continuous integration
 
-`.github/workflows/ios.yml` (manual `workflow_dispatch`) runs on a GitHub-hosted `macos-15` runner: core `swift test`,
+`.github/workflows/ios.yml` (manual `workflow_dispatch`) runs on a GitHub-hosted `xcode-27` runner: core `swift test`,
 static gates, XcodeGen, simulator selection from the runner inventory, Debug unit + UI tests with a result bundle,
 screenshot and summary export, Release build with a QA-exclusion binary scan, a contact sheet from the canonical
 assets and a provenance report. Evidence is uploaded as artifacts and, because the account's artifact storage quota
