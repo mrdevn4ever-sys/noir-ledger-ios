@@ -157,7 +157,7 @@ private struct RewardRow: View {
             return ShopRules.adFavorsLeft(state.meta, day: store.today) <= 0 ? t("reward_favors_out") : nil
         case .coolHeat:
             if state.meta.heatAidCooldown > 0 { return t("reward_heat_wait", t.duration(state.meta.heatAidCooldown)) }
-            return state.heat <= 0.5 && state.police == nil ? t("reward_heat_cold") : nil
+            return state.quarters.values.allSatisfy({ $0.attention <= 0.5 }) ? t("reward_heat_cold") : nil
         case .offlineDouble:
             return nil
         }
