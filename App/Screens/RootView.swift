@@ -16,7 +16,7 @@ struct RootView: View {
             .environment(\.locale, settings.l10n.locale)
             .environment(\.noirReduceMotion, settings.reduceMotion(system: systemReduceMotion))
             .tint(Noir.amber)
-            .fontDesign(.rounded)
+            .font(.toon(.body))
             .sensoryFeedback(.selection, trigger: store.acceptedCount) { _, _ in settings.haptics }
             .sensoryFeedback(.warning, trigger: store.rejectedCount) { _, _ in settings.haptics }
             .sensoryFeedback(.impact(weight: .light), trigger: store.tapCount) { _, _ in settings.haptics }
@@ -112,7 +112,7 @@ private struct LoadingView: View {
             Text(verbatim: t("loading")).foregroundStyle(Noir.inkSoft)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
     }
 }
 
@@ -127,9 +127,13 @@ struct FutureSaveView: View {
         ScrollView {
             VStack(spacing: Noir.s5) {
                 Wordmark().padding(.top, Noir.s6)
+                Image("HeaderError").resizable().scaledToFill()
+                    .frame(height: 150).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
                 Panel(.paper) {
-                    Text(verbatim: t("save_future_title")).font(.title3.weight(.semibold))
-                    Text(verbatim: t("save_future_body")).font(.body)
+                    Text(verbatim: t("save_future_title")).font(.toon(.title3, .semibold))
+                    Text(verbatim: t("save_future_body")).font(.toon(.body))
                 }
                 Button(role: .destructive) { confirm = true } label: { Text(verbatim: t("save_future_restart")) }
                     .noirButton(.danger)
@@ -137,7 +141,7 @@ struct FutureSaveView: View {
             }
             .padding(Noir.s4)
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
         .alert(Text(verbatim: t("reset_confirm_title")), isPresented: $confirm) {
             Button(role: .destructive) { store.resetEverything() } label: { Text(verbatim: t("reset_confirm_btn")) }
             Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
@@ -165,19 +169,19 @@ struct PrologueView: View {
                     .accessibilityHidden(true)
                 Panel(.paper) {
                     Text(verbatim: t("l4_prologue_title")).font(.display(.title2)).accessibilityAddTraits(.isHeader)
-                    Text(verbatim: t("l4_prologue_body")).font(.body).fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: t("l4_prologue_body")).font(.toon(.body)).fixedSize(horizontal: false, vertical: true)
                 }
-                Text(verbatim: t("l4_prologue_choose")).font(.headline)
+                Text(verbatim: t("l4_prologue_choose")).font(.toon(.headline))
                 ForEach(StartChoice.allCases, id: \.self) { choice in
                     Button { store.dispatch(.choose(choice)) } label: {
                         HStack(alignment: .top, spacing: Noir.s3) {
                             Image(SceneArt.item(choice)).resizable().scaledToFit().frame(width: 56, height: 56)
                                 .accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 3) {
-                                Text(verbatim: t(StartText.title(choice))).font(.headline)
-                                Text(verbatim: t(StartText.desc(choice))).font(.subheadline)
+                                Text(verbatim: t(StartText.title(choice))).font(.toon(.headline))
+                                Text(verbatim: t(StartText.desc(choice))).font(.toon(.subheadline))
                                     .foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
-                                Text(verbatim: t(StartText.effect(choice))).font(.caption.weight(.bold))
+                                Text(verbatim: t(StartText.effect(choice))).font(.toon(.caption, .bold))
                                     .foregroundStyle(Noir.amber).fixedSize(horizontal: false, vertical: true)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -194,7 +198,7 @@ struct PrologueView: View {
             .padding(Noir.s4)
             .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.prologue", title: t("l4_prologue_title")) }
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
     }
 
     static func symbol(_ c: StartChoice) -> String {
@@ -220,18 +224,23 @@ struct ReturnSheet: View {
         let s = store.state
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
+                Image("HeaderReturn").resizable().scaledToFill()
+                    .frame(height: 160).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .overlay { if !report.clockMovedBack && report.earned > 0 { TimedSprite(name: "MoneyRain8", frames: 8, size: 220, fps: 8) } }
+                    .accessibilityHidden(true)
                 Text(verbatim: t("l4_return_title")).font(.display(.title2)).foregroundStyle(Noir.ink)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("welcome.title")
                 if report.clockMovedBack {
-                    Text(verbatim: t("l4_return_clock")).font(.body).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t("l4_return_clock")).font(.toon(.body)).foregroundStyle(Noir.inkSoft)
                 } else {
                     Text(verbatim: t("l4_return_away", t.duration(report.away), t.duration(report.credited)))
-                        .font(.subheadline).foregroundStyle(Noir.inkSoft)
+                        .font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
                     VStack(spacing: 2) {
-                        Text(verbatim: t("l4_return_booked")).font(.caption).foregroundStyle(Noir.inkSoft)
+                        Text(verbatim: t("l4_return_booked")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         Text(verbatim: "+" + t.money(report.earned))
-                            .font(.system(.largeTitle, design: .serif, weight: .bold)).monospacedDigit()
+                            .font(.toon(.largeTitle, .bold)).monospacedDigit()
                             .foregroundStyle(Noir.amber)
                             .accessibilityIdentifier("welcome.earned")
                     }
@@ -242,21 +251,21 @@ struct ReturnSheet: View {
                             ValueRow(label: t("l4_return_orders"), value: "\(report.ordersDone) / \(report.ordersFailed)")
                         }
                         if report.capped {
-                            Text(verbatim: t("l4_return_capped", t.duration(report.credited))).font(.caption)
+                            Text(verbatim: t("l4_return_capped", t.duration(report.credited))).font(.toon(.caption))
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         ForEach(report.fullShelves, id: \.self) { g in
-                            Label { Text(verbatim: t("l4_return_full", t(GoodText.name(g)))) } icon: { Image(systemName: "shippingbox.fill") }
-                                .font(.caption.weight(.semibold)).foregroundStyle(Noir.paperRed)
+                            Label { Text(verbatim: t("l4_return_full", t(GoodText.name(g)))) } icon: { Image("IconStock").resizable().frame(width: 20, height: 20) }
+                                .font(.toon(.caption, .semibold)).foregroundStyle(Noir.paperRed)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         if !s.dispatcher || s.openGoods.contains(where: { s.workshop($0)?.lead != true }) {
-                            Text(verbatim: t("l4_return_manual")).font(.caption).fixedSize(horizontal: false, vertical: true)
+                            Text(verbatim: t("l4_return_manual")).font(.toon(.caption)).fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     if let next = Self.nextStep(s) {
-                        Label { Text(verbatim: t("l4_return_next", StationText.title(next, t))) } icon: { Image(systemName: "arrow.forward.circle.fill") }
-                            .font(.subheadline.weight(.semibold)).foregroundStyle(Noir.amber)
+                        Label { Text(verbatim: t("l4_return_next", StationText.title(next, t))) } icon: { Image("IconUpgrade").resizable().frame(width: 20, height: 20) }
+                            .font(.toon(.subheadline, .semibold)).foregroundStyle(Noir.amber)
                             .fixedSize(horizontal: false, vertical: true)
                             .accessibilityIdentifier("welcome.next")
                     }
@@ -268,7 +277,7 @@ struct ReturnSheet: View {
                         Label {
                             Text(verbatim: t(s.meta.noAds ? "offline_double_free" : "offline_double_video", t.money(s.meta.offlineBonus)))
                         } icon: {
-                            Image(systemName: s.meta.noAds ? "bolt.fill" : "play.rectangle.fill")
+                            Image(s.meta.noAds ? "IconBoost" : "IconAd").resizable().frame(width: 22, height: 22)
                         }
                     }
                     .noirButton(.secondary)
@@ -284,7 +293,7 @@ struct ReturnSheet: View {
             }
             .padding(Noir.s4)
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
         .onChange(of: store.state.meta.offlineBonus) { old, new in
             if old > 0 && new <= 0 { store.dispatch(.dismissWelcome) }
         }
@@ -319,24 +328,27 @@ struct ChapterSheet: View {
                 HStack(spacing: Noir.s3) {
                     Portrait(crewId: ch.person, size: 64, mood: Flow.chapterComplete(s) ? .happy : .smug).clipShape(Circle())
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: t("l4_chapter_n", ch.number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
+                        Text(verbatim: t("l4_chapter_n", ch.number)).font(.toon(.caption, .bold)).foregroundStyle(Noir.amber)
                         Text(verbatim: t(ChapterText.title(ch.number))).font(.display(.title2))
                     }
                 }
-                Text(verbatim: t(ChapterText.intro(ch.number))).font(.body).fixedSize(horizontal: false, vertical: true)
+                Text(verbatim: t(ChapterText.intro(ch.number))).font(.toon(.body)).fixedSize(horizontal: false, vertical: true)
                 Panel(.paper) {
-                    Text(verbatim: t("l4_goals")).font(.headline)
+                    Text(verbatim: t("l4_goals")).font(.toon(.headline))
                     ForEach(ch.goals) { goal in
                         let p = Flow.goalProgress(s, goal)
                         let done = Flow.goalDone(s, goal)
                         HStack(spacing: Noir.s2) {
-                            Image(systemName: done ? "checkmark.circle.fill" : "circle").foregroundStyle(done ? Noir.paperGold : Noir.paperInk.opacity(0.5))
+                            Image(SceneArt.goal(goal.kind)).resizable().frame(width: 40, height: 40)
+                                .saturation(done ? 1 : 0.6).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 3) {
-                                Text(verbatim: ChapterText.goal(goal, t)).font(.subheadline).fixedSize(horizontal: false, vertical: true)
+                                Text(verbatim: ChapterText.goal(goal, t)).font(.toon(.subheadline)).fixedSize(horizontal: false, vertical: true)
                                 if !done && p.target > 1 {
                                     Meter(fraction: min(1, p.current / p.target), tint: Noir.paperGold, height: 4)
                                 }
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            Image(done ? "CheckDone" : "CheckOpen").resizable().frame(width: 26, height: 26).accessibilityHidden(true)
                         }
                         .accessibilityElement(children: .combine)
                         .accessibilityIdentifier("goal.\(goal.id)")
@@ -344,11 +356,11 @@ struct ChapterSheet: View {
                 }
                 if let who = ch.joins {
                     Label { Text(verbatim: t("l4_chapter_reward", Content.crewDef(SpecialistText.crew(who))?.name ?? "", t(SpecialistText.role(who)))) } icon: {
-                        Image(systemName: "person.badge.plus")
+                        Image("IconHire").resizable().frame(width: 22, height: 22)
                     }
-                    .font(.subheadline).foregroundStyle(Noir.brass).fixedSize(horizontal: false, vertical: true)
+                    .font(.toon(.subheadline)).foregroundStyle(Noir.brass).fixedSize(horizontal: false, vertical: true)
                 }
-                Text(verbatim: t("l4_chapter_bonus", t.percent(FlowContent.chapterBonus - 1))).font(.footnote).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("l4_chapter_bonus", t.percent(FlowContent.chapterBonus - 1))).font(.toon(.footnote)).foregroundStyle(Noir.inkSoft)
                 Button {
                     if store.dispatch(.closeChapter) != nil { dismiss() }
                 } label: { Text(verbatim: t("l4_chapter_close")) }
@@ -374,25 +386,25 @@ struct ChapterNewsSheet: View {
                     .frame(height: 200).frame(maxWidth: .infinity).clipped()
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
-                Text(verbatim: t("l4_chapter_closed", number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
+                Text(verbatim: t("l4_chapter_closed", number)).font(.toon(.caption, .bold)).foregroundStyle(Noir.amber)
                 Text(verbatim: t(ChapterText.title(number))).font(.display(.title)).accessibilityIdentifier("chapter.news")
-                Text(verbatim: t(ChapterText.outro(number))).font(.body).fixedSize(horizontal: false, vertical: true)
+                Text(verbatim: t(ChapterText.outro(number))).font(.toon(.body)).fixedSize(horizontal: false, vertical: true)
                 if let who = ch?.joins {
                     Panel(.leather) {
                         HStack(spacing: Noir.s3) {
                             Portrait(crewId: SpecialistText.crew(who), size: 56, mood: .happy).clipShape(Circle())
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(verbatim: t("l4_joins", Content.crewDef(SpecialistText.crew(who))?.name ?? "")).font(.headline)
-                                Text(verbatim: t(SpecialistText.effect(who))).font(.caption).foregroundStyle(Noir.inkSoft)
+                                Text(verbatim: t("l4_joins", Content.crewDef(SpecialistText.crew(who))?.name ?? "")).font(.toon(.headline))
+                                Text(verbatim: t(SpecialistText.effect(who))).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
                         }
                     }
                 }
                 if let next = FlowContent.chapter(number + 1) {
-                    Text(verbatim: t("l4_next_chapter", t(ChapterText.title(next.number)))).font(.subheadline.weight(.semibold))
+                    Text(verbatim: t("l4_next_chapter", t(ChapterText.title(next.number)))).font(.toon(.subheadline, .semibold))
                 } else {
-                    Text(verbatim: t("l4_finale_done")).font(.subheadline.weight(.semibold))
+                    Text(verbatim: t("l4_finale_done")).font(.toon(.subheadline, .semibold))
                 }
                 Button { store.dispatch(.seenChapter) } label: { Text(verbatim: t("btn_continue")) }
                     .noirButton(.primary)
@@ -400,7 +412,7 @@ struct ChapterNewsSheet: View {
             }
             .padding(Noir.s4)
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
     }
 }
 
@@ -413,20 +425,20 @@ struct ChallengesSheet: View {
     var body: some View {
         let s = store.state
         SheetFrame("l4_challenges", identifier: "screen.challenges") {
-            Text(verbatim: t("l4_challenges_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+            Text(verbatim: t("l4_challenges_b")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             if let c = s.challenge {
                 Panel(.leather) {
                     Image(SceneArt.challenge(c.id)).resizable().scaledToFill()
                     .frame(height: 130).frame(maxWidth: .infinity).clipped()
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
-                    Text(verbatim: t(ChallengeText.name(c.id))).font(.headline)
-                    Text(verbatim: t("l4_challenge_left", t.duration(max(0, c.endsAt - s.time)))).font(.subheadline).monospacedDigit()
+                    Text(verbatim: t(ChallengeText.name(c.id))).font(.toon(.headline))
+                    Text(verbatim: t("l4_challenge_left", t.duration(max(0, c.endsAt - s.time)))).font(.toon(.subheadline)).monospacedDigit()
                     ForEach(0..<3, id: \.self) { i in
                         Label { Text(verbatim: t(ChallengeText.goal(c.id, i), t.money(c.target))) } icon: {
-                            Image(systemName: c.goalsDone[i] ? "checkmark.circle.fill" : "circle")
+                            Image(c.goalsDone[i] ? "CheckDone" : "CheckOpen").resizable().frame(width: 20, height: 20)
                         }
-                        .font(.caption)
+                        .font(.toon(.caption))
                     }
                 }
             }
@@ -434,16 +446,16 @@ struct ChallengesSheet: View {
                 Panel(.anthracite) {
                     HStack(spacing: Noir.s2) {
                         Image(SceneArt.challenge(def.id, icon: true)).resizable().frame(width: 40, height: 40).accessibilityHidden(true)
-                        Text(verbatim: t(ChallengeText.name(def.id))).font(.headline)
+                        Text(verbatim: t(ChallengeText.name(def.id))).font(.toon(.headline))
                         Spacer()
                         if s.challengesDone.contains(def.id) {
                             StatusChip(text: t("l4_challenge_won"), symbol: "checkmark.seal.fill")
                         }
                     }
-                    Text(verbatim: t(ChallengeText.desc(def.id))).font(.caption).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t(ChallengeText.desc(def.id))).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(verbatim: t("l4_challenge_rewards", def.rewards.reduce(0, +), t.percent(FlowContent.challengeBonus)))
-                        .font(.caption.weight(.semibold)).foregroundStyle(Noir.amber)
+                        .font(.toon(.caption, .semibold)).foregroundStyle(Noir.amber)
                     Button { store.dispatch(.startChallenge(def.id)) } label: { Text(verbatim: t("l4_challenge_start")) }
                         .noirButton(.primary)
                         .disabled(s.challenge != nil)

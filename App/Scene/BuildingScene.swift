@@ -76,6 +76,10 @@ struct StreetSection: View {
                     .position(x: w * 0.6, y: 30 + 2 * CGFloat(sin(time * 0.2)))
                 Image("SkylineFar").resizable().scaledToFill().frame(width: w, height: 100).clipped()
                     .position(x: w / 2, y: streetY - 62)
+                if (state.quarters.values.map(\.attention).max() ?? 0) < 30 {
+                    SpriteStrip(name: "Fireflies8", frames: 8, frame: Int(time * 5), size: CGSize(width: 100, height: 100))
+                        .opacity(0.8).position(x: w * 0.3, y: streetY - 120)
+                }
                 Image("SkylineNear").resizable().scaledToFill().frame(width: w, height: 120).clipped()
                     .position(x: w / 2, y: streetY - 60)
                 // Road with the shaft opening on the left
@@ -94,8 +98,14 @@ struct StreetSection: View {
                     .frame(width: Self.depotWidth, height: Self.buildingHeight)
                     .position(x: Self.depotWidth / 2, y: buildingTop + Self.buildingHeight / 2)
                 dispatcher(streetY: streetY)
+                buyerLeaving(w: w, streetY: streetY)
                 police(w: w, h: h, streetY: streetY)
                 vehicle(w: w, h: h)
+                if state.ability(.quietWord).active > 0 {
+                    SpriteStrip(name: "ShushBubble4", frames: 4, frame: Int(time * 4), size: CGSize(width: 54, height: 54))
+                        .position(x: w - Self.houseWidth + 26, y: buildingTop + 50)
+                        .allowsHitTesting(false)
+                }
                 BurstSprite(name: "CoinBurst8", frames: 8, size: 72, start: burstAt, time: time)
                     .position(x: w - Self.houseWidth / 2, y: buildingTop + 60)
                 ForEach(floaters) { f in
@@ -141,6 +151,10 @@ struct StreetSection: View {
             } else {
                 VehicleSprite(vehicle: v, wheelAngle: driving ? time * 9 * Double(facing) : 0, scale: scale)
             }
+            if driving && state.ability(.rushRun).active > 0 {
+                SpriteStrip(name: "SpeedLines6", frames: 6, frame: Int(time * 14), size: CGSize(width: 80, height: 54))
+                    .offset(x: -vw / 2 - 30)
+            }
             if driving && state.fleet >= 25 {
                 SpriteStrip(name: "Exhaust6", frames: 6, frame: Int(time * 12), size: CGSize(width: 22, height: 22))
                     .offset(x: -vw / 2 - 6, y: vh / 2 - 12)
@@ -152,8 +166,8 @@ struct StreetSection: View {
         if !state.dispatcher && state.trip == nil {
             Button { store.dispatch(.tapFleet) } label: {
                 HStack(spacing: 4) {
-                    Image(systemName: "play.fill").font(.system(size: 12, weight: .black))
-                    Text(verbatim: t("l4_go")).font(.system(size: 16, weight: .heavy, design: .rounded))
+                    Image(systemName: "play.fill").font(.toon(12, .black))
+                    Text(verbatim: t("l4_go")).font(.toon(16, .heavy))
                 }
                 .foregroundStyle(Color(hex: 0x1B1B28))
                 .padding(.horizontal, 14).padding(.vertical, 8)
@@ -172,8 +186,10 @@ struct StreetSection: View {
     @ViewBuilder private func dispatcher(streetY: CGFloat) -> some View {
         let x = Self.depotWidth + 24
         if state.dispatcher {
-            SpriteStrip(name: SceneArt.body(FlowContent.dispatcher), frames: 2, frame: Int(time * 1.5),
-                        size: CGSize(width: 44, height: 66))
+            let p = tripPhase
+            let move: (String, Int, Double) = state.trip != nil && p > 0.4 && p < 0.55 ? ("BodyVargaWhistle4", 4, 6)
+                : (Int(time / 4) % 3 == 0 ? ("BodyVargaTalk4", 4, 5) : (SceneArt.body(FlowContent.dispatcher), 2, 1.5))
+            SpriteStrip(name: move.0, frames: move.1, frame: Int(time * move.2), size: CGSize(width: 44, height: 66))
                 .position(x: x, y: streetY + 2 - 33)
         } else {
             Button { store.dispatch(.hireDispatcher) } label: {
@@ -187,6 +203,19 @@ struct StreetSection: View {
         }
     }
 
+    /// When the goods arrive, a buyer carries a crate off along the pavement.
+    @ViewBuilder private func buyerLeaving(w: CGFloat, streetY: CGFloat) -> some View {
+        let p = tripPhase
+        let quarter = Quarter.allCases.last { state.quarters[$0] != nil } ?? .cellars
+        if state.trip != nil, p > 0.75 {
+            let f = CGFloat((p - 0.75) / 0.25)
+            SceneFigure(sheet: "Buyer\(SceneArt.name(quarter))Carry8", move: .carry, time: time, facing: -1, scale: 0.9)
+                .position(x: w - Self.houseWidth + 10 - f * 110, y: streetY + 2 - 32)
+                .opacity(Double(1 - max(0, f - 0.8) * 5))
+                .allowsHitTesting(false)
+        }
+    }
+
     /// Watched: a cop walks the pavement. Hot: the patrol car stands at the kerb, its light turning, the cop writing.
     @ViewBuilder private func police(w: CGFloat, h: CGFloat, streetY: CGFloat) -> some View {
         let hottest = state.quarters.values.map(\.attention).max() ?? 0
@@ -194,6 +223,10 @@ struct StreetSection: View {
         if tier >= 2 {
             let car = SceneArt.police
             let ch = car.size.height * 0.7 / 3
+            SpriteStrip(name: "SirenGlow4", frames: 4, frame: Int(time * 6), size: CGSize(width: 200, height: 100))
+                .blendMode(.screen)
+                .position(x: w * 0.55, y: h - 8 - ch)
+                .allowsHitTesting(false)
             VehicleSprite(vehicle: car, wheelAngle: 0, scale: 0.7)
                 .overlay(alignment: .top) {
                     SpriteStrip(name: "PoliceSiren2", frames: 2, frame: Int(time * 4), size: CGSize(width: 28, height: 14))
@@ -240,9 +273,15 @@ struct Depot: View {
             Button { sheet = .orders } label: {
                 Image(mail ? "Mailbox" : "MailboxClosed").resizable().frame(width: 34, height: 34)
                     .rotationEffect(.degrees(mail ? 4 * sin(time * 6) : 0))
+                    .overlay {
+                        if state.ability(.newWindow).active > 0 {
+                            SpriteStrip(name: "WindowSparkle6", frames: 6, frame: Int(time * 10), size: CGSize(width: 54, height: 54))
+                                .allowsHitTesting(false)
+                        }
+                    }
                     .overlay(alignment: .topTrailing) {
                         if mail {
-                            Text(verbatim: "\(state.offers.count)").font(.system(size: 11, weight: .heavy, design: .rounded))
+                            Text(verbatim: "\(state.offers.count)").font(.toon(11, .heavy))
                                 .foregroundStyle(.white).frame(minWidth: 17, minHeight: 17)
                                 .background(Color(hex: 0xE5484D), in: Circle())
                                 .offset(x: 5, y: -5)
@@ -281,8 +320,8 @@ struct CustomersHouse: View {
                         .offset(x: 2, y: StreetSection.buildingHeight - 4 - 63)
                 }
                 VStack(spacing: 1) {
-                    Text(verbatim: t("l4_customers")).font(.system(size: 11, weight: .bold, design: .rounded))
-                    Text(verbatim: t("l4_per_min", t.money(demand))).font(.system(size: 14, weight: .heavy, design: .rounded)).monospacedDigit()
+                    Text(verbatim: t("l4_customers")).font(.toon(11, .bold))
+                    Text(verbatim: t("l4_per_min", t.money(demand))).font(.toon(14, .heavy)).monospacedDigit()
                         .lineLimit(1).minimumScaleFactor(0.6)
                 }
                 .foregroundStyle(.white)
@@ -363,14 +402,23 @@ struct FloorRow: View {
             ZStack(alignment: .topLeading) {
                 Image(SceneArt.floor(good, level: w.bench)).resizable().frame(width: width, height: geo.size.height)
                 Image("ShaftTile").resizable().frame(width: BuildingScene.shaftWidth, height: geo.size.height)
-                // The room is dim while nothing runs
-                if !running && !w.lead {
+                // While the floor works its lights are on and its machines move; otherwise the room is dim.
+                if running || w.lead {
+                    Image(SceneArt.floorLit(good, level: w.bench)).resizable().frame(width: width, height: geo.size.height)
+                        .allowsHitTesting(false)
+                    SpriteStrip(name: SceneArt.floorRun(good, level: w.bench), frames: 4, frame: Int(time * 6),
+                                size: CGSize(width: width, height: geo.size.height))
+                        .allowsHitTesting(false)
+                } else {
                     Rectangle().fill(Color.black.opacity(0.22)).frame(width: width - BuildingScene.shaftWidth, height: geo.size.height)
                         .offset(x: BuildingScene.shaftWidth).allowsHitTesting(false)
                 }
-                if good == .crystal && (running || w.lead) && stage >= 2 {
-                    SpriteStrip(name: "SteamPuff6", frames: 6, frame: Int(time * 8), size: CGSize(width: 40, height: 40))
-                        .opacity(0.8).offset(x: (machine.start + machine.end) / 2 + 10, y: floorY - 130)
+                // Double shift: a warm pulsing glow with turning gears over the machines.
+                if state.ability(.doubleShift).active > 0, state.ability(.doubleShift).good == good {
+                    SpriteStrip(name: "ShiftGlow6", frames: 6, frame: Int(time * 10), size: CGSize(width: 200, height: 100))
+                        .position(x: (machine.start + machine.end) / 2, y: floorY - 70)
+                        .blendMode(.screen)
+                        .allowsHitTesting(false)
                 }
                 // Workers
                 ForEach(0..<(1 + min(2, stage / 2)), id: \.self) { i in
@@ -387,8 +435,9 @@ struct FloorRow: View {
                 // Workshop lead
                 Group {
                     if w.lead {
-                        SpriteStrip(name: SceneArt.body(def.lead), frames: 2, frame: Int(time * 1.5 + Double(index)),
-                                    size: CGSize(width: 44, height: 66))
+                        let talking = Int(time / 5 + Double(index)) % 3 == 0
+                        SpriteStrip(name: talking ? SceneArt.talk(def.lead) : SceneArt.body(def.lead), frames: talking ? 4 : 2,
+                                    frame: Int(time * (talking ? 5 : 1.5) + Double(index)), size: CGSize(width: 44, height: 66))
                             .accessibilityHidden(true)
                     } else {
                         Button { store.dispatch(.hireLead(good)) } label: {
@@ -421,7 +470,7 @@ struct FloorRow: View {
                     let cx = (machine.start + machine.end) / 2
                     VStack(spacing: 2) {
                         Text(verbatim: t("l4_tap_here"))
-                            .font(.system(size: 15, weight: .heavy, design: .rounded))
+                            .font(.toon(15, .heavy))
                             .foregroundStyle(Color(hex: 0x1B1B28))
                             .padding(.horizontal, 12).padding(.vertical, 6)
                             .background(Toon.window, in: Capsule())
@@ -524,7 +573,7 @@ struct CrateShelf: View {
         let boards: [CGFloat] = [18, 43, 68]
         VStack(spacing: 2) {
             Text(verbatim: t.money(stock.rounded(.down)) + "/" + t.money(capacity))
-                .font(.system(size: 12, weight: .heavy, design: .rounded)).monospacedDigit()
+                .font(.toon(12, .heavy)).monospacedDigit()
                 .lineLimit(1).minimumScaleFactor(0.6)
                 .foregroundStyle(.white)
                 .padding(.horizontal, 6).padding(.vertical, 2)
@@ -572,8 +621,8 @@ struct LockedFloor: View {
                 if def.chapter <= state.chapter {
                     Button { store.dispatch(.openWorkshop(good)) } label: {
                         VStack(spacing: 1) {
-                            Text(verbatim: t("l4_open_floor", t(GoodText.name(good)))).font(.system(size: 15, weight: .heavy, design: .rounded))
-                            Text(verbatim: t.money(def.openCost)).font(.system(size: 13, weight: .bold, design: .rounded)).monospacedDigit()
+                            Text(verbatim: t("l4_open_floor", t(GoodText.name(good)))).font(.toon(15, .heavy))
+                            Text(verbatim: t.money(def.openCost)).font(.toon(13, .bold)).monospacedDigit()
                         }
                         .foregroundStyle(Color(hex: 0x1B1B28))
                         .padding(.horizontal, 16).padding(.vertical, 8)
@@ -585,7 +634,7 @@ struct LockedFloor: View {
                     .accessibilityIdentifier("workshop.\(good.rawValue).open")
                 } else {
                     Text(verbatim: t("l4_locked_floor", def.chapter))
-                        .font(.system(size: 14, weight: .heavy, design: .rounded)).foregroundStyle(.white)
+                        .font(.toon(14, .heavy)).foregroundStyle(.white)
                         .padding(.horizontal, 12).padding(.vertical, 6)
                         .background(Color.black.opacity(0.6), in: Capsule())
                 }

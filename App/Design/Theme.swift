@@ -1,4 +1,6 @@
+import CoreText
 import SwiftUI
+import UIKit
 
 /// The shared NOIR LEDGER colour tokens. Names and values are identical to `shared-assets/tokens/tokens.json` (the
 /// cross-platform token map used by Android too); `scripts/shared_assets.py check` fails the build if they diverge.
@@ -145,7 +147,78 @@ extension EnvironmentValues {
     }
 }
 
+/// The game's two typefaces (SIL Open Font License, App/Resources/Fonts): Fredoka, a rounded variable font, for all
+/// text and numbers, and Lilita One for titles. Both follow Dynamic Type; a missing font falls back to the system.
+enum ToonFont {
+    /// PostScript name of the variable font's default instance; the weight is set on the `wght` axis.
+    static let text = "Fredoka-Light"
+    static let display = "LilitaOne"
+
+    static func pointSize(_ style: Font.TextStyle) -> CGFloat {
+        switch style {
+        case .largeTitle: 34
+        case .title: 28
+        case .title2: 22
+        case .title3: 20
+        case .headline, .body: 17
+        case .callout: 16
+        case .subheadline: 15
+        case .footnote: 13
+        case .caption: 12
+        case .caption2: 11
+        @unknown default: 17
+        }
+    }
+
+    static func uiStyle(_ style: Font.TextStyle) -> UIFont.TextStyle {
+        switch style {
+        case .largeTitle: .largeTitle
+        case .title: .title1
+        case .title2: .title2
+        case .title3: .title3
+        case .headline: .headline
+        case .callout: .callout
+        case .subheadline: .subheadline
+        case .footnote: .footnote
+        case .caption: .caption1
+        case .caption2: .caption2
+        default: .body
+        }
+    }
+
+    static func axis(_ weight: Font.Weight) -> CGFloat {
+        switch weight {
+        case .black, .heavy: 700
+        case .bold: 650
+        case .semibold: 580
+        case .medium: 500
+        case .light, .thin, .ultraLight: 350
+        default: 430
+        }
+    }
+
+    static func uiFont(size: CGFloat, weight: Font.Weight, style: Font.TextStyle) -> UIFont {
+        let variation = UIFontDescriptor.AttributeName(rawValue: kCTFontVariationAttribute as String)
+        let wght = 0x7767_6874 // 'wght'
+        let descriptor = UIFontDescriptor(fontAttributes: [.name: text, variation: [wght: axis(weight)]])
+        return UIFontMetrics(forTextStyle: uiStyle(style)).scaledFont(for: UIFont(descriptor: descriptor, size: size))
+    }
+}
+
 extension Font {
-    /// Display moments only (wordmark, chapter and story titles): Apple's New York serif, still Dynamic Type aware.
-    static func display(_ style: Font.TextStyle) -> Font { .system(style, design: .serif, weight: .semibold) }
+    /// Rounded game text at a point size, scaled with Dynamic Type like `relativeTo`.
+    static func toon(_ size: CGFloat, _ weight: Font.Weight = .medium, relativeTo style: Font.TextStyle = .body) -> Font {
+        Font(ToonFont.uiFont(size: size, weight: weight, style: style))
+    }
+
+    /// Rounded game text for a text style.
+    static func toon(_ style: Font.TextStyle, _ weight: Font.Weight? = nil) -> Font {
+        let w = weight ?? (style == .headline ? .semibold : .regular)
+        return toon(ToonFont.pointSize(style), w, relativeTo: style)
+    }
+
+    /// Titles: Lilita One, Dynamic Type aware.
+    static func display(_ style: Font.TextStyle) -> Font {
+        .custom(ToonFont.display, size: ToonFont.pointSize(style) + 2, relativeTo: style)
+    }
 }

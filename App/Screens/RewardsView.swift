@@ -10,7 +10,7 @@ struct RewardsView: View {
         let s = store.state
         SheetFrame("rewards_title", identifier: "screen.rewards") {
             DailyPanel(state: s)
-            Text(verbatim: t("l4_rewards_more")).font(.footnote).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t("l4_rewards_more")).font(.toon(.footnote)).foregroundStyle(Noir.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -25,13 +25,13 @@ private struct DailyPanel: View {
         let available = store.today > state.meta.dailyLastDay
         let position = state.meta.dailyClaims % Idle.dailyCycle.count
         Panel(.paper) {
-            Text(verbatim: t("daily_title")).font(.headline).accessibilityAddTraits(.isHeader)
-            Text(verbatim: t(available ? "daily_ready" : "daily_done")).font(.subheadline).foregroundStyle(Noir.paperInkSoft)
+            Text(verbatim: t("daily_title")).font(.toon(.headline)).accessibilityAddTraits(.isHeader)
+            Text(verbatim: t(available ? "daily_ready" : "daily_done")).font(.toon(.subheadline)).foregroundStyle(Noir.paperInkSoft)
             HStack(spacing: Noir.s1) {
                 ForEach(0..<Idle.dailyCycle.count, id: \.self) { i in
                     VStack(spacing: 2) {
-                        Image(systemName: symbol(Idle.dailyCycle[i]))
-                        Text(verbatim: short(Idle.dailyCycle[i])).font(.caption2.weight(.semibold)).monospacedDigit()
+                        Image(symbol(Idle.dailyCycle[i])).resizable().frame(width: 24, height: 24)
+                        Text(verbatim: short(Idle.dailyCycle[i])).font(.toon(.caption2, .semibold)).monospacedDigit()
                             .lineLimit(1).minimumScaleFactor(0.6)
                     }
                     .frame(maxWidth: .infinity, minHeight: 46)
@@ -40,7 +40,7 @@ private struct DailyPanel: View {
                                 in: RoundedRectangle(cornerRadius: 6, style: .continuous))
                     .overlay {
                         if i < position {
-                            Image(systemName: "checkmark").font(.caption2.weight(.heavy)).foregroundStyle(Noir.paperInk)
+                            Image("IconCheck").resizable().frame(width: 14, height: 14)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing).padding(3)
                         }
                     }
@@ -60,9 +60,9 @@ private struct DailyPanel: View {
 
     private func symbol(_ r: DailyReward) -> String {
         switch r {
-        case .favors: "seal.fill"
-        case .boost: "bolt.fill"
-        case .warp: "forward.fill"
+        case .favors: "HudFavor"
+        case .boost: "IconBoost"
+        case .warp: "IconWarp"
         }
     }
 

@@ -13,6 +13,10 @@ struct ShopView: View {
         let s = store.state
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
+                Image("HeaderShop").resizable().scaledToFill()
+                    .frame(height: 150).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
                 wallet(s)
                 SectionHeading(title: t("shop_free"), detail: t(s.meta.noAds ? "shop_free_detail_noads" : "shop_free_detail"))
                 RewardRow(reward: .boost, state: s)
@@ -42,13 +46,13 @@ struct ShopView: View {
                 .noirButton(.quiet)
                 .disabled(shop.restoring)
                 .accessibilityIdentifier("shop.restore")
-                Text(verbatim: t("shop_legal")).font(.footnote).foregroundStyle(Noir.inkMuted)
+                Text(verbatim: t("shop_legal")).font(.toon(.footnote)).foregroundStyle(Noir.inkMuted)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(Noir.s4)
             .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.shop", title: t("shop_title")) }
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if let notice = store.notice { NoticeBanner(notice: notice).padding(Noir.s3) }
         }
@@ -69,16 +73,16 @@ struct ShopView: View {
             HStack(spacing: Noir.s3) {
                 Image("FavorPile").resizable().scaledToFit().frame(width: 56, height: 42).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(verbatim: t("shop_wallet")).font(.caption).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t("shop_wallet")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                     RollingText(text: t.decimal(Double(s.meta.favors), digits: 0), value: Double(s.meta.favors))
-                        .font(.title.weight(.bold))
+                        .font(.toon(.title, .bold))
                         .accessibilityIdentifier("shop.favors")
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text(verbatim: t("shop_payout")).font(.caption).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t("shop_payout")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                     Text(verbatim: t("empire_payout", t.decimal(Flow.payMultiplier(s), digits: 2)))
-                        .font(.title3.weight(.bold)).monospacedDigit().foregroundStyle(Noir.amber)
+                        .font(.toon(.title3, .bold)).monospacedDigit().foregroundStyle(Noir.amber)
                 }
             }
             .accessibilityElement(children: .combine)
@@ -100,8 +104,8 @@ private struct RewardRow: View {
             HStack(spacing: Noir.s3) {
                 rewardIcon.accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: title).font(.subheadline.weight(.semibold))
-                    Text(verbatim: block ?? detail).font(.caption).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: title).font(.toon(.subheadline, .semibold))
+                    Text(verbatim: block ?? detail).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -111,7 +115,7 @@ private struct RewardRow: View {
                     Label {
                         Text(verbatim: t(state.meta.noAds ? "shop_take" : "shop_watch"))
                     } icon: {
-                        Image(systemName: state.meta.noAds ? "bolt.fill" : "play.rectangle.fill")
+                        Image(state.meta.noAds ? "IconBoost" : "IconAd").resizable().frame(width: 22, height: 22)
                     }
                 }
                 .noirButton(.primary, fullWidth: false)
@@ -126,7 +130,7 @@ private struct RewardRow: View {
         case .boost: Image("ShopBoost").resizable().frame(width: 40, height: 40)
         case .favors: Image("HudFavor").resizable().frame(width: 36, height: 36).frame(width: 40)
         case .coolHeat: Image("ShopCalm").resizable().frame(width: 40, height: 40)
-        case .offlineDouble: Image(systemName: "moon.zzz.fill").font(.title3).foregroundStyle(Noir.amber).frame(width: 40)
+        case .offlineDouble: Image("IconOffline").resizable().frame(width: 40, height: 40)
         }
     }
 
@@ -178,8 +182,8 @@ private struct OfferCard: View {
             HStack(alignment: .top, spacing: Noir.s3) {
                 Image(item.art).resizable().scaledToFit().frame(width: 64, height: 64).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: t(item.titleKey)).font(.headline)
-                    Text(verbatim: detail).font(.subheadline).fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: t(item.titleKey)).font(.toon(.headline))
+                    Text(verbatim: detail).font(.toon(.subheadline)).fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -229,15 +233,15 @@ private struct FavorRow: View {
             HStack(spacing: Noir.s3) {
                 favorIcon.accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: title).font(.subheadline.weight(.semibold))
-                    Text(verbatim: detail).font(.caption).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: title).font(.toon(.subheadline, .semibold))
+                    Text(verbatim: detail).font(.toon(.caption)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Button {
                     store.dispatch(.buyFavorItem(item))
                 } label: {
                     Label { Text(verbatim: t.decimal(Double(item.price), digits: 0)).monospacedDigit() } icon: {
-                        Image(systemName: "seal.fill")
+                        Image("HudFavor").resizable().frame(width: 20, height: 20)
                     }
                 }
                 .noirButton(.primary, fullWidth: false)
@@ -253,7 +257,7 @@ private struct FavorRow: View {
         case .boost4h: Image("ShopBoost").resizable().frame(width: 40, height: 40)
         case .warp2h, .warp8h, .warp24h: Image("ShopWarp").resizable().frame(width: 40, height: 40)
         case .coolHeat: Image("ShopCalm").resizable().frame(width: 40, height: 40)
-        case .loyalty: Image(systemName: "heart.fill").font(.title3).foregroundStyle(Noir.brass).frame(width: 40)
+        case .loyalty: Image(systemName: "heart.fill").font(.toon(.title3)).foregroundStyle(Noir.brass).frame(width: 40)
         }
     }
 

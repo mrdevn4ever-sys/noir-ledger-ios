@@ -42,33 +42,33 @@ struct ChapterStrip: View {
                     VStack(alignment: .leading, spacing: 2) {
                         HStack(spacing: 4) {
                             Text(verbatim: t("l4_chapter_n", ch.number) + " · " + t(ChapterText.title(ch.number)))
-                                .font(.system(size: 13, weight: .heavy, design: .rounded))
+                                .font(.toon(13, .heavy))
                                 .lineLimit(1).minimumScaleFactor(0.8)
                             Spacer(minLength: 0)
                             Text(verbatim: "\(ch.goals.filter { Flow.goalDone(state, $0) }.count)/\(ch.goals.count)")
-                                .font(.system(size: 12, weight: .heavy, design: .rounded)).monospacedDigit()
+                                .font(.toon(12, .heavy)).monospacedDigit()
                         }
                         if let goal = ch.goals.first(where: { !Flow.goalDone(state, $0) }) {
                             let p = Flow.goalProgress(state, goal)
                             HStack(spacing: Noir.s2) {
-                                Text(verbatim: ChapterText.goal(goal, t)).font(.system(size: 12, weight: .semibold, design: .rounded))
+                                Text(verbatim: ChapterText.goal(goal, t)).font(.toon(12, .semibold))
                                     .foregroundStyle(Noir.paperInk.opacity(0.75))
                                     .lineLimit(1).minimumScaleFactor(0.8)
                                 Meter(fraction: p.target > 0 ? min(1, p.current / p.target) : 1, tint: Noir.paperGold, height: 4)
                                     .frame(width: 56)
                             }
                         } else {
-                            Text(verbatim: t("l4_chapter_ready")).font(.system(size: 12, weight: .heavy, design: .rounded))
+                            Text(verbatim: t("l4_chapter_ready")).font(.toon(12, .heavy))
                                 .foregroundStyle(Noir.paperRed).lineLimit(1).minimumScaleFactor(0.8)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 } else {
-                    Image(systemName: "flag.checkered").font(.headline)
-                    Text(verbatim: t("l4_challenges_strip")).font(.system(size: 13, weight: .heavy, design: .rounded))
+                    Image(systemName: "flag.checkered").font(.toon(.headline))
+                    Text(verbatim: t("l4_challenges_strip")).font(.toon(13, .heavy))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                Image(systemName: "chevron.right").font(.caption.weight(.bold))
+                Image(systemName: "chevron.right").font(.toon(.caption, .bold))
             }
             .padding(.horizontal, Noir.s3).padding(.vertical, 7)
             .foregroundStyle(Noir.paperInk)
@@ -93,7 +93,7 @@ struct HintBubble: View {
             Image(systemName: "hand.point.down.fill")
             Text(verbatim: t(HintText.key(hint))).fixedSize(horizontal: false, vertical: true)
         }
-        .font(.system(size: 13, weight: .bold, design: .rounded))
+        .font(.toon(13, .bold))
         .foregroundStyle(Noir.onAmber)
         .padding(.horizontal, Noir.s3).padding(.vertical, 7)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -145,12 +145,12 @@ struct BottleneckBanner: View {
             Mark(Glyph.product(good.product), size: 18)
             VStack(alignment: .leading, spacing: 1) {
                 Text(verbatim: t(NeckText.key(forecast.bottleneck), t(GoodText.name(good))))
-                    .font(.system(size: 13, weight: .heavy, design: .rounded))
+                    .font(.toon(13, .heavy))
                     .foregroundStyle(.white)
                     .lineLimit(2).minimumScaleFactor(0.8)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
-                    .font(.system(size: 11, weight: .semibold, design: .rounded)).monospacedDigit()
+                    .font(.toon(11, .semibold)).monospacedDigit()
                     .foregroundStyle(.white.opacity(0.7))
                     .lineLimit(2).minimumScaleFactor(0.8)
                     .fixedSize(horizontal: false, vertical: true)
@@ -159,7 +159,7 @@ struct BottleneckBanner: View {
             if let fix {
                 Button { sheet = .station(fix) } label: {
                     Text(verbatim: t("l4_neck_fix"))
-                        .font(.system(size: 14, weight: .heavy, design: .rounded))
+                        .font(.toon(14, .heavy))
                         .foregroundStyle(Color(hex: 0x1B1B28))
                         .padding(.horizontal, 14).frame(minHeight: 36)
                         .background(Toon.window, in: Capsule())
@@ -195,13 +195,13 @@ struct QuarterBlock: View {
         let tier = Flow.tier(qs.attention)
         VStack(alignment: .leading, spacing: Noir.s2) {
             HStack(spacing: Noir.s2) {
-                Text(verbatim: t(QuarterText.name(quarter))).font(.subheadline.weight(.bold))
+                Text(verbatim: t(QuarterText.name(quarter))).font(.toon(.subheadline, .bold))
                 Spacer(minLength: 0)
                 AttentionChip(attention: qs.attention, paused: qs.paused)
             }
             Meter(fraction: qs.attention / 100, tint: tier >= 2 ? Noir.danger : (tier == 1 ? Noir.amber : Noir.brass), height: 4)
             if tier > 0 || qs.paused {
-                Text(verbatim: t(qs.paused ? "l4_paused_b" : "l4_tier_effect_\(tier)")).font(.caption2)
+                Text(verbatim: t(qs.paused ? "l4_paused_b" : "l4_tier_effect_\(tier)")).font(.toon(.caption2))
                     .foregroundStyle(tier >= 2 ? Noir.danger : Noir.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -225,7 +225,7 @@ struct AttentionChip: View {
         } icon: {
             Image(SceneArt.attention(tier: tier, paused: paused)).resizable().frame(width: 20, height: 20)
         }
-        .font(.caption.weight(.bold)).monospacedDigit()
+        .font(.toon(.caption, .bold)).monospacedDigit()
         .foregroundStyle(tier >= 2 ? Noir.danger : (tier == 1 ? Noir.amber : Noir.inkSoft))
     }
 }
@@ -250,21 +250,29 @@ struct ContactRow: View {
                 .saturation(owned == nil ? 0.2 : 1).opacity(owned == nil ? 0.7 : 1)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {
-                Text(verbatim: t(ContactText.name(contact.id))).font(.subheadline.weight(.semibold))
+                Text(verbatim: t(ContactText.name(contact.id))).font(.toon(.subheadline, .semibold))
                 if owned != nil {
                     Text(verbatim: t("l4_contact_line", t.money(Flow.contactAverageRate(state, contact.id) * 60),
                                      t.money(Flow.contactPrice(state, contact.id, average: true))))
-                        .font(.caption).monospacedDigit().foregroundStyle(Noir.inkSoft)
+                        .font(.toon(.caption)).monospacedDigit().foregroundStyle(Noir.inkSoft)
                     if contact.club {
                         let night = Flow.clubNight(state)
-                        Text(verbatim: t(night.on ? "l4_club_on" : "l4_club_off", t.duration(night.left)))
-                            .font(.caption2.weight(.bold)).monospacedDigit().foregroundStyle(night.on ? Noir.amber : Noir.inkSoft)
+                        Label { Text(verbatim: t(night.on ? "l4_club_on" : "l4_club_off", t.duration(night.left))) } icon: {
+                            Image(night.on ? "IconClubOn" : "IconClubOff").resizable().frame(width: 18, height: 18)
+                        }
+                        .font(.toon(.caption2, .bold)).monospacedDigit().foregroundStyle(night.on ? Noir.amber : Noir.inkSoft)
                     }
                     if contact.luxury, let trust = owned?.trust {
-                        Text(verbatim: t("l4_trust", trust, FlowContent.maxTrust)).font(.caption2.weight(.bold)).foregroundStyle(Noir.brass)
+                        HStack(spacing: 2) {
+                            ForEach(0..<FlowContent.maxTrust, id: \.self) { i in
+                                Image(i < trust ? "IconTrustStar" : "IconTrustStarEmpty").resizable().frame(width: 16, height: 16)
+                            }
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(Text(verbatim: t("l4_trust", trust, FlowContent.maxTrust)))
                     }
                 } else {
-                    Text(verbatim: t(ContactText.desc(contact.id))).font(.caption).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t(ContactText.desc(contact.id))).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -279,10 +287,10 @@ struct ContactRow: View {
                 Button { store.dispatch(.unlockContact(contact.id)) } label: {
                     VStack(spacing: 2) {
                         Text(verbatim: t("l4_unlock"))
-                        Text(verbatim: t.money(contact.unlockCost)).font(.caption.weight(.semibold)).monospacedDigit().opacity(0.85)
+                        Text(verbatim: t.money(contact.unlockCost)).font(.toon(.caption, .semibold)).monospacedDigit().opacity(0.85)
                     }
                 }
-                .noirButton(state.cash >= contact.unlockCost ? .primary : .secondary, fullWidth: false)
+                .noirButton(state.cash >= contact.unlockCost ? .go : .secondary, fullWidth: false)
                 .disabled(state.cash < contact.unlockCost)
                 .accessibilityIdentifier("contact.\(contact.id).unlock")
             }
@@ -315,9 +323,9 @@ struct NoticeBanner: View {
 
     var body: some View {
         Label { Text(verbatim: t(notice.key)) } icon: {
-            Image(systemName: notice.danger ? "exclamationmark.octagon" : "info.circle")
+            Image(notice.danger ? "IconWarning" : "IconInfo").resizable().frame(width: 22, height: 22)
         }
-        .font(.subheadline.weight(.semibold))
+        .font(.toon(.subheadline, .semibold))
         .foregroundStyle(notice.danger ? Noir.onDanger : Noir.ink)
         .padding(Noir.s3)
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -17,6 +17,14 @@ struct SettingsView: View {
         Form {
             Group {
             Section {
+                Image("HeaderSettings").resizable().scaledToFill()
+                    .frame(height: 140).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+            }
+            Section {
                 Picker(selection: $settings.language) {
                     Text(verbatim: t("lang_system")).tag(LanguageChoice.system)
                     Text(verbatim: t("lang_de")).tag(LanguageChoice.de)
@@ -28,7 +36,7 @@ struct SettingsView: View {
                 .labelsHidden()
                 .accessibilityIdentifier("settings.language")
             } header: {
-                Text(verbatim: t("set_language"))
+                HStack(spacing: Noir.s3) { Image("IconLanguage").resizable().frame(width: 28, height: 28).accessibilityHidden(true); Text(verbatim: t("set_language")) }
             }
 
             Section {
@@ -40,16 +48,16 @@ struct SettingsView: View {
                     Text(verbatim: t("set_motion"))
                 }
                 .accessibilityIdentifier("settings.motion")
-                Toggle(isOn: $settings.haptics) { Text(verbatim: t("set_haptics")) }
+                Toggle(isOn: $settings.haptics) { HStack(spacing: Noir.s3) { Image("IconHaptics").resizable().frame(width: 28, height: 28).accessibilityHidden(true); Text(verbatim: t("set_haptics")) } }
                     .accessibilityIdentifier("settings.haptics")
             }
 
             Section {
-                Toggle(isOn: $settings.sound) { Text(verbatim: t("set_sound")) }
+                Toggle(isOn: $settings.sound) { HStack(spacing: Noir.s3) { Image(settings.sound ? "IconSound" : "IconSoundOff").resizable().frame(width: 28, height: 28).accessibilityHidden(true); Text(verbatim: t("set_sound")) } }
                     .accessibilityIdentifier("settings.sound")
-                Toggle(isOn: $settings.music) { Text(verbatim: t("set_music")) }
+                Toggle(isOn: $settings.music) { HStack(spacing: Noir.s3) { Image(settings.music ? "IconMusic" : "IconMusicOff").resizable().frame(width: 28, height: 28).accessibilityHidden(true); Text(verbatim: t("set_music")) } }
                     .accessibilityIdentifier("settings.music")
-                Toggle(isOn: $settings.notifications) { Text(verbatim: t("set_notifications")) }
+                Toggle(isOn: $settings.notifications) { HStack(spacing: Noir.s3) { Image("IconBell").resizable().frame(width: 28, height: 28).accessibilityHidden(true); Text(verbatim: t("set_notifications")) } }
                     .accessibilityIdentifier("settings.notifications")
             } header: {
                 Text(verbatim: t("set_audio"))
@@ -59,7 +67,10 @@ struct SettingsView: View {
                 Button {
                     Task { await shop.restore() }
                 } label: {
-                    Text(verbatim: t(shop.restoring ? "shop_restoring" : "shop_restore"))
+                    HStack(spacing: Noir.s3) {
+                        Image("IconRestore").resizable().frame(width: 28, height: 28).accessibilityHidden(true)
+                        Text(verbatim: t(shop.restoring ? "shop_restoring" : "shop_restore"))
+                    }
                 }
                 .disabled(shop.restoring)
                 .accessibilityIdentifier("settings.restore")
@@ -76,7 +87,7 @@ struct SettingsView: View {
             }
 
             Section {
-                Text(verbatim: t("save_info")).font(.footnote).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("save_info")).font(.toon(.footnote)).foregroundStyle(Noir.inkSoft)
                 LabeledContent {
                     Text(verbatim: t.relativeSaved(store.lastSavedAtMs, nowMs: store.nowMs)).monospacedDigit()
                 } label: {
@@ -94,11 +105,14 @@ struct SettingsView: View {
             }
 
             Section {
-                Text(verbatim: t("reset_desc")).font(.footnote).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("reset_desc")).font(.toon(.footnote)).foregroundStyle(Noir.inkSoft)
                 Button(role: .destructive) {
                     confirmReset = true
                 } label: {
-                    Text(verbatim: t("reset_title"))
+                    HStack(spacing: Noir.s3) {
+                        Image("IconReset").resizable().frame(width: 28, height: 28).accessibilityHidden(true)
+                        Text(verbatim: t("reset_title"))
+                    }
                 }
                 .accessibilityIdentifier("settings.reset")
             } header: {
@@ -106,8 +120,8 @@ struct SettingsView: View {
             }
 
             Section {
-                Text(verbatim: t("about_body", appVersion)).font(.footnote)
-                Text(verbatim: t("credits_body")).font(.footnote).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("about_body", appVersion)).font(.toon(.footnote))
+                Text(verbatim: t("credits_body")).font(.toon(.footnote)).foregroundStyle(Noir.inkSoft)
             } header: {
                 Text(verbatim: t("about_title"))
             }
@@ -115,7 +129,8 @@ struct SettingsView: View {
             .listRowBackground(Noir.surface)
         }
         .scrollContentBackground(.hidden)
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
+        .toggleStyle(ToonToggleStyle())
         .foregroundStyle(Noir.ink)
         .navigationTitle(Text(verbatim: t("settings_title")))
         .navigationBarTitleDisplayMode(.inline)

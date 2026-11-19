@@ -312,6 +312,13 @@ struct ArtAndSoundTests {
         #expect(missing.isEmpty, "missing images: \(missing)")
     }
 
+    @Test("Both typefaces are registered and give real fonts")
+    func fonts() {
+        #expect(UIFont(name: ToonFont.display, size: 17) != nil)
+        #expect(UIFont(name: ToonFont.text, size: 17) != nil)
+        #expect(ToonFont.uiFont(size: 17, weight: .bold, style: .body).fontName.hasPrefix("Fredoka"))
+    }
+
     @Test("Every sound effect, music piece and ambience bed is in the bundle")
     func sounds() {
         let url = { (name: String) in Bundle.main.url(forResource: name, withExtension: "m4a") }

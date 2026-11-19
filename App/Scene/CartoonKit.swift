@@ -33,8 +33,8 @@ struct LevelBadge: View {
 
     var body: some View {
         VStack(spacing: -2) {
-            Text(verbatim: t("l4_badge_level")).font(.system(size: 11, weight: .bold, design: .rounded))
-            Text(verbatim: "\(level)").font(.system(size: 21, weight: .heavy, design: .rounded)).monospacedDigit()
+            Text(verbatim: t("l4_badge_level")).font(.toon(11, .bold))
+            Text(verbatim: "\(level)").font(.toon(21, .heavy)).monospacedDigit()
                 .minimumScaleFactor(0.6).lineLimit(1)
         }
         .foregroundStyle(.white)
@@ -54,7 +54,7 @@ struct LevelBadge: View {
             if bottleneck { BottleneckDot().offset(x: 10, y: -12) }
         }
         .overlay(alignment: .bottom) {
-            Text(verbatim: caption).font(.system(size: 11, weight: .heavy, design: .rounded)).foregroundStyle(.white)
+            Text(verbatim: caption).font(.toon(11, .heavy)).foregroundStyle(.white)
                 .lineLimit(1).minimumScaleFactor(0.6)
                 .padding(.horizontal, 5).padding(.vertical, 1)
                 .background(Color.black.opacity(0.55), in: Capsule())
@@ -93,7 +93,7 @@ struct ManagerSlot: View {
             } else {
                 Image("ManagerSlot").resizable().frame(width: 30, height: 46)
                     .opacity(affordable ? 1 : 0.75)
-                Text(verbatim: t.money(cost)).font(.system(size: 11, weight: .heavy, design: .rounded)).monospacedDigit()
+                Text(verbatim: t.money(cost)).font(.toon(11, .heavy)).monospacedDigit()
                     .lineLimit(1).minimumScaleFactor(0.7)
                     .padding(.horizontal, 5).padding(.vertical, 1)
                     .foregroundStyle(affordable ? Color(hex: 0x1B1B28) : .white)
@@ -111,7 +111,7 @@ struct CoinLabel: View {
     var body: some View {
         HStack(spacing: 3) {
             Image("Coin").resizable().frame(width: 14, height: 14)
-            Text(verbatim: text).font(.system(size: 12, weight: .heavy, design: .rounded)).monospacedDigit()
+            Text(verbatim: text).font(.toon(12, .heavy)).monospacedDigit()
                 .foregroundStyle(.white).shadow(color: .black.opacity(0.6), radius: 1, y: 1)
         }
     }

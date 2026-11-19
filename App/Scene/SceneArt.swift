@@ -29,6 +29,8 @@ enum SceneArt {
     }
 
     static func floor(_ g: Good, level: Int) -> String { "Floor\(name(g))\(stage(level: level))" }
+    static func floorRun(_ g: Good, level: Int) -> String { floor(g, level: level) + "Run4" }
+    static func floorLit(_ g: Good, level: Int) -> String { floor(g, level: level) + "Lit" }
     static func floorLocked(_ g: Good) -> String { "Floor\(name(g))Locked" }
     static func crate(_ g: Good) -> String { "Crate\(name(g))" }
 
@@ -48,6 +50,7 @@ enum SceneArt {
     static func courier(_ move: Move) -> String { "WorkerCourier\(move.rawValue)" }
     static func buyer(_ q: Quarter, walking: Bool) -> String { "Buyer\(name(q))" + (walking ? "Walk8" : "Idle2") }
     static func customers(_ q: Quarter, hot: Bool) -> String { "Customers\(name(q))" + (hot ? "Hot" : "") }
+    static func talk(_ crewId: String) -> String { "Body\(crewId.prefix(1).uppercased())\(crewId.dropFirst())Talk4" }
     static func body(_ crewId: String) -> String { "Body\(crewId.prefix(1).uppercased())\(crewId.dropFirst())Idle2" }
 
     /// The depot grows with the fleet: shed, shop, warehouse.
@@ -129,6 +132,24 @@ enum SceneArt {
         return icon ? base + "Icon" : base
     }
 
+    static func goal(_ k: GoalKind) -> String {
+        switch k {
+        case .deliveries: "GoalDeliver"
+        case .hireLead: "GoalHireLead"
+        case .hireDispatcher: "GoalDispatcher"
+        case .orders: "GoalOrders"
+        case .earn: "GoalEarn"
+        case .unlockContact: "GoalUnlockContact"
+        case .throughput: "GoalThroughput"
+        case .openGood: "GoalOpenGood"
+        case .bigOrders: "GoalBigOrder"
+        case .clubNight: "GoalClubNights"
+        case .trust: "GoalTrust"
+        case .cityOrders: "GoalCityOrders"
+        case .finale: "GoalFinale"
+        }
+    }
+
     static func chapter(_ n: Int, outro: Bool) -> String { "Chapter\(min(6, max(1, n)))" + (outro ? "Outro" : "Intro") }
     static func quarter(_ q: Quarter, wide: Bool) -> String { "Quarter\(name(q))" + (wide ? "Wide" : "") }
 
@@ -146,6 +167,7 @@ enum SceneArt {
             + (1...6).flatMap { [chapter($0, outro: false), chapter($0, outro: true)] }
             + Quarter.allCases.flatMap { [quarter($0, wide: false), quarter($0, wide: true)] } + StartChoice.allCases.map(item)
             + (0...2).map { attention(tier: $0, paused: false) } + [attention(tier: 0, paused: true)]
+            + FlowContent.chapters.flatMap { $0.goals.map { goal($0.kind) } } + ["CheckDone", "CheckOpen"]
             + ["brandt", "varga", "okafor", "morgen", "feld", "wolff", "kessler", "hollis", "sand", "reiter", "kraus", "lind", "notary",
                "leopold"].flatMap { id in ["", "Happy", "Angry", "Smug"].map { "Crew" + id.prefix(1).uppercased() + id.dropFirst() + $0 } }
             + ["ScenePrologue", "CityMap", "LedgerCover", "LedgerPage", "StampPaid", "StampMissed", "SealChapter", "ChapterRibbon",
@@ -158,9 +180,9 @@ enum SceneArt {
         var names: [String] = []
         for g in Good.allCases {
             names += [floorLocked(g), crate(g)]
-            names += (0...5).map { "Floor\(name(g))\($0)" }
+            names += (0...5).flatMap { ["Floor\(name(g))\($0)", "Floor\(name(g))\($0)Run4", "Floor\(name(g))\($0)Lit"] }
             names += Move.allCases.map { worker(g, $0) }
-            names.append(body(FlowContent.good(g).lead))
+            names += [body(FlowContent.good(g).lead), talk(FlowContent.good(g).lead)]
         }
         names += Move.allCases.map { courier($0) }
         for q in Quarter.allCases {
@@ -169,7 +191,9 @@ enum SceneArt {
         names += (0...2).map { "Depot\($0)" }
         names += (0...5).flatMap { [vehicle(fleetLevel: [1, 10, 25, 50, 100, 200][$0]).body] + (vehicle(fleetLevel: [1, 10, 25, 50, 100, 200][$0]).wheel.map { [$0] } ?? []) }
         names += ["Fleet0Push8", "PoliceCarBody", "PoliceCarWheel", "PoliceSiren2", "CopWalk8", "CopNotebook4", "CopIdle2"]
-        names += [body(FlowContent.dispatcher)]
+        names += [body(FlowContent.dispatcher), talk(FlowContent.dispatcher), "BodyVargaWhistle4", "Fireflies8", "SirenGlow4", "ShushBubble4",
+                  "SpeedLines6", "WindowSparkle6", "ShiftGlow6", "LevelUpRibbon", "Confetti12", "StampPaid6", "StampMissed6", "MoneyRain8"]
+        names += Quarter.allCases.map { "Buyer\(name($0))Carry8" }
         names += ["SkyNight", "Moon", "SkylineFar", "SkylineNear", "Street", "StreetLamp", "StreetLampGlow", "ShaftTile", "LiftHead",
                   "LiftCable", "LiftCarEmpty", "LiftCarLoaded", "Mailbox", "MailboxClosed", "Foundation", "ShelfFrame", "ShelfFullSign",
                   "CrateSlot", "BadgePlate", "BadgePlateGrey", "ArrowUp", "BottleneckBubble", "ManagerSlot", "TapHand4", "CoinBurst8",

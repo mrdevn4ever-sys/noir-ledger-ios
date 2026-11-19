@@ -17,11 +17,21 @@ struct SheetFrame<Content: View>: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: Noir.s4) { content }
-                .padding(Noir.s4)
-                .background(alignment: .topLeading) { ScreenMarker(identifier: identifier, title: t(titleKey)) }
+            VStack(alignment: .leading, spacing: Noir.s4) {
+                if let header = Self.header(identifier) {
+                    Image(header).resizable().scaledToFill()
+                        .frame(height: 150).frame(maxWidth: .infinity).clipped()
+                        .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Color.black.opacity(0.5), lineWidth: 2))
+                        .accessibilityHidden(true)
+                }
+                content
+            }
+            .padding(Noir.s4)
+            .background(alignment: .topLeading) { ScreenMarker(identifier: identifier, title: t(titleKey)) }
         }
-        .background(Noir.ground)
+        .background { SheetBackdrop() }
+        .toggleStyle(ToonToggleStyle())
         .navigationTitle(Text(verbatim: t(titleKey)))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Noir.ground, for: .navigationBar)
@@ -32,6 +42,29 @@ struct SheetFrame<Content: View>: View {
                     .accessibilityIdentifier("sheet.done")
             }
         }
+    }
+}
+
+extension SheetFrame {
+    /// The picture on top of a window, where the window has one.
+    static func header(_ identifier: String) -> String? {
+        switch identifier {
+        case "screen.orders": "HeaderOrders"
+        case "screen.contacts": "HeaderCustomers"
+        case "screen.crew": "HeaderCrew"
+        case "screen.challenges": "HeaderChallenges"
+        case "screen.shop": "HeaderShop"
+        case "screen.rewards": "HeaderRewards"
+        case "screen.settings": "HeaderSettings"
+        default: nil
+        }
+    }
+}
+
+/// The night wallpaper behind every window.
+struct SheetBackdrop: View {
+    var body: some View {
+        Image("SheetBackdrop").resizable(resizingMode: .tile).ignoresSafeArea().accessibilityHidden(true)
     }
 }
 
@@ -55,15 +88,12 @@ struct StationSheet: View {
         SheetFrame(StationText.id(station).hasPrefix("contact") ? "l4_contact_sheet" : "l4_station_sheet", identifier: "screen.station") {
             StationArt(station: station, state: s, after: after)
             Text(verbatim: StationText.title(station, t)).font(.display(.title2))
-            Text(verbatim: t(Self.explainKey(station))).font(.subheadline).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t(Self.explainKey(station))).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
-            Picker(selection: $mode) {
-                ForEach(BuyMode.allCases) { m in
-                    Text(verbatim: m == .max ? t("buy_max") : t("buy_times", m.rawValue)).tag(m)
-                }
-            } label: { Text(verbatim: t("buy_mode")) }
-            .pickerStyle(.segmented)
-            .accessibilityIdentifier("station.mode")
+            ToonSegments(options: BuyMode.allCases.map { ($0, $0 == .max ? t("buy_max") : t("buy_times", $0.rawValue)) }, selection: $mode)
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel(Text(verbatim: t("buy_mode")))
+                .accessibilityIdentifier("station.mode")
             Panel(.leather) {
                 ValueRow(label: t("l4_level_label"), value: "\(level) → \(Flow.level(after, station))")
                 ValueRow(label: t("l4_capacity"), value: StationText.capacity(station, s, t) + " → " + StationText.capacity(station, after, t),
@@ -83,23 +113,23 @@ struct StationSheet: View {
                     .accessibilityIdentifier("station.income")
             }
             Text(verbatim: Self.verdict(station, preview, good: good, state: s, t))
-                .font(.subheadline.weight(.semibold))
+                .font(.toon(.subheadline, .semibold))
                 .foregroundStyle(preview.after.income > preview.before.income + 0.0001 ? Noir.amber : Noir.ink)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("station.verdict")
             if let next = Flow.nextMilestone(level) {
-                Label { Text(verbatim: t("l4_milestone_next", next)) } icon: { Image(systemName: "hammer.fill") }
-                    .font(.footnote).foregroundStyle(Noir.brass)
+                Label { Text(verbatim: t("l4_milestone_next", next)) } icon: { Image("IconUpgrade").resizable().frame(width: 20, height: 20) }
+                    .font(.toon(.footnote)).foregroundStyle(Noir.brass)
             }
             Button {
                 store.dispatch(.upgrade(station, mode == .max ? 0 : amount))
             } label: {
                 VStack(spacing: 2) {
                     Text(verbatim: t("l4_buy_levels", amount))
-                    Text(verbatim: t.money(cost)).font(.caption.weight(.semibold)).monospacedDigit().opacity(0.85)
+                    Text(verbatim: t.money(cost)).font(.toon(.caption, .semibold)).monospacedDigit().opacity(0.85)
                 }
             }
-            .noirButton(s.cash >= cost ? .primary : .secondary)
+            .noirButton(s.cash >= cost ? .go : .secondary)
             .disabled(s.cash < cost || level >= FlowContent.maxLevel)
             .accessibilityIdentifier("station.buy")
         }
@@ -149,13 +179,13 @@ struct OrdersSheet: View {
     var body: some View {
         let s = store.state
         SheetFrame("l4_orders", identifier: "screen.orders") {
-            Text(verbatim: t("l4_orders_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+            Text(verbatim: t("l4_orders_b")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             StatusChip(text: t("l4_orders_slots", s.orders.count, Flow.orderSlots(s)), symbol: "tray.full.fill")
             ForEach(Array(s.orders.enumerated()), id: \.element.id) { i, o in
                 ActiveOrderCard(order: o, state: s).accessibilityIdentifier("order.active.\(i)")
             }
             if s.offers.isEmpty {
-                Text(verbatim: t("l4_offers_none", t.duration(max(0, s.nextOfferAt - s.time)))).font(.subheadline).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("l4_offers_none", t.duration(max(0, s.nextOfferAt - s.time)))).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
             }
             ForEach(Array(s.offers.enumerated()), id: \.element.id) { i, offer in
                 OrderOfferCard(offer: offer, index: i, state: s)
@@ -163,8 +193,8 @@ struct OrdersSheet: View {
             Panel(.anthracite) {
                 Toggle(isOn: Binding(get: { store.state.ordersFirst }, set: { store.dispatch(.setOrdersFirst($0)) })) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: t("l4_orders_first")).font(.subheadline.weight(.semibold))
-                        Text(verbatim: t("l4_orders_first_b")).font(.caption).foregroundStyle(Noir.inkSoft)
+                        Text(verbatim: t("l4_orders_first")).font(.toon(.subheadline, .semibold))
+                        Text(verbatim: t("l4_orders_first_b")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                     }
                 }
                 .tint(Noir.amber)
@@ -172,8 +202,8 @@ struct OrdersSheet: View {
                 if s.has(.okafor) {
                     Toggle(isOn: Binding(get: { store.state.autoQuiet }, set: { store.dispatch(.setAutoQuiet($0)) })) {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(verbatim: t("l4_auto_quiet")).font(.subheadline.weight(.semibold))
-                            Text(verbatim: t("l4_auto_quiet_b")).font(.caption).foregroundStyle(Noir.inkSoft)
+                            Text(verbatim: t("l4_auto_quiet")).font(.toon(.subheadline, .semibold))
+                            Text(verbatim: t("l4_auto_quiet_b")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         }
                     }
                     .tint(Noir.amber)
@@ -205,12 +235,12 @@ struct OrderOfferCard: View {
                 StatusChip(text: t(OrderText.kind(offer.kind)), symbol: loud ? "exclamationmark.bubble.fill" : "hand.thumbsup.fill",
                            danger: tierAfter >= 2)
                 Spacer()
-                Text(verbatim: "+" + t.money(offer.pay)).font(.title3.weight(.bold)).monospacedDigit()
+                Text(verbatim: "+" + t.money(offer.pay)).font(.toon(.title3, .bold)).monospacedDigit()
                     .foregroundStyle(loud ? Noir.amber : Noir.paperInk)
                     .accessibilityIdentifier("offer.\(index).pay")
             }
-            Text(verbatim: OrderText.items(offer, t)).font(.headline)
-            if let c = offer.contact { Text(verbatim: t(ContactText.name(c))).font(.subheadline) }
+            Text(verbatim: OrderText.items(offer, t)).font(.toon(.headline))
+            if let c = offer.contact { Text(verbatim: t(ContactText.name(c))).font(.toon(.subheadline)) }
             ValueRow(label: t("l4_offer_window"), value: t.duration(offer.window))
             ValueRow(label: t("l4_offer_fleet"), value: t.duration(Flow.deliverySeconds(state, offer)))
             ValueRow(label: t("l4_offer_stock"), value: Good.allCases.compactMap { g in
@@ -219,19 +249,19 @@ struct OrderOfferCard: View {
             HStack(spacing: Noir.s2) {
                 Image(SceneArt.attention(tier: tierAfter, paused: false)).resizable().frame(width: 26, height: 26).accessibilityHidden(true)
                 Text(verbatim: t("l4_offer_attention", t(QuarterText.name(att.quarter)), t.decimal(att.before, digits: 0), t.decimal(att.after, digits: 0)))
-                    .font(.subheadline.weight(.semibold)).monospacedDigit()
+                    .font(.toon(.subheadline, .semibold)).monospacedDigit()
                     .foregroundStyle(tierAfter >= 2 ? Noir.danger : (loud ? Noir.amber : Noir.paperInk))
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("offer.\(index).attention")
             }
             if tierAfter > tierBefore {
                 Label { Text(verbatim: t("l4_offer_tier_up", t("l4_tier_\(tierAfter)")) + " " + t("l4_tier_effect_\(tierAfter)")) } icon: {
-                    Image(systemName: "exclamationmark.triangle.fill")
+                    Image("IconWarning").resizable().frame(width: 18, height: 18)
                 }
-                .font(.caption.weight(.semibold)).foregroundStyle(Noir.danger)
+                .font(.toon(.caption, .semibold)).foregroundStyle(Noir.danger)
                 .fixedSize(horizontal: false, vertical: true)
             }
-            Text(verbatim: t(offer.kind == .trust ? "l4_offer_fail_trust" : "l4_offer_fail")).font(.caption)
+            Text(verbatim: t(offer.kind == .trust ? "l4_offer_fail_trust" : "l4_offer_fail")).font(.toon(.caption))
                 .foregroundStyle(loud ? Noir.inkSoft : Noir.paperInk.opacity(0.7))
                 .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: Noir.s2) {
@@ -244,7 +274,7 @@ struct OrderOfferCard: View {
                     .accessibilityIdentifier("offer.\(index).accept")
             }
             if slotsFull {
-                Text(verbatim: t("l4_slots_full")).font(.caption).foregroundStyle(loud ? Noir.inkSoft : Noir.paperInk.opacity(0.7))
+                Text(verbatim: t("l4_slots_full")).font(.toon(.caption)).foregroundStyle(loud ? Noir.inkSoft : Noir.paperInk.opacity(0.7))
             }
         }
     }
@@ -262,11 +292,11 @@ struct ActiveOrderCard: View {
                 Image(SceneArt.order(order.offer.kind)).resizable().frame(width: 34, height: 34).accessibilityHidden(true)
                 StatusChip(text: t(OrderText.kind(order.offer.kind)), symbol: "shippingbox.fill")
                 Spacer()
-                Text(verbatim: "+" + t.money(order.offer.pay)).font(.headline).monospacedDigit().foregroundStyle(Noir.amber)
+                Text(verbatim: "+" + t.money(order.offer.pay)).font(.toon(.headline)).monospacedDigit().foregroundStyle(Noir.amber)
             }
-            Text(verbatim: OrderText.items(order.offer, t)).font(.subheadline.weight(.semibold))
+            Text(verbatim: OrderText.items(order.offer, t)).font(.toon(.subheadline, .semibold))
             Meter(fraction: order.progress, tint: Noir.amber, height: 6)
-            Text(verbatim: t("l4_order_progress", t.percent(order.progress), t.duration(left))).font(.caption).monospacedDigit()
+            Text(verbatim: t("l4_order_progress", t.percent(order.progress), t.duration(left))).font(.toon(.caption)).monospacedDigit()
                 .foregroundStyle(left < 60 ? Noir.danger : Noir.inkSoft)
         }
     }
@@ -331,7 +361,7 @@ struct CrewSheet: View {
     var body: some View {
         let s = store.state
         SheetFrame("l4_crew", identifier: "screen.crew") {
-            Text(verbatim: t("l4_crew_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+            Text(verbatim: t("l4_crew_b")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             ForEach(s.openGoods, id: \.self) { g in
                 let def = FlowContent.good(g)
                 CrewCard(crew: def.lead, role: t("l4_role_lead", t(GoodText.name(g))), effect: t("l4_lead_b"),
@@ -342,7 +372,7 @@ struct CrewSheet: View {
                      hired: s.dispatcher, cost: FlowContent.dispatcherCost, hire: .hireDispatcher,
                      ability: s.chapter >= FlowContent.abilityChapter ? (Ability.rushRun, Good?.none) : nil)
             if !s.specialists.isEmpty {
-                Text(verbatim: t("l4_specialists")).font(.headline).padding(.top, Noir.s2)
+                Text(verbatim: t("l4_specialists")).font(.toon(.headline)).padding(.top, Noir.s2)
             }
             ForEach(s.specialists, id: \.self) { sp in
                 let ability: (Ability, Good?)? = sp == .okafor ? (Ability.newWindow, Good?.none)
@@ -352,7 +382,7 @@ struct CrewSheet: View {
             }
             let upcoming = FlowContent.chapters.filter { $0.number >= s.chapter }.compactMap(\.joins)
             if let next = upcoming.first {
-                Text(verbatim: t("l4_crew_next", Content.crewDef(SpecialistText.crew(next))?.name ?? "")).font(.footnote)
+                Text(verbatim: t("l4_crew_next", Content.crewDef(SpecialistText.crew(next))?.name ?? "")).font(.toon(.footnote))
                     .foregroundStyle(Noir.inkSoft)
             }
         }
@@ -376,19 +406,19 @@ struct CrewCard: View {
             HStack(spacing: Noir.s3) {
                 Portrait(crewId: crew, size: 56).clipShape(Circle()).opacity(hired ? 1 : 0.6)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(verbatim: Content.crewDef(crew)?.name ?? "").font(.headline)
-                    Text(verbatim: role).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
-                    Text(verbatim: effect).font(.caption).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: Content.crewDef(crew)?.name ?? "").font(.toon(.headline))
+                    Text(verbatim: role).font(.toon(.caption, .bold)).foregroundStyle(Noir.amber)
+                    Text(verbatim: effect).font(.toon(.caption)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 if !hired, let hire {
                     Button { store.dispatch(hire) } label: {
                         VStack(spacing: 2) {
                             Text(verbatim: t("l4_hire"))
-                            Text(verbatim: t.money(cost)).font(.caption.weight(.semibold)).monospacedDigit().opacity(0.85)
+                            Text(verbatim: t.money(cost)).font(.toon(.caption, .semibold)).monospacedDigit().opacity(0.85)
                         }
                     }
-                    .noirButton(s.cash >= cost ? .primary : .secondary, fullWidth: false)
+                    .noirButton(s.cash >= cost ? .go : .secondary, fullWidth: false)
                     .disabled(s.cash < cost)
                     .accessibilityIdentifier("crew.\(crew).hire")
                 }
@@ -401,10 +431,10 @@ struct CrewCard: View {
                     HStack(spacing: Noir.s2) {
                     Image(SceneArt.ability(a)).resizable().frame(width: 36, height: 36).accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: t(AbilityText.name(a))).font(.subheadline.weight(.bold))
+                        Text(verbatim: t(AbilityText.name(a))).font(.toon(.subheadline, .bold))
                         Text(verbatim: st.active > 0 ? t("l4_ability_running", t.duration(st.active))
                              : (st.cooldown > 0 ? t("l4_ability_wait", t.duration(st.cooldown)) : t(AbilityText.desc(a))))
-                            .font(.caption).monospacedDigit().opacity(0.85)
+                            .font(.toon(.caption)).monospacedDigit().opacity(0.85)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -431,7 +461,7 @@ struct CitySheet: View {
                 .frame(height: 200).frame(maxWidth: .infinity).clipped()
                 .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                 .accessibilityHidden(true)
-            Text(verbatim: t("l4_city_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+            Text(verbatim: t("l4_city_b")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             ForEach(Quarter.allCases, id: \.self) { q in
                 QuarterCard(quarter: q, state: s)
             }
@@ -460,35 +490,35 @@ struct QuarterCard: View {
                 .clipped()
                 .saturation(open ? 1 : 0.1)
                 .overlay(alignment: .bottomLeading) {
-                    Text(verbatim: t(QuarterText.name(quarter))).font(.headline).foregroundStyle(.white)
+                    Text(verbatim: t(QuarterText.name(quarter))).font(.toon(.headline)).foregroundStyle(.white)
                         .padding(.horizontal, 10).padding(.vertical, 4)
                         .background(Color.black.opacity(0.6), in: Capsule())
                         .padding(Noir.s2)
                 }
                 .overlay(alignment: .topTrailing) {
-                    if !open { Image(systemName: "lock.fill").font(.title3).foregroundStyle(.white).padding(Noir.s2) }
+                    if !open { Image("IconLock").resizable().frame(width: 34, height: 34).padding(Noir.s2) }
                 }
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: Noir.s2) {
-                Text(verbatim: t(QuarterText.desc(quarter))).font(.caption).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t(QuarterText.desc(quarter))).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
                 if open {
                     AttentionChip(attention: qs.attention, paused: qs.paused)
                     Meter(fraction: qs.attention / 100, tint: Flow.tier(qs.attention) >= 2 ? Noir.danger : Noir.amber, height: 5)
-                    Text(verbatim: t("l4_tier_effect_\(Flow.tier(qs.attention))")).font(.caption2).foregroundStyle(Noir.inkSoft)
+                    Text(verbatim: t("l4_tier_effect_\(Flow.tier(qs.attention))")).font(.toon(.caption2)).foregroundStyle(Noir.inkSoft)
                         .fixedSize(horizontal: false, vertical: true)
                     Toggle(isOn: Binding(get: { store.state.quarter(quarter).paused }, set: { store.dispatch(.pause(quarter, $0)) })) {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(verbatim: t("l4_pause")).font(.subheadline.weight(.semibold))
-                            Text(verbatim: t("l4_pause_b")).font(.caption).foregroundStyle(Noir.inkSoft)
+                            Text(verbatim: t("l4_pause")).font(.toon(.subheadline, .semibold))
+                            Text(verbatim: t("l4_pause_b")).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                         }
                     }
                     .tint(Noir.amber)
                     .accessibilityIdentifier("quarter.\(quarter.rawValue).pause")
                 } else {
                     let chapter = FlowContent.chapters.first { $0.quarter == quarter }?.number ?? 1
-                    Label { Text(verbatim: t("l4_quarter_locked", chapter)) } icon: { Image(systemName: "lock.fill") }
-                        .font(.caption.weight(.semibold)).foregroundStyle(Noir.inkSoft)
+                    Label { Text(verbatim: t("l4_quarter_locked", chapter)) } icon: { Image("IconLock").resizable().frame(width: 18, height: 18) }
+                        .font(.toon(.caption, .semibold)).foregroundStyle(Noir.inkSoft)
                 }
             }
             .padding(Noir.s3)
@@ -512,17 +542,17 @@ struct PriorityPanel: View {
         let order = state.priority.filter { state.isOpen($0) }
         let f = Flow.forecast(state)
         Panel(.leather) {
-            Text(verbatim: t("l4_priority")).font(.headline)
-            Text(verbatim: t("l4_priority_b", t.percent(FlowContent.baseShare))).font(.caption).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t("l4_priority")).font(.toon(.headline))
+            Text(verbatim: t("l4_priority_b", t.percent(FlowContent.baseShare))).font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(Array(order.enumerated()), id: \.element) { i, g in
                 HStack(spacing: Noir.s2) {
-                    Text(verbatim: "\(i + 1).").font(.headline).monospacedDigit()
+                    Text(verbatim: "\(i + 1).").font(.toon(.headline)).monospacedDigit()
                     Mark(Glyph.product(g.product), size: 22)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(verbatim: t(GoodText.name(g))).font(.subheadline.weight(.semibold))
+                        Text(verbatim: t(GoodText.name(g))).font(.toon(.subheadline, .semibold))
                         Text(verbatim: t("l4_priority_line", t.money(f.good(g)?.carried ?? 0), t.money(f.good(g)?.demand ?? 0)))
-                            .font(.caption).monospacedDigit().foregroundStyle(Noir.inkSoft)
+                            .font(.toon(.caption)).monospacedDigit().foregroundStyle(Noir.inkSoft)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     Button { move(g, up: true) } label: { Image(systemName: "arrow.up").frame(width: Noir.minTarget, height: Noir.minTarget) }
@@ -564,19 +594,19 @@ struct BookSheet: View {
                 ValueRow(label: t("l4_book_deliveries"), value: t.decimal(Double(s.counters.deliveries), digits: 0))
                 ValueRow(label: t("l4_book_orders"), value: "\(s.counters.orders) / \(s.counters.failed)")
             }
-            Text(verbatim: t("l4_book_entries")).font(.headline)
+            Text(verbatim: t("l4_book_entries")).font(.toon(.headline))
             if s.ledger.isEmpty {
-                Text(verbatim: t("l4_book_empty")).font(.subheadline).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("l4_book_empty")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
             }
             VStack(spacing: 0) {
                 ForEach(s.ledger.reversed()) { e in
                     HStack(alignment: .firstTextBaseline, spacing: Noir.s2) {
-                        Text(verbatim: t.duration(max(0, s.time - e.time))).font(.caption2).monospacedDigit()
+                        Text(verbatim: t.duration(max(0, s.time - e.time))).font(.toon(.caption2)).monospacedDigit()
                             .foregroundStyle(Noir.paperInk.opacity(0.6)).frame(width: 64, alignment: .leading)
-                        Text(verbatim: Self.line(e, t)).font(.system(.subheadline, design: .serif))
+                        Text(verbatim: Self.line(e, t)).font(.toon(.subheadline))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Text(verbatim: (e.kind == .orderFailed ? "" : "+") + t.money(e.amount))
-                            .font(.system(.subheadline, design: .serif, weight: .bold)).monospacedDigit()
+                            .font(.toon(.subheadline, .bold)).monospacedDigit()
                             .foregroundStyle(e.kind == .orderFailed ? Noir.paperRed : Noir.paperInk)
                     }
                     .padding(.vertical, 6)

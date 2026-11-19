@@ -51,7 +51,7 @@ struct FloaterView: View {
 
     var body: some View {
         Text(verbatim: floater.text)
-            .font(.footnote.weight(.heavy))
+            .font(.toon(.footnote, .heavy))
             .monospacedDigit()
             .foregroundStyle(Noir.amber)
             .shadow(color: Noir.ground, radius: 2)
@@ -88,19 +88,33 @@ struct CelebrationBanner: View {
         .allowsHitTesting(false)
     }
 
+    /// The ribbon with title and detail; confetti for milestones, chapters and new floors, a stamp for a paid order.
     private func banner(_ c: Celebration) -> some View {
-        VStack(spacing: 2) {
-            Text(verbatim: title(c.kind)).font(.display(.title3))
-            Text(verbatim: detail(c.kind)).font(.subheadline.weight(.semibold))
+        VStack(spacing: 0) {
+            Text(verbatim: title(c.kind)).font(.display(.title2))
+                .foregroundStyle(Color(hex: 0x5A3A00))
+                .padding(.horizontal, 70).padding(.top, 18).padding(.bottom, 28)
+                .frame(minWidth: 300)
+                .background(Image("LevelUpRibbon").resizable())
+            Text(verbatim: detail(c.kind)).font(.toon(.subheadline, .bold))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 14).padding(.vertical, 6)
+                .background { ToonPlate(name: "ChipPill", corner: 12) }
+                .offset(y: -10)
         }
         .multilineTextAlignment(.center)
-        .foregroundStyle(Noir.onAmber)
-        .padding(.horizontal, Noir.s5)
-        .padding(.vertical, Noir.s3)
-        .background(Noir.amberFill, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.paper.opacity(0.6), lineWidth: 1))
-        .background { if !reduceMotion { GoldBurst() } }
-        .shadow(color: Noir.amber.opacity(0.45), radius: 18)
+        .lineLimit(2).minimumScaleFactor(0.8)
+        .background {
+            if !reduceMotion {
+                switch c.kind {
+                case .orderDone:
+                    TimedSprite(name: "StampPaid6", frames: 6, size: 110, fps: 10).offset(x: 140, y: 10)
+                default:
+                    TimedSprite(name: "Confetti12", frames: 12, size: 320, fps: 10)
+                }
+            }
+        }
+        .shadow(color: Noir.amber.opacity(0.35), radius: 16)
         .padding(.top, Noir.s6)
         .padding(.horizontal, Noir.s4)
         .accessibilityIdentifier("celebration")
@@ -127,23 +141,23 @@ struct CelebrationBanner: View {
     }
 }
 
-/// Gold flecks flying out from behind the banner, once.
-private struct GoldBurst: View {
-    @State private var out = false
+/// A sprite sheet played once from the moment it appears.
+struct TimedSprite: View {
+    let name: String
+    let frames: Int
+    let size: CGFloat
+    var fps: Double = 12
+    @State private var start = Date()
 
     var body: some View {
-        ZStack {
-            ForEach(0..<16, id: \.self) { i in
-                let angle = Double(i) / 16 * 2 * .pi
-                Circle()
-                    .fill(i % 3 == 0 ? Noir.paper : Noir.amber)
-                    .frame(width: i % 2 == 0 ? 6 : 4, height: i % 2 == 0 ? 6 : 4)
-                    .offset(x: out ? cos(angle) * 150 : 0, y: out ? sin(angle) * 70 : 0)
-                    .opacity(out ? 0 : 1)
+        TimelineView(.animation(minimumInterval: 1 / fps)) { tl in
+            let f = Int(tl.date.timeIntervalSince(start) * fps)
+            if f < frames {
+                SpriteStrip(name: name, frames: frames, frame: f, size: CGSize(width: size, height: size))
             }
         }
-        .onAppear {
-            withAnimation(.easeOut(duration: 0.9)) { out = true }
-        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }
+

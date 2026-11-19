@@ -1,5 +1,6 @@
 import NoirCore
 import SwiftUI
+import UIKit
 
 @main
 struct NoirLedgerApp: App {
@@ -17,6 +18,7 @@ struct NoirLedgerApp: App {
         let store = LedgerStore(saveStore: FlowSaveStore(directory: directory), tycoonStore: TycoonSaveStore(directory: directory),
                                 legacyStore: SaveStore(directory: directory))
         let sound = SoundEngine()
+        Self.styleNavigationBars()
         let shop = StoreService()
         #if NOIR_QA
         QAAccelerator.prepare(store: store, settings: settings)
@@ -66,5 +68,22 @@ struct NoirLedgerApp: App {
                 break
             }
         }
+    }
+
+    /// Window titles in the title face, white on night blue.
+    private static func styleNavigationBars() {
+        let title = UIFont(name: ToonFont.display, size: 20) ?? .systemFont(ofSize: 18, weight: .bold)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 0x14 / 255, green: 0x1A / 255, blue: 0x33 / 255, alpha: 1)
+        appearance.titleTextAttributes = [.font: title, .foregroundColor: UIColor.white]
+        appearance.shadowColor = .clear
+        let item = UIBarButtonItemAppearance()
+        item.normal.titleTextAttributes = [.font: ToonFont.uiFont(size: 17, weight: .bold, style: .body)]
+        appearance.buttonAppearance = item
+        appearance.doneButtonAppearance = item
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
 }

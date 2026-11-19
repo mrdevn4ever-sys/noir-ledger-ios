@@ -18,10 +18,35 @@ struct Panel<Content: View>: View {
         VStack(alignment: .leading, spacing: Noir.s3) { content }
             .padding(Noir.s4)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(surface.fill, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(surface.edge, lineWidth: 1))
+            .background { ToonPlate(name: surface.plate) }
             .foregroundStyle(surface.ink)
             .environment(\.noirSurface, surface)
+    }
+}
+
+/// A stretchable piece of the cartoon window kit: the corners stay, the middle stretches.
+struct ToonPlate: View {
+    let name: String
+    var corner: CGFloat = 20
+    var horizontalOnly = false
+
+    var body: some View {
+        Image(name)
+            .resizable(capInsets: horizontalOnly ? EdgeInsets(top: 0, leading: corner, bottom: 0, trailing: corner)
+                                                 : EdgeInsets(top: corner, leading: corner, bottom: corner, trailing: corner),
+                       resizingMode: .stretch)
+            .accessibilityHidden(true)
+    }
+}
+
+extension NoirSurface {
+    /// The kit plate for this surface.
+    var plate: String {
+        switch self {
+        case .anthracite, .night: "PanelNight"
+        case .paper: "PanelPaper"
+        case .leather: "PanelWood"
+        }
     }
 }
 
@@ -40,11 +65,11 @@ struct SectionHeading: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(verbatim: title)
-                .font(.title3.weight(.semibold))
+                .font(.toon(.title3, .semibold))
                 .foregroundStyle(Noir.ink)
                 .accessibilityAddTraits(.isHeader)
             if let detail {
-                Text(verbatim: detail).font(.subheadline).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: detail).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,7 +79,8 @@ struct SectionHeading: View {
 
 // MARK: - Buttons
 
-enum NoirButtonKind { case primary, secondary, danger, quiet }
+/// Yellow for the main action, green for buying and upgrading, grey for the alternative, red for risk.
+enum NoirButtonKind { case primary, go, secondary, danger, quiet }
 
 /// The single button vocabulary of the game: 44 pt minimum, a short responsive press (scale 0.97 or, with reduced
 /// motion, a dim), and a clearly muted disabled state.
@@ -68,40 +94,46 @@ struct NoirButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
         configuration.label
-            .font(.body.weight(.semibold))
+            .font(.toon(.body, .bold))
             .multilineTextAlignment(.center)
             .padding(.horizontal, Noir.s4)
-            .padding(.vertical, Noir.s2 + 2)
-            .frame(maxWidth: fullWidth ? .infinity : nil, minHeight: Noir.minTarget)
+            .padding(.top, Noir.s2 + 1)
+            .padding(.bottom, Noir.s2 + (pressed ? 1 : 5))
+            .frame(maxWidth: fullWidth ? .infinity : nil, minHeight: Noir.minTarget + 6)
             .foregroundStyle(foreground)
-            .background(background, in: RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
-            .overlay {
-                if kind == .secondary || kind == .quiet {
-                    RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous)
-                        .strokeBorder(border, lineWidth: 1)
+            .shadow(color: kind == .primary ? .clear : .black.opacity(0.3), radius: 0, y: 1)
+            .background {
+                if let plate = plate(pressed: pressed) {
+                    ToonPlate(name: plate)
+                } else {
+                    RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous).strokeBorder(border, lineWidth: 1)
                 }
             }
-            .opacity(isEnabled ? (pressed && reduceMotion ? 0.75 : 1) : 0.42)
-            .scaleEffect(pressed && !reduceMotion ? 0.97 : 1)
+            .offset(y: pressed ? 3 : 0)
+            .opacity(isEnabled ? (pressed && reduceMotion ? 0.75 : 1) : 0.5)
+            .saturation(isEnabled ? 1 : 0.3)
+            .scaleEffect(pressed && !reduceMotion ? 0.98 : 1)
             .animation(.easeOut(duration: pressed ? 0.08 : 0.16), value: pressed)
             .contentShape(RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
     }
 
     private var foreground: Color {
         switch kind {
-        case .primary: Noir.onAmber
-        case .danger: Noir.onDanger
-        case .secondary, .quiet: surface == .paper ? Noir.paperInk : Noir.ink
+        case .primary: Color(hex: 0x2A1E00)
+        case .go, .danger, .secondary: .white
+        case .quiet: surface == .paper ? Noir.paperInk : Noir.ink
         }
     }
 
-    private var background: Color {
-        switch kind {
-        case .primary: Noir.amberFill
-        case .danger: Noir.dangerFill
-        case .secondary: surface == .paper ? Noir.paper.opacity(0.0) : Noir.raised
-        case .quiet: .clear
+    private func plate(pressed: Bool) -> String? {
+        let base: String? = switch kind {
+        case .primary: "ButtonYellow"
+        case .go: "ButtonGreen"
+        case .danger: "ButtonRed"
+        case .secondary: "ButtonGrey"
+        case .quiet: nil
         }
+        return base.map { pressed ? $0 + "Pressed" : $0 }
     }
 
     private var border: Color { surface == .paper ? Noir.paperEdge : Noir.hairline }
@@ -135,14 +167,67 @@ struct Meter: View {
     @Environment(\.noirSurface) private var surface
 
     var body: some View {
+        let h = max(10, height + 4)
         GeometryReader { geo in
+            let f = max(0, min(1, fraction))
             ZStack(alignment: .leading) {
-                Capsule().fill(surface == .paper ? Noir.paperEdge.opacity(0.45) : Noir.hairline)
-                Capsule().fill(tint).frame(width: max(0, min(1, fraction)) * geo.size.width)
+                ToonPlate(name: "MeterTrack", corner: h / 2, horizontalOnly: true)
+                if f > 0 {
+                    ToonPlate(name: fill, corner: h / 2, horizontalOnly: true)
+                        .frame(width: max(h, f * geo.size.width))
+                }
             }
         }
-        .frame(height: height)
+        .frame(height: h)
         .accessibilityHidden(true)
+    }
+
+    private var fill: String {
+        if tint == Noir.danger || tint == Noir.paperRed { return "MeterFillRed" }
+        if tint == Toon.up { return "MeterFillGreen" }
+        return "MeterFillGold"
+    }
+}
+
+/// A switch drawn as a lever; the whole row is the tap target.
+struct ToonToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button { configuration.isOn.toggle() } label: {
+            HStack(spacing: Noir.s3) {
+                configuration.label.frame(maxWidth: .infinity, alignment: .leading)
+                Image(configuration.isOn ? "ToggleOn" : "ToggleOff").resizable().frame(width: 52, height: 32)
+                    .animation(.easeOut(duration: 0.15), value: configuration.isOn)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+/// The ×1 / ×10 / ×100 / Max choice as a cartoon segment bar.
+struct ToonSegments<Value: Hashable>: View {
+    let options: [(Value, String)]
+    @Binding var selection: Value
+
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(0..<options.count, id: \.self) { i in
+                let (value, label) = options[i]
+                let on = value == selection
+                Button { selection = value } label: {
+                    Text(verbatim: label)
+                        .font(.toon(15, .bold))
+                        .foregroundStyle(on ? Color(hex: 0x2A1E00) : .white)
+                        .frame(maxWidth: .infinity, minHeight: 36)
+                        .background { if on { ToonPlate(name: "SegmentKnob", corner: 16) } }
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(on ? [.isSelected] : [])
+            }
+        }
+        .padding(3)
+        .background { ToonPlate(name: "SegmentTrack", corner: 18) }
     }
 }
 
@@ -158,9 +243,9 @@ struct HeatGauge: View {
         VStack(alignment: .leading, spacing: Noir.s1) {
             HStack(spacing: Noir.s1) {
                 Mark(status.mark, size: 14)
-                Text(verbatim: t(status.key)).font(.caption.weight(.semibold))
+                Text(verbatim: t(status.key)).font(.toon(.caption, .semibold))
                 Spacer(minLength: Noir.s1)
-                Text(verbatim: t.decimal(heat, digits: 0)).font(.caption.weight(.bold)).monospacedDigit()
+                Text(verbatim: t.decimal(heat, digits: 0)).font(.toon(.caption, .bold)).monospacedDigit()
                 if !compact {
                     Image(systemName: trend > heat + 0.5 ? "arrow.up.right" : (trend < heat - 0.5 ? "arrow.down.right" : "arrow.right"))
                         .imageScale(.small)
@@ -254,7 +339,7 @@ struct CostLine: View {
             Image(systemName: affordable ? "tag" : "xmark.circle").imageScale(.small).accessibilityHidden(true)
             Text(verbatim: t.cost(cost)).monospacedDigit()
         }
-        .font(.subheadline)
+        .font(.toon(.subheadline))
         .foregroundStyle(affordable ? surface.inkSoft : surface.danger)
         .accessibilityElement(children: .combine)
     }
@@ -284,7 +369,7 @@ struct ValueRow: View {
             if !typeSize.isAccessibilitySize { Spacer(minLength: Noir.s2) }
             Text(verbatim: value).fontWeight(.semibold).monospacedDigit().foregroundStyle(valueColor ?? surface.ink)
         }
-        .font(.subheadline)
+        .font(.toon(.subheadline))
         .accessibilityElement(children: .combine)
     }
 }
@@ -321,8 +406,10 @@ struct StatusChip: View {
 
     var body: some View {
         Label { Text(verbatim: text) } icon: { Image(systemName: symbol) }
-            .font(.footnote.weight(.semibold))
-            .foregroundStyle(danger ? surface.danger : surface.inkSoft)
+            .font(.toon(.footnote, .bold))
+            .foregroundStyle(danger ? Color(hex: 0xFF8A8E) : .white)
             .labelStyle(.titleAndIcon)
+            .padding(.horizontal, 10).padding(.vertical, 5)
+            .background { ToonPlate(name: "ChipPill", corner: 12) }
     }
 }

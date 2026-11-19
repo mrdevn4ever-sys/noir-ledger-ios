@@ -36,7 +36,8 @@ final class SoundEngine {
 
     private static func volume(_ effect: Effect) -> Float {
         switch effect {
-        case .tap, .benchWeed, .benchCrystal, .benchPills, .benchCoke, .uiOpen, .uiClose: 0.35
+        case .tap, .benchWeed, .benchCrystal, .benchPills, .benchCoke, .uiOpen, .uiClose, .toggle: 0.35
+        case .liftDoor, .whistle: 0.4
         case .coins, .crateDrop, .liftMove, .liftDing: 0.3
         case .vanDepart, .vanArrive, .scooterHorn: 0.4
         case .buy, .upgrade, .reject, .decision, .ink, .orderNew, .attentionUp, .attentionDown: 0.6

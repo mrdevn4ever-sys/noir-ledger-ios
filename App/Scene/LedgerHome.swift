@@ -80,7 +80,7 @@ struct GameHUD: View {
                         Text(verbatim: t.decimal(Double(state.meta.favors), digits: 0)).monospacedDigit()
                         Image(systemName: "plus.circle.fill").foregroundStyle(Toon.up)
                     }
-                    .font(.system(size: 15, weight: .heavy, design: .rounded))
+                    .font(.toon(15, .heavy))
                     .padding(.horizontal, 10)
                     .frame(minHeight: 36)
                     .foregroundStyle(.white)
@@ -98,7 +98,7 @@ struct GameHUD: View {
                 HStack(spacing: 8) {
                     Image("HudCoin").resizable().frame(width: 34, height: 34)
                     RollingText(text: t.money(state.cash), value: state.cash)
-                        .font(.system(size: 30, weight: .heavy, design: .rounded))
+                        .font(.toon(30, .heavy))
                         .foregroundStyle(.white)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
@@ -111,15 +111,17 @@ struct GameHUD: View {
                 Spacer(minLength: 0)
                 VStack(alignment: .trailing, spacing: 0) {
                     Text(verbatim: t("l4_per_min", t.money(store.measuredIncome)))
-                        .font(.system(size: 17, weight: .heavy, design: .rounded)).monospacedDigit()
+                        .font(.toon(17, .heavy)).monospacedDigit()
                         .foregroundStyle(Toon.up)
                         .accessibilityIdentifier("top.income")
                     if state.meta.boostSeconds > 0 {
-                        Label { Text(verbatim: "×2 · " + t.duration(state.meta.boostSeconds)).monospacedDigit() } icon: { Image(systemName: "bolt.fill") }
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                        Label { Text(verbatim: "×2 · " + t.duration(state.meta.boostSeconds)).monospacedDigit() } icon: {
+                            Image("IconBoost").resizable().frame(width: 16, height: 16)
+                        }
+                            .font(.toon(12, .bold))
                             .foregroundStyle(Toon.window)
                     } else {
-                        Text(verbatim: t("l4_income_now")).font(.system(size: 11, weight: .semibold, design: .rounded))
+                        Text(verbatim: t("l4_income_now")).font(.toon(11, .semibold))
                             .foregroundStyle(.white.opacity(0.7))
                     }
                 }
@@ -127,8 +129,9 @@ struct GameHUD: View {
         }
         .padding(.horizontal, Noir.s3)
         .padding(.top, 6)
-        .padding(.bottom, 8)
-        .background(Toon.skyTop)
+        .padding(.bottom, 12)
+        .background { Image("HudPlate").resizable().scaledToFill().ignoresSafeArea(edges: .top).accessibilityHidden(true) }
+        .clipped()
         .dynamicTypeSize(...DynamicTypeSize.xxLarge)
     }
 
@@ -163,10 +166,9 @@ struct BottomBar: View {
             item("NavCity", "l4_city", .city, "nav.city")
             item("NavBook", "l4_book", .book, "nav.book")
         }
-        .padding(.top, 6)
+        .padding(.top, 12)
         .padding(.bottom, 2)
-        .background(Toon.skyTop.overlay(Rectangle().fill(Color.black.opacity(0.25))))
-        .overlay(alignment: .top) { Rectangle().fill(Color.white.opacity(0.08)).frame(height: 1) }
+        .background { Image("TabBarPlate").resizable().ignoresSafeArea(edges: .bottom).accessibilityHidden(true) }
     }
 
     private func item(_ image: String, _ key: String, _ target: LedgerSheet, _ id: String, badge: Int = 0) -> some View {
@@ -176,13 +178,13 @@ struct BottomBar: View {
                     .frame(width: 44, height: 30)
                     .overlay(alignment: .topTrailing) {
                         if badge > 0 {
-                            Text(verbatim: "\(badge)").font(.system(size: 11, weight: .heavy, design: .rounded))
+                            Text(verbatim: "\(badge)").font(.toon(11, .heavy))
                                 .foregroundStyle(.white).frame(minWidth: 18, minHeight: 18)
                                 .background(Color(hex: 0xE5484D), in: Capsule())
                                 .offset(x: 6, y: -4)
                         }
                     }
-                Text(verbatim: t(key)).font(.system(size: 11, weight: .bold, design: .rounded)).lineLimit(1).minimumScaleFactor(0.7)
+                Text(verbatim: t(key)).font(.toon(11, .bold)).lineLimit(1).minimumScaleFactor(0.7)
             }
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity, minHeight: 52)
@@ -204,7 +206,7 @@ struct ContactsSheet: View {
     var body: some View {
         let s = store.state
         SheetFrame("l4_customers", identifier: "screen.contacts") {
-            Text(verbatim: t("l4_explain_contact")).font(.subheadline).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t("l4_explain_contact")).font(.toon(.subheadline)).foregroundStyle(Noir.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
             ForEach(Quarter.allCases.filter { s.quarters[$0] != nil }, id: \.self) { q in
                 Panel(.anthracite) {

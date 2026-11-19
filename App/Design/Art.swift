@@ -273,7 +273,7 @@ struct CityMap: View {
                     Circle().fill(ring).frame(width: 8, height: 8)
                 } else {
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 11, weight: .semibold))
+                        .font(.toon(11, .semibold))
                         .foregroundStyle(Noir.inkMuted)
                 }
             }

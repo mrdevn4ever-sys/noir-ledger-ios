@@ -20,6 +20,17 @@ enum Feedback: String, Sendable, Equatable, CaseIterable {
     case ability, attentionUp = "attention_up", attentionDown = "attention_down", siren
     case challengeStart = "challenge_start", challengeWon = "challenge_won", clubStart = "club_start"
     case uiOpen = "ui_open", uiClose = "ui_close", ink, scooterHorn = "scooter_horn", rebuild
+    case liftDoor = "lift_door", whistle, confetti, stamp, toggle
+    case abilityShift = "ability_shift", abilityRush = "ability_rush", abilityShush = "ability_shush", abilityWindow = "ability_window"
+
+    static func ability(_ a: Ability) -> Feedback {
+        switch a {
+        case .doubleShift: .abilityShift
+        case .rushRun: .abilityRush
+        case .quietWord: .abilityShush
+        case .newWindow: .abilityWindow
+        }
+    }
 
     static func bench(_ g: Good) -> Feedback {
         switch g {
@@ -244,7 +255,9 @@ final class LedgerStore {
             onFeedback?(.coins)
         }
         if before.trip == nil, state.trip != nil {
-            onFeedback?(.liftMove)
+            onFeedback?(state.dispatcher ? .whistle : .liftMove)
+        } else if let trip = state.trip, let was = before.trip, trip.left <= trip.duration * 0.75, was.left > was.duration * 0.75 {
+            onFeedback?(.liftDoor)
         } else if let trip = state.trip, let was = before.trip, trip.left <= trip.duration / 2, was.left > was.duration / 2 {
             onFeedback?(.vanDepart)
         } else if before.trip != nil, state.trip == nil {
@@ -265,7 +278,7 @@ final class LedgerStore {
         }
         if Flow.chapterComplete(state) && !Flow.chapterComplete(before) {
             celebrate(.chapterReady(state.chapter))
-            onFeedback?(.chapter)
+            onFeedback?(.confetti)
         }
     }
 
@@ -331,11 +344,13 @@ final class LedgerStore {
         case .unlockContact:
             onFeedback?(.milestone)
         case .accept:
-            onFeedback?(.ink)
+            onFeedback?(.stamp)
+        case .setOrdersFirst, .pause, .setAutoQuiet:
+            onFeedback?(.toggle)
         case .closeChapter:
             onFeedback?(.prestige)
-        case .use:
-            onFeedback?(.ability)
+        case .use(let a, _):
+            onFeedback?(.ability(a))
         case .claimDaily, .adReward:
             onFeedback?(.reward)
         case .collectOffline:
