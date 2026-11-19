@@ -3,6 +3,8 @@ name: Quick compile
 # Fast feedback while the app changes a lot: core tests and a simulator build of the app, no UI tests.
 on:
   workflow_dispatch:
+  push:
+    branches: ["claude/**"]
 
 permissions:
   contents: read
@@ -12,6 +14,8 @@ jobs:
     name: Core tests and app build
     runs-on: macos-26
     timeout-minutes: 40
+    # On a push only when the commit asks for it with [compile].
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[compile]')
     steps:
       - uses: actions/checkout@v4
       - name: Select the newest Xcode (27 when available)
