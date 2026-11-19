@@ -1,0 +1,152 @@
+Application, 0x113f94780, pid: 16003, label: 'NOIR LEDGER' <App element pid: 16003>
+  Window (Main), 0x113f948c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4373432320.4>
+    Other, 0x113f94a00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4424856064.5>
+      Other, 0x113f94b40, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4497426304.6>
+        Other, 0x113f94c80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4373431296.7>
+          Other, 0x113f94dc0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4424413440.8>
+            ScrollView, 0x113f94f00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 16003, elementOrHash.elementID: 4373498880.9>
+              Other, 0x113f95040, {{0.0, 202.0}, {402.0, 1715.3}} <AX element pid: 16003, elementOrHash.elementID: 4669662720.26>
+                Other, 0x113f95180, {{0.0, 202.0}, {1.0, 1.0}}, identifier: 'screen.tycoon', label: 'NOIR LEDGER' <AX element pid: 16003, elementOrHash.elementID: 4424259264.44>
+                StaticText, 0x113f952c0, {{32.0, 392.0}, {38.7, 20.3}}, label: 'Jobs' <AX element pid: 16003, elementOrHash.elementID: 4424261056.45>
+                StaticText, 0x113f95400, {{32.0, 433.8}, {103.7, 18.0}}, label: 'Own 10× Weed' <AX element pid: 16003, elementOrHash.elementID: 4424261504.46>
+                Button, 0x113f95540, {{286.0, 424.3}, {84.0, 44.0}}, identifier: 'mission.own_weed_10', label: '+5' <AX element pid: 16003, elementOrHash.elementID: 4424263296.47>
+                  Image, 0x113f95680, {{303.3, 436.7}, {19.7, 19.7}}, identifier: 'seal.fill', label: 'seal.fill' <AX element pid: 16003, elementOrHash.elementID: 4424262400.91>
+                  StaticText, 0x113f957c0, {{286.0, 424.3}, {84.0, 44.0}}, label: '+5' <AX element pid: 16003, elementOrHash.elementID: 4424262848.92>
+                StaticText, 0x113f95900, {{32.0, 489.8}, {88.7, 18.0}}, label: 'Tap 50 times' <AX element pid: 16003, elementOrHash.elementID: 4424263744.48>
+                Button, 0x113f95a40, {{286.0, 480.3}, {84.0, 44.0}}, identifier: 'mission.taps_50', label: '+5', Disabled <AX element pid: 16003, elementOrHash.elementID: 4424265536.49>
+                  Image, 0x113f95b80, {{303.3, 492.7}, {19.7, 19.7}}, identifier: 'seal.fill', label: 'seal.fill', Disabled <AX element pid: 16003, elementOrHash.elementID: 4424264640.93>
+                  StaticText, 0x113f95cc0, {{286.0, 480.3}, {84.0, 44.0}}, label: '+5', Disabled <AX element pid: 16003, elementOrHash.elementID: 4424265088.94>
+                StaticText, 0x113f95e00, {{32.0, 545.8}, {96.3, 18.0}}, label: 'Answer 1 calls' <AX element pid: 16003, elementOrHash.elementID: 4424265984.50>
+                Button, 0x113f95f40, {{286.0, 536.3}, {84.0, 44.0}}, identifier: 'mission.call_1', label: '+5' <AX element pid: 16003, elementOrHash.elementID: 4424268672.51>
+                  Image, 0x113f96080, {{303.3, 548.7}, {19.7, 19.7}}, identifier: 'seal.fill', label: 'seal.fill' <AX element pid: 16003, elementOrHash.elementID: 4424267328.95>
+                  StaticText, 0x113f961c0, {{286.0, 536.3}, {84.0, 44.0}}, label: '+5' <AX element pid: 16003, elementOrHash.elementID: 4424267776.96>
+                SegmentedControl, 0x113f96300, {{16.0, 608.3}, {370.0, 31.0}}, identifier: 'tycoon.buyMode' <AX element pid: 16003, elementOrHash.elementID: 4373744640.52>
+                  Button, 0x113f96440, {{16.0, 608.3}, {92.0, 32.0}}, label: '×1', Selected <AX element pid: 16003, elementOrHash.elementID: 4373743104.97>
+                  Button, 0x113f96580, {{108.0, 608.3}, {93.0, 32.0}}, label: '×10' <AX element pid: 16003, elementOrHash.elementID: 4373745408.98>
+                  Button, 0x113f966c0, {{201.0, 608.3}, {92.0, 32.0}}, label: '×100' <AX element pid: 16003, elementOrHash.elementID: 4373746176.99>
+                  Button, 0x113f96800, {{293.0, 608.3}, {93.0, 32.0}}, label: 'MAX' <AX element pid: 16003, elementOrHash.elementID: 4373746944.100>
+                Button, 0x113f96940, {{16.0, 651.3}, {370.0, 124.0}}, identifier: 'floor.WEED', label: 'Weed, 120 units. Tap to sell' <AX element pid: 16003, elementOrHash.elementID: 4424306176.53>
+                  Other, 0x113f96a80, {{16.0, 651.3}, {370.0, 124.0}} <AX element pid: 16003, elementOrHash.elementID: 4424236352.101>
+                  Other, 0x113f96bc0, {{16.0, 651.3}, {370.0, 58.0}} <AX element pid: 16003, elementOrHash.elementID: 4424302592.102>
+                  Image, 0x113f96d00, {{24.0, 659.3}, {28.0, 28.0}}, label: 'DrugWeed' <AX element pid: 16003, elementOrHash.elementID: 4424303040.103>
+                  StaticText, 0x113f96e40, {{60.0, 659.3}, {45.3, 20.3}}, label: 'Weed' <AX element pid: 16003, elementOrHash.elementID: 4424303488.104>
+                  StaticText, 0x113f96f80, {{60.0, 679.7}, {32.3, 14.3}}, identifier: 'floor.WEED.count', label: '×120' <AX element pid: 16003, elementOrHash.elementID: 4424303936.105>
+                  Image, 0x113f970c0, {{328.3, 659.3}, {30.0, 30.0}}, label: 'CrewBrandt' <AX element pid: 16003, elementOrHash.elementID: 4424304832.106>
+                  Image, 0x113f97200, {{363.3, 667.7}, {13.7, 13.7}}, identifier: 'checkmark.circle.fill', label: 'Selected', Selected <AX element pid: 16003, elementOrHash.elementID: 4424305280.107>
+                  Other, 0x113f97340, {{16.0, 651.3}, {0.0, 0.0}} <AX element pid: 16003, elementOrHash.elementID: 4424305728.108>
+                StaticText, 0x113f97480, {{28.0, 801.0}, {57.7, 18.0}}, label: '6,912/s' <AX element pid: 16003, elementOrHash.elementID: 4424307072.54>
+                StaticText, 0x113f975c0, {{28.0, 829.0}, {106.0, 13.3}}, label: 'Twice as fast at 150' <AX element pid: 16003, elementOrHash.elementID: 4424307968.55>
+                Button, 0x113f97700, {{207.0, 793.3}, {167.0, 56.7}}, identifier: 'floor.WEED.buy', label: 'Buy ×1, 13.4k' <AX element pid: 16003, elementOrHash.elementID: 4424309312.56>
+                  StaticText, 0x113f97840, {{263.8, 803.3}, {53.3, 20.3}}, label: 'Buy ×1' <AX element pid: 16003, elementOrHash.elementID: 4424308416.109>
+                  StaticText, 0x113f97980, {{273.2, 825.7}, {34.7, 14.3}}, label: '13.4k' <AX element pid: 16003, elementOrHash.elementID: 4424308864.110>
+                Button, 0x113f97ac0, {{28.0, 862.0}, {110.0, 44.0}}, identifier: 'floor.WEED.cut.0', label: 'Pure, Cash ×1 · Heat ×1' <AX element pid: 16003, elementOrHash.elementID: 4424310656.57>
+                  StaticText, 0x113f97c00, {{69.0, 869.7}, {28.0, 14.3}}, label: 'Pure' <AX element pid: 16003, elementOrHash.elementID: 4424309760.111>
+                  StaticText, 0x113f97d40, {{35.3, 885.0}, {95.3, 13.3}}, label: 'Cash ×1 · Heat ×1' <AX element pid: 16003, elementOrHash.elementID: 4424310208.112>
+                Button, 0x113f97e80, {{146.0, 862.0}, {110.0, 44.0}}, identifier: 'floor.WEED.cut.1', label: 'Cut, Cash ×1.6 · Heat ×2', Selected <AX element pid: 16003, elementOrHash.elementID: 4424312000.58>
+                  StaticText, 0x113d9c780, {{190.2, 869.7}, {21.7, 14.3}}, label: 'Cut' <AX element pid: 16003, elementOrHash.elementID: 4424311104.113>
+                  StaticText, 0x10641c000, {{148.2, 885.0}, {105.7, 13.3}}, label: 'Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424311552.114>
+                Button, 0x10641c140, {{264.0, 862.0}, {110.0, 44.0}}, identifier: 'floor.WEED.cut.2', label: 'Laced, Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424313792.59>
+                  StaticText, 0x10641c280, {{300.8, 869.7}, {36.3, 14.3}}, label: 'Laced' <AX element pid: 16003, elementOrHash.elementID: 4424312896.115>
+                  StaticText, 0x10641c3c0, {{266.2, 885.0}, {105.7, 13.3}}, label: 'Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424313344.116>
+                StaticText, 0x10641c500, {{28.0, 910.0}, {287.3, 13.3}}, label: 'Cut with baking soda. Nobody notices. Almost nobody.' <AX element pid: 16003, elementOrHash.elementID: 4424314240.60>
+                Button, 0x10641c640, {{16.0, 947.3}, {370.0, 124.0}}, identifier: 'floor.PILLS', label: 'Pills, 40 units. Tap to sell' <AX element pid: 16003, elementOrHash.elementID: 4424320320.61>
+                  Other, 0x10641c780, {{16.0, 947.3}, {370.0, 124.0}} <AX element pid: 16003, elementOrHash.elementID: 4424315136.117>
+                  Other, 0x10641c8c0, {{16.0, 947.3}, {370.0, 58.0}} <AX element pid: 16003, elementOrHash.elementID: 4424315584.118>
+                  Image, 0x10641ca00, {{24.0, 955.3}, {28.0, 28.0}}, label: 'DrugPills' <AX element pid: 16003, elementOrHash.elementID: 4424316480.119>
+                  StaticText, 0x10641cb40, {{60.0, 955.3}, {32.7, 20.3}}, label: 'Pills' <AX element pid: 16003, elementOrHash.elementID: 4424317376.120>
+                  StaticText, 0x10641cc80, {{60.0, 975.7}, {24.3, 14.3}}, identifier: 'floor.PILLS.count', label: '×40' <AX element pid: 16003, elementOrHash.elementID: 4424317824.121>
+                  Image, 0x10641cdc0, {{328.3, 955.3}, {30.0, 30.0}}, label: 'CrewMorgen' <AX element pid: 16003, elementOrHash.elementID: 4424318272.122>
+                  Image, 0x10641cf00, {{363.3, 963.3}, {13.7, 13.7}}, identifier: 'eye.slash.circle.fill', label: 'Hide' <AX element pid: 16003, elementOrHash.elementID: 4424319424.123>
+                  Other, 0x10641d040, {{16.0, 947.3}, {0.0, 0.0}} <AX element pid: 16003, elementOrHash.elementID: 4424436800.206>
+                StaticText, 0x10641d180, {{28.0, 1089.3}, {129.3, 18.0}}, label: '+7,200 per round' <AX element pid: 16003, elementOrHash.elementID: 4424321216.62>
+                StaticText, 0x10641d2c0, {{28.0, 1110.3}, {63.0, 14.3}}, label: 'every 1.5 s' <AX element pid: 16003, elementOrHash.elementID: 4424321664.63>
+                StaticText, 0x10641d400, {{28.0, 1134.7}, {99.0, 13.3}}, label: 'Twice as fast at 50' <AX element pid: 16003, elementOrHash.elementID: 4424322560.64>
+                Button, 0x10641d540, {{207.0, 1090.3}, {167.0, 56.7}}, identifier: 'floor.PILLS.buy', label: 'Buy ×1, 16.1k' <AX element pid: 16003, elementOrHash.elementID: 4424323904.65>
+                  StaticText, 0x10641d680, {{263.8, 1100.3}, {53.3, 20.3}}, label: 'Buy ×1' <AX element pid: 16003, elementOrHash.elementID: 4424323008.125>
+                  StaticText, 0x10641d7c0, {{273.2, 1122.7}, {34.7, 14.3}}, label: '16.1k' <AX element pid: 16003, elementOrHash.elementID: 4424323456.126>
+                Button, 0x10641d900, {{28.0, 1160.0}, {110.0, 44.0}}, identifier: 'floor.PILLS.cut.0', label: 'Pure, Cash ×1 · Heat ×1', Selected <AX element pid: 16003, elementOrHash.elementID: 4424325248.66>
+                  StaticText, 0x10641da40, {{69.0, 1167.7}, {28.0, 14.3}}, label: 'Pure' <AX element pid: 16003, elementOrHash.elementID: 4424324352.127>
+                  StaticText, 0x10641db80, {{35.3, 1183.0}, {95.3, 13.3}}, label: 'Cash ×1 · Heat ×1' <AX element pid: 16003, elementOrHash.elementID: 4424324800.128>
+                Button, 0x10641dcc0, {{146.0, 1160.0}, {110.0, 44.0}}, identifier: 'floor.PILLS.cut.1', label: 'Cut, Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424326592.67>
+                  StaticText, 0x10641de00, {{190.2, 1167.7}, {21.7, 14.3}}, label: 'Cut' <AX element pid: 16003, elementOrHash.elementID: 4424325696.129>
+                  StaticText, 0x10641df40, {{148.2, 1183.0}, {105.7, 13.3}}, label: 'Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424326144.130>
+                Button, 0x10641e080, {{264.0, 1160.0}, {110.0, 44.0}}, identifier: 'floor.PILLS.cut.2', label: 'Laced, Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424327936.68>
+                  StaticText, 0x10641e1c0, {{300.8, 1167.7}, {36.3, 14.3}}, label: 'Laced' <AX element pid: 16003, elementOrHash.elementID: 4424327040.131>
+                  StaticText, 0x10641e300, {{266.2, 1183.0}, {105.7, 13.3}}, label: 'Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424327488.132>
+                StaticText, 0x10641e440, {{28.0, 1208.0}, {301.7, 13.3}}, label: 'Honest goods. Customers weep with joy, the police yawn.' <AX element pid: 16003, elementOrHash.elementID: 4424328384.69>
+                Button, 0x10641e580, {{16.0, 1245.3}, {370.0, 124.0}}, identifier: 'floor.CRYSTAL', label: 'Crystal, 40 units. Tap to sell' <AX element pid: 16003, elementOrHash.elementID: 4424332864.70>
+                  Other, 0x10641e6c0, {{16.0, 1245.3}, {370.0, 124.0}} <AX element pid: 16003, elementOrHash.elementID: 4424328832.133>
+                  Other, 0x10641e800, {{16.0, 1245.3}, {370.0, 58.0}} <AX element pid: 16003, elementOrHash.elementID: 4424329280.134>
+                  Image, 0x10641e940, {{24.0, 1253.3}, {28.0, 28.0}}, label: 'DrugCrystal' <AX element pid: 16003, elementOrHash.elementID: 4424329728.135>
+                  StaticText, 0x10641ea80, {{60.0, 1253.3}, {57.0, 20.3}}, label: 'Crystal' <AX element pid: 16003, elementOrHash.elementID: 4424330176.136>
+                  StaticText, 0x10641ebc0, {{60.0, 1273.7}, {24.3, 14.3}}, identifier: 'floor.CRYSTAL.count', label: '×40' <AX element pid: 16003, elementOrHash.elementID: 4424331072.137>
+                  Image, 0x10641ed00, {{328.3, 1253.3}, {30.0, 30.0}}, label: 'CrewFeld' <AX element pid: 16003, elementOrHash.elementID: 4424331520.138>
+                  Image, 0x10641ee40, {{363.3, 1261.7}, {13.7, 13.7}}, identifier: 'checkmark.circle.fill', label: 'Selected', Selected <AX element pid: 16003, elementOrHash.elementID: 4424331968.139>
+                  Other, 0x10641ef80, {{16.0, 1245.3}, {0.0, 0.0}} <AX element pid: 16003, elementOrHash.elementID: 4424439040.207>
+                StaticText, 0x10641f0c0, {{28.0, 1387.3}, {128.0, 18.0}}, label: '+32.4k per round' <AX element pid: 16003, elementOrHash.elementID: 4424334208.71>
+                StaticText, 0x10641f200, {{28.0, 1408.3}, {51.7, 14.3}}, label: 'every 3 s' <AX element pid: 16003, elementOrHash.elementID: 4424334656.72>
+                StaticText, 0x10641f340, {{28.0, 1432.7}, {99.0, 13.3}}, label: 'Twice as fast at 50' <AX element pid: 16003, elementOrHash.elementID: 4424352192.73>
+                Button, 0x10641f480, {{207.0, 1388.3}, {167.0, 56.7}}, identifier: 'floor.CRYSTAL.buy', label: 'Buy ×1, 136k' <AX element pid: 16003, elementOrHash.elementID: 4424354432.74>
+                  StaticText, 0x10641f5c0, {{263.8, 1398.3}, {53.3, 20.3}}, label: 'Buy ×1' <AX element pid: 16003, elementOrHash.elementID: 4424352640.141>
+                  StaticText, 0x10641f700, {{275.2, 1420.7}, {30.7, 14.3}}, label: '136k' <AX element pid: 16003, elementOrHash.elementID: 4424353536.142>
+                Button, 0x10641f840, {{28.0, 1458.0}, {110.0, 44.0}}, identifier: 'floor.CRYSTAL.cut.0', label: 'Pure, Cash ×1 · Heat ×1', Selected <AX element pid: 16003, elementOrHash.elementID: 4424355776.75>
+                  StaticText, 0x10641f980, {{69.0, 1465.7}, {28.0, 14.3}}, label: 'Pure' <AX element pid: 16003, elementOrHash.elementID: 4424354880.143>
+                  StaticText, 0x10641fac0, {{35.3, 1481.0}, {95.3, 13.3}}, label: 'Cash ×1 · Heat ×1' <AX element pid: 16003, elementOrHash.elementID: 4424355328.144>
+                Button, 0x10641fc00, {{146.0, 1458.0}, {110.0, 44.0}}, identifier: 'floor.CRYSTAL.cut.1', label: 'Cut, Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424357568.76>
+                  StaticText, 0x10641fd40, {{190.2, 1465.7}, {21.7, 14.3}}, label: 'Cut' <AX element pid: 16003, elementOrHash.elementID: 4424356672.145>
+                  StaticText, 0x10641fe80, {{148.2, 1481.0}, {105.7, 13.3}}, label: 'Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424357120.146>
+                Button, 0x106420000, {{264.0, 1458.0}, {110.0, 44.0}}, identifier: 'floor.CRYSTAL.cut.2', label: 'Laced, Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424358912.77>
+                  StaticText, 0x106420140, {{300.8, 1465.7}, {36.3, 14.3}}, label: 'Laced' <AX element pid: 16003, elementOrHash.elementID: 4424358016.147>
+                  StaticText, 0x106420280, {{266.2, 1481.0}, {105.7, 13.3}}, label: 'Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424358464.148>
+                StaticText, 0x1064203c0, {{28.0, 1506.0}, {301.7, 13.3}}, label: 'Honest goods. Customers weep with joy, the police yawn.' <AX element pid: 16003, elementOrHash.elementID: 4424359808.78>
+                Button, 0x106420500, {{16.0, 1543.3}, {370.0, 124.0}}, identifier: 'floor.COKE', label: 'Coke, 40 units. Tap to sell' <AX element pid: 16003, elementOrHash.elementID: 4424364288.79>
+                  Other, 0x106420640, {{16.0, 1543.3}, {370.0, 124.0}} <AX element pid: 16003, elementOrHash.elementID: 4424360256.149>
+                  Other, 0x106420780, {{16.0, 1543.3}, {370.0, 58.0}} <AX element pid: 16003, elementOrHash.elementID: 4424361152.150>
+                  Image, 0x1064208c0, {{24.0, 1551.3}, {28.0, 28.0}}, label: 'DrugCoke' <AX element pid: 16003, elementOrHash.elementID: 4424361600.151>
+                  StaticText, 0x106420a00, {{60.0, 1551.3}, {40.7, 20.3}}, label: 'Coke' <AX element pid: 16003, elementOrHash.elementID: 4424362048.152>
+                  StaticText, 0x106420b40, {{60.0, 1571.7}, {24.3, 14.3}}, identifier: 'floor.COKE.count', label: '×40' <AX element pid: 16003, elementOrHash.elementID: 4424362496.153>
+                  Image, 0x106420c80, {{328.3, 1551.3}, {30.0, 30.0}}, label: 'CrewHollis' <AX element pid: 16003, elementOrHash.elementID: 4424362944.154>
+                  Image, 0x106420dc0, {{363.3, 1559.7}, {13.7, 13.7}}, identifier: 'eye.slash.circle.fill', label: 'Hide' <AX element pid: 16003, elementOrHash.elementID: 4424363392.155>
+                  Other, 0x106420f00, {{16.0, 1543.3}, {0.0, 0.0}} <AX element pid: 16003, elementOrHash.elementID: 4424439488.203>
+                StaticText, 0x106421040, {{28.0, 1685.3}, {138.0, 18.0}}, label: '+172.8k per round' <AX element pid: 16003, elementOrHash.elementID: 4424365632.80>
+                StaticText, 0x106421180, {{28.0, 1706.3}, {51.7, 14.3}}, label: 'every 6 s' <AX element pid: 16003, elementOrHash.elementID: 4424366080.81>
+                StaticText, 0x1064212c0, {{28.0, 1730.7}, {99.0, 13.3}}, label: 'Twice as fast at 50' <AX element pid: 16003, elementOrHash.elementID: 4424367424.82>
+                Button, 0x106421400, {{207.0, 1686.3}, {167.0, 56.7}}, identifier: 'floor.COKE.buy', label: 'Buy ×1, 1.15M' <AX element pid: 16003, elementOrHash.elementID: 4424385408.83>
+                  StaticText, 0x106421540, {{263.8, 1696.3}, {53.3, 20.3}}, label: 'Buy ×1' <AX element pid: 16003, elementOrHash.elementID: 4424384512.157>
+                  StaticText, 0x106421680, {{271.3, 1718.7}, {38.3, 14.3}}, label: '1.15M' <AX element pid: 16003, elementOrHash.elementID: 4424384960.158>
+                Button, 0x1064217c0, {{28.0, 1756.0}, {110.0, 44.0}}, identifier: 'floor.COKE.cut.0', label: 'Pure, Cash ×1 · Heat ×1', Selected <AX element pid: 16003, elementOrHash.elementID: 4424387200.84>
+                  StaticText, 0x106421900, {{69.0, 1763.7}, {28.0, 14.3}}, label: 'Pure' <AX element pid: 16003, elementOrHash.elementID: 4424385856.159>
+                  StaticText, 0x106421a40, {{35.3, 1779.0}, {95.3, 13.3}}, label: 'Cash ×1 · Heat ×1' <AX element pid: 16003, elementOrHash.elementID: 4424386752.160>
+                Button, 0x106421b80, {{146.0, 1756.0}, {110.0, 44.0}}, identifier: 'floor.COKE.cut.1', label: 'Cut, Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424389888.85>
+                  StaticText, 0x106421cc0, {{190.2, 1763.7}, {21.7, 14.3}}, label: 'Cut' <AX element pid: 16003, elementOrHash.elementID: 4424388096.161>
+                  StaticText, 0x106421e00, {{148.2, 1779.0}, {105.7, 13.3}}, label: 'Cash ×1.6 · Heat ×2' <AX element pid: 16003, elementOrHash.elementID: 4424388992.162>
+                Button, 0x106421f40, {{264.0, 1756.0}, {110.0, 44.0}}, identifier: 'floor.COKE.cut.2', label: 'Laced, Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424391232.86>
+                  StaticText, 0x106422080, {{300.8, 1763.7}, {36.3, 14.3}}, label: 'Laced' <AX element pid: 16003, elementOrHash.elementID: 4424390336.163>
+                  StaticText, 0x1064221c0, {{266.2, 1779.0}, {105.7, 13.3}}, label: 'Cash ×2.5 · Heat ×4' <AX element pid: 16003, elementOrHash.elementID: 4424390784.164>
+                StaticText, 0x106422300, {{28.0, 1804.0}, {301.7, 13.3}}, label: 'Honest goods. Customers weep with joy, the police yawn.' <AX element pid: 16003, elementOrHash.elementID: 4424391680.87>
+                Button, 0x106422440, {{16.0, 1841.3}, {179.0, 44.0}}, identifier: 'tycoon.deals', label: 'Deals' <AX element pid: 16003, elementOrHash.elementID: 4424393472.88>
+                  Image, 0x106422580, {{72.0, 1854.3}, {14.7, 18.3}}, identifier: 'doc.text.fill', label: 'Plain Text Document' <AX element pid: 16003, elementOrHash.elementID: 4424392128.165>
+                  StaticText, 0x1064226c0, {{16.0, 1841.3}, {179.0, 44.0}}, label: 'Deals' <AX element pid: 16003, elementOrHash.elementID: 4424392576.166>
+                Button, 0x106422800, {{207.0, 1841.3}, {179.0, 44.0}}, identifier: 'tycoon.city', label: 'Change city' <AX element pid: 16003, elementOrHash.elementID: 4424395264.89>
+                  Image, 0x106422940, {{233.3, 1856.7}, {23.7, 13.7}}, identifier: 'train.side.front.car', label: 'train.side.front.car' <AX element pid: 16003, elementOrHash.elementID: 4424393920.167>
+                  StaticText, 0x106422a80, {{207.0, 1841.3}, {179.0, 44.0}}, label: 'Change city' <AX element pid: 16003, elementOrHash.elementID: 4424394368.168>
+              Other, 0x106422bc0, {{369.0, 202.0}, {30.0, 610.0}}, label: 'Vertical scroll bar, 3 pages', value: 0% <AX element pid: 16003, elementOrHash.elementID: 4669664768.27>
+                Other, 0x106422d00, {{396.0, 205.0}, {3.0, 270.7}} <AX element pid: 16003, elementOrHash.elementID: 4423774912.90>
+              Other, 0x106422e40, {{369.0, 202.0}, {30.0, 610.0}}, label: 'Vertical scroll bar, 3 pages', value: 0% <AX element pid: 16003, elementOrHash.elementID: 4669664768.27>
+                Other, 0x106422f80, {{396.0, 205.0}, {3.0, 270.7}} <AX element pid: 16003, elementOrHash.elementID: 4423774912.90>
+            Button, 0x1064230c0, {{16.0, 70.0}, {103.7, 44.0}}, identifier: 'top.favors', label: '120 favors. Open the back room' <AX element pid: 16003, elementOrHash.elementID: 4424397952.10>
+              Image, 0x106423200, {{29.3, 82.3}, {19.7, 19.7}}, identifier: 'seal.fill', label: 'seal.fill' <AX element pid: 16003, elementOrHash.elementID: 4424396160.28>
+              StaticText, 0x106423340, {{54.3, 83.0}, {29.7, 18.0}}, label: '120' <AX element pid: 16003, elementOrHash.elementID: 4424397056.29>
+              Image, 0x106423480, {{89.3, 83.7}, {17.0, 17.0}}, identifier: 'plus.circle.fill', label: 'Add' <AX element pid: 16003, elementOrHash.elementID: 4424397504.30>
+            Button, 0x1064235c0, {{276.0, 70.0}, {58.0, 44.0}}, identifier: 'top.rewards', label: 'Rewards, 3 waiting' <AX element pid: 16003, elementOrHash.elementID: 4424399744.11>
+              Image, 0x106423700, {{290.0, 83.3}, {16.0, 17.7}}, identifier: 'gift.fill', label: 'Gift' <AX element pid: 16003, elementOrHash.elementID: 4424398400.31>
+              StaticText, 0x106423840, {{312.0, 83.0}, {10.0, 18.0}}, label: '3' <AX element pid: 16003, elementOrHash.elementID: 4424399296.32>
+            Button, 0x106423980, {{342.0, 70.0}, {44.0, 44.0}}, identifier: 'top.settings', label: 'Settings' <AX element pid: 16003, elementOrHash.elementID: 4424400192.12>
+            StaticText, 0x106423ac0, {{16.0, 122.0}, {142.3, 40.7}}, identifier: 'top.cash', label: 'Cash 507.72M' <AX element pid: 16003, elementOrHash.elementID: 4424400896.13>
+            StaticText, 0x106423c00, {{331.3, 140.0}, {54.7, 18.0}}, label: '51.3k/s' <AX element pid: 16003, elementOrHash.elementID: 4424401344.14>
+            StaticText, 0x106423d40, {{16.0, 171.7}, {370.0, 22.3}}, identifier: 'top.heat', label: 'Heat, +40/min, 44' <AX element pid: 16003, elementOrHash.elementID: 4424404032.15>
+              Image, 0x106423e80, {{17.0, 171.7}, {11.0, 14.3}}, identifier: 'flame.fill', label: 'Flame' <AX element pid: 16003, elementOrHash.elementID: 4424401792.33>
+              StaticText, 0x106430000, {{33.0, 171.7}, {28.0, 14.3}}, label: 'Heat' <AX element pid: 16003, elementOrHash.elementID: 4424402240.34>
+              StaticText, 0x106430140, {{320.0, 172.2}, {45.7, 13.3}}, label: '+40/min' <AX element pid: 16003, elementOrHash.elementID: 4424402688.35>
+              StaticText, 0x106430280, {{369.7, 171.7}, {16.3, 14.3}}, label: '44' <AX element pid: 16003, elementOrHash.elementID: 4424403136.36>
+              Other, 0x1064303c0, {{16.0, 190.0}, {370.0, 4.0}} <AX element pid: 16003, elementOrHash.elementID: 4424403584.37>
