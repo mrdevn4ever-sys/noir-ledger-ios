@@ -23,7 +23,7 @@ final class SoundEngine {
     private var mood = SoundMood(music: "music_main", ambience: "amb_cellar")
     private var active = false
 
-    private static let extensions = ["m4a", "caf", "wav", "mp3"]
+    nonisolated private static let extensions = ["m4a", "caf", "wav", "mp3"]
     nonisolated static let musicVolume: Float = 0.32
     nonisolated static let ambienceVolume: Float = 0.18
 
