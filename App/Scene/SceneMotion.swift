@@ -73,7 +73,7 @@ struct OneShotStrip: View {
 }
 
 /// Endless small motions drawn by the render server (no redraw of the view): bobbing, pulsing, swaying, glowing.
-struct Idle: ViewModifier {
+struct IdleMotion: ViewModifier {
     enum Kind { case bob(CGFloat), pulse(CGFloat), sway(Double), glow(Double) }
     let kind: Kind
     var duration: Double = 1
@@ -96,5 +96,5 @@ struct Idle: ViewModifier {
 }
 
 extension View {
-    func idle(_ kind: Idle.Kind, duration: Double = 1) -> some View { modifier(Idle(kind: kind, duration: duration)) }
+    func idle(_ kind: IdleMotion.Kind, duration: Double = 1) -> some View { modifier(IdleMotion(kind: kind, duration: duration)) }
 }
