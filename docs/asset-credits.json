@@ -1801,5 +1801,971 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "adc5c0b6e4e0e4ad81d89891cae2ee51c2871b19421eb03001202cc554ae4878"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandt.imageset/CrewBrandt.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ba439416d1df2807c061136352fad4ab9b7828b259d1a667703028286bf217bd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtHappy.imageset/CrewBrandtHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8f11837890e2f2d3fbbd35c56ce4e4b9da10167881bf2d57ab65514888684ef5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtAngry.imageset/CrewBrandtAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "489ed90a7b87fcab72e432c3ba1c1b48df2981f7d489c30a9334c50a287faec7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtSmug.imageset/CrewBrandtSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "af917ad00b520373251444baedae0da49576e32536e86967f8ea07a6d06ec04f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyBrandtIdle2.imageset/BodyBrandtIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "239a1c41d2cd55b36633d30ea503a956f786ab038e9de34b3ae739806ec0831f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVarga.imageset/CrewVarga.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0ce4aac3e58cc67b231a34bdd1abc8695e12978cf82140caa0ca47aa77165f2d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaHappy.imageset/CrewVargaHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c4b9e4dd9eb7c02ca64f2250a993f70d796f293678ad5286473c3be42029ee9c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaAngry.imageset/CrewVargaAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "765a7b93fe0ab36ad54d105b6ca392dc977d9367aea57b6297eaee1d06ee6d90"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaSmug.imageset/CrewVargaSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "44f2162850eb1f63045be4bbd378136cc2667ee7af3644fb44275d70f2086f7a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaIdle2.imageset/BodyVargaIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "516a1085a4ea3bc2a2d0819fde854b9522d1e08616a2cdb6f9d3eb95fb524b89"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkafor.imageset/CrewOkafor.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "256ca61114261554e4a68dabcf97199695c962f0e45c24864d9bb1d7a5c54376"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforHappy.imageset/CrewOkaforHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6211c47da6275aa2db011bf30d24747b79442315cbaa7892d47ea2f254fc5609"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforAngry.imageset/CrewOkaforAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e4cb9dd9858fa7791e79ba2a5f8d87e5e37714958d36ff23880f8af6bbfe9cfb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforSmug.imageset/CrewOkaforSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "acf93d57eb975f4f35aa6c9a690473cda5276446d00f1ec3cc7254a7853ead53"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyOkaforIdle2.imageset/BodyOkaforIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c7faf7f3968c7c07dcca4d2a4faec0ee17b0e0ed0fdae0b0e72732cdf9b813a4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgen.imageset/CrewMorgen.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1670a565335c431ca5418b97a1cdc3ffe90d439838bbba3ffa4dae02f8f11778"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenHappy.imageset/CrewMorgenHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1feb9f37c23d335fb8ff3388aa4fa70193e1846e21209ef9bf8d0ecc7196c905"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenAngry.imageset/CrewMorgenAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bc24fefa77c3b817e4abc4da6bb7bd8ea39413553ae31763718888cc75f8d92e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenSmug.imageset/CrewMorgenSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9ea83afbfa6846b32c3763cc1ea3ff7c50f46c0c26bdeb347e2833fa5bfe99d8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyMorgenIdle2.imageset/BodyMorgenIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1a7fc8d2a7bf8df7a6eaa83f2f9ccc392c6564ba28e4dac2ebf18795ab223ef6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeld.imageset/CrewFeld.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "696c3ad0ee8fecf8d5058fb5f16dbc8a65ac859ff49e31eba794d5054febe911"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldHappy.imageset/CrewFeldHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "34f5d6da4f32934204b902cde35aad1343a77460db3633657b188d1a3afc79c8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldAngry.imageset/CrewFeldAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d9cf86f3a0ab7b0310d566a5dbb8603b3665f897154f995a5f9383432edfbfad"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldSmug.imageset/CrewFeldSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "00adb3e7c88fe6c39f2debc2c4bcf3020b30bb9a9de3fad271b5021a0413a845"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyFeldIdle2.imageset/BodyFeldIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fb2c28246046cfb4453c2ce5649ca1e0eb8d902ae292f46e514abecc1c9a0a14"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolff.imageset/CrewWolff.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "aa325eb209a2043f76d7c318c3574e4d5d90cc3d7f6c6f02f4da1fe6b19212f5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffHappy.imageset/CrewWolffHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "829e694c46455443a9dca9ceb9020f264c10aa3468693c1ef9a328d52a1fe09a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffAngry.imageset/CrewWolffAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "06e27f5136cc8fde9b84bbc33a58c3b4846d5dec98aa9f6eed4b0a52cd6f5f89"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffSmug.imageset/CrewWolffSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5cbad70704fbc0a7d75613766e86c8ee37a30b88fadbfdda7a0edc63f751b920"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyWolffIdle2.imageset/BodyWolffIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f818964519d06302b7d3cec0c6dd6961d89e8c8f2bb42f5f7165f0541dc12380"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKessler.imageset/CrewKessler.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36cc1b7b3d2926692b1c5c07f301c4d4ae953ca6bca98480abfe9a991443d819"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerHappy.imageset/CrewKesslerHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "66a24a92cb4b60fc8901daa95effe6d5ee5e4d6a4a3534a589c88b52da9a7cd3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerAngry.imageset/CrewKesslerAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d647ac2afad48e5ad44c435a1a65fa1609050474b9b6b889096815e273611006"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerSmug.imageset/CrewKesslerSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d2467939170c75abda6436d9658e15be7314d610a5128a540e48c9d103e07e8a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKesslerIdle2.imageset/BodyKesslerIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e22f466a64f6a41ce940a332c0d38b48b92a703cdf83319812c8a4349631fbfa"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollis.imageset/CrewHollis.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "89a3eecd1b577b554376f275e57c4f4fe0b7577a4d1a2bb85851898761644e6c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisHappy.imageset/CrewHollisHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2a1ea4faf9dbf67952735b927027ff105b64f04596bfa109a4ff66af409822c3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisAngry.imageset/CrewHollisAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "733c2908657a139238666087054ee1da00f0fdd806c71ed321acafdcf6bb8514"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisSmug.imageset/CrewHollisSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "232d669e08f75af9abf82fd961cbea9a6d8846c9332e01102c6d211a17db4762"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyHollisIdle2.imageset/BodyHollisIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "77d6adbf231e2b052911e497ca9e970185d270143c48db9e973e700051a2bbd2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSand.imageset/CrewSand.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "aeb29d17259703de9a09a2958e63e275dda59f5543ec4b7e7a5e676be2f0db13"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandHappy.imageset/CrewSandHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6d94d07b8909ccb9643d30b995028c073487bd792d50b2944f7e547135d02590"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandAngry.imageset/CrewSandAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "822bb0cea48987901cdf672522a6fdee4c151e9e5d1f14948138e9be3da7d836"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandSmug.imageset/CrewSandSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0b2e63dc1b3606ec4c7afde98a6be2dd413c163f8fd1fb6853285a83e0e43cd8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodySandIdle2.imageset/BodySandIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3f680c76c8dde8171ea150c414a56b4df383af380f1080f9bcb122df267ed404"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiter.imageset/CrewReiter.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "52a04c331ea4515ebbcc69b4d88ec377e73e51bc8897a3b4830da8cf869f9bd1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterHappy.imageset/CrewReiterHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "62ddcc967d5720ca9a2824df620ceacc893570988fd7dda8e3e8ac93418e29ae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterAngry.imageset/CrewReiterAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e05fbfce418c170dd8eadfbeb3a4769863856ba29ce8ce383c6b921f302a192a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterSmug.imageset/CrewReiterSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a3345b126f16eedfd4758bd556cc8185f4760203a72b677a156ee8be51b3b84c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyReiterIdle2.imageset/BodyReiterIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ba0315835ed7a90a8fdfa175a03c31b345bcd22eac71803fc28757beb1be1630"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKraus.imageset/CrewKraus.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4487427b397b3b847e0cc44611751f70e0dba67dd4473628ebf7c1d65d8bdd7c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausHappy.imageset/CrewKrausHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1ef0ae5c5572401ef20b00d5e7d82ebf60aeed88d139121d81c57b945ee47467"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausAngry.imageset/CrewKrausAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "efec5cbbac3fd9c8c56cdd0fecf5ce3d19f9e2d47f8ef8462072236416f2c88f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausSmug.imageset/CrewKrausSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b938720c11661064f340338feb96bbef71e872b9ee6f16a37acfd8a011478eb4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKrausIdle2.imageset/BodyKrausIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "133d2890599e77c00c8a3d675ab418488c0782429ecf813adfed889f6af76e98"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLind.imageset/CrewLind.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1049f9d88ffcfebf1804d1167dce4b1d77593f6542f435abd9093c366e3a3c3c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindHappy.imageset/CrewLindHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f54a97430b7bf963ec9789b1907b5e68cf78bbf2172d5dd7d1f79963fe727369"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindAngry.imageset/CrewLindAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "56c7c677808e078c26ef4214d71052b23bf63b47ee6d0baa00fba6378f32bbc3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindSmug.imageset/CrewLindSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b7295536f3fee67d6ad5ebe9eb879fde72335cc5ea2d1030ae6a7619037239eb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyLindIdle2.imageset/BodyLindIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3d819613dfa14b3540fe41fad4f8c81e6af9e777bd3b500fcc9f7cd310c0e49d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotary.imageset/CrewNotary.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36104cf3dac9c5b53e21025610c8658d7cd87e3d9c6d32a207a08de839dd6b48"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotaryHappy.imageset/CrewNotaryHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d9fc978386c58c757682ee5a0dd634c27af14040709a1a09291ab1d65d3f29e2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotaryAngry.imageset/CrewNotaryAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9a650416c78f06e7ff54073dda97d3f4d16b4c250b84966d05421ff423f3816d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotarySmug.imageset/CrewNotarySmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "822e762cfef1e4b6296625010c1e0e08dae125947c49309e109ef97253ea7e0a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyNotaryIdle2.imageset/BodyNotaryIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a38efb4ab0457bbb9db2212cf693bbb1333a8fd5e7879bbfd68b20f229bfc3e8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopold.imageset/CrewLeopold.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d68368d9d1a1f5115eceefd119eee21ebe6597b6ff2affdf58513d1c8b9f1450"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldHappy.imageset/CrewLeopoldHappy.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5661e40322526d4be996e22500925caa5cf2c7923149c622fa0fd3bed2da0239"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldAngry.imageset/CrewLeopoldAngry.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f930d9e49cba7b7997e5054d26e82e1d0239b2b34e5be5d511e485277dbe051d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldSmug.imageset/CrewLeopoldSmug.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b2e49d46ac788c2db3edfab9e2d2f4b44edf02ad42647e3cd5041a50b6c08a58"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandt.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fd556d68fb88489d4c2e2d8c53bc94d747cb7c2238546e431c54e8af4b50c1fd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c097cc8bbbfeebe1a9ec65aef4877fdfca00f25724c5a7b36df1929b3ba2d58e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eca1e331434812e3581ac7da6f1d1edeb58d965e354f823c9476822ea27111c2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewBrandtSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8caf02294382cf67da0e83aa4774edc2f5df8e5b1c3e09130314004a02cb1b4b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyBrandtIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1eed3e8737ead94c182fa6207c1704bb3782552432e282caee8febe2928ce81b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVarga.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8ae022bc9d2a8a1a9953a5ec85bc3e7641190e5c4b27441f17b53c01d57926d3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1c69c219ba5f00a911f2a29a9fff37e45907ab66c4766f3ca24f425a13cb4e1d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fdf72dbb1c928e0cce6e6ad610e4ac375a678159e390b404397b3538f1ffec4c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewVargaSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c3c5d31add87735bf13bfa4d8d21b12eee5b53c5785fc0352a09e2461a1e8754"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2ba6afb6a5401b72db3a26b2a25748625772b2326b0abe533605d69050d36b4e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkafor.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7d685a6b7eef6797ef36ce9ad8c9afbaff18e3e9dcc4b03aa2529eb3f6afdacf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cb86af2f431e7987b4d7b4a5612624b198eb83ac052be1250386bd7d15bdd57d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "72903a90efe2260fa2c52ab6389fb408938c3982acc4994464fa09b04abd6d9d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewOkaforSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "208db34b75a09c4cef24b108e1faa7da43378f1da4516acba903b5d9f42e2187"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyOkaforIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b493377f4420a24e567eb69bccdbf6fbc4c1a7a629f505500da156c832c0c723"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgen.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3737bbb6a42706ad67c789a379fe7b35827c748adc61bae6b743af6fc39e5f7a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0d413dfe7691ada0511047d6e919d1274f086ff6ca8053c2f70b8fc09c76b9d5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d7aeb79fefc863bb16ea7c6700d240205b5fc5bf80e32dc1aa9f03b5c8357b93"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewMorgenSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "198ee1a0b7116a43cc4fca710d12fffdf4fc26641f05067f4db27a5c06364e7a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyMorgenIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6e54802ce33b853e924df03e616ce7ec103fd128206ae449b0562673b23b7f78"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeld.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "87f9eeb51e8b66ecb01b0d9062abe6a69067d6bc6c552b223a468ff72224340a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2662a0327f3cf1b0a528590030e659d42f8074b4ec8ac07f4bc5bd7d8e007021"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3a7afcf1e0611a8fdd01f696deb4b6cb0f9deadc9ae89558c25ccc029feec11e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewFeldSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ccf550a09445fd7b2a30d9d17c8f66e0ba3b3e70988903d96ecea6b9bfb971e2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyFeldIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f9bcd17165843c620984aebb18fcf12b97ed23f592b356d648148fb200c7e887"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolff.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8766c5417a566927ce169b57d06b15609ea7a9e26e6d068d3664196c6366d1da"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fd3e7797b735d5dfd8be9cecd1b94a1c04e63983d479c55bf8e0b246ecc68d90"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d9a844511d4fc5c8585afecbba8a4927072ae4529ab1d819aeee0ea7231236dd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewWolffSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eae6f77e705db5469762151a57fa9005ad55a922e615bfe5c38888183d2716d8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyWolffIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "707d1f319ab0525c7a24ccc533879cb9a5edf626ecf7c34a620e40790e2f69f2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKessler.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f128f45233ca2becc1f90879114329327cc8408867b50d50727edc16bad7e80c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a5a383b79ea5f93b119a68f6606a2d94370a29b5448a341bd3eb6beafb954dbb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9311f23dab7d735c1ebd8e76c74a36ecb8c389e33eb181a7040b4eba8e5e2b5b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKesslerSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5c1763eba1b271e4b337a6776e46b2a45d8ebb1387ff874a27da00ee91c334e0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKesslerIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "56de25a605bd7d7fef893a681295dc8147d4f17334c1df051e3a9e8d46bd9a16"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollis.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7e1a2764a6e39dfe172143a557d5b98d56864e8a20089a85dfbb7756d9d3687f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "525f8955bde192892202688110e5db14943db56e964dd917d7cfcaf6978271bc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "68f0052e54763a470977a6475601a97951d02de402d689bf007329c3ac474923"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewHollisSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1757c4271b5de756eaa50135b2835b67c965b5c552aa25de067ac5c9d0dc2c2d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyHollisIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "47ef4598469b2832038b152a5be29012c4404c6b404b6ff5b6281167a1f6a933"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSand.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6ba995b54d656ec1592b784141d7808bc433821e96e1fe6dd841afc313d48aae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6f6bf51f91946fdbedbf4209b5a2db9055ae235bf64fce2292220ad74aea84c8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "49c482e9cbf1795793c457cef5de9db0349d196f7725c8e2bcedda62e44bbcaf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewSandSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d3822e31aed72ca1aa96d0461f607de4a40f6ec98955da6169b2a6fc567f45e9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodySandIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1dceaed5b0f06a57ec68d0bd84668521a1bb80d17885c815ea0f8d110f3325bd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiter.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f8cc0fc9d6fbddad50f355f291136febb368500e897573c5367042fe3802d85a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bf8f26e77def92468f5379807d25166f2380b98371fdeba23dd57077e5ae748f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eaeec22e10e7b64dd54d5c8e330421fe85a92825bb2a61b0b24cd79906994e57"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewReiterSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bd8ff2003a1e57d43097d2f9542433db2ac626218e9db02046ba93a36db6a94b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyReiterIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "00dc3bf6b65a2d10cb75ec290b0ef6cf266b42fcde6ce40523f498db4b123b57"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKraus.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "077554197f0053b005e22f7f11a79e40baeef092caf5d36fb26960326e2685ed"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1f210dbf9954bfb23ca79f1cc17acb0beaa6a33a5058f1262eea6841a976e573"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "419e31dcb5089eb3c95dcaf0e218dd75a6b268ac0436c10e28c17601be2ce44a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewKrausSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1e9c3f47ebf76f86c73917e60ea55ebd69bdf38bf531c7a4e6a05a347be00973"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKrausIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1fc36d937c35c0abb6bffe18df190a553f52754a40ebb8f04b9d92342e298d8b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLind.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "983bea83290502bb1dd141a3d1f43b99ec74023a7256cf842b47df8a01d4b48d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "73474558791a84fdc4df551d21260a06e9f44b64a3b8313f23c14118b68177ab"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "98f01ee81d802824bb99c15d678fcfa4eb4c39add7f61d5f1190921ed1ba43d2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLindSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a04115a448e1c9cdb227231e9dcf1794948e090827c36982194c3b82843583f1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyLindIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4a19cbdfad57495164d287d3693ddeeb660ece7fd0f2fc256d9ffb1d24cc3e6f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotary.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3a8b7eed51e6f9f2c73b214afc5bc21ff2cf21cc00cfb692aeb139cb2d581cdb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotaryHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2a03bd5a4af28d647252c08c27b57c7b8113f0958df54ce7ecf95e389cc68168"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotaryAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5cbbb17448041a9fe6077cef5ae4ce336b23728445ea98e7dc29ef99cfee7271"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewNotarySmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fe2d9a2b575e6edbb08e919c5fdfdfb72bfa0211cca531f38cf284b74e84c7ca"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyNotaryIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f209aa159b0383111429b3c874e87b98a5c0df8653cbdc5ea460840818757aae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopold.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9c2f7027a3eb46a86a7d46b322d4627ace5078d74f5ab8402176711d7846de50"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldHappy.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "77ecda2ff46edbc959641be29b9cccb7e1865865482a1e8c4610cbe025eb7221"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldAngry.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "89c31616a11409ffa604ccc04ea45f098afd2250424e05fb24767a7d97216998"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrewLeopoldSmug.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b1b6b36bfc3a4beec041baedff93efc89949698f0566334f8b73b6f06c4f9706"
   }
 ]

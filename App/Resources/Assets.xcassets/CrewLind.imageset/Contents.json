@@ -1,15 +1,12 @@
 {
   "images": [
     {
-      "filename": "portrait-lind.svg",
+      "filename": "CrewLind.png",
       "idiom": "universal"
     }
   ],
   "info": {
     "author": "xcode",
     "version": 1
-  },
-  "properties": {
-    "preserves-vector-representation": true
   }
 }
