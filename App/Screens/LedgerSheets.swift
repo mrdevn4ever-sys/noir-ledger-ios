@@ -53,6 +53,7 @@ struct StationSheet: View {
         let after = Flow.upgraded(s, station, amount)
         let good = Self.good(station)
         SheetFrame(StationText.id(station).hasPrefix("contact") ? "l4_contact_sheet" : "l4_station_sheet", identifier: "screen.station") {
+            StationArt(station: station, state: s, after: after)
             Text(verbatim: StationText.title(station, t)).font(.display(.title2))
             Text(verbatim: t(Self.explainKey(station))).font(.subheadline).foregroundStyle(Noir.inkSoft)
                 .fixedSize(horizontal: false, vertical: true)
@@ -268,6 +269,56 @@ struct ActiveOrderCard: View {
             Text(verbatim: t("l4_order_progress", t.percent(order.progress), t.duration(left))).font(.caption).monospacedDigit()
                 .foregroundStyle(left < 60 ? Noir.danger : Noir.inkSoft)
         }
+    }
+}
+
+/// The picture on top of an upgrade: the floor as it looks now (and the next look when this upgrade reaches it), the
+/// vehicle, the shelf or the customer.
+struct StationArt: View {
+    let station: Station
+    let state: FlowState
+    let after: FlowState
+
+    var body: some View {
+        Group {
+            switch station {
+            case .bench(let g):
+                let now = Flow.level(state, station)
+                let next = Flow.level(after, station)
+                ZStack(alignment: .bottomTrailing) {
+                    Image(SceneArt.floor(g, level: now)).resizable().scaledToFill()
+                    if SceneArt.stage(level: next) > SceneArt.stage(level: now) {
+                        Image(SceneArt.floor(g, level: next)).resizable().scaledToFill()
+                            .frame(width: 120, height: 60).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Toon.window, lineWidth: 2))
+                            .overlay(alignment: .topLeading) {
+                                Image("ArrowUp").resizable().frame(width: 22, height: 22).offset(x: -8, y: -8)
+                            }
+                            .padding(Noir.s2)
+                    }
+                }
+            case .fleet:
+                ZStack(alignment: .bottom) {
+                    Image("SkyNight").resizable().scaledToFill()
+                    Image("Street").resizable().frame(height: 40)
+                    VehicleSprite(vehicle: SceneArt.vehicle(fleetLevel: Flow.level(after, station)), wheelAngle: 0, scale: 1)
+                        .padding(.bottom, 6)
+                }
+            case .shelf(let g):
+                ZStack {
+                    Image(SceneArt.floor(g, level: state.workshop(g)?.bench ?? 1)).resizable().scaledToFill().blur(radius: 2)
+                    Image("ShelfFrame").resizable().scaledToFit().frame(height: 110)
+                    Image(SceneArt.crate(g)).resizable().scaledToFit().frame(height: 34).offset(y: 30)
+                }
+            case .contact(let id):
+                Image(SceneArt.contact(id)).resizable().scaledToFill()
+            }
+        }
+        .frame(height: 150)
+        .frame(maxWidth: .infinity)
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+        .accessibilityHidden(true)
     }
 }
 

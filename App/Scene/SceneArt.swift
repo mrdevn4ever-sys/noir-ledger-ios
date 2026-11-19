@@ -146,6 +146,8 @@ enum SceneArt {
             + (1...6).flatMap { [chapter($0, outro: false), chapter($0, outro: true)] }
             + Quarter.allCases.flatMap { [quarter($0, wide: false), quarter($0, wide: true)] } + StartChoice.allCases.map(item)
             + (0...2).map { attention(tier: $0, paused: false) } + [attention(tier: 0, paused: true)]
+            + ["brandt", "varga", "okafor", "morgen", "feld", "wolff", "kessler", "hollis", "sand", "reiter", "kraus", "lind", "notary",
+               "leopold"].flatMap { id in ["", "Happy", "Angry", "Smug"].map { "Crew" + id.prefix(1).uppercased() + id.dropFirst() + $0 } }
             + ["ScenePrologue", "CityMap", "LedgerCover", "LedgerPage", "StampPaid", "StampMissed", "SealChapter", "ChapterRibbon",
                "FavorPile", "Wordmark", "ShopBoost", "ShopCalm", "ShopWarp", "ShopStarter", "ShopPremium", "ShopNoAds",
                "ShopFavorsSmall", "ShopFavorsMedium", "ShopFavorsLarge", "ShopFavorsVault"]

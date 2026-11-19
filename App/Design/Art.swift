@@ -149,11 +149,14 @@ struct DistrictArt: View {
 
 /// A crew member's canonical portrait.
 struct Portrait: View {
+    enum Mood: String { case neutral = "", happy = "Happy", angry = "Angry", smug = "Smug" }
+
     let crewId: String
     var size: CGFloat = 56
+    var mood: Mood = .neutral
 
     var body: some View {
-        Image(Glyph.portrait(crewId))
+        Image(Glyph.portrait(crewId) + mood.rawValue)
             .resizable()
             .scaledToFit()
             .frame(width: size, height: size)

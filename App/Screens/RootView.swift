@@ -317,7 +317,7 @@ struct ChapterSheet: View {
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
                 HStack(spacing: Noir.s3) {
-                    Portrait(crewId: ch.person, size: 64).clipShape(Circle())
+                    Portrait(crewId: ch.person, size: 64, mood: Flow.chapterComplete(s) ? .happy : .smug).clipShape(Circle())
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: t("l4_chapter_n", ch.number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
                         Text(verbatim: t(ChapterText.title(ch.number))).font(.display(.title2))
@@ -380,7 +380,7 @@ struct ChapterNewsSheet: View {
                 if let who = ch?.joins {
                     Panel(.leather) {
                         HStack(spacing: Noir.s3) {
-                            Portrait(crewId: SpecialistText.crew(who), size: 56).clipShape(Circle())
+                            Portrait(crewId: SpecialistText.crew(who), size: 56, mood: .happy).clipShape(Circle())
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(verbatim: t("l4_joins", Content.crewDef(SpecialistText.crew(who))?.name ?? "")).font(.headline)
                                 Text(verbatim: t(SpecialistText.effect(who))).font(.caption).foregroundStyle(Noir.inkSoft)
