@@ -6939,5 +6939,159 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "8fe760de0ad0ce291c314d7d4a9e24cd7c0c37fa3fe96b84a4970bdee225a1ce"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LevelUpRibbon.imageset/LevelUpRibbon.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "35865dd661e42bb45a914ce50677b846d05a977b6b9e09d69c236c50a3ceb3bd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LevelUpRibbon.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "775cdfacf387d378debe5e4184a94913b2b4bc067309ca68264ea77f38bcf5fd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Confetti12.imageset/Confetti12.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "51ca4324d316e0251ad938b7931fc274444f2693a0579fafb78d90dd4c7453b3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Confetti12.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cbf12eaf88f6edb519a52432a37a969247220df8cef7f8a954d27ae78e512a07"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StampPaid6.imageset/StampPaid6.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9b70c5ef727d6b7b2956d1a7dd6e7ecad858c9a90f6b7493fd8c8048bb97b8da"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StampPaid6.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a5202387a9e49367378b095bce98e04b24e865725a6daa1e38394219ca84ef5f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StampMissed6.imageset/StampMissed6.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fd9a52b1694798848c6fb338b75af3fcb7150afec86c9e007a97e9421691de14"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StampMissed6.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c3cd761ba5987e8ad2cc7fd800671ff94503d4457eae028e3171510b656387c6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SpeedLines6.imageset/SpeedLines6.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3e9ec00969e4e610609cee95e1eeedbbd64ebfa073a1f8912d4420ae5dbd8021"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SpeedLines6.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c065a417fc0898184451fa42cd9f6130271bd743e837d43912f572f31358ac08"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShiftGlow6.imageset/ShiftGlow6.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "51c986e5bd20afd645b20129809cccc23628f864ecf3827dd4ae5ec3d06f12a2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShiftGlow6.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "761409d6dac5497845ac7b8cead5ff8682f8fbb2e7715b332a0eaad6987b927f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShushBubble4.imageset/ShushBubble4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "046527aa0c8854d0c554fbf028a9eff6a7dd54b8d9ea175ccd854361de3015d9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShushBubble4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f891ef5df16d82f46ee03c455115a9d59776fd60fa84e1d6f148f0678cbe6780"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WindowSparkle6.imageset/WindowSparkle6.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "06c5c286bb2bbf643bc2d7af5ce32ed6844de0f2a0e56ded741a60b8749843d2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WindowSparkle6.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5a003b6dec1d5ea4b3025c346a2211ce5f3d1aa4f092120c0264817d9f69f74a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/MoneyRain8.imageset/MoneyRain8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "14bf3eca731034be623f58aedb06699cf8d55907477f6239d24792870d4f858e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/MoneyRain8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c5b7d13d0cf4246c6146cb7140632bce4d364773d6f19705934bb0bb39903d7c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SirenGlow4.imageset/SirenGlow4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "daf61ae738217e8409228925e76756a661a8e02b63404d5047e494d9c028d16b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SirenGlow4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "520e1674db3b1ab1ca68d469a296ac250177319930d1327231d179a698ec2398"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Fireflies8.imageset/Fireflies8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "50aad35afac3d32fde0f15a7a733aedae053b5679027d809cfbe868fe1d47eae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Fireflies8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b0d407396b194417a35b9b422837be3a4a0b8157988f52b9e087e10b5d7a3cd7"
   }
 ]
