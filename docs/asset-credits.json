@@ -5189,5 +5189,705 @@
     "license": "CC0-1.0",
     "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "sha256": "b3178a30bc0cf9b5813b986fca871249d4b53824ecf58b2917cf30616999c6cc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0Run4.imageset/FloorWeed0Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8c134ed7719d7fc07e66c0b70fccc55f73ee06528051dd2e50ffd632881cd92c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7f0db1424cdd8ca1336c3419ee2b1ce8b37a9ef1dc432415b4da5aea301bead9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0Lit.imageset/FloorWeed0Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ae0a2d8054f2281b8f0c936195a2c52b06c99d76e056711209ec30e6b7f5adc4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "25f6fd0a2ac5769242e434942f063870b89d1c1d15d2a40977547d81899faf59"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1Run4.imageset/FloorWeed1Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "63a626e0ffd5f6de86b1c85c4e2f20153d06f06441ff323d436a9f4ed9021e4d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "638ccb16d4cb58993c0a9bc88e56f835e68f35d215ecdbeb3ba6531d455e3625"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1Lit.imageset/FloorWeed1Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fef01fa05da94bd91ef51bc2544625b9cb7a82427c82265fe382f806aa72f9e5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "932e1883ee0d887befd1cea0243c7b997b4c20af1a1fe77d1d94f50f579ff6bf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2Run4.imageset/FloorWeed2Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "df0b5c4df219f9a323eabba597db20062ebb583dea4fadc8226f7a26464b20cb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7adf9b41b1350048ca53365cf94a4a0dfe9f5a6abdabdd1cf9a81806b992f155"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2Lit.imageset/FloorWeed2Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "148ac5f4775ddebae222a32674f76cd3ea60685d246fc281159b20387a5c4e72"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dc80a7a75de3124e209e449df43e76cc62e0c45ab46a16c6c5ad8a0d67ab8b7b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3Run4.imageset/FloorWeed3Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1f9454eff855a0bd5afb5828bf91f617c9db1229abef41b053ba5eff45f4f324"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bff561cbb674fe4969f6098f8d9ab82afce424c06e5412ccab9342bb8cb17efa"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3Lit.imageset/FloorWeed3Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "db84208ab25104c67c5531d738926ceace89068919d748eb2a6eacff189fdb18"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d1850e7688db497a3ee79e6d27a56dff05f47282f14c17692a8500f150e8368e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4Run4.imageset/FloorWeed4Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eedb8446d94d94385bfdb2b189005fdca0452a681e818bdfb5e060c59afa1ddb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "65ab1d9462151576bdf05c653cc6b884624b97bbed7caa5bfb0d5dd8ac2dc684"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4Lit.imageset/FloorWeed4Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dd522bef920d52da8fe056a4984e070864b20edb2d26e5df8ef1d6c44d9a15d4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bea1e9f432f2ac9df89ff4452370654042bbae6f31fcc7fe355ce5eeadb3f697"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5Run4.imageset/FloorWeed5Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "56fc1485c2a85abd47f83f8cc065c854c392105624dc34f5b0b77305b0fd8e40"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "375c5f91fa7401c40ac96875e9271dacd6d79d394515366f6007dcea7e311c20"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5Lit.imageset/FloorWeed5Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b8d50b93e792819bdec956680bf9990549cf9c7a6368f30abc39adb0315dbece"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "59b1cee8c2bf6d9f715f3a35638a0d5cbacf38f95f2375576875d18746e41502"
+  },
+  {
+    "file": "docs/asset-previews/FloorRunWeed.gif",
+    "origin": "Animierte Vorschau aus den vorhandenen originalen Etagenplatten und den passgenauen Teil-2-Ebenen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1e6cfd65c48d757a0cbaa51c2fcd0e30aef385ed4bcf04e693ea0efe6965cbc0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0Run4.imageset/FloorCrystal0Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e8ff912873b3af9a425a4b081c52d7fff83f8497ae2276efbf0370abd98662ab"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "79ecd6cafeadd41176d4ab082808d4c926dc71015a7c4ecd7838050abc4c0791"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0Lit.imageset/FloorCrystal0Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5b4616d6f1555a4df11a7d02993dfe3ca0165c9ecc910e8a3a393effee641b98"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1489cca5eb3c562170501dcd6a93a9e99298b429002568eef0362d80ec5a56c8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1Run4.imageset/FloorCrystal1Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "61ad906656a968dd2487a9a5ef22705bcfe408bde62a2bd62420ae3632d66955"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "92b3dacdfad8c6ee5ac272b6350eb15a9ca46dfdcb0a6d8032898bcf61a39916"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1Lit.imageset/FloorCrystal1Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5b4616d6f1555a4df11a7d02993dfe3ca0165c9ecc910e8a3a393effee641b98"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "00fc23a79d0b52fcf03ff2b4a2cfde114eef641aba333d8cc46061a46b3f6203"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2Run4.imageset/FloorCrystal2Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a6484c6aab201cfd0902187618986a882fc3906a112b80791918bdc1cbb5ab62"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "76b3495280f8bf3655e09700531c6cfc8bb35cc83e9602cc1bf709ea0a8f828b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2Lit.imageset/FloorCrystal2Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5b4616d6f1555a4df11a7d02993dfe3ca0165c9ecc910e8a3a393effee641b98"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "535a1b5781e5dffb347d218b3b9326bfbda73c754d1d6b30f6f9e997b085cd51"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3Run4.imageset/FloorCrystal3Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "420a42241232ec6fd100e3a5e6e9bb670d7f645655f7d1f8ec748f7da3dcae42"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4bc0f40d72d7e33728b1dd94a0b3fa72b3b085e82e1b6ed67151f153878bf3d5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3Lit.imageset/FloorCrystal3Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e07fff7b74980894624e68d99bdff7e9f19149f6b9c3da47095e99077dc9a40e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "56e240335c34631121c9139421bc3055370a3fb5857a67884f22a18db0cf4881"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4Run4.imageset/FloorCrystal4Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f466c1dd1c78b2de2134e8f23a58f31fb6db5ff1150e26ba206757e8e41a478a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7172caca8262c4579abcd1bb7ea89291989b93b2ac16e4682f1644cf77b1bf01"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4Lit.imageset/FloorCrystal4Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e07fff7b74980894624e68d99bdff7e9f19149f6b9c3da47095e99077dc9a40e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ba2b361f89d208de93923ead7e7d0d7e83e4aa740904bd51da3edaa158da3941"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5Run4.imageset/FloorCrystal5Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b016cdd4066da5c93ea21feed9918ab4a46c4240d3c415bc8d1a110fc0e8bd1f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a8d85b1d4e3d28deb4c0bfc6dd471c545ab108f69be96af1cdfaa1fb0c6fb522"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5Lit.imageset/FloorCrystal5Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e07fff7b74980894624e68d99bdff7e9f19149f6b9c3da47095e99077dc9a40e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bffa527239ba9ec5990c20d254c9ddee40d2e841a8b2895cb8152e5cb8290676"
+  },
+  {
+    "file": "docs/asset-previews/FloorRunCrystal.gif",
+    "origin": "Animierte Vorschau aus den vorhandenen originalen Etagenplatten und den passgenauen Teil-2-Ebenen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "660f70812e6e091fce2375ac19072e14f64bf5d4a4a6d21b23ac269e362ea383"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0Run4.imageset/FloorPills0Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f7b1b54728e3177e2191ad737cff51da2143dcd234b2b80cad15a67573732eb0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "688346993ea6068036575582f1c705c965bcda6d069ecf00992c5d8a7d7b43df"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0Lit.imageset/FloorPills0Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a8f8f407d037c780b3eaf705f9b89d16cddccc7d17393a5f4bc97a8ef5baf1b7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "26c4bbe123a3069eff1498c20325c9f6065e244ee33f23dbf35d6a5019974e33"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1Run4.imageset/FloorPills1Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "48ff11c7ca37ee5b1fa501c4f28d2f2c5d9be994511ead31b9dcf8b28301b015"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f542224261e0ff933aa28b528543f5e527c48aee341b33919487c4e49994756c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1Lit.imageset/FloorPills1Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a73ff275bdaf526aa2f2c40d3f2fafc65d4eb9a3ce6eecc2d662efc91f725a25"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6f9f8d8a4964d9e05a8ca092878e04a65cf13ed31db78f6d39daaba2229e4757"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2Run4.imageset/FloorPills2Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dc67f6254487ebc9b06bfc1dd642f4b54a01a349305e93d313b26d6f57936eca"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9664f4f3d7994e021889950fa920ba80365c77845a9774c9ec83bac33fdc6c85"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2Lit.imageset/FloorPills2Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a4c35198efb349e56b5d45d87c24e78b7e487c87b27e0fb654970355e3696729"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ec423224595a018234dbfae22d1031f6893a1b1b4970dc0e2267d8dadd47ba2a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3Run4.imageset/FloorPills3Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8ce02a019e47ecfa94905d6443bf0580694ec0df66cfaf1cb8b799ca5db2b531"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ab8b3b7f3bc0f2ad0226a79ec79ecf9a2cedbaadfb7f2de73888d43701359a98"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3Lit.imageset/FloorPills3Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d3ce4d56873482260c6e0d0ce81cc4442a2b868b93230907a50fec487e37d160"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ad49b86a2800297f7f8e0a359d0959a4d46bcca51b0b8215330923c71ca9b77d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4Run4.imageset/FloorPills4Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8285ca24737ba339c148f871001873d07840f9b7f72bc4d59ac05a338b3c90ed"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9832d11d9ce7e95c34fd284040dba57c1ca1241b9b2f77d20d62b4f5d8419319"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4Lit.imageset/FloorPills4Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a4c35198efb349e56b5d45d87c24e78b7e487c87b27e0fb654970355e3696729"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c4a3abe06b068c771989dde249afab2a742bbdc59fadbce79971e5af7c02cd6e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5Run4.imageset/FloorPills5Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "49f4e3e2347a027c209014dea31ae90e06431a6197e2762f82486c89f7fa378a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "06ec611edfe20412dcbc69fa71d2e81f1863becf48afa539afa261c1e01b5cef"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5Lit.imageset/FloorPills5Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b726696d0ffbff512064a959e4d01ac4b39f40bcf5ab84292050748aeb63d4c9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d12b783c6794538dd24dc0fdbf80ed083ba8dc03240515cc469f8f05be5eef4e"
+  },
+  {
+    "file": "docs/asset-previews/FloorRunPills.gif",
+    "origin": "Animierte Vorschau aus den vorhandenen originalen Etagenplatten und den passgenauen Teil-2-Ebenen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "95b7bf6f1753d9e2a198dd8107bd8259fa365e7a41b6725787744ce8d0518be0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0Run4.imageset/FloorCoke0Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7fa158eb7d17a3e0ac4bda53cab285d262cea683a5a4380ffcabab09e1d05637"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5fef428d96c220b69c596b4aa8208f2e86badbce25e0a600ba3353f5f2fb4de4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0Lit.imageset/FloorCoke0Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c7e31e815425c0b976363b4a3176b0446c1109658fb5bd5e0a94409c19c17d09"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2420d626878382518984242554ed7df4aaea4f41ca5ba854d0f763d682675a40"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1Run4.imageset/FloorCoke1Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ca3695c857124afc3d600ac9be3d67a0e03a651f9c35c9f13ca09eea84342ef4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "993ded68a3fdbd6c119fdc9691f3dbe42ea39caf1e0e9741779dc4a9a5e55c5c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1Lit.imageset/FloorCoke1Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "774db54538c317b89561474d3c994f4118e5937abde85bbf7856c451eb8eeb03"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "14b8beaf36504842a0684e24794b166684757d36cc0653d20e79f0b3b0396d3b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2Run4.imageset/FloorCoke2Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f9de5e41f31aa528d6efb4a9893bcc4158b94b80a4c416dfbb42d5dddb1711fe"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fb99ddbf1d00430323f89510addede79519bb5e591b13bfdf217a2de63846f41"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2Lit.imageset/FloorCoke2Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3f3aef15a88343c725570784bbe45d5f82478e2d507cf56e0fbd7170fe9cc615"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a5a42f99163c04bbde92debf6ea126db1ffdd7829e4296abdefddbea3a5bc536"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3Run4.imageset/FloorCoke3Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eaf4354ddb15a172b04fb2dd15c10d3daca6c77dc73a001d6eb3388fe9379e19"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "309a5d95aaa67dcad6d281b9bfb7f3ce8e717edd197e3f05317add1cb5282563"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3Lit.imageset/FloorCoke3Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "afd9aee5976ba5e9049dac4d50610842cb3ec94b9a7f75235d424d279685444c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f2848bfeb7b6349a70fa48d5ef5bb6f15a3ba8efe7b5dc8755821f57235a5014"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4Run4.imageset/FloorCoke4Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "752ab52bce82a896d3eadc57bc7b0535ee5624abca8c3dd39b871b86091464dc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "768ea2188fceaa0d0bbf5cc2adc8b83eb0ac4657edfdbda15539aa3293cdefb8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4Lit.imageset/FloorCoke4Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "27dcd3609000a942030168649f1fb14c50c63d48d852c793dc130b96efdb825f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d65161febe606c661553b22f181e483ca0ed8ad45eb6ec5ae58b619b3a84186c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5Run4.imageset/FloorCoke5Run4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "463a9774e6484174a90cffc52d52518bd92ebb9cf4661c7640e2391a20b58ef7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5Run4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8119efb14195b5f87e7670b697a6f7c51ff70446c2be67c6a5bcac6282a94d4b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5Lit.imageset/FloorCoke5Lit.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b6f9469317030e3c8cbb53b7f4d89911bb409560a1924b7a929979607b8ca758"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5Lit.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7594fa1c782e2ef46083fbe9ac36f9e55dff30136d6fab8ce9ee09b9b9aa90ae"
+  },
+  {
+    "file": "docs/asset-previews/FloorRunCoke.gif",
+    "origin": "Animierte Vorschau aus den vorhandenen originalen Etagenplatten und den passgenauen Teil-2-Ebenen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d46d33143f7e6f0dc5a02195e8f76ee3ad40c98730f8fcd437571e72ca5a3149"
   }
 ]
