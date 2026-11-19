@@ -182,10 +182,10 @@
   },
   {
     "file": "App/Resources/Audio/music_main.m4a",
-    "origin": "own deterministic synthesis: 71.9961 bpm, circular upright-bass plucks, brushed kit, sparse Rhodes voicings, muted horn and filtered room air; no samples; AAC LC encoded with FFmpeg",
-    "generated_at": "2026-11-13",
-    "license": "own work",
-    "source_url": ""
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "c65ff08f13144f8c01b2bf44fb3ffb7103dcbf1edf73f73238dc185c10696780"
   },
   {
     "file": "App/Resources/Audio/amb_rain.m4a",
@@ -196,10 +196,10 @@
   },
   {
     "file": "App/Resources/Audio/sfx_tap.m4a",
-    "origin": "own deterministic synthesis: wooden tool on bench: damped wood-body partials and a short filtered grain-noise click; no samples or recordings; AAC LC encoded with FFmpeg",
-    "generated_at": "2026-11-13",
-    "license": "own work",
-    "source_url": ""
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6c155dd219faa2197dbaacd18ad02223c82117ec2184c6b001067328c4f388a7"
   },
   {
     "file": "App/Resources/Audio/sfx_buy.m4a",
@@ -217,10 +217,10 @@
   },
   {
     "file": "App/Resources/Audio/sfx_reject.m4a",
-    "origin": "own deterministic synthesis: single muted low wood strike with a short dark thump; no samples or recordings; AAC LC encoded with FFmpeg",
-    "generated_at": "2026-11-13",
-    "license": "own work",
-    "source_url": ""
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "84a47330de134bfc315144ca850338a106ebef62d5c13716d6c17b3d338fa486"
   },
   {
     "file": "App/Resources/Audio/sfx_claim.m4a",
@@ -231,10 +231,10 @@
   },
   {
     "file": "App/Resources/Audio/sfx_chapter.m4a",
-    "origin": "own deterministic synthesis: heavy stamp and paper thump followed by a warm minor electric-piano chord; no samples or recordings; AAC LC encoded with FFmpeg",
-    "generated_at": "2026-11-13",
-    "license": "own work",
-    "source_url": ""
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a3fe8f94812f6c98b35e7f5b92525b0d181751f746cde3362342535d8cf0eb6e"
   },
   {
     "file": "App/Resources/Audio/sfx_raid.m4a",
@@ -266,10 +266,10 @@
   },
   {
     "file": "App/Resources/Audio/sfx_purchase.m4a",
-    "origin": "own deterministic synthesis: polished register bell with a springy till drawer opening; no samples or recordings; AAC LC encoded with FFmpeg",
-    "generated_at": "2026-11-13",
-    "license": "own work",
-    "source_url": ""
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9414c6c3756bd222d1e35b065d76c2b0df1ae357732ee1390693ac4c48cc4ec7"
   },
   {
     "file": "App/Resources/Audio/sfx_boost.m4a",
@@ -4895,5 +4895,299 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "c5c73fd5e590a9bc881c64714ce2dce71eb49c0852c27f73f6ba61064ae2c127"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_bench_weed.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9105cb0eb18f3c2e5e9f8d39991740be55a855e06e4bef86c19142029da429fe"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_bench_crystal.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a7d4db5723aacab9448d426ba09584a7df0690ad0ae328b5d6f0385f49c48221"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_bench_pills.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3e9240c2820a416157d75ae2aa98a1eb8e27f3fefff89d45b6cdd6a74fb2ecf0"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_bench_coke.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0cb030820c3121bcab18d5482c88a38b853bdcf3e707d46f53e6edcdf3983831"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ink.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1551b13cd503013c8b92446400dde32c1278aaddcd69f832c1860d9a754ef084"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_crate_drop.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cc639294e3635814bcf4213fb1e83555e73b3730ac7e470ccf9507481cc59eff"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ui_open.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0de2ff94c95b1addeef123e8163b48115a2dadbe18efec8874eb98718b19d3eb"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ui_close.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2e711f5b437d1758a27a67176c565fe19fae16b4e6614f8e34cfbb280a6753ee"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_lift_move.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "af37dccd3dc1878f1fd6bf571c0771981319bc391c0165a34ef0157f56da175e"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_lift_ding.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bee7211637035fcca7de63602253b46381787d19429291bc24b662551a2bf49c"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_upgrade.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "15e4ca4f2e9280817083cfbdb00b3b3ec809c8c3008868d555d6ee0f2c6c688b"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_van_depart.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "16f463f18cc90261184cf273e169e00f5af27d5b8cdf956a18cb71ac5799c9d9"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_van_arrive.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e021f25afa3d123f4943822f3d227e91207e6a4f5add2673a7485427326cf619"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_scooter_horn.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5e02cb5bd6d49a2b35e372158d3c6e348c87c945dbbc1ca3986d9ad9d018687c"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_coins.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f27f4e3ed3e8900e66b9047aab52036a80b648ae3fa83450b2590029600905f3"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_order_new.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "01fe21bea65c7d5b1c8980e990d81436ace5a2a7f10b1f1a58097f4eef9bf996"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_order_paid.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0f33edc691794595f81d2fea012e079f8bf3f07228c8700c5b262dfd3a92331e"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_hire.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "faff677ee46da311c3d2f83f216c128c6249079907b6686e7a0c61a940e05574"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_reward.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "61f52b35e041f4397c130aa37354bc88059e35b13e8cbec5e8fa8c65d593f324"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_order_failed.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "84fe4cd6d59691ff05bf184d7a90a54d95ccf7b6264ecf2f693abc77e07bcadc"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_attention_up.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ff547383a46b712d82e0a6484118c5af87848fe39bd64193809759f9d6eb5ed6"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_attention_down.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "269184d7be5043b8c86047db7b6fc4a49e828ad0285196a8c14b54c12295e146"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ability.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "721e8707c3840dab817ca53387ac0a182c47eede928a1f233e973b14e8513fb3"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_shelf_full.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "92948b9c4b2885504ae25985086c9b83a5c17f4dc3bb434dade685b7a79419d6"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_rebuild.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d5c784e7dfd385cd1ec270924be32bba2523053f3a12e9218c7b0cd0ed77acaf"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_challenge_won.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4e26a840cd6af95fd2e496af048cd929156b0b68d7c1f2089f8e16cad0780f61"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_unlock_floor.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0a089218b67167ba95e2bc6de98a4327726d59b441b2142aa4d376a5c7193f1c"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_siren.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "29c56844f06f20fa0c2cc4a8cad463432c2503b425aa8238068e3d6c494e389d"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_club_start.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a3c11538e3771ce63f7fd7ca5e1583e8505b31d76116d03fab953e26fff95a5d"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_challenge_start.m4a",
+    "origin": "Originale physikalisch modellierte Effektsynthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6558764e520d2eaf563c9f58af0b4be1dfeba10c0fffc734c80d36238a678778"
+  },
+  {
+    "file": "App/Resources/Audio/amb_street.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "f54b0e63f61674445e6d526f751d1465755143eb6c6be1aa273770f70a491666"
+  },
+  {
+    "file": "App/Resources/Audio/amb_cellar.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "e94f31086f78b85dc970009879556865b89b11c0266821085f49626632dd30ba"
+  },
+  {
+    "file": "App/Resources/Audio/amb_lab.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "9e67297426c0c3d17a1184578e6a281d78aa74eec7e2290fd6c842e3b0d4ea0e"
+  },
+  {
+    "file": "App/Resources/Audio/amb_club.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "db9b46c47b00839be2d6b71b09c5e7bad5178175f14d33b9d370dd3399cd8dfb"
+  },
+  {
+    "file": "App/Resources/Audio/amb_villa.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "6ff94f4e0869f627f14174c4f56a16eb180b9acb993ef16da2d214395eafa51e"
+  },
+  {
+    "file": "App/Resources/Audio/music_oldtown.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "2284a18e7f21b03a6adc074996ae89c730b1a119301805b5fa8b46777622d8aa"
+  },
+  {
+    "file": "App/Resources/Audio/music_docks.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "d7d692f9df463fdc893dd42793b2d21fd847beede61779ba6b4536e20c3e5e0d"
+  },
+  {
+    "file": "App/Resources/Audio/music_night.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "6198f8de3ccb99b45b240d25ff9d972fba94dede7e7cd23dcb31b8bae05f182a"
+  },
+  {
+    "file": "App/Resources/Audio/music_crown.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "c2cff49b2ffb0911020803606aa34525caafd461ff55347bc2afa00f1fa1a73b"
+  },
+  {
+    "file": "App/Resources/Audio/music_prologue.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "013c26962ec94d91372c6b608058196b5334b0ebb331a1645a7f0ab90e835073"
+  },
+  {
+    "file": "App/Resources/Audio/music_finale.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "66e35c82a31a7f6084aabb3b0e1aecf79a96b7dc4a89651c5269be60133dcc6b"
+  },
+  {
+    "file": "App/Resources/Audio/music_challenge.m4a",
+    "origin": "Originalkomposition und Synthese für NOIR LEDGER 4.0; ohne Samples oder Aufnahmen",
+    "license": "CC0-1.0",
+    "source_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sha256": "b3178a30bc0cf9b5813b986fca871249d4b53824ecf58b2917cf30616999c6cc"
   }
 ]
