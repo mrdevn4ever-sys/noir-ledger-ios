@@ -3,23 +3,22 @@ import SwiftUI
 
 /// The daily envelope and the board of missions.
 struct RewardsView: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
         let s = store.state
         SheetFrame("rewards_title", identifier: "screen.rewards") {
             DailyPanel(state: s)
-            MissionBoard(state: s)
-            Text(verbatim: t("ty_missions_done", s.claimedMissions.count, TycoonContent.missions.count))
-                .font(.footnote).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t("l4_rewards_more")).font(.footnote).foregroundStyle(Noir.inkSoft)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
 
 private struct DailyPanel: View {
-    let state: TycoonState
-    @Environment(TycoonStore.self) private var store
+    let state: FlowState
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {

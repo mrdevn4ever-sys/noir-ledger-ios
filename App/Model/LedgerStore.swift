@@ -17,21 +17,22 @@ enum Feedback: Sendable, Equatable {
 /// A moment worth a banner.
 struct Celebration: Equatable, Identifiable, Sendable {
     enum Kind: Equatable, Sendable {
-        case milestone(FloorId, Int)
-        case opened(FloorId)
-        case manager(FloorId)
-        case newCity(Int)
+        case milestone(Station, Int)
+        case opened(Good)
+        case hired(String)
+        case orderDone(Double)
+        case chapterReady(Int)
     }
 
     let id: Int
     let kind: Kind
 }
 
-/// Owns the live city: loading, time away, the online tick, actions, autosave and reset. All rules live in
-/// `NoirCore.Tycoon`; this type only schedules them and persists the result.
+/// Owns the live ledger: loading, time away, the online tick, actions, autosave and reset. All rules live in
+/// `NoirCore.Flow`; this type only schedules them, measures the real income stream and persists the result.
 @MainActor
 @Observable
-final class TycoonStore {
+final class LedgerStore {
     enum Phase: Equatable {
         case loading
         case futureSave(Int)
@@ -39,9 +40,7 @@ final class TycoonStore {
     }
 
     private(set) var phase: Phase = .loading
-    private(set) var state: TycoonState
-    /// Summary of the time credited while away (nil when nothing worth reporting).
-    var offline: TycoonOffline?
+    private(set) var state: FlowState
     var restoredFromBackup = false
     private(set) var lastSavedAtMs: Int64?
     private(set) var notice: NoticeMessage?
@@ -49,12 +48,15 @@ final class TycoonStore {
     private(set) var acceptedCount = 0
     private(set) var rejectedCount = 0
     private(set) var tapCount = 0
-    /// Cash a floor paid out with its last cycle, for floaters (floor → amount and a counter that changes each time).
-    private(set) var payouts: [FloorId: (amount: Double, seq: Int)] = [:]
+    /// Cash booked in the last minute of play, per minute: the real income stream (not the forecast).
+    private(set) var measuredIncome = 0.0
+    /// Increments with every booking, for the ledger's ink animation.
+    private(set) var bookings = 0
 
     @ObservationIgnored var onFeedback: (@MainActor (Feedback) -> Void)?
-    @ObservationIgnored let saveStore: TycoonSaveStore
-    /// The 2.x save, read once to carry favors and purchases over into the first city.
+    @ObservationIgnored let saveStore: FlowSaveStore
+    /// Earlier saves (3.x city, 2.x campaign), read once to carry favors and purchases over.
+    @ObservationIgnored let tycoonStore: TycoonSaveStore?
     @ObservationIgnored let legacyStore: SaveStore?
     @ObservationIgnored private let wallClockMs: @Sendable () -> Int64
     @ObservationIgnored private let makeSeed: @Sendable () -> UInt64
@@ -62,7 +64,7 @@ final class TycoonStore {
     @ObservationIgnored private var secondsSinceSave = 0.0
     @ObservationIgnored private var noticeCounter = 0
     @ObservationIgnored private var celebrationCounter = 0
-    @ObservationIgnored private var payoutCounter = 0
+    @ObservationIgnored private var recent: [(time: Double, amount: Double)] = []
     /// Game seconds per real second. Always 1 in Release; the Debug-only QA accelerator may raise it.
     @ObservationIgnored var timeScale = 1.0
 
@@ -70,14 +72,15 @@ final class TycoonStore {
     static let tickInterval = 0.25
     static let maxOnlineTick = 5.0
 
-    init(saveStore: TycoonSaveStore, legacyStore: SaveStore? = nil,
+    init(saveStore: FlowSaveStore, tycoonStore: TycoonSaveStore? = nil, legacyStore: SaveStore? = nil,
          wallClockMs: @escaping @Sendable () -> Int64 = { Int64(Date().timeIntervalSince1970 * 1000) },
          makeSeed: @escaping @Sendable () -> UInt64 = { UInt64.random(in: 1...UInt64.max) }) {
         self.saveStore = saveStore
+        self.tycoonStore = tycoonStore
         self.legacyStore = legacyStore
         self.wallClockMs = wallClockMs
         self.makeSeed = makeSeed
-        self.state = Tycoon.newCity(seed: 1, nowMs: 0)
+        self.state = Flow.newGame(seed: 1, nowMs: 0)
     }
 
     var nowMs: Int64 { wallClockMs() }
@@ -87,6 +90,8 @@ final class TycoonStore {
         let seconds = Double(wallClockMs()) / 1000 + Double(TimeZone.current.secondsFromGMT())
         return Int((seconds / 86_400).rounded(.down))
     }
+
+    var forecast: Forecast { Flow.forecast(state) }
 
     // MARK: Lifecycle
 
@@ -99,23 +104,26 @@ final class TycoonStore {
             state = s
             restoredFromBackup = restored
         case .fresh:
-            state = Tycoon.newCity(seed: makeSeed(), nowMs: wallClockMs(), meta: carriedWallet())
+            state = Flow.newGame(seed: makeSeed(), nowMs: wallClockMs(), meta: carriedWallet())
         }
         phase = .ready
         creditTimeAway()
         save()
     }
 
-    /// Favors, purchases and the daily envelope from a 2.x save, so nothing the player paid for is lost.
+    /// Favors, purchases and the daily envelope from an earlier version, so nothing the player paid for is lost.
     private func carriedWallet() -> MetaState {
         var meta = MetaState()
-        guard let legacyStore, case .loaded(let old, _, _) = legacyStore.load() else { return meta }
-        meta.favors = old.meta.favors
-        meta.premium = old.meta.premium
-        meta.noAds = old.meta.noAds
-        meta.starterBought = old.meta.starterBought
-        meta.dailyLastDay = old.meta.dailyLastDay
-        meta.dailyClaims = old.meta.dailyClaims
+        var old: MetaState?
+        if let tycoonStore, case .loaded(let city, _) = tycoonStore.load() { old = city.meta }
+        if old == nil, let legacyStore, case .loaded(let campaign, _, _) = legacyStore.load() { old = campaign.meta }
+        guard let old else { return meta }
+        meta.favors = old.favors
+        meta.premium = old.premium
+        meta.noAds = old.noAds
+        meta.starterBought = old.starterBought
+        meta.dailyLastDay = old.dailyLastDay
+        meta.dailyClaims = old.dailyClaims
         return meta
     }
 
@@ -134,9 +142,10 @@ final class TycoonStore {
     }
 
     private func creditTimeAway() {
-        let (next, report) = Tycoon.applyOffline(state, nowMs: wallClockMs())
-        state = next
-        if let report, report.earned > 0 || report.clockMovedBack { offline = report }
+        state = Flow.applyOffline(state, nowMs: wallClockMs())
+        recent.removeAll()
+        measuredIncome = 0
+        save()
     }
 
     private func startTicking() {
@@ -145,7 +154,7 @@ final class TycoonStore {
             let clock = ContinuousClock()
             var last = clock.now
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(TycoonStore.tickInterval))
+                try? await Task.sleep(for: .seconds(LedgerStore.tickInterval))
                 guard let self, !Task.isCancelled else { return }
                 let now = clock.now
                 let elapsed = last.duration(to: now)
@@ -156,35 +165,41 @@ final class TycoonStore {
         }
     }
 
-    /// Advances the online city by `seconds` of real time.
+    /// Advances the game by `seconds` of real time.
     func tick(seconds: Double) {
-        guard phase == .ready else { return }
+        guard phase == .ready, state.start != nil else { return }
         let before = state
         let scaled = timeScale > 1 ? seconds * timeScale : min(Self.maxOnlineTick, max(0, seconds))
-        Tycoon.advance(&state, seconds: scaled, offline: false)
+        Flow.advance(&state, seconds: scaled, offline: false)
         state.lastWallClockMs = wallClockMs()
         observe(from: before)
         secondsSinceSave += seconds
         if secondsSinceSave >= Self.autosaveInterval { save() }
     }
 
-    /// Reports what the simulation did: cycles paid out, police arriving, raids, suitcases.
-    private func observe(from before: TycoonState) {
-        for f in FloorId.allCases {
-            let gained = before.floor(f).running && (!state.floor(f).running || state.floor(f).progress < before.floor(f).progress)
-            if gained && Tycoon.cycleTime(state, f) >= 0.5 {
-                payoutCounter += 1
-                payouts[f] = (Tycoon.revenuePerCycle(state, f), payoutCounter)
-            }
+    /// Reports what the simulation did: bookings, new offers, finished or failed orders, a chapter ready to close.
+    private func observe(from before: FlowState) {
+        let gained = state.earned - before.earned
+        if gained > 0 {
+            recent.append((state.time, gained))
+            bookings += 1
         }
-        if state.lastRaidLoss != nil && before.lastRaidLoss == nil {
-            onFeedback?(.raid)
-        } else if state.police != nil && before.police == nil {
-            onFeedback?(.alarm)
-        } else if state.call != nil && state.call?.id != before.call?.id {
+        recent.removeAll { state.time - $0.time > 60 }
+        let window = min(60, max(1, state.time - (recent.first?.time ?? state.time) + 1))
+        measuredIncome = recent.reduce(0) { $0 + $1.amount } * 60 / max(window, 10)
+        if state.counters.orders > before.counters.orders {
+            let paid = state.ledger.last { $0.kind == .order }?.amount ?? 0
+            celebrate(.orderDone(paid))
+            onFeedback?(.claim)
+        } else if state.counters.failed > before.counters.failed {
+            show("order_failed", danger: true)
+            onFeedback?(.reject)
+        } else if state.offers.count > before.offers.count && !state.offers.isEmpty {
             onFeedback?(.decision)
-        } else if state.suitcase != nil && before.suitcase == nil {
-            onFeedback?(.decision)
+        }
+        if Flow.chapterComplete(state) && !Flow.chapterComplete(before) {
+            celebrate(.chapterReady(state.chapter))
+            onFeedback?(.chapter)
         }
     }
 
@@ -192,69 +207,74 @@ final class TycoonStore {
 
     /// Applies a player action. Returns the cash it paid out directly (nil when rejected).
     @discardableResult
-    func dispatch(_ action: TycoonAction) -> Double? {
+    func dispatch(_ action: FlowAction) -> Double? {
         guard phase == .ready else { return nil }
         let before = state
-        let r = Tycoon.apply(state, action)
+        let r = Flow.apply(state, action)
         guard r.isOK else {
-            if case .tapFloor = action { return nil }
-            rejectedCount += 1
-            onFeedback?(.reject)
-            if let e = r.error { show(Labels.error(e)) }
+            switch action {
+            case .tapBench, .tapFleet:
+                if r.error == .requirements { show("hint_shelf_empty") } else if r.error == .maxLevel { show("hint_shelf_full") }
+                rejectedCount += 1
+            default:
+                rejectedCount += 1
+                onFeedback?(.reject)
+                if let e = r.error { show(Labels.error(e)) }
+            }
             return nil
         }
         state = r.state
-        if case .tapFloor = action {
+        switch action {
+        case .tapBench, .tapFleet:
             tapCount += 1
             onFeedback?(.tap)
             return r.gained
+        default:
+            break
         }
         acceptedCount += 1
-        if case .answerCall = action {
-            switch r.won {
-            case .some(true): show("call_won")
-            case .some(false): show("call_lost", danger: true)
-            case .none: show("call_done")
-            }
-        }
         report(action, from: before)
         save()
         return r.gained
     }
 
-    private func report(_ action: TycoonAction, from before: TycoonState) {
+    private func report(_ action: FlowAction, from before: FlowState) {
         switch action {
-        case .buy(let f, _):
-            let was = Tycoon.milestonesReached(before.floor(f).count)
-            let now = Tycoon.milestonesReached(state.floor(f).count)
-            if now > was, let reached = TycoonContent.milestones.last(where: { $0 <= state.floor(f).count }) {
-                celebrate(.milestone(f, reached))
+        case .upgrade(let station, _):
+            let was = Flow.milestonesReached(Flow.level(before, station))
+            let now = Flow.level(state, station)
+            if Flow.milestonesReached(now) > was, let reached = FlowContent.milestones.last(where: { $0 <= now }) {
+                celebrate(.milestone(station, reached))
                 onFeedback?(.milestone)
             } else {
                 onFeedback?(.buy)
             }
-        case .open(let f):
-            celebrate(.opened(f))
+        case .openWorkshop(let g):
+            celebrate(.opened(g))
             onFeedback?(.milestone)
-        case .hireManager(let f, _):
-            celebrate(.manager(f))
+        case .hireLead(let g):
+            celebrate(.hired(FlowContent.good(g).lead))
             onFeedback?(.chapter)
-        case .changeCity:
-            celebrate(.newCity(state.meta.reputation - before.meta.reputation))
+        case .hireDispatcher:
+            celebrate(.hired(FlowContent.dispatcher))
+            onFeedback?(.chapter)
+        case .unlockContact:
+            onFeedback?(.milestone)
+        case .accept:
+            onFeedback?(.decision)
+        case .closeChapter:
             onFeedback?(.prestige)
-        case .buyDeal, .bribe, .setCut:
-            onFeedback?(.buy)
-        case .answerCall:
-            onFeedback?(.claim)
-        case .declineCall:
-            break
-        case .grabSuitcase, .claimMission, .claimDaily, .collectOffline, .adReward:
+        case .use:
+            onFeedback?(.boost)
+        case .claimDaily, .collectOffline, .adReward:
             onFeedback?(.claim)
         case .grant:
             onFeedback?(.purchase)
         case .buyFavorItem:
             onFeedback?(.boost)
-        case .tapFloor, .ackRaid:
+        case .choose, .startChallenge:
+            onFeedback?(.chapter)
+        default:
             break
         }
     }
@@ -320,7 +340,7 @@ final class TycoonStore {
         }
     }
 
-    /// Starts over in a new city with no reputation. What the player paid for stays.
+    /// Starts over in Leopold's cellar. What the player paid for stays.
     func resetEverything() {
         var wallet = MetaState()
         if phase == .ready {
@@ -330,36 +350,31 @@ final class TycoonStore {
             wallet.starterBought = state.meta.starterBought
         }
         saveStore.erase()
-        offline = nil
         restoredFromBackup = false
         celebration = nil
-        state = Tycoon.newCity(seed: makeSeed(), nowMs: wallClockMs(), meta: wallet)
+        recent.removeAll()
+        measuredIncome = 0
+        state = Flow.newGame(seed: makeSeed(), nowMs: wallClockMs(), meta: wallet)
         phase = .ready
         save()
     }
 
     #if NOIR_QA
     /// Replaces the whole state. Debug/QA builds only.
-    func replaceState(_ s: TycoonState) {
+    func replaceState(_ s: FlowState) {
         state = s
         save()
     }
     #endif
 }
 
-extension FloorId {
-    /// Crew id of the floor's manager of the given kind (the hustler when none was chosen).
-    func managerId(_ trait: ManagerTrait?) -> String {
-        let def = TycoonContent.floor(self)
-        return trait == .ghost ? def.ghostId : def.managerId
-    }
-
-    /// The 2.x product whose art, names and colours this floor uses.
+extension Good {
+    /// The product whose art, names and colours this good uses.
     var product: ProductId {
         switch self {
         case .weed: .glimmer
-        case .pills: .velvet
         case .crystal: .cinder
+        case .pills: .velvet
         case .coke: .halo
         }
     }

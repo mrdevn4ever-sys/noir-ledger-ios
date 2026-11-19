@@ -49,15 +49,13 @@ class NoirUITestCase: XCTestCase {
         if tabBar.exists { bottom = min(bottom, tabBar.frame.minY) }
         let notice = element("notice")
         if notice.exists && notice.frame.height > 0 { bottom = min(bottom, notice.frame.minY - 8) }
-        let call = element("call.card")
-        if call.exists && call.frame.height > 0 { bottom = min(bottom, call.frame.minY - 24) }
         return bottom - 8
     }
 
     /// The highest y below the pinned header (accounts, Heat gauge and any alert strip under it).
     private func visibleTop() -> CGFloat {
         var top = app.frame.minY + 120
-        for id in ["top.heat"] {
+        for id in ["top.income", "top.cash"] {
             let e = element(id)
             if e.exists && e.frame.height > 0 { top = max(top, e.frame.maxY + 8) }
         }
@@ -98,7 +96,7 @@ class NoirUITestCase: XCTestCase {
     }
 
     func dismissSheets() {
-        for id in ["offline.ok", "raid.ack"] where element(id).exists {
+        for id in ["welcome.ok", "chapter.news.ok"] where element(id).exists {
             element(id).tap()
         }
     }

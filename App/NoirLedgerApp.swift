@@ -3,7 +3,7 @@ import SwiftUI
 
 @main
 struct NoirLedgerApp: App {
-    @State private var store: TycoonStore
+    @State private var store: LedgerStore
     @State private var settings: AppSettings
     @State private var shop: StoreService
     @State private var ads: AdService
@@ -14,7 +14,8 @@ struct NoirLedgerApp: App {
     init() {
         let directory = (try? SaveStore.defaultDirectory()) ?? FileManager.default.temporaryDirectory
         let settings = AppSettings()
-        let store = TycoonStore(saveStore: TycoonSaveStore(directory: directory), legacyStore: SaveStore(directory: directory))
+        let store = LedgerStore(saveStore: FlowSaveStore(directory: directory), tycoonStore: TycoonSaveStore(directory: directory),
+                                legacyStore: SaveStore(directory: directory))
         let sound = SoundEngine()
         let shop = StoreService()
         #if NOIR_QA

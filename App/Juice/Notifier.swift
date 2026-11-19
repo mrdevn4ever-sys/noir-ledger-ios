@@ -17,11 +17,11 @@ final class Notifier {
     private nonisolated static let askedKey = "notifier.asked"
 
     /// Schedules the reminders for the state the player is leaving behind.
-    func schedule(state: TycoonState, today: Int, enabled: Bool, t: L10n) {
+    func schedule(state: FlowState, today: Int, enabled: Bool, t: L10n) {
         // Reminders only matter once something keeps earning while the player is away.
-        guard enabled, Tycoon.managedRate(state) > 0 else { return }
+        guard enabled, state.dispatcher, state.openGoods.contains(where: { state.workshop($0)?.lead == true }) else { return }
         var reminders: [Reminder] = []
-        let cap = TycoonContent.offlineCapSeconds * (state.meta.premium ? 2 : 1)
+        let cap = FlowContent.offlineCap * (state.meta.premium ? 2 : 1)
         reminders.append(Reminder(id: Self.ids[0], title: t("notif_offline_t"), body: t("notif_offline_b", t.duration(cap)), seconds: cap))
         if state.meta.boostSeconds > 300 {
             reminders.append(Reminder(id: Self.ids[1], title: t("notif_boost_t"), body: t("notif_boost_b"), seconds: state.meta.boostSeconds))

@@ -20,45 +20,42 @@ struct LocalizationTests {
     /// Every key the UI derives from engine identifiers.
     static var derivedKeys: [String] {
         var keys: [String] = []
-        for f in FloorId.allCases { keys += [Labels.product(f.product), Labels.productDesc(f.product)] }
+        for g in Good.allCases { keys += [GoodText.name(g), GoodText.role(g), Labels.product(g.product)] }
+        for q in Quarter.allCases { keys += [QuarterText.name(q), QuarterText.desc(q)] }
+        for c in FlowContent.contacts { keys += [ContactText.name(c.id), ContactText.desc(c.id)] }
+        for ch in FlowContent.chapters { keys += [ChapterText.title(ch.number), ChapterText.intro(ch.number), ChapterText.outro(ch.number)] }
+        for h in FlowHint.allCases { keys.append(HintText.key(h)) }
+        for b in [Bottleneck.bench, .fleet, .demand, .shelf, .balanced] { keys.append(NeckText.key(b)) }
+        for c in StartChoice.allCases { keys += [StartText.title(c), StartText.desc(c), StartText.effect(c)] }
+        for k in OrderKind.allCases { keys.append(OrderText.kind(k)) }
+        for sp in Specialist.allCases { keys += [SpecialistText.role(sp), SpecialistText.effect(sp)] }
+        for a in Ability.allCases { keys += [AbilityText.name(a), AbilityText.desc(a)] }
+        for c in ChallengeId.allCases {
+            keys += [ChallengeText.name(c), ChallengeText.desc(c)] + (0..<3).map { ChallengeText.goal(c, $0) }
+        }
+        for i in 0...3 { keys += ["l4_tier_\(i)", "l4_tier_effect_\(i)"] }
+        for st in [Station.fleet, .bench(.weed), .shelf(.weed), .contact("muehlgasse")] { keys.append(StationSheet.explainKey(st)) }
         for item in StoreItem.allCases { keys.append(item.titleKey) }
         for e in ActionError.allCases { keys.append(Labels.error(e)) }
-        for h in TycoonHint.allCases { keys.append(TycoonText.hint(h)) }
-        keys += ["ty_suitcase_got", "ad_unavailable", "ad_dismissed", "shop_pending", "shop_failed", "save_failed"]
-        keys += ["call_won", "call_lost", "call_done"]
-        for c in Cut.allCases { keys += [CutText.name(c), CutText.desc(c)] }
-        for call in TycoonContent.calls {
-            keys.append("call_\(call.id)_b")
-            for i in call.options.indices { keys.append("call_\(call.id)_o\(i)") }
-        }
+        keys += ["ad_unavailable", "ad_dismissed", "shop_pending", "shop_failed", "save_failed", "order_failed", "hint_shelf_empty", "hint_shelf_full"]
         return keys
-    }
-
-    @Test("Every answer to every call says in words what it does, in both languages")
-    func callTexts() {
-        for call in TycoonContent.calls {
-            for effects in call.options {
-                for table in [en, de] {
-                    let text = CallText.effects(effects, unit: 1_000, table)
-                    #expect(!text.isEmpty && !text.contains("ty_fx"), "untranslated effect in \(call.id)")
-                }
-            }
-        }
     }
 
     @Test("Every label derived from game content exists in both languages")
     func derivedLabelsExist() {
         let missing = Self.derivedKeys.filter { !en.has($0) || !de.has($0) }
         #expect(missing.isEmpty, "missing keys: \(missing)")
-        #expect(Self.derivedKeys.count > 20)
+        #expect(Self.derivedKeys.count > 100)
     }
 
-    @Test("Every mission reads as a sentence in both languages, never as a raw key")
-    func missionTexts() {
-        for m in TycoonContent.missions {
-            for table in [en, de] {
-                let text = TycoonText.mission(m, table)
-                #expect(!text.isEmpty && !text.contains("ty_m_"), "untranslated mission \(m.id)")
+    @Test("Every chapter goal reads as a sentence in both languages, never as a raw key")
+    func goalTexts() {
+        for ch in FlowContent.chapters {
+            for goal in ch.goals {
+                for table in [en, de] {
+                    let text = ChapterText.goal(goal, table)
+                    #expect(!text.isEmpty && !text.contains("l4_g_"), "untranslated goal \(goal.id)")
+                }
             }
         }
     }
@@ -88,8 +85,8 @@ struct LocalizationTests {
 // MARK: - Store lifecycle
 
 @MainActor
-@Suite("Tycoon store: saving, relaunch, time away, wallet and recovery", .serialized)
-struct TycoonStoreTests {
+@Suite("Ledger store: saving, relaunch, time away, wallet and recovery", .serialized)
+struct LedgerStoreTests {
     final class Clock: @unchecked Sendable {
         var ms: Int64 = 1_700_000_000_000
     }
@@ -100,80 +97,88 @@ struct TycoonStoreTests {
         return dir
     }
 
-    private func makeStore(_ dir: URL, clock: Clock) -> TycoonStore {
-        TycoonStore(saveStore: TycoonSaveStore(directory: dir), legacyStore: SaveStore(directory: dir),
-                    wallClockMs: { clock.ms }, makeSeed: { 42 })
+    private func makeStore(_ dir: URL, clock: Clock) -> LedgerStore {
+        LedgerStore(saveStore: FlowSaveStore(directory: dir), tycoonStore: TycoonSaveStore(directory: dir),
+                    legacyStore: SaveStore(directory: dir), wallClockMs: { clock.ms }, makeSeed: { 42 })
     }
 
-    @Test("A first launch starts a city and carries favors and purchases over from a 2.x save")
+    @Test("A first launch shows the prologue and carries favors and purchases over from a 3.x save")
     func walletCarriesOver() throws {
         let dir = tempDir()
-        var old = Engine.newGame(seed: 1, nowMs: 1)
+        var old = Tycoon.newCity(seed: 1, nowMs: 1)
         old.meta.favors = 77
         old.meta.premium = true
-        try SaveStore(directory: dir).write(old, savedAtMs: 1)
+        try TycoonSaveStore(directory: dir).write(old, savedAtMs: 1)
         let store = makeStore(dir, clock: Clock())
         store.load()
         #expect(store.phase == .ready)
-        #expect(store.state.floor(.weed).count == 1)
+        #expect(store.state.start == nil, "Leopold's things are still to be chosen")
         #expect(store.state.meta.favors == 77)
         #expect(store.state.meta.premium)
+        #expect(store.dispatch(.choose(.tools)) != nil)
+        #expect(store.state.workshop(.weed)?.bench == FlowContent.toolsBench)
     }
 
-    @Test("Taps, purchases and managers survive a relaunch")
+    @Test("Taps, purchases and crew survive a relaunch")
     func relaunch() {
         let dir = tempDir()
         let clock = Clock()
         let store = makeStore(dir, clock: clock)
         store.load()
-        #expect(store.dispatch(.tapFloor(.weed)) != nil)
-        store.tick(seconds: 1.1)
-        #expect(store.state.cash >= 1)
+        store.dispatch(.choose(.cashbox))
+        #expect(store.dispatch(.tapBench(.weed)) != nil)
+        store.tick(seconds: 5.5)
+        #expect(store.state.workshop(.weed)!.stock >= 1)
         var rich = store.state
         rich.cash = 5_000
         store.replaceState(rich)
-        #expect(store.dispatch(.hireManager(.weed)) != nil)
-        #expect(store.dispatch(.buy(.weed, 10)) != nil)
+        #expect(store.dispatch(.hireLead(.weed)) != nil)
+        #expect(store.dispatch(.upgrade(.fleet, 5)) != nil)
         store.save()
         let again = makeStore(dir, clock: clock)
         again.load()
-        #expect(again.state.floor(.weed).manager)
-        #expect(again.state.floor(.weed).count == 11)
+        #expect(again.state.workshop(.weed)?.lead == true)
+        #expect(again.state.fleet == 6)
     }
 
-    @Test("Time away is credited to managed floors with a summary")
+    @Test("Time away is booked once by the automated chain, with a summary shown until dismissed")
     func timeAway() {
         let dir = tempDir()
         let clock = Clock()
         let store = makeStore(dir, clock: clock)
         store.load()
+        store.dispatch(.choose(.cashbox))
         var s = store.state
         s.cash = 1_000
         store.replaceState(s)
-        store.dispatch(.hireManager(.weed))
+        store.dispatch(.hireLead(.weed))
+        store.dispatch(.hireDispatcher)
+        let rate = Flow.forecast(store.state).income
         store.enterBackground()
         clock.ms += 2 * 3_600_000
         let again = makeStore(dir, clock: clock)
         again.load()
-        let report = try! #require(again.offline)
-        #expect(abs(report.earned - 7_200 * TycoonContent.hustlerRevenue) < 1, "two hours of a hustler on one plant")
-        #expect(again.state.meta.offlineBonus > 0)
+        let report = try! #require(again.state.welcome)
+        #expect(abs(report.earned - rate * 120) <= rate * 120 * 0.03)
+        let cash = again.state.cash
+        let third = makeStore(dir, clock: clock)
+        third.load()
+        #expect(third.state.welcome != nil && abs(third.state.cash - cash) < 1e-6, "showing it again does not pay again")
+        third.dispatch(.collectOffline(doubled: false))
+        #expect(third.state.welcome == nil)
     }
 
-    @Test("Reset keeps what was paid for and clears reputation")
+    @Test("Reset keeps what was paid for and starts over in the cellar")
     func resetKeepsWallet() {
         let store = makeStore(tempDir(), clock: Clock())
         store.load()
+        store.dispatch(.choose(.cashbox))
         #expect(store.deliver(.premium))
         #expect(store.deliver(.favors(80)))
-        var s = store.state
-        s.meta.reputation = 30
-        store.replaceState(s)
         store.resetEverything()
         #expect(store.state.meta.premium)
         #expect(store.state.meta.favors == 80)
-        #expect(store.state.meta.reputation == 0)
-        #expect(store.state.floor(.weed).count == 1)
+        #expect(store.state.start == nil)
     }
 
     @Test("A damaged save is restored from the backup and flagged")
@@ -182,7 +187,7 @@ struct TycoonStoreTests {
         let clock = Clock()
         let store = makeStore(dir, clock: clock)
         store.load()
-        store.dispatch(.tapFloor(.weed))
+        store.dispatch(.choose(.cashbox))
         store.save()
         store.save()
         try Data("damaged".utf8).write(to: store.saveStore.primaryURL)
@@ -190,12 +195,13 @@ struct TycoonStoreTests {
         again.load()
         #expect(again.restoredFromBackup)
         #expect(again.phase == .ready)
+        #expect(again.state.start == .cashbox)
     }
 
     @Test("A save from a newer version is never overwritten")
     func futureSave() throws {
         let dir = tempDir()
-        let saveStore = TycoonSaveStore(directory: dir)
+        let saveStore = FlowSaveStore(directory: dir)
         let data = Data("{\"schema\": 99, \"savedAt\": 1, \"state\": {}}".utf8)
         try data.write(to: saveStore.primaryURL)
         let store = makeStore(dir, clock: Clock())
@@ -207,17 +213,24 @@ struct TycoonStoreTests {
         #expect(store.phase == .ready)
     }
 
-    @Test("Rejected actions are reported for sound, taps are counted")
+    @Test("Rejected actions are reported for sound, taps are counted, the real income is measured")
     func feedback() {
         let store = makeStore(tempDir(), clock: Clock())
         store.load()
+        store.dispatch(.choose(.addressBook))
         var heard: [Feedback] = []
         store.onFeedback = { heard.append($0) }
-        store.dispatch(.tapFloor(.weed))
+        store.dispatch(.tapBench(.weed))
         #expect(store.tapCount == 1)
         #expect(heard.contains(.tap))
-        #expect(store.dispatch(.hireManager(.weed)) == nil)
+        #expect(store.dispatch(.hireDispatcher) == nil)
         #expect(heard.contains(.reject))
+        store.tick(seconds: 5.25)
+        store.dispatch(.tapFleet)
+        store.tick(seconds: 5)
+        store.tick(seconds: 5.25)
+        #expect(store.state.counters.deliveries == 1)
+        #expect(store.measuredIncome > 0)
     }
 }
 
@@ -278,9 +291,10 @@ struct BuildFlavorTests {
     @Test("The QA accelerator is compiled into Debug test builds only (Release is verified by the CI binary scan)")
     func debugHasAccelerator() {
         #if NOIR_QA
-        var s = Tycoon.newCity(seed: 1, nowMs: 1)
-        QAAccelerator.scenario(&s, "rich")
-        #expect(FloorId.allCases.allSatisfy { s.floor($0).manager })
+        var s = Flow.newGame(seed: 1, nowMs: 1)
+        QAAccelerator.scenario(&s, "late", quiet: true)
+        #expect(Good.allCases.allSatisfy { s.workshop($0)?.lead == true })
+        #expect(s.dispatcher && s.offers.isEmpty)
         #else
         Issue.record("Debug test builds are expected to define NOIR_QA")
         #endif

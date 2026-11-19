@@ -3,7 +3,7 @@ import SwiftUI
 
 /// The back room: one-time offers, favor packs, what favors buy, and the free sponsor rewards.
 struct ShopView: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(StoreService.self) private var shop
     @Environment(AdService.self) private var ads
     @Environment(\.l10n) private var t
@@ -64,7 +64,7 @@ struct ShopView: View {
         }
     }
 
-    private func wallet(_ s: TycoonState) -> some View {
+    private func wallet(_ s: FlowState) -> some View {
         Panel(.leather) {
             HStack(spacing: Noir.s3) {
                 Image(systemName: "seal.fill").font(.title).foregroundStyle(Noir.brass).accessibilityHidden(true)
@@ -77,7 +77,7 @@ struct ShopView: View {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {
                     Text(verbatim: t("shop_payout")).font(.caption).foregroundStyle(Noir.inkSoft)
-                    Text(verbatim: t("empire_payout", t.decimal(Tycoon.globalMultiplier(s), digits: 2)))
+                    Text(verbatim: t("empire_payout", t.decimal(Flow.payMultiplier(s), digits: 2)))
                         .font(.title3.weight(.bold)).monospacedDigit().foregroundStyle(Noir.amber)
                 }
             }
@@ -89,8 +89,8 @@ struct ShopView: View {
 /// A free reward paid by a sponsor video (or directly with the ad-free upgrade).
 private struct RewardRow: View {
     let reward: AdReward
-    let state: TycoonState
-    @Environment(TycoonStore.self) private var store
+    let state: FlowState
+    @Environment(LedgerStore.self) private var store
     @Environment(AdService.self) private var ads
     @Environment(\.l10n) private var t
 
@@ -167,9 +167,9 @@ private struct RewardRow: View {
 /// A store product with its App Store price.
 private struct OfferCard: View {
     let item: StoreItem
-    let state: TycoonState
+    let state: FlowState
     @Environment(StoreService.self) private var shop
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
@@ -220,8 +220,8 @@ private struct OfferCard: View {
 /// Something favors buy.
 private struct FavorRow: View {
     let item: FavorItem
-    let state: TycoonState
-    @Environment(TycoonStore.self) private var store
+    let state: FlowState
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {

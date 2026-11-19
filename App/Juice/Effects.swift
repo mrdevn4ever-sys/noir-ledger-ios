@@ -66,7 +66,7 @@ private struct FloaterView: View {
 
 /// The banner for a milestone, a finished chapter or a new start, with a burst of gold.
 struct CelebrationBanner: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
     @Environment(\.noirReduceMotion) private var reduceMotion
 
@@ -108,19 +108,21 @@ struct CelebrationBanner: View {
 
     private func title(_ kind: Celebration.Kind) -> String {
         switch kind {
-        case .milestone: t("ty_cel_milestone_t")
-        case .opened: t("ty_cel_opened_t")
-        case .manager: t("ty_cel_manager_t")
-        case .newCity: t("ty_cel_city_t")
+        case .milestone: t("l4_cel_milestone_t")
+        case .opened: t("l4_cel_opened_t")
+        case .hired: t("l4_cel_hired_t")
+        case .orderDone: t("l4_cel_order_t")
+        case .chapterReady: t("l4_cel_chapter_t")
         }
     }
 
     private func detail(_ kind: Celebration.Kind) -> String {
         switch kind {
-        case .milestone(let f, let count): t("ty_cel_milestone_b", t(Labels.product(f.product)), count)
-        case .opened(let f): t("ty_cel_opened_b", t(Labels.product(f.product)))
-        case .manager(let f): t("ty_cel_manager_b", Content.crewDef(f.managerId(store.state.floor(f).trait))?.name ?? "", t(Labels.product(f.product)))
-        case .newCity(let gain): t("ty_cel_city_b", gain)
+        case .milestone(let station, let level): t("l4_cel_milestone_b", StationText.title(station, t), level)
+        case .opened(let g): t("l4_cel_opened_b", t(GoodText.name(g)))
+        case .hired(let crew): t("l4_cel_hired_b", Content.crewDef(crew)?.name ?? "")
+        case .orderDone(let paid): t("l4_cel_order_b", t.money(paid))
+        case .chapterReady(let n): t("l4_cel_chapter_b", t(ChapterText.title(n)))
         }
     }
 }

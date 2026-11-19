@@ -1,10 +1,10 @@
 import NoirCore
 import SwiftUI
 
-/// Chooses between the save-version guard and the game, and hosts what can interrupt play: the return summary, the
-/// raid, the save-recovery note and the celebration banner.
+/// Chooses between the save-version guard, Leopold's prologue and the ledger, and hosts what can interrupt play:
+/// the return summary, a closed chapter's story moment, the save-recovery note and the celebration banner.
 struct RootView: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(AppSettings.self) private var settings
     @Environment(\.accessibilityReduceMotion) private var systemReduceMotion
     @Environment(StoreService.self) private var shop
@@ -39,35 +39,38 @@ struct RootView: View {
         case .futureSave(let version):
             FutureSaveView(version: version)
         case .ready:
-            GameRoot()
+            if store.state.start == nil {
+                PrologueView()
+            } else {
+                GameRoot()
+            }
         }
     }
 }
 
-/// The interruptions, one at a time: the return summary first, then a raid.
+/// The interruptions, one at a time: the return summary first, then the story of a closed chapter.
 private enum Interruption: String, Identifiable {
-    case offline, raid
+    case welcome, chapter
     var id: String { rawValue }
 }
 
 private struct GameRoot: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
 
     private var interruption: Binding<Interruption?> {
         Binding(
             get: {
-                if store.offline != nil { return .offline }
-                if store.state.lastRaidLoss != nil { return .raid }
+                if store.state.welcome != nil { return .welcome }
+                if store.state.chapterNews != nil { return .chapter }
                 return nil
             },
             set: { newValue in
                 guard newValue == nil else { return }
-                if store.offline != nil {
+                if store.state.welcome != nil {
                     store.dispatch(.collectOffline(doubled: false))
-                    store.offline = nil
-                } else if store.state.lastRaidLoss != nil {
-                    store.dispatch(.ackRaid)
+                } else if store.state.chapterNews != nil {
+                    store.dispatch(.seenChapter)
                 }
             }
         )
@@ -78,14 +81,14 @@ private struct GameRoot: View {
     }
 
     var body: some View {
-        TycoonView()
+        LedgerView()
             .sheet(item: interruption) { kind in
                 Group {
                     switch kind {
-                    case .offline:
-                        if let report = store.offline { OfflineSheet(report: report) }
-                    case .raid:
-                        RaidSheet(loss: store.state.lastRaidLoss ?? 0)
+                    case .welcome:
+                        if let report = store.state.welcome { ReturnSheet(report: report) }
+                    case .chapter:
+                        if let n = store.state.chapterNews { ChapterNewsSheet(number: n) }
                     }
                 }
                 .environment(\.l10n, t)
@@ -115,7 +118,7 @@ private struct LoadingView: View {
 /// Shown when the save on disk was written by a newer version: it is left untouched unless the player starts over.
 struct FutureSaveView: View {
     let version: Int
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
     @State private var confirm = false
 
@@ -139,6 +142,299 @@ struct FutureSaveView: View {
             Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
         } message: {
             Text(verbatim: t("reset_confirm_body"))
+        }
+    }
+}
+
+// MARK: - Prologue
+
+/// The notary's office in the rain: a key, an address, a leather-bound ledger, and one of Leopold's things to take.
+struct PrologueView: View {
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Noir.s4) {
+                Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s5)
+                Image("DistrictCellars")
+                    .resizable().scaledToFill()
+                    .frame(height: 170).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
+                Panel(.paper) {
+                    Text(verbatim: t("l4_prologue_title")).font(.display(.title2)).accessibilityAddTraits(.isHeader)
+                    Text(verbatim: t("l4_prologue_body")).font(.body).fixedSize(horizontal: false, vertical: true)
+                }
+                Text(verbatim: t("l4_prologue_choose")).font(.headline)
+                ForEach(StartChoice.allCases, id: \.self) { choice in
+                    Button { store.dispatch(.choose(choice)) } label: {
+                        HStack(alignment: .top, spacing: Noir.s3) {
+                            Image(systemName: Self.symbol(choice)).font(.title).frame(width: 40).foregroundStyle(Noir.amber)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(verbatim: t(StartText.title(choice))).font(.headline)
+                                Text(verbatim: t(StartText.desc(choice))).font(.subheadline)
+                                    .foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+                                Text(verbatim: t(StartText.effect(choice))).font(.caption.weight(.bold))
+                                    .foregroundStyle(Noir.amber).fixedSize(horizontal: false, vertical: true)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .padding(Noir.s3)
+                        .foregroundStyle(Noir.ink)
+                        .background(Noir.leather, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.leatherEdge, lineWidth: 1))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("start.\(choice.rawValue)")
+                }
+            }
+            .padding(Noir.s4)
+            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.prologue", title: t("l4_prologue_title")) }
+        }
+        .background(Noir.ground)
+    }
+
+    static func symbol(_ c: StartChoice) -> String {
+        switch c {
+        case .cashbox: "banknote.fill"
+        case .addressBook: "book.fill"
+        case .tools: "wrench.and.screwdriver.fill"
+        }
+    }
+}
+
+// MARK: - Coming back
+
+/// The welcome back: how long, what the automated stations booked, what piled up, what to do first. The money is
+/// already in the book; this only shows it (and offers the sponsor's double).
+struct ReturnSheet: View {
+    let report: FlowReturn
+    @Environment(LedgerStore.self) private var store
+    @Environment(AdService.self) private var ads
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let s = store.state
+        ScrollView {
+            VStack(alignment: .leading, spacing: Noir.s4) {
+                Text(verbatim: t("l4_return_title")).font(.display(.title2)).foregroundStyle(Noir.ink)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityIdentifier("welcome.title")
+                if report.clockMovedBack {
+                    Text(verbatim: t("l4_return_clock")).font(.body).foregroundStyle(Noir.inkSoft)
+                } else {
+                    Text(verbatim: t("l4_return_away", t.duration(report.away), t.duration(report.credited)))
+                        .font(.subheadline).foregroundStyle(Noir.inkSoft)
+                    VStack(spacing: 2) {
+                        Text(verbatim: t("l4_return_booked")).font(.caption).foregroundStyle(Noir.inkSoft)
+                        Text(verbatim: "+" + t.money(report.earned))
+                            .font(.system(.largeTitle, design: .serif, weight: .bold)).monospacedDigit()
+                            .foregroundStyle(Noir.amber)
+                            .accessibilityIdentifier("welcome.earned")
+                    }
+                    .frame(maxWidth: .infinity)
+                    Panel(.paper) {
+                        ValueRow(label: t("l4_return_deliveries"), value: t.decimal(Double(report.deliveries), digits: 0))
+                        if report.ordersDone + report.ordersFailed > 0 {
+                            ValueRow(label: t("l4_return_orders"), value: "\(report.ordersDone) / \(report.ordersFailed)")
+                        }
+                        if report.capped {
+                            Text(verbatim: t("l4_return_capped", t.duration(report.credited))).font(.caption)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        ForEach(report.fullShelves, id: \.self) { g in
+                            Label { Text(verbatim: t("l4_return_full", t(GoodText.name(g)))) } icon: { Image(systemName: "shippingbox.fill") }
+                                .font(.caption.weight(.semibold)).foregroundStyle(Noir.paperRed)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        if !s.dispatcher || s.openGoods.contains(where: { s.workshop($0)?.lead != true }) {
+                            Text(verbatim: t("l4_return_manual")).font(.caption).fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    if let next = Self.nextStep(s) {
+                        Label { Text(verbatim: t("l4_return_next", StationText.title(next, t))) } icon: { Image(systemName: "arrow.forward.circle.fill") }
+                            .font(.subheadline.weight(.semibold)).foregroundStyle(Noir.amber)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .accessibilityIdentifier("welcome.next")
+                    }
+                }
+                if s.meta.offlineBonus > 0, store.rewardOffered(ads: ads) {
+                    Button {
+                        store.claimReward(.offlineDouble, ads: ads)
+                    } label: {
+                        Label {
+                            Text(verbatim: t(s.meta.noAds ? "offline_double_free" : "offline_double_video", t.money(s.meta.offlineBonus)))
+                        } icon: {
+                            Image(systemName: s.meta.noAds ? "bolt.fill" : "play.rectangle.fill")
+                        }
+                    }
+                    .noirButton(.secondary)
+                    .accessibilityIdentifier("welcome.double")
+                }
+                Button {
+                    store.dispatch(.collectOffline(doubled: false))
+                } label: {
+                    Text(verbatim: t("l4_return_ok"))
+                }
+                .noirButton(.primary)
+                .accessibilityIdentifier("welcome.ok")
+            }
+            .padding(Noir.s4)
+        }
+        .background(Noir.ground)
+        .onChange(of: store.state.meta.offlineBonus) { old, new in
+            if old > 0 && new <= 0 { store.dispatch(.dismissWelcome) }
+        }
+    }
+
+    /// The station of the main good's bottleneck, if the cash already buys a level.
+    static func nextStep(_ s: FlowState) -> Station? {
+        let f = Flow.forecast(s)
+        for g in s.openGoods.reversed() {
+            guard let gf = f.good(g), let st = StationText.fix(gf.bottleneck, good: g, state: s) else { continue }
+            if Flow.cost(s, st, 1) <= s.cash { return st }
+        }
+        return nil
+    }
+}
+
+// MARK: - Chapters
+
+struct ChapterSheet: View {
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let s = store.state
+        SheetFrame("l4_chapter", identifier: "screen.chapter") {
+            if let ch = FlowContent.chapter(s.chapter) {
+                HStack(spacing: Noir.s3) {
+                    Portrait(crewId: ch.person, size: 64).clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(verbatim: t("l4_chapter_n", ch.number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
+                        Text(verbatim: t(ChapterText.title(ch.number))).font(.display(.title2))
+                    }
+                }
+                Text(verbatim: t(ChapterText.intro(ch.number))).font(.body).fixedSize(horizontal: false, vertical: true)
+                Panel(.paper) {
+                    Text(verbatim: t("l4_goals")).font(.headline)
+                    ForEach(ch.goals) { goal in
+                        let p = Flow.goalProgress(s, goal)
+                        let done = Flow.goalDone(s, goal)
+                        HStack(spacing: Noir.s2) {
+                            Image(systemName: done ? "checkmark.circle.fill" : "circle").foregroundStyle(done ? Noir.paperGold : Noir.paperInk.opacity(0.5))
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(verbatim: ChapterText.goal(goal, t)).font(.subheadline).fixedSize(horizontal: false, vertical: true)
+                                if !done && p.target > 1 {
+                                    Meter(fraction: min(1, p.current / p.target), tint: Noir.paperGold, height: 4)
+                                }
+                            }
+                        }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityIdentifier("goal.\(goal.id)")
+                    }
+                }
+                if let who = ch.joins {
+                    Label { Text(verbatim: t("l4_chapter_reward", Content.crewDef(SpecialistText.crew(who))?.name ?? "", t(SpecialistText.role(who)))) } icon: {
+                        Image(systemName: "person.badge.plus")
+                    }
+                    .font(.subheadline).foregroundStyle(Noir.brass).fixedSize(horizontal: false, vertical: true)
+                }
+                Text(verbatim: t("l4_chapter_bonus", t.percent(FlowContent.chapterBonus - 1))).font(.footnote).foregroundStyle(Noir.inkSoft)
+                Button {
+                    if store.dispatch(.closeChapter) != nil { dismiss() }
+                } label: { Text(verbatim: t("l4_chapter_close")) }
+                .noirButton(.primary)
+                .disabled(!Flow.chapterComplete(s))
+                .accessibilityIdentifier("chapter.close")
+            }
+        }
+    }
+}
+
+/// The story moment after a chapter closes: what happened, who joins, what opens.
+struct ChapterNewsSheet: View {
+    let number: Int
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let ch = FlowContent.chapter(number)
+        ScrollView {
+            VStack(alignment: .leading, spacing: Noir.s4) {
+                Text(verbatim: t("l4_chapter_closed", number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
+                Text(verbatim: t(ChapterText.title(number))).font(.display(.title)).accessibilityIdentifier("chapter.news")
+                Text(verbatim: t(ChapterText.outro(number))).font(.body).fixedSize(horizontal: false, vertical: true)
+                if let who = ch?.joins {
+                    Panel(.leather) {
+                        HStack(spacing: Noir.s3) {
+                            Portrait(crewId: SpecialistText.crew(who), size: 56).clipShape(Circle())
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(verbatim: t("l4_joins", Content.crewDef(SpecialistText.crew(who))?.name ?? "")).font(.headline)
+                                Text(verbatim: t(SpecialistText.effect(who))).font(.caption).foregroundStyle(Noir.inkSoft)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                    }
+                }
+                if let next = FlowContent.chapter(number + 1) {
+                    Text(verbatim: t("l4_next_chapter", t(ChapterText.title(next.number)))).font(.subheadline.weight(.semibold))
+                } else {
+                    Text(verbatim: t("l4_finale_done")).font(.subheadline.weight(.semibold))
+                }
+                Button { store.dispatch(.seenChapter) } label: { Text(verbatim: t("btn_continue")) }
+                    .noirButton(.primary)
+                    .accessibilityIdentifier("chapter.news.ok")
+            }
+            .padding(Noir.s4)
+        }
+        .background(Noir.ground)
+    }
+}
+
+// MARK: - Challenges
+
+struct ChallengesSheet: View {
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let s = store.state
+        SheetFrame("l4_challenges", identifier: "screen.challenges") {
+            Text(verbatim: t("l4_challenges_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+            if let c = s.challenge {
+                Panel(.leather) {
+                    Text(verbatim: t(ChallengeText.name(c.id))).font(.headline)
+                    Text(verbatim: t("l4_challenge_left", t.duration(max(0, c.endsAt - s.time)))).font(.subheadline).monospacedDigit()
+                    ForEach(0..<3, id: \.self) { i in
+                        Label { Text(verbatim: t(ChallengeText.goal(c.id, i), t.money(c.target))) } icon: {
+                            Image(systemName: c.goalsDone[i] ? "checkmark.circle.fill" : "circle")
+                        }
+                        .font(.caption)
+                    }
+                }
+            }
+            ForEach(FlowContent.challenges) { def in
+                Panel(.anthracite) {
+                    HStack {
+                        Text(verbatim: t(ChallengeText.name(def.id))).font(.headline)
+                        Spacer()
+                        if s.challengesDone.contains(def.id) {
+                            StatusChip(text: t("l4_challenge_won"), symbol: "checkmark.seal.fill")
+                        }
+                    }
+                    Text(verbatim: t(ChallengeText.desc(def.id))).font(.caption).foregroundStyle(Noir.inkSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text(verbatim: t("l4_challenge_rewards", def.rewards.reduce(0, +), t.percent(FlowContent.challengeBonus)))
+                        .font(.caption.weight(.semibold)).foregroundStyle(Noir.amber)
+                    Button { store.dispatch(.startChallenge(def.id)) } label: { Text(verbatim: t("l4_challenge_start")) }
+                        .noirButton(.primary)
+                        .disabled(s.challenge != nil)
+                        .accessibilityIdentifier("challenge.\(def.id.rawValue)")
+                }
+            }
         }
     }
 }

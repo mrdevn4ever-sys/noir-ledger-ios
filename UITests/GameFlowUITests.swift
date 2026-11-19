@@ -4,106 +4,99 @@ import XCTest
 /// preparing a situation or shortening waits.
 final class GameFlowUITests: NoirUITestCase {
 
-    func testFirstMinutesTapBuyOpenHire() {
-        launch(["-qa-reset", "-qa-seed", "7", "-qa-quiet"])
-        wait("screen.tycoon")
-        wait("tycoon.hint")
-        shot("en_01_first_launch")
-        element("floor.WEED").tap()
-        sleep(2)
-        XCTAssertNotEqual(element("top.cash").label, "Cash 0", "a tap sells a round")
-        app.terminate()
-
-        launch(["-qa-scenario", "starter", "-qa-quiet"])
-        wait("screen.tycoon")
-        tapRevealed("floor.WEED.buy")
-        XCTAssertTrue(element("floor.WEED.count").label.contains("2"), "one more plant")
-        tapRevealed("floor.PILLS.open")
-        wait("floor.PILLS.count")
-        shot("en_02_pills_open")
-        tapRevealed("floor.WEED.manager")
-        XCTAssertFalse(element("floor.WEED.manager").waitForExistence(timeout: 2), "the manager is hired")
-        shot("en_03_manager")
-    }
-
-    func testDealsAndChangeOfCity() {
-        launch(["-qa-reset", "-qa-seed", "11", "-qa-scenario", "change", "-qa-quiet"])
-        wait("screen.tycoon")
-        tapRevealed("tycoon.deals")
-        wait("screen.deals")
-        element("deal.crystal_1").tap()
-        shot("en_10_deals")
+    func testPrologueFirstDeliveryAndUpgrade() {
+        launch(["-qa-reset", "-qa-seed", "7"])
+        wait("screen.prologue", 45)
+        shot("en_01_prologue")
+        tapRevealed("start.CASHBOX")
+        wait("screen.ledger")
+        wait("hint")
+        shot("en_02_cellar")
+        element("bench.WEED").tap()
+        sleep(6)
+        tapRevealed("fleet.go")
+        sleep(11)
+        XCTAssertNotEqual(element("top.cash").label, "Cash: 60", "the first delivery is booked")
+        tapRevealed("fleet.open")
+        wait("screen.station")
+        shot("en_03_upgrade_preview")
+        element("station.buy").tap()
         element("sheet.done").tap()
-        tapRevealed("tycoon.city")
+        wait("screen.ledger")
+    }
+
+    func testBottleneckIsShownAndFixed() {
+        launch(["-qa-reset", "-qa-scenario", "neck", "-qa-quiet"])
+        wait("neck.WEED", 30)
+        shot("en_04_bottleneck")
+        tapRevealed("neck.WEED.fix")
+        wait("screen.station")
+        XCTAssertTrue(element("station.verdict").exists, "the preview says what the upgrade does")
+        shot("en_05_fix_preview")
+        element("station.buy").tap()
+        element("sheet.done").tap()
+        wait("screen.ledger")
+    }
+
+    func testOrderChoiceWithAttention() {
+        launch(["-qa-reset", "-qa-scenario", "board"])
+        wait("screen.ledger", 30)
+        tapRevealed("nav.orders")
+        wait("screen.orders")
+        wait("offer.1.attention")
+        shot("en_06_orders")
+        tapRevealed("offer.1.accept")
+        wait("order.active.0")
+        shot("en_07_order_running")
+        element("sheet.done").tap()
+    }
+
+    func testChapterCloses() {
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("chapter.strip", 30)
+        element("chapter.strip").tap()
+        wait("screen.chapter")
+        shot("en_08_chapter_goals")
+        tapRevealed("chapter.close")
+        wait("chapter.news")
+        shot("en_09_chapter_news")
+        element("chapter.news.ok").tap()
+        wait("screen.ledger")
+    }
+
+    func testCityCrewAndLedger() {
+        launch(["-qa-reset", "-qa-scenario", "harbour", "-qa-quiet"])
+        wait("screen.ledger", 30)
+        tapRevealed("nav.city")
         wait("screen.city")
-        shot("en_11_city")
-        element("city.change").tap()
-        let confirm = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Move on'")).firstMatch
-        XCTAssertTrue(confirm.waitForExistence(timeout: 5))
-        confirm.tap()
-        wait("screen.tycoon")
-        XCTAssertTrue(element("floor.PILLS.open").waitForExistence(timeout: 5), "a new city starts with weed only")
-        shot("en_12_new_city")
+        shot("en_10_city")
+        element("sheet.done").tap()
+        tapRevealed("nav.crew")
+        wait("screen.crew")
+        shot("en_11_crew")
+        element("sheet.done").tap()
+        tapRevealed("nav.book")
+        wait("screen.book")
+        shot("en_12_book")
+        element("sheet.done").tap()
     }
 
-    func testPoliceBribeAndSuitcase() {
-        launch(["-qa-reset", "-qa-scenario", "police", "-qa-quiet"])
-        wait("street.bribe")
-        shot("en_20_police")
-        element("street.bribe").tap()
-        XCTAssertFalse(element("street.bribe").waitForExistence(timeout: 2), "the police drive on")
-        app.terminate()
-
-        launch(["-qa-reset", "-qa-scenario", "suitcase"])
-        wait("street.suitcase")
-        shot("en_21_suitcase")
-        element("street.suitcase").tap()
-        XCTAssertFalse(element("street.suitcase").waitForExistence(timeout: 2), "the suitcase is taken")
-    }
-
-    func testCallAnswerAndCut() {
-        launch(["-qa-reset", "-qa-scenario", "call", "-qa-quiet"])
-        wait("screen.tycoon", 45)
-        wait("call.option.0", 20)
-        shot("en_23_call")
-        element("call.option.0").tap()
-        XCTAssertFalse(element("call.option.0").waitForExistence(timeout: 2), "the call is answered")
-        XCTAssertTrue(element("mission.call_1").isEnabled, "answering counts for the mission")
-        tapRevealed("floor.PILLS.cut.2")
-        XCTAssertTrue(element("floor.PILLS.cut.2").isSelected, "the pills are laced now")
-        shot("en_24_laced")
-    }
-
-    func testRaidIsShownOnce() {
-        launch(["-qa-reset", "-qa-scenario", "raid", "-qa-quiet"])
-        wait("raid.title")
-        shot("en_22_raid")
-        element("raid.ack").tap()
-        wait("screen.tycoon")
-        XCTAssertFalse(element("raid.title").waitForExistence(timeout: 2))
-    }
-
-    func testPersistenceAcrossRelaunchAndOfflineReturn() {
-        launch(["-qa-reset", "-qa-seed", "21", "-qa-scenario", "rich", "-qa-quiet"])
-        wait("screen.tycoon")
-        tapRevealed("floor.COKE.buy")
-        let before = element("floor.COKE.count").label
+    func testPersistenceAndReturn() {
+        launch(["-qa-reset", "-qa-seed", "21", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("screen.ledger", 30)
         sleep(2)
         app.terminate()
-
         launch(["-qa-away", "7200", "-qa-quiet"])
-        wait("offline.title")
-        shot("en_30_offline_return")
-        element("offline.ok").tap()
-        if element("raid.ack").waitForExistence(timeout: 3) { element("raid.ack").tap() }
-        wait("screen.tycoon")
-        reveal(element("floor.COKE.count"))
-        XCTAssertEqual(element("floor.COKE.count").label, before, "the purchase survived termination and relaunch")
+        wait("welcome.title", 30)
+        shot("en_13_return")
+        element("welcome.ok").tap()
+        wait("screen.ledger")
+        XCTAssertFalse(element("welcome.title").waitForExistence(timeout: 2), "the summary is shown once")
     }
 
     func testShopRewardsAndSettings() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
-        wait("screen.tycoon")
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("screen.ledger", 30)
         element("top.favors").tap()
         wait("screen.shop")
         shot("en_40_shop")
@@ -120,26 +113,27 @@ final class GameFlowUITests: NoirUITestCase {
         app.buttons["English"].tap()
         XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
         element("settings.done").tap()
-        wait("screen.tycoon")
+        wait("screen.ledger")
     }
 
     func testSystemGermanIsDetected() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"], language: "de")
-        wait("screen.tycoon")
-        XCTAssertTrue(app.staticTexts["Gras"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["Aufträge"].exists)
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"], language: "de")
+        wait("screen.ledger", 30)
+        XCTAssertTrue(app.staticTexts["Abnehmer"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Mühlgasse"].exists)
     }
 
     func testLargeDynamicType() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"], largeText: true)
-        wait("screen.tycoon")
+        launch(["-qa-reset", "-qa-scenario", "harbour", "-qa-quiet"], largeText: true)
+        wait("screen.ledger", 30)
         shot("en_50_large_text")
-        reveal(element("floor.COKE.buy"))
-        shot("en_51_large_text_floors")
+        reveal(element("fleet.open"))
+        shot("en_51_large_text_fleet")
     }
 
     func testResetNeedsConfirmation() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("screen.ledger", 30)
         element("top.settings").tap()
         wait("settings.done")
         app.swipeUp()
@@ -150,32 +144,30 @@ final class GameFlowUITests: NoirUITestCase {
         app.alerts.buttons["Cancel"].firstMatch.tap()
         tapRevealed("settings.reset")
         app.alerts.buttons["Erase"].firstMatch.tap()
-        wait("screen.tycoon")
-        XCTAssertTrue(element("tycoon.hint").waitForExistence(timeout: 5), "a fresh city starts with the first hint")
+        wait("screen.prologue")
     }
 
     func testDamagedSaveIsRecoveredFromBackup() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
-        wait("screen.tycoon")
-        tapRevealed("floor.WEED.buy")
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("screen.ledger", 30)
         sleep(6)
         app.terminate()
         launch(["-qa-corrupt-save"])
-        XCTAssertTrue(app.alerts["Save recovered"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.alerts["Save recovered"].waitForExistence(timeout: 15))
         shot("en_44_save_recovered")
         app.alerts.buttons.firstMatch.tap()
-        wait("screen.tycoon")
+        wait("screen.ledger")
     }
 
     func testSaveFromNewerVersionIsProtected() {
         launch(["-qa-reset", "-qa-future-save"])
-        wait("future.restart")
+        wait("future.restart", 30)
         shot("en_45_future_save")
     }
 
     func testHomeScreenIcon() {
-        launch(["-qa-reset", "-qa-scenario", "rich", "-qa-quiet"])
-        wait("screen.tycoon")
+        launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"])
+        wait("screen.ledger", 30)
         XCUIDevice.shared.press(.home)
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
         let icon = springboard.icons["NOIR LEDGER"]

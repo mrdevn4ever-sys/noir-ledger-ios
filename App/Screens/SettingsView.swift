@@ -3,7 +3,7 @@ import SwiftUI
 
 /// Native grouped settings: language, motion, haptics, the save, reset and the credits.
 struct SettingsView: View {
-    @Environment(TycoonStore.self) private var store
+    @Environment(LedgerStore.self) private var store
     @Environment(AppSettings.self) private var settings
     @Environment(StoreService.self) private var shop
     @Environment(AdService.self) private var ads
