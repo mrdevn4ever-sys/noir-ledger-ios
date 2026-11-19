@@ -30,6 +30,9 @@ struct RootView: View {
                 shop.start()
                 ads.start()
             }
+            #if NOIR_QA
+            .overlay(alignment: .bottomLeading) { if FrameProbe.enabled { FrameProbeView() } }
+            #endif
     }
 
     @ViewBuilder
