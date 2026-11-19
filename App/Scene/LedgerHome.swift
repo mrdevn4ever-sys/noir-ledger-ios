@@ -24,6 +24,7 @@ struct LedgerView: View {
                     .padding(.top, 2)
                     .padding(.bottom, 6)
                     BuildingScene(state: s, forecast: f, sheet: $sheet)
+                        .dynamicTypeSize(...DynamicTypeSize.xLarge)
                 }
                 .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.ledger", title: t("app_name")) }
             }
@@ -112,6 +113,7 @@ struct GameHUD: View {
                 VStack(alignment: .trailing, spacing: 0) {
                     Text(verbatim: t("l4_per_min", t.money(store.measuredIncome)))
                         .font(.toon(17, .heavy)).monospacedDigit()
+                        .lineLimit(1).minimumScaleFactor(0.6)
                         .foregroundStyle(Toon.up)
                         .accessibilityIdentifier("top.income")
                     if state.meta.boostSeconds > 0 {
@@ -122,6 +124,7 @@ struct GameHUD: View {
                             .foregroundStyle(Toon.window)
                     } else {
                         Text(verbatim: t("l4_income_now")).font(.toon(11, .semibold))
+                            .lineLimit(1).minimumScaleFactor(0.6)
                             .foregroundStyle(.white.opacity(0.7))
                     }
                 }
@@ -169,6 +172,7 @@ struct BottomBar: View {
         .padding(.top, 12)
         .padding(.bottom, 2)
         .background { Image("TabBarPlate").resizable().ignoresSafeArea(edges: .bottom).accessibilityHidden(true) }
+        .dynamicTypeSize(...DynamicTypeSize.xLarge)
     }
 
     private func item(_ image: String, _ key: String, _ target: LedgerSheet, _ id: String, badge: Int = 0) -> some View {
@@ -184,7 +188,7 @@ struct BottomBar: View {
                                 .offset(x: 6, y: -4)
                         }
                     }
-                Text(verbatim: t(key)).font(.toon(11, .bold)).lineLimit(1).minimumScaleFactor(0.7)
+                Text(verbatim: t(key)).font(.toon(11, .bold)).lineLimit(1).minimumScaleFactor(0.5)
             }
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity, minHeight: 52)

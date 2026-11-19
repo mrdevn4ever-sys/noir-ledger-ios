@@ -2,7 +2,8 @@
   "images": [
     {
       "filename": "ButtonRedPressed.png",
-      "idiom": "universal"
+      "idiom": "universal",
+      "scale": "3x"
     }
   ],
   "info": {

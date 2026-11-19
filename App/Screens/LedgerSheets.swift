@@ -316,7 +316,7 @@ struct StationArt: View {
                 let now = Flow.level(state, station)
                 let next = Flow.level(after, station)
                 ZStack(alignment: .bottomTrailing) {
-                    Image(SceneArt.floor(g, level: now)).resizable().scaledToFill()
+                    Color.clear
                     if SceneArt.stage(level: next) > SceneArt.stage(level: now) {
                         Image(SceneArt.floor(g, level: next)).resizable().scaledToFill()
                             .frame(width: 120, height: 60).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
@@ -327,13 +327,15 @@ struct StationArt: View {
                             .padding(Noir.s2)
                     }
                 }
+                .background { Image(SceneArt.floor(g, level: now)).resizable().scaledToFill() }
             case .fleet:
                 ZStack(alignment: .bottom) {
-                    Image("SkyNight").resizable().scaledToFill()
+                    Color.clear
                     Image("Street").resizable().frame(height: 40)
                     VehicleSprite(vehicle: SceneArt.vehicle(fleetLevel: Flow.level(after, station)), wheelAngle: 0, scale: 1)
                         .padding(.bottom, 6)
                 }
+                .background { Image("SkyNight").resizable().scaledToFill() }
             case .shelf(let g):
                 ZStack {
                     Image(SceneArt.floor(g, level: state.workshop(g)?.bench ?? 1)).resizable().scaledToFill().blur(radius: 2)

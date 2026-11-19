@@ -25,15 +25,20 @@ struct Panel<Content: View>: View {
 }
 
 /// A stretchable piece of the cartoon window kit: the corners stay, the middle stretches.
+/// Kit plates are delivered at @3x, so the insets are in points of the 3x image.
 struct ToonPlate: View {
     let name: String
     var corner: CGFloat = 20
     var horizontalOnly = false
+    var insets: EdgeInsets?
+
+    /// Button plates: rounded top with highlight, a thick lip at the bottom.
+    static let buttonInsets = EdgeInsets(top: 10, leading: 12, bottom: 13, trailing: 12)
 
     var body: some View {
         Image(name)
-            .resizable(capInsets: horizontalOnly ? EdgeInsets(top: 0, leading: corner, bottom: 0, trailing: corner)
-                                                 : EdgeInsets(top: corner, leading: corner, bottom: corner, trailing: corner),
+            .resizable(capInsets: insets ?? (horizontalOnly ? EdgeInsets(top: 0, leading: corner, bottom: 0, trailing: corner)
+                                                            : EdgeInsets(top: corner, leading: corner, bottom: corner, trailing: corner)),
                        resizingMode: .stretch)
             .accessibilityHidden(true)
     }
@@ -97,14 +102,14 @@ struct NoirButtonStyle: ButtonStyle {
             .font(.toon(.body, .bold))
             .multilineTextAlignment(.center)
             .padding(.horizontal, Noir.s4)
-            .padding(.top, Noir.s2 + 1)
-            .padding(.bottom, Noir.s2 + (pressed ? 1 : 5))
+            .padding(.top, Noir.s2 - 1 + (pressed ? 2 : 0))
+            .padding(.bottom, Noir.s2 + 7 - (pressed ? 2 : 0))
             .frame(maxWidth: fullWidth ? .infinity : nil, minHeight: Noir.minTarget + 6)
             .foregroundStyle(foreground)
             .shadow(color: kind == .primary ? .clear : .black.opacity(0.3), radius: 0, y: 1)
             .background {
                 if let plate = plate(pressed: pressed) {
-                    ToonPlate(name: plate)
+                    ToonPlate(name: plate, insets: ToonPlate.buttonInsets)
                 } else {
                     RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous).strokeBorder(border, lineWidth: 1)
                 }
@@ -219,7 +224,7 @@ struct ToonSegments<Value: Hashable>: View {
                         .font(.toon(15, .bold))
                         .foregroundStyle(on ? Color(hex: 0x2A1E00) : .white)
                         .frame(maxWidth: .infinity, minHeight: 36)
-                        .background { if on { ToonPlate(name: "SegmentKnob", corner: 16) } }
+                        .background { if on { ToonPlate(name: "SegmentKnob", corner: 12) } }
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
@@ -227,7 +232,7 @@ struct ToonSegments<Value: Hashable>: View {
             }
         }
         .padding(3)
-        .background { ToonPlate(name: "SegmentTrack", corner: 18) }
+        .background { ToonPlate(name: "SegmentTrack", corner: 14) }
     }
 }
 
@@ -410,6 +415,6 @@ struct StatusChip: View {
             .foregroundStyle(danger ? Color(hex: 0xFF8A8E) : .white)
             .labelStyle(.titleAndIcon)
             .padding(.horizontal, 10).padding(.vertical, 5)
-            .background { ToonPlate(name: "ChipPill", corner: 12) }
+            .background { ToonPlate(name: "ChipPill", corner: 10) }
     }
 }

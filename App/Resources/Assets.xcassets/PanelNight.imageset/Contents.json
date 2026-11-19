@@ -2,7 +2,8 @@
   "images": [
     {
       "filename": "PanelNight.png",
-      "idiom": "universal"
+      "idiom": "universal",
+      "scale": "3x"
     }
   ],
   "info": {

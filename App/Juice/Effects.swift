@@ -99,7 +99,7 @@ struct CelebrationBanner: View {
             Text(verbatim: detail(c.kind)).font(.toon(.subheadline, .bold))
                 .foregroundStyle(.white)
                 .padding(.horizontal, 14).padding(.vertical, 6)
-                .background { ToonPlate(name: "ChipPill", corner: 12) }
+                .background { ToonPlate(name: "ChipPill", corner: 10) }
                 .offset(y: -10)
         }
         .multilineTextAlignment(.center)
