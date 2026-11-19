@@ -152,7 +152,8 @@ struct BottleneckBanner: View {
                 Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
                     .font(.system(size: 11, weight: .semibold, design: .rounded)).monospacedDigit()
                     .foregroundStyle(.white.opacity(0.7))
-                    .lineLimit(1).minimumScaleFactor(0.7)
+                    .lineLimit(2).minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if let fix {

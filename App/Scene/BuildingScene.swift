@@ -11,7 +11,7 @@ struct BuildingScene: View {
     @Environment(\.noirReduceMotion) private var reduceMotion
 
     /// Measurements of the art at @3x, in points.
-    static let streetHeight: CGFloat = 270
+    static let streetHeight: CGFloat = 236
     static let roadHeight: CGFloat = 46
     static let floorHeight: CGFloat = 196
     static let floorBoards: CGFloat = 18
@@ -69,9 +69,11 @@ struct StreetSection: View {
             let buildingTop = streetY + 4 - Self.buildingHeight
             let gapMid = (Self.depotWidth + w - Self.houseWidth) / 2
             ZStack(alignment: .topLeading) {
-                Image("SkyNight").resizable().frame(width: w, height: h)
-                Image("Moon").resizable().frame(width: 50, height: 50)
-                    .position(x: w * 0.62, y: 44 + 2 * CGFloat(sin(time * 0.2)))
+                // The sky art is 270 pt tall; the scene shows its lower part.
+                Image("SkyNight").resizable().frame(width: w, height: 270)
+                    .frame(width: w, height: h, alignment: .bottom).clipped()
+                Image("Moon").resizable().frame(width: 44, height: 44)
+                    .position(x: w * 0.6, y: 30 + 2 * CGFloat(sin(time * 0.2)))
                 Image("SkylineFar").resizable().scaledToFill().frame(width: w, height: 100).clipped()
                     .position(x: w / 2, y: streetY - 62)
                 Image("SkylineNear").resizable().scaledToFill().frame(width: w, height: 120).clipped()
