@@ -80,7 +80,7 @@ struct Idle: ViewModifier {
     @State private var on = false
     @Environment(\.sceneAnimating) private var animating
 
-    func body(content: Content) -> some View {
+    func body(content: Self.Content) -> some View {
         let active = on && animating
         Group {
             switch kind {

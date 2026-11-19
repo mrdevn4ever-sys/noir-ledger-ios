@@ -60,7 +60,7 @@ struct ScrollVisibility: ViewModifier {
     @Environment(\.sceneAnimating) private var parent
     @State private var visible = true
 
-    func body(content: Content) -> some View {
+    func body(content: Self.Content) -> some View {
         content
             .environment(\.sceneAnimating, parent && visible)
             .onGeometryChange(for: Bool.self) { proxy in
