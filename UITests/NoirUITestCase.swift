@@ -47,6 +47,8 @@ class NoirUITestCase: XCTestCase {
         var bottom = app.frame.maxY
         let tabBar = app.tabBars.firstMatch
         if tabBar.exists { bottom = min(bottom, tabBar.frame.minY) }
+        let bar = element("nav.book")
+        if bar.exists && bar.frame.height > 0 { bottom = min(bottom, bar.frame.minY - 8) }
         let notice = element("notice")
         if notice.exists && notice.frame.height > 0 { bottom = min(bottom, notice.frame.minY - 8) }
         return bottom - 8

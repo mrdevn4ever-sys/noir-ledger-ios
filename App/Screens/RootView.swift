@@ -16,6 +16,7 @@ struct RootView: View {
             .environment(\.locale, settings.l10n.locale)
             .environment(\.noirReduceMotion, settings.reduceMotion(system: systemReduceMotion))
             .tint(Noir.amber)
+            .fontDesign(.rounded)
             .sensoryFeedback(.selection, trigger: store.acceptedCount) { _, _ in settings.haptics }
             .sensoryFeedback(.warning, trigger: store.rejectedCount) { _, _ in settings.haptics }
             .sensoryFeedback(.impact(weight: .light), trigger: store.tapCount) { _, _ in settings.haptics }

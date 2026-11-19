@@ -13,7 +13,7 @@
       "id": "tokens.colors",
       "kind": "tokens",
       "source": "tokens/tokens.json",
-      "sha256": "ae7c110d3f88a1df301f9d85c73f8e10bd4e40432898fadab354b143e38db420",
+      "sha256": "01199a9deaeb4826fc871f169aa82c34cb6b1b9a1fa56399dfe23a54138f6bf5",
       "exports": {
         "android": [
           "app/src/main/java/io/puredevn/noirledger/ui/theme/Theme.kt (Noir object, verified by AssetParityTest)"

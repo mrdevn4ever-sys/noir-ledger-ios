@@ -74,8 +74,11 @@ final class ScreenshotTourUITests: NoirUITestCase {
 
         launch(["-qa-reset", "-qa-scenario", "hot", "-qa-quiet"], language: lang)
         wait("screen.ledger", 30)
-        reveal(element("contacts.city"))
+        sleep(1)
         shot(p + "15_hot_quarter")
+        element("nav.contacts").tap()
+        wait("screen.contacts")
+        shot(p + "15b_customers")
         app.terminate()
 
         launch(["-qa-reset", "-qa-scenario", "finale", "-qa-quiet"], language: lang)

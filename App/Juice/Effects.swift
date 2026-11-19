@@ -44,7 +44,7 @@ struct FloaterLayer: View {
     }
 }
 
-private struct FloaterView: View {
+struct FloaterView: View {
     let floater: Floater
     @State private var risen = false
     @Environment(\.noirReduceMotion) private var reduceMotion

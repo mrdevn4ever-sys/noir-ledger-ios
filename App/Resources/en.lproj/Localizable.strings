@@ -1204,3 +1204,10 @@
 "l4_rewards_more" = "Favors also come from challenges and the back room.";
 "l4_item_calm_d" = "Attention −50 in every quarter.";
 "l4_neck_title" = "Where it stops";
+"l4_badge_level" = "Level";
+"l4_customers" = "Customers";
+"l4_tap_here" = "Tap!";
+"l4_full" = "Full!";
+"l4_locked_floor" = "From chapter %1$ld";
+"l4_open_floor" = "Open the %1$@ floor";
+"l4_go" = "Go!";

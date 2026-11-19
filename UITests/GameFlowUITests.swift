@@ -119,8 +119,8 @@ final class GameFlowUITests: NoirUITestCase {
     func testSystemGermanIsDetected() {
         launch(["-qa-reset", "-qa-scenario", "chain", "-qa-quiet"], language: "de")
         wait("screen.ledger", 30)
-        XCTAssertTrue(app.staticTexts["Abnehmer"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["Mühlgasse"].exists)
+        XCTAssertTrue(element("nav.contacts").waitForExistence(timeout: 10))
+        XCTAssertTrue(element("nav.contacts").label.contains("Kunden"), "the bar speaks German")
     }
 
     func testLargeDynamicType() {
