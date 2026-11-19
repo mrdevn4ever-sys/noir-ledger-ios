@@ -7247,5 +7247,131 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "b59e773b7972a980019921a185b6594ac80308a135b7f25e23de3b809723398c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderOrders.imageset/HeaderOrders.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "301d8c52edae4ad1c2f00a77b22d87d3eec66b6c3df9da16f534c53f6126470a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderOrders.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "79467593b27a02f66a4cede155b8619bd8316e7499e250f5755ba0e5454ac816"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderCustomers.imageset/HeaderCustomers.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "04e3ed7b6141d173022bc447c66b116f98be89b180bfc14c3a7f8ac9ea104a30"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderCustomers.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "544c081c23376b2d61ad1dd0a15c5db8888482b27946abbe5eb1e3f2665254d8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderCrew.imageset/HeaderCrew.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "796a4edc54b117ca4b7498fefa3125876b389b01c6b0aaacb83e10acaa6ec0cf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderCrew.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b26e1c474d0318956f2ce11e6a6fb5ff6190a992823ce3ec1857786ad3bfde8c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderShop.imageset/HeaderShop.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "79f92808c85a26bfa306f8e886eaae84c4a1466f3711e4583769da9ed70c9cbb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderShop.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fdb6b112b09206c8d4a0675d100dbf6b43209e42c0472d29d401e47e31613b2d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderRewards.imageset/HeaderRewards.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "71096e5aa840e1bef01cfd55eee221cadc864b8b0b0c94935a6f359b2d8f1609"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderRewards.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3411532a6fb5cf47d29c01e2be6b4a990f9b3f708d26e2476b86259dde29ecde"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderSettings.imageset/HeaderSettings.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7e6267e2f8d3d2208b8c67d421df82b6b884e565db5f04f18d46539a6b47db27"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderSettings.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4173c861f130cde1cb1d83e0bbdf9abb1a0eaa6b49b1be68ef27885ccbc572a4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderChallenges.imageset/HeaderChallenges.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "20c1f813e6de08ec68386aee5af75261005fccd2093441e1ebdc5aed7e328402"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderChallenges.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "95f7ca3f29a46ee3bd9fe433addaf0d95621714171ff9c9393b8b847f66ab77c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderReturn.imageset/HeaderReturn.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "34fdf4e9fcd7983fb645e3634115cb1f97cb7ae6ce10f015d0da06a64519a210"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderReturn.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "62cbb091a79adb2bac4b6f2e5b116a2d5c53cf6d081f95a4339a45b488bf7a5c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderError.imageset/HeaderError.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "39a240db12b04c4c90038760fdc2509e535d27f5a313ac322559e83d1ae0e955"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/HeaderError.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "536ef879b9f915bfabce733fbcd884fec53541501af6c46d4d3e6c9d1ba49b77"
   }
 ]
