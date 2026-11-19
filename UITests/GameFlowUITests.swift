@@ -68,7 +68,7 @@ final class GameFlowUITests: NoirUITestCase {
         shot("en_23_call")
         element("call.option.0").tap()
         XCTAssertFalse(element("call.option.0").waitForExistence(timeout: 2), "the call is answered")
-        wait("notice")
+        XCTAssertTrue(element("mission.call_1").isEnabled, "answering counts for the mission")
         tapRevealed("floor.PILLS.cut.2")
         XCTAssertTrue(element("floor.PILLS.cut.2").isSelected, "the pills are laced now")
         shot("en_24_laced")

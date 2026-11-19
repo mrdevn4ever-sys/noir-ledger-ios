@@ -835,7 +835,7 @@
 "ty_mgr_ghost" = "Ghost";
 "ty_mgr_ghost_b" = "Half the Heat. Never noticed.";
 "ty_heat_rate" = "+%1$@/min";
-"ty_m_calls" = "Answer %1$ld calls";
+"ty_m_calls" = "Answer calls: %1$ld";
 "ty_m_cut" = "Cut one of your goods";
 "ty_offline_raid" = "Your laced goods drew attention. Raid: −%1$@";
 "ty_call_from" = "%1$@ is calling";

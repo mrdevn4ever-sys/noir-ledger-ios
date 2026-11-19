@@ -835,7 +835,7 @@
 "ty_mgr_ghost" = "Schatten";
 "ty_mgr_ghost_b" = "Halbe Heat. Fällt nie auf.";
 "ty_heat_rate" = "+%1$@/Min.";
-"ty_m_calls" = "Beantworte %1$ld Anrufe";
+"ty_m_calls" = "Anrufe beantworten: %1$ld";
 "ty_m_cut" = "Strecke eine deiner Waren";
 "ty_offline_raid" = "Deine gepanschte Ware ist aufgefallen. Razzia: −%1$@";
 "ty_call_from" = "%1$@ ruft an";
