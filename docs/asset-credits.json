@@ -7093,5 +7093,159 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "b0d407396b194417a35b9b422837be3a4a0b8157988f52b9e087e10b5d7a3cd7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyBrandtTalk4.imageset/BodyBrandtTalk4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0c29f97ff594daefa496ca089d96d4943351842d69f677ee5329c99dcb22406e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyBrandtTalk4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "25ec8c3af7c949424a028921c41672860e4772cb514d9831fac42672d2c94e21"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyFeldTalk4.imageset/BodyFeldTalk4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ddc91dddaed8a87839285ecb229b1733aa44a7822996bcc980fef0066c5aaa60"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyFeldTalk4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9cdbb5880912be69b01c6f5db28acd8f6c27be728c7e159b65a03dc2a3711fa0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKesslerTalk4.imageset/BodyKesslerTalk4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "399133882eb41c4e8ab77801b9fa5179030ae6f2698edd90ddc59ddf42f5ce67"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyKesslerTalk4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "88e6adfed08a10ac6c785866e4e2124bf3092971755be49347183f19e91bef1b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyWolffTalk4.imageset/BodyWolffTalk4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2693b389d0d062595894a663e77f14912ef63d710c35ef2fc01d22da51f3831b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyWolffTalk4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4cb056055c1fc98759471d2ee35df0ed3b19f8eee39b71c3bb921302fde5b068"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaTalk4.imageset/BodyVargaTalk4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d62bc9f99fc4e73b7df877cea58ee64c233ec002073bed5f4980bacee7897bae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaTalk4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "55201eadfa4725551dcc728b6d6ef3bbda8583d0cfbc4d443aed8fe76b72ab93"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaWhistle4.imageset/BodyVargaWhistle4.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d8d8ffe3ee96c45cee5e82b3fff8038243fce2e891f2c92287daf45277a4231c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BodyVargaWhistle4.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "01351bba412aa8ae25c3288c3df388f7c12e2affd7f4443d1e848516dde104c2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsCarry8.imageset/BuyerCellarsCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "da9c63af379b55e9013ba64a35e3c6ea86a8b11c3f10164f5d002d2262b1d0fa"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsCarry8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bb1d7a61dae49c5476dd6a2a1ca58b59cc8e2116f3c2978879d37f2cbce24d59"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownCarry8.imageset/BuyerOldTownCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cab437040fcb6bcc782d51c2dee3bba036a92e130b777fbd438d1e9a8e282802"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownCarry8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bfddac8ec95eb1718afcde7cbcef72007d00b1f8473e9cd031e567b61f1ae1b6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksCarry8.imageset/BuyerDocksCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c46a27d80cb1bd879e8fd8b911b6f7cfcb1001d6be5bfd9ea1ec016b9bbd9273"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksCarry8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8e784aa90365b897664a741689279235d46abe7390d4179d575ba22a95f44cca"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightCarry8.imageset/BuyerNightCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e5c5c8aa8a96933ff696e80c153f22d19f6bc2729f43a132f3c78bea8d1c5205"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightCarry8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ff33b80c241cc0bc86c6065ba7c6c12087d5d830fb75bd3b7bbe64e369e9def9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownCarry8.imageset/BuyerCrownCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d70b000862ae1a76f28fe9a5056ece014f837de1cd6dcdaa3560bb40e8c2fad7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownCarry8.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b59e773b7972a980019921a185b6594ac80308a135b7f25e23de3b809723398c"
   }
 ]
