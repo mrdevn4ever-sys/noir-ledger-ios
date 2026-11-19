@@ -317,5 +317,131 @@
     "sha256": "aeb22ee6d8d2bac7e90947972b20e9a6e23fad43086c04926dde71b78f93ef21",
     "requested_quality": "high",
     "provider_reported_quality": "medium"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkyNight.imageset/SkyNight.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cf8b7f302dbebdc5f96f8e73e5527ec8cb956acca739558824043ffb416fb99f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Moon.imageset/Moon.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "013ee3945d3b67dc7766f81c7bf29b945c903aa363656f866433c4118158a52b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkylineFar.imageset/SkylineFar.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2df648d6bc06d13976523e1fb935f358003320eb5564075502f0c9d9ebdb374e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkylineNear.imageset/SkylineNear.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ec1a6e6296c61508268678616ef66de450161252b52ca6c2e9ff6d1f6c405cac"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Street.imageset/Street.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "46a0d2e2d220a870bf72fff7656bdff091a81baf987a6f8d24f7a9f15ceada7c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StreetLamp.imageset/StreetLamp.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "490efb0e29fe7c57e988dc6c9116b5eb9534a6e5b2126a6b95a8405ccada6e45"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StreetLampGlow.imageset/StreetLampGlow.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c09773ac06306ecc4334645a70ff42d2303e62b45f4a6a6b41d07f42bed065e2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RainSheet4.imageset/RainSheet4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "96305c1054c73badf47c7755cb3743e2d2bd46cc610b9a33c3a8899b37f89bd4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Puddle.imageset/Puddle.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8e4b27c5d243bc873cdf14c2ff737ef097d0c798061c9d222dd9e203586db6a6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkyNight.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bf12ba03b96864d7946910eeee11a6469896034277e3f03371f9dd3aa1626a99"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Moon.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7881a2cee340b9038a07462f8b481daf03246c75e39dd3513a08528658ee3407"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkylineFar.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "efd784229b35ff34a1182e6ec6c774d971789d1ca1d753314bcbf7027c5a3833"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SkylineNear.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "101865a5dc12b42a08a8fbfed08fd8515405f8b4e888e121c0a3a353c45d7a9d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Street.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c1309a69cbfe5a3c70711d203ec698b238ee3f77c62b45864db8b4ef293bb087"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StreetLamp.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "045faf099c37afaa0c672b4e8a3f9d9989e4f2961fb4ed93aa275287b4881e65"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StreetLampGlow.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c2e20cd02cb2a7a39b018c09e487a6d8e20edf6529512e97d0d35f00a18c5feb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RainSheet4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fd0e255a871a56d40f42634b1cd4a3052a96435358258b4eafd4688ebcc7a0ec"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Puddle.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d5c75133203efdbf2dab3b4fafee1d54dcc56678c85aab0cc150f02f982b9138"
   }
 ]
