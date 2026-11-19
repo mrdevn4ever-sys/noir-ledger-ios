@@ -157,7 +157,7 @@ struct PrologueView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
                 Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s5)
-                Image("DistrictCellars")
+                Image("SceneStreet")
                     .resizable().scaledToFill()
                     .frame(height: 170).frame(maxWidth: .infinity).clipped()
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))

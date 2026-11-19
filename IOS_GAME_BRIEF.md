@@ -32,7 +32,14 @@
 >    in Abwesenheit weiter und kann zu einer Razzia führen), pro Etage die Wahl zwischen zwei Managern (Macher ×1,5
 >    Ertrag oder Schatten mit halber Heat) und alle ein bis zwei Minuten ein Anruf mit zwei bis drei Antworten, teils
 >    als Wette, mit 25 Sekunden Bedenkzeit.
-> 9. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
+> 9. **Version 4.0, das Kassenbuch von Varnholm:** Kompletter Umbau nach dem Auftrag des Besitzers (Idle Miner Tycoon
+>    als Qualitätsreferenz): sichtbarer Warenfluss Werkbank → Regal → Wagen → Abnehmer → Kassenbuch, Engpässe in
+>    Zahlen mit Vorschau jedes Ausbaus, Aufmerksamkeit pro Viertel mit abgestuften, umkehrbaren Folgen, ruhige und
+>    auffällige Aufträge, sechs Kapitel mit Ort, Person, Ziel und neuer Entscheidung, Crew mit Automatisierung und
+>    zeitlich begrenzten Fähigkeiten, drei Startoptionen (Geldkassette, Adressbuch, Werkzeug), Abwesenheit bis 12 h,
+>    Herausforderungen nach dem Finale. Waren bleiben Gras, Crystal, Pillen, Koks (Entscheidung 2.1). Die Spiele 2.x
+>    und 3.x bleiben als Code im Paket; Gefallen und Käufe werden übernommen. Werte und Tests: `docs/ECONOMY_4.md`.
+> 10. **Abnahme:** Kompiliert und getestet wird auf GitHub-Actions-macOS-Runnern (Repository öffentlich für die
 >    Freiminuten). Stand dieses Beschlusses: Version 2.0 ist geschrieben, aber noch nicht auf einem Runner gebaut.
 
 ## Produktentscheidung

@@ -382,17 +382,17 @@ struct QuarterCard: View {
         let open = state.quarters[quarter] != nil
         let qs = state.quarter(quarter)
         VStack(alignment: .leading, spacing: 0) {
-            Image(QuarterText.art(quarter))
-                .resizable()
-                .scaledToFill()
-                .frame(height: 96)
-                .frame(maxWidth: .infinity)
-                .clipped()
-                .overlay(Color.black.opacity(open ? 0.1 : 0.6))
-                .overlay(alignment: .bottomLeading) {
-                    Text(verbatim: t(QuarterText.name(quarter))).font(.headline).padding(Noir.s2).shadow(color: .black, radius: 4)
-                }
-                .accessibilityHidden(true)
+            HStack(spacing: Noir.s3) {
+                Image(QuarterText.art(quarter))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 44, height: 44)
+                    .opacity(open ? 1 : 0.4)
+                    .accessibilityHidden(true)
+                Text(verbatim: t(QuarterText.name(quarter))).font(.headline)
+                Spacer(minLength: 0)
+            }
+            .padding([.horizontal, .top], Noir.s3)
             VStack(alignment: .leading, spacing: Noir.s2) {
                 Text(verbatim: t(QuarterText.desc(quarter))).font(.caption).foregroundStyle(Noir.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
