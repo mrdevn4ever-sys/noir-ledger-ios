@@ -3005,5 +3005,215 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "0fb0286b4b39e5f023d39a2949ccfd49cc5bd3510c0203585a352a84ab0e17db"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateWeed.imageset/CrateWeed.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d74b8d4bf1df4002857e77cc6a72701450543e5024803b8feac4cc88fc7f182a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateCrystal.imageset/CrateCrystal.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3608b6edc4a8e8b48d62986dd155b010525279e20a7550e9255eeb570450ff39"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CratePills.imageset/CratePills.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3746bf6183b416a02a967b59e9d1679023d15e85e03d7d577c068be5af864453"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateCoke.imageset/CrateCoke.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f5de6e55a001491b172f278825c7dfce27d16ae2acccc618725e6a717748a90f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateSlot.imageset/CrateSlot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d3084b05b8086fc8d0ce5d4e12fdc509080fe1910df336787b4ca1f9b43db389"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShelfFrame.imageset/ShelfFrame.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e17fc764a8e031882bea521b2f38deb6837a7e994096b0b0201848beb6d889da"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShelfFullSign.imageset/ShelfFullSign.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f0963e05b3ffdb9afc968fed272ce7169604ff4543a4220f74edbdee0c48158f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Coin.imageset/Coin.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0258389df5ba3ffead581fab5e141a92baf7a7961efdaa85d6e4b345690d3861"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CoinSpin6.imageset/CoinSpin6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a11fd255c14d8343251537db7f962b2a6da29e984b8f81e1f87f529694b66a84"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CashBundle.imageset/CashBundle.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2795b22ba1e1d6cd577fe2302d9612dc58cdd546d422ef9958ae1aac0a3fbd18"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CoinBurst8.imageset/CoinBurst8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "620bd04d837b4275c9eedaf2496f19c5766b2e65fe2e2f6e7d5d876551678731"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StarBurst8.imageset/StarBurst8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0f1fc4e0a25d4e0d8e8547786e0161c09472b837310ada489a01534297ad97c5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RebuildBurst8.imageset/RebuildBurst8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5d04d202d0100e0fb014dd22d6115f3a019daa21b5bdc9afc8b91a413bf438c6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Favor.imageset/Favor.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b291ee10c1a953831ed81fe5e1dde8dc5232620d9c26fdb15cdaeb95b9166795"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FavorPile.imageset/FavorPile.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "db41849e4c74e04a61cf92cf5f0aae80dfcae93c6f8a9ba1986efe3108df0036"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateWeed.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e6af9443c543c51603276d81d73170ca5d95dd4b50d5155f9286526859f5386a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateCrystal.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5b0bcd2fa8985b70e9d2d530156555908c6be6ee9f9a7299ed5301c21edc8dd9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CratePills.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "350d5dc39f51c914533a7f425e1e2d0e0454cbe1efb30c903bcd6bcb4f4f86fd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateCoke.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9e218ec717b3408f54a693b999cdfccd2ec04c31cd433561956ed09654787789"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CrateSlot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "35376f942ea9573f23acbf10c96435c3453be81ece4150c10599fba2c10679c0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShelfFrame.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e024033bfd9870ef456c842a2b23e621231a07dcac8c8435ec54a627474ef7d1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShelfFullSign.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "86e90c327f72c1ccb449eefd549a571f6649c3ba946f4c54497631810199382b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Coin.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ef853845a43c69d5a7311e35855e088233cf2d7a183580d180cbc9aa5565f1c1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CoinSpin6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c5b5238d55ab4d1192314bbd84d739e99965baa4da4a9495a533bbbf50dc3024"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CashBundle.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8624b46636d83ab4bc90eb0664cec9cf370656a79921f589b4b31ff253bbbf93"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CoinBurst8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "19dcc8cb16da845c133550553e5b51a4f0098c584ab8f425caf16aa44d5398ab"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/StarBurst8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1049fb9a4638e28c3b63891161fe52f0b4f7a48fabf8cbcae898a62893c426cf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/RebuildBurst8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8f1d00b44b5ba7353cb2c49d0a5eb29e6677408a9fb51b0403ab636b724fb1a3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Favor.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "56cc89766541ec665340c0b1c672e87c35799f4040396ef45217e7a21f2473ed"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FavorPile.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "45b31a72d549d20c0d7cebae1c7666247be69a96de5ef5b5ce95a3e3cecaf162"
   }
 ]
