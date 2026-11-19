@@ -7373,5 +7373,33 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "536ef879b9f915bfabce733fbcd884fec53541501af6c46d4d3e6c9d1ba49b77"
+  },
+  {
+    "file": "App/Resources/Fonts/LilitaOne-Regular.ttf",
+    "origin": "Google Fonts official distribution",
+    "license": "OFL-1.1",
+    "source_url": "https://raw.githubusercontent.com/google/fonts/cc5661d43cd4f9aad5567033a8e15ca28dc35c86/ofl/lilitaone/LilitaOne-Regular.ttf",
+    "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+  },
+  {
+    "file": "App/Resources/Fonts/Fredoka[wdth,wght].ttf",
+    "origin": "Google Fonts official distribution",
+    "license": "OFL-1.1",
+    "source_url": "https://raw.githubusercontent.com/google/fonts/cc5661d43cd4f9aad5567033a8e15ca28dc35c86/ofl/fredoka/Fredoka%5Bwdth%2Cwght%5D.ttf",
+    "sha256": "2ba02e68b152868aef9ba28e24b3648c7d457fe6f25c761f2c2c53fb61a73fc8"
+  },
+  {
+    "file": "App/Resources/Fonts/OFL-LilitaOne.txt",
+    "origin": "Google Fonts official distribution",
+    "license": "OFL-1.1",
+    "source_url": "https://raw.githubusercontent.com/google/fonts/cc5661d43cd4f9aad5567033a8e15ca28dc35c86/ofl/lilitaone/OFL.txt",
+    "sha256": "255d5debbb80eb2ea762644311f266a279e8778f00156655a516e2b7781a63e1"
+  },
+  {
+    "file": "App/Resources/Fonts/OFL-Fredoka.txt",
+    "origin": "Google Fonts official distribution",
+    "license": "OFL-1.1",
+    "source_url": "https://raw.githubusercontent.com/google/fonts/cc5661d43cd4f9aad5567033a8e15ca28dc35c86/ofl/fredoka/OFL.txt",
+    "sha256": "5c9e7eee5c6b25f4b05b8d53b2e470ea4962f9ced742d044a98f7d95d1375bab"
   }
 ]
