@@ -1269,5 +1269,537 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "37925100b3455a53e3321be3654909d0ae0191b104ff7572050636849bd8ac89"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedWalk8.imageset/WorkerWeedWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8608f6540dee885e98ea0130c5dc21f95253e718e9691b85fea75d5be579e9f2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedIdle2.imageset/WorkerWeedIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "85f6753a1a9024fb6556fcaf6417d741324e0122227b687868afced758533746"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedCarry8.imageset/WorkerWeedCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "345bfaaa8fbb6a46444d8e0ec8c33a991ccd0b8629fe622eacc827aa5843433a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedWork4.imageset/WorkerWeedWork4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9708c59ded888e02a919edc45ee638884a2033d055b2d8d00bc58aeae33cf6de"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedSleep2.imageset/WorkerWeedSleep2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "96dda00520fea83ec7b9e8dc46562ddb5d34412d48a824a3e716b2ad3636d11e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalWalk8.imageset/WorkerCrystalWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ad1bc93d8424feab9328adade07a850de66eab2ab5a9422dd8d43e7b214ac828"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalIdle2.imageset/WorkerCrystalIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "14b6a76620c9969235718de6aef220b719d7fc87cdb93da2d11e98182d5371bb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalCarry8.imageset/WorkerCrystalCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2102353b7ec6e46ee29dacede56698aa732ef868815b6988246aef91ff9b64e8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalWork4.imageset/WorkerCrystalWork4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5089204643db5f4e766506276e14fdd51b520032e7ed2f31eec198d333e99959"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalSleep2.imageset/WorkerCrystalSleep2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9eac3789aba9367e8b072cd1cff4903404794722efd2139c0ec82eb75ab1bd7f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsWalk8.imageset/WorkerPillsWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2f4abf5bc9ba60838841d51105f4a913602fb3f438e131f902c3c9570d938934"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsIdle2.imageset/WorkerPillsIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "067db54db0bc2b17a53030dea2da949edd987d549a8438f8b9b2bf18620dbf5d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsCarry8.imageset/WorkerPillsCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "20d7c785d688e7776b0d72c05bb28b30e100440ac4eb1edd5911e4f6926c57d2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsWork4.imageset/WorkerPillsWork4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "94426f574a5e79b1e7393be56f6774145c20dff9e32bcb68a8ab06ae5fd97e1b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsSleep2.imageset/WorkerPillsSleep2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "db8b54254beda2b65e00f6da946f9bb0558f127a478469e7ea1c4909067a4df3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeWalk8.imageset/WorkerCokeWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7f31f0d9f612d37de94bc0c3477558fd504988c1f90007d45757ed766551e454"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeIdle2.imageset/WorkerCokeIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2b1e68bdb699ace4b4b27bcaea6c5add728264b0223e94490573bc224b65024b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeCarry8.imageset/WorkerCokeCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5d1a72633e4459b217177cd1075e29841450ec42ee378829c726cf23fdf91cb6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeWork4.imageset/WorkerCokeWork4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "386cc08ab30dc441ea8ae7866e6146df9e6a81ee030b69c2cbc0be892c414c69"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeSleep2.imageset/WorkerCokeSleep2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b314e0961ecbd428c309f234c9e427372172c61d38dee3929ba591f1fbcc81fc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierWalk8.imageset/WorkerCourierWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d78e4573e6f689526f334357e21582ca8d5f4db9db161aad646022cccccd089a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierIdle2.imageset/WorkerCourierIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "25109ab9c300328cfd6e8fc8fc2b31aca9e1d7c98d13f42fd4356f9ef7d8d213"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierCarry8.imageset/WorkerCourierCarry8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5db44c0c6297527afb3bd431f1dbfb29240f578e470f777d1bb6ff5c37514733"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierWork4.imageset/WorkerCourierWork4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "940848ff4a657af63f13a14d4b6093987457f6d3e5e78c4f18f9c757657aabb9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierSleep2.imageset/WorkerCourierSleep2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36b8857332e9386102a9e712842c07839045bb555306c93d389d1556df8cb00c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsWalk8.imageset/BuyerCellarsWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1e320eeb75325a0432aafa29d5ef11ed0098c7c8a39b1a2f0367887a5bf470eb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsIdle2.imageset/BuyerCellarsIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d808742c2a9a88a45b4babfc5b211c88d951613e74887fdae8865382ed643f0d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownWalk8.imageset/BuyerOldTownWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "91f6750c35f733b24d0eef7adfbdb429ea30f3b58b1428815a4c1e26ec596e6c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownIdle2.imageset/BuyerOldTownIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8d4bbf7eb8b1463905a201efb2edd3aa6d8fa68401533f1c2f305c26cdaa816a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksWalk8.imageset/BuyerDocksWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8bc901ea496ca7fe05acc6ef227a3e80029c523f7a65ff3fc0c75f90827fd348"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksIdle2.imageset/BuyerDocksIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c12d35dda572632f715c98a4a25c27a20ea04b1a38c5f4b7160ff2428eda63e8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightWalk8.imageset/BuyerNightWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36bcc5072b41eb9407e0c93950e99e0f73ea8fbe99f61efb0d7ee8475d7e6ba3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightIdle2.imageset/BuyerNightIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cb340d6aed6fc0ec47af47465792fd449eb4656e77f108255cfdbdea022cdf9a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownWalk8.imageset/BuyerCrownWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8ddbbc27b9379fff6ce4cbd3c7d23a337a9f4e0b7a1e4e0fb3da0aceb8298352"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownIdle2.imageset/BuyerCrownIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4a04785b87192774a51cc944427988ab1fbf70ef5f609f712924eeac649b8154"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopWalk8.imageset/CopWalk8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "823bf55c2418138822c6aef1445ccc1c8a680dec2c2bbf8bb91cd88f775b20ab"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopIdle2.imageset/CopIdle2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "711106858c210a64d5ae8a0424cf6f73f11a383564330a297b391c54ba13d903"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopNotebook4.imageset/CopNotebook4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0c8b3581315eefba94cc71d74ba6a8b41da2b7097f4e4c7d36c9d44adf5f844d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "47e178bcec59f534bc75486490427f03b8670b4408637a1d6005a300d3dffa18"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4f8ae38fa429028b32dc7ab73c77b7b061cb2612fe1c9dfb443fbce63e617ab7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedCarry8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a870443db3caa9672760ed69eb91f311bad826e3dd1262fc29fc7bf4b3fd124b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedWork4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "da8994c9b8b068c4484c9889eae36435a109fdd18201bec722ad016619d40979"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerWeedSleep2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e5404fb6913198fa9e40c80e3ed03d26c341525ec8e197792dccda882a4758cc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6e91d9dde407b0b32fd9208251451f7c48f4937f14bc71a76f04099f2941abfb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "87b2bad67f053082d808ab0489105d8bf932bb6f95f7e3350bce595e72dd0f8f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalCarry8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "febe0feed5ee1820fe5843e153709eb4fc8b20c2aafc9e14defefca7275bda4f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalWork4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dfcfc23a83ffe43af2bc2f02c65cbd4934bdd76b2ec00ede443f8d5d645f9780"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCrystalSleep2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dbd771f5399195fb531a3bebc31930b3e52c76ab154f49b79f8ef233514ce1f9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d2ea12b1780157baa029e91622cabf9a0528417d2b6cdd368966abd4235abd0d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0ea1aec63e36ac1e10c6943d3b785ee5459469d96c5fb4980f10179952e04f6c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsCarry8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "46ad3fbcd85e0ab7d9c2c68013c5b53a1d26930e492ab5202d81d9369903cb7f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsWork4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6d9cfab413362da0d2f0c198d5d36483927a645a66e9dae050c29f82f4a08287"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerPillsSleep2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9feadefac645c5b6cb3567e71f572f2c14e43685558acc98c2329ef8f3a3b95e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "38dbc13b15b2a940c20339dd6e062f029aef07926720a2a12c4db32bdb20a10d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9b5d4d22246f2595f785c101cc1db1088a06789d9f2b5a1bc1465669dd554497"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeCarry8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "074dc1579eda5f1ee28238a0c7415c65dd35c16ec2df1564f76d34dedc3e80e4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeWork4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1d939eb6a56b42e759d96aa8b3a79759156b7c6fcd3620080a6de75e66439ffb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCokeSleep2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7ecc4ed19dfdc789f5068e0ddff3093aecc1e2fdd57b2e2e451d8d47fc03dd8a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "abcb8e26498c2993a3454583701cc14f0cc180986243346de30a3fc6299467f9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "077ebb41be835e9057f54711c81b91e6e9f4f58dff8519fa15ad55e8b761724a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierCarry8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b8dc5d96bb8ef0486203060ed583ad210559ccd1e9f61595ff208bbafd934921"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierWork4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ce2f3b57e9d014935f5c6b4c6258e536edd6ceb889e8d8649791d809eb6c9785"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/WorkerCourierSleep2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d70806a430ed54642d79541240123d13160a958de0494c2873a54b1713cc8702"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4f23be927567521acebb7a8c1672a929ab97a16c8655a56923a7c88c941abd6a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCellarsIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a95392ef7d7901fd8d582bc04bbca65dc3f5446ea782ce58ea001238dec255cf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f76ddbb80589e93ce2eeadd8936d20a9f6647ce0c7d955ce94be3d293a8d1f00"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerOldTownIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "21d8695c3c5b1adde6f049fecd4e0479f2f68f69c33cea748522f4f4ef19a007"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b1cebb0b7eb077b08b6e0768a79ae575b1f029ff1c8f464ca3e68e7c0efaef9f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerDocksIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c299a9150526ad9887f2e5c993ee47ac8f352ba537efcdec7d4786369a0ee1b7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6fe8d72977086bd08aaaa3ff44df22ff75459cffd9b8122e014a86b50d53b09d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerNightIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e8db467dd4ab168eb3ee3e80e0ec49b0c17a845a99a5ed1df1531cb0c0a75870"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1e0574fe3c4fc522f371d38fa5c7fbf541e7f65952a6186ec98ced58a1af846c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/BuyerCrownIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "fb6917a63b79d5349b314847489d5c25bf7b9fc96fca584effee016047026d4a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopWalk8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c9a380fc06e0a975d225284663abf5af3e81e1a0d356453e5ebe59bfbbb69909"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopIdle2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2fba4c65e9c5403c799f83467f47dd94b18b465bbc9e3f62b5e25c1f29d24019"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CopNotebook4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "adc5c0b6e4e0e4ad81d89891cae2ee51c2871b19421eb03001202cc554ae4878"
   }
 ]
