@@ -156,7 +156,7 @@ struct TycoonStoreTests {
         let again = makeStore(dir, clock: clock)
         again.load()
         let report = try! #require(again.offline)
-        #expect(abs(report.earned - 7_200) < 1)
+        #expect(abs(report.earned - 7_200 * TycoonContent.hustlerRevenue) < 1, "two hours of a hustler on one plant")
         #expect(again.state.meta.offlineBonus > 0)
     }
 

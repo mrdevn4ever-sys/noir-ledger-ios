@@ -183,6 +183,8 @@ jobs:
           BRANCH="evidence/run-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
           WORK=$(mktemp -d)
           cp -R "$EVIDENCE"/. "$WORK"/
+          # Screen recordings of failed UI tests can exceed GitHub's 100 MB file limit; they stay in the artifacts.
+          find "$WORK" -type f \( -name '*.mp4' -o -size +90M \) -delete
           cd "$WORK"
           git init -q
           git checkout -q -b "$BRANCH"

@@ -63,7 +63,8 @@ final class GameFlowUITests: NoirUITestCase {
 
     func testCallAnswerAndCut() {
         launch(["-qa-reset", "-qa-scenario", "call", "-qa-quiet"])
-        wait("call.option.0")
+        wait("screen.tycoon", 45)
+        wait("call.option.0", 20)
         shot("en_23_call")
         element("call.option.0").tap()
         XCTAssertFalse(element("call.option.0").waitForExistence(timeout: 2), "the call is answered")
@@ -94,6 +95,7 @@ final class GameFlowUITests: NoirUITestCase {
         wait("offline.title")
         shot("en_30_offline_return")
         element("offline.ok").tap()
+        if element("raid.ack").waitForExistence(timeout: 3) { element("raid.ack").tap() }
         wait("screen.tycoon")
         reveal(element("floor.COKE.count"))
         XCTAssertEqual(element("floor.COKE.count").label, before, "the purchase survived termination and relaunch")

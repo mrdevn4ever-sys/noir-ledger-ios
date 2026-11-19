@@ -93,7 +93,6 @@ enum QAAccelerator {
                     fl.trait = f == .pills || f == .coke ? .ghost : .hustler
                 }
             }
-            s.updateFloor(.weed) { $0.cut = .cut }
             s.cash = 5e8
             s.runEarned = 2e8
             s.totalEarned = max(s.totalEarned, 2e8)
@@ -112,6 +111,7 @@ enum QAAccelerator {
                 s.lastRaidLoss = 1.25e8
                 s.cash = 3.75e8
             case "call":
+                s.updateFloor(.weed) { $0.cut = .cut }
                 s.call = ActiveCall(id: "villa", expiresAt: s.time + 600)
                 s.lastCallId = "villa"
             default:
