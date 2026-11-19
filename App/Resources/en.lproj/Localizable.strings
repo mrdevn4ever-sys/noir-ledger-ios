@@ -669,7 +669,7 @@
 "reward_heat_t" = "A friendly call: Heat −%1$@";
 "reward_heat_d" = "Can end an open investigation.";
 "reward_heat_wait" = "Ready again in %1$@.";
-"reward_heat_cold" = "There is no Heat to cool.";
+"reward_heat_cold" = "No quarter is paying attention right now.";
 "item_boost_t" = "×2 payout for %1$@";
 "item_boost_d" = "Added to the running boost.";
 "item_warp_t" = "Skip ahead %1$@";
@@ -811,7 +811,7 @@
 "ty_raid_title" = "Raid!";
 "ty_rep_chip" = "%1$ld reputation";
 "ty_reward_police" = "A friendly phone call";
-"ty_reward_police_d" = "Heat to zero, the police drive on.";
+"ty_reward_police_d" = "Attention −50 in the hottest quarter.";
 "ty_suitcase" = "Suitcase with %1$@. Tap to take it";
 "ty_suitcase_got" = "Suitcase grabbed. Nobody saw a thing.";
 "ty_tap_go" = "Selling!";
@@ -1202,3 +1202,4 @@
 "l4_bench_of" = "%1$@ bench";
 "l4_shelf_of" = "%1$@ shelf";
 "l4_rewards_more" = "Favors also come from challenges and the back room.";
+"l4_item_calm_d" = "Attention −50 in every quarter.";

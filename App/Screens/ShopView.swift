@@ -270,7 +270,7 @@ private struct FavorRow: View {
         switch item {
         case .boost4h: t("item_boost_d")
         case .warp2h, .warp8h, .warp24h: t("item_warp_d")
-        case .coolHeat: t("ty_reward_police_d")
+        case .coolHeat: t("l4_item_calm_d")
         case .loyalty: t("item_loyalty_d")
         }
     }

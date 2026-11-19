@@ -669,7 +669,7 @@
 "reward_heat_t" = "Ein freundlicher Anruf: Heat −%1$@";
 "reward_heat_d" = "Kann eine laufende Ermittlung beenden.";
 "reward_heat_wait" = "Wieder bereit in %1$@.";
-"reward_heat_cold" = "Es gibt keine Heat zu kühlen.";
+"reward_heat_cold" = "Kein Viertel ist gerade aufmerksam.";
 "item_boost_t" = "×2 Ertrag für %1$@";
 "item_boost_d" = "Wird zum laufenden Boost addiert.";
 "item_warp_t" = "%1$@ vorspulen";
@@ -811,7 +811,7 @@
 "ty_raid_title" = "Razzia!";
 "ty_rep_chip" = "%1$ld Ruf";
 "ty_reward_police" = "Ein freundlicher Anruf";
-"ty_reward_police_d" = "Heat auf null, die Polizei fährt weiter.";
+"ty_reward_police_d" = "Aufmerksamkeit −50 im heißesten Viertel.";
 "ty_suitcase" = "Koffer mit %1$@. Tippen zum Mitnehmen";
 "ty_suitcase_got" = "Koffer geschnappt. Niemand hat was gesehen.";
 "ty_tap_go" = "Läuft!";
@@ -1202,3 +1202,4 @@
 "l4_bench_of" = "Werkbank %1$@";
 "l4_shelf_of" = "Regal %1$@";
 "l4_rewards_more" = "Gefallen gibt es auch für Herausforderungen und im Hinterzimmer.";
+"l4_item_calm_d" = "Aufmerksamkeit −50 in jedem Viertel.";
