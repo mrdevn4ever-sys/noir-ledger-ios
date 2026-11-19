@@ -6757,5 +6757,187 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "b693da185daeee8f8e714fb78a48030a3b13c0aaa923d31f5b870f3ebc06253f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalDeliver.imageset/GoalDeliver.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d352d3af8d70e5cae754e564375ab13c6801f079f83de82c5f8ea6786c142c5a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalDeliver.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0a84bb3fc849abe77ad667b1fd2bba5cf6a77ffe1a1f0cfd63d8521e0cf4b382"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalHireLead.imageset/GoalHireLead.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5fdd4a8acfd8e0a7a9474615370ccf451ef64bd15ea75f7d09b2b74eb340f777"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalHireLead.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c36a7e3d1c04493b4bfffa1ef2552f56c008c04298d6a2cf8f1bf487ac405c8c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalOrders.imageset/GoalOrders.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7154e702318d39cbb9dd49658c782749659b76134f52dd6c0416b0677698cc5a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalOrders.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b7907e788d0535e688f66b1aa15a0624dcd465e7e5037ed819de0d52e058202c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalDispatcher.imageset/GoalDispatcher.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4b1d195d3fdf18c2ac73f2dfeff5593c5fd4ed8e292e3340ccc72c335e28be3b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalDispatcher.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "619f0bb6752d4d283a73a141464228bcca2326370e9af6b79cfe40c6085dfc38"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalEarn.imageset/GoalEarn.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5f4adeda50c3c8d5f894785d8dd3eba9d9482854b2d70fcfe46a3069b9026d80"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalEarn.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3e4d87c507713fd7126b86ac55b36062336da690318c8c6f77c1c9dc5d2f9e24"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalUnlockContact.imageset/GoalUnlockContact.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9cefd772abdbce9723834b05172cf74fd8230a892734198522fc8f25d358058c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalUnlockContact.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "84973a1ef92040b5bb619716d6dc5be20ddfa13ad079ba4e65abcc54971ff473"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalThroughput.imageset/GoalThroughput.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "17c078ad75f6f8440bfb0df9e863448dcf16bcce795d2610b05aced36315b3fb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalThroughput.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a82bf3252bb4c7034d472a46c59c47ebb740072ed76ecaebb439700a65242584"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalOpenGood.imageset/GoalOpenGood.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ec4be813097624522d79a98c673e0369f10450e330678c438c8eadd09929230b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalOpenGood.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0f78b1316b2399ea7edf42fe379696e20c97ca4e4c477a2a6abfe25477bd2e9a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalBigOrder.imageset/GoalBigOrder.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c79863c0c7bdba769eb5482f71f00ca1dd0dcdb2b49da95dd4240df5c88ef743"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalBigOrder.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8fc5b664b038cc18c7c5716a0babb7e4240d613903422f50c90f95ffebb6a995"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalClubNights.imageset/GoalClubNights.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0d992465098a12911c80048091de8f87ee43e79621b02294ca2ee61b63cc9a68"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalClubNights.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "895d94dce1abc33d31a130561efc571dc2c9e2f324b7e1f36be3b577ee6432ca"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalTrust.imageset/GoalTrust.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "13efe3f88c5bb7821225123061094cd6a5fe8e4101ab3dcfb4c0a45200349a7c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalTrust.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "63a54b43d9ec2ba31c08b0ce2b260fcf845de74ef0a2e96767c8119929734d0e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalCityOrders.imageset/GoalCityOrders.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e9a61f715bc919203cbcf9fef10165555e2496226fa8a63615907ba2d575bf4e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalCityOrders.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2befb91981e5775eb4d0102277459812334939c7e19d3d267ef0a67ca37eeca7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalFinale.imageset/GoalFinale.png",
+    "origin": "Für NOIR LEDGER 4.0 Teil 2 eigens erstellte Cartoon-Grafik",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a7770cbafee285820c77743f8b88bb373737561db5ccadb11dfc8c769b2b6f81"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/GoalFinale.imageset/Contents.json",
+    "origin": "Xcode-Imageset-Metadaten für originales Teil-2-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8fe760de0ad0ce291c314d7d4a9e24cd7c0c37fa3fe96b84a4970bdee225a1ce"
   }
 ]
