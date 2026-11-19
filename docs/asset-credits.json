@@ -667,5 +667,75 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "b17e70b36efd95556c87fd2185c2fcadc77665bbaccda23bb0ebb4c1b442dbcf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShaftTile.imageset/ShaftTile.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2eaf93a74493d03143f133b7994f35e1a97d8815c353b0c324f9c826186ef36a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCarEmpty.imageset/LiftCarEmpty.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "74e4b78ae34e647379730e2a31daa0863f7ba0389b70e1d8fec9bdc02ac3407a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCarLoaded.imageset/LiftCarLoaded.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "85c46b02a6a903ce222438ca0f823dcc6cf47841c944a7689ea39ba5e4c54966"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCable.imageset/LiftCable.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6fccbb52a1f0d4e0513c03c7694438f9b15f23c7128e8299dc5fd0a9589f58f2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftDoorOpen6.imageset/LiftDoorOpen6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "af3bb5ccd6ec5042634407d4abdc2876ca9eef10c4b61c9de36c8908993c1b0f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ShaftTile.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4efdee6c03020487b166ef00f696fa4db73edfd7bcd7ed6e75a7c30f0eab9fa0"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCarEmpty.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36dfd7c31e7a8bfa6b7bc04fe088fe839814870a0802f7f54d9c84a26d17189f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCarLoaded.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5ade487310cda39c05874e8a8065129dc14a539b9f5ea6e5733e140c8227f6c7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftCable.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dc0e3e6e0ad8e62d7af0d01cd0d12f21b9169adcfc2d717ef5193983159a0ea8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftDoorOpen6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2ea106228c57e45231fab88314911e75aff390f115bdd73162d8c126e6e479a4"
   }
 ]
