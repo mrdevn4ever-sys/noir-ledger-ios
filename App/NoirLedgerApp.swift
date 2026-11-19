@@ -27,7 +27,7 @@ struct NoirLedgerApp: App {
         #endif
         sound.effectsEnabled = settings.sound
         sound.musicEnabled = settings.music
-        sound.start()
+        sound.start(mood: SoundMood.of(store.state))
         store.onFeedback = { [sound] feedback in sound.play(feedback) }
         shop.deliver = { [store] item in store.deliver(item.grant) }
         self.sound = sound
@@ -48,6 +48,7 @@ struct NoirLedgerApp: App {
                 .preferredColorScheme(.dark)
                 .onChange(of: settings.sound) { _, on in sound.effectsEnabled = on }
                 .onChange(of: settings.music) { _, on in sound.musicEnabled = on }
+                .onChange(of: SoundMood.of(store.state)) { _, mood in sound.setMood(mood) }
         }
         .onChange(of: scenePhase, initial: true) { _, phase in
             switch phase {

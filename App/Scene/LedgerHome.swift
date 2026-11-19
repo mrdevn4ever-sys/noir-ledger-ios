@@ -34,6 +34,9 @@ struct LedgerView: View {
         .overlay(alignment: .bottom) {
             if let notice = store.notice { NoticeBanner(notice: notice).padding(.horizontal, Noir.s3).padding(.bottom, 76) }
         }
+        .onChange(of: sheet) { old, new in
+            if (old == nil) != (new == nil) { store.onFeedback?(new == nil ? .uiClose : .uiOpen) }
+        }
         .sheet(item: $sheet) { kind in
             NavigationStack { sheetContent(kind) }
                 .environment(\.l10n, t)
@@ -73,7 +76,7 @@ struct GameHUD: View {
             HStack(spacing: Noir.s2) {
                 Button { sheet = .shop } label: {
                     HStack(spacing: 4) {
-                        Image(systemName: "seal.fill").foregroundStyle(Toon.pill)
+                        Image("HudFavor").resizable().frame(width: 24, height: 24)
                         Text(verbatim: t.decimal(Double(state.meta.favors), digits: 0)).monospacedDigit()
                         Image(systemName: "plus.circle.fill").foregroundStyle(Toon.up)
                     }
@@ -87,15 +90,13 @@ struct GameHUD: View {
                 .accessibilityLabel(Text(verbatim: t("cd_favors", state.meta.favors)))
                 .accessibilityIdentifier("top.favors")
                 Spacer(minLength: 0)
-                hudButton("book.closed.fill", label: t("l4_book"), id: "top.book") { sheet = .book }
-                hudButton(waiting ? "gift.fill" : "gift", label: t("cd_rewards", waiting ? 1 : 0), id: "top.rewards", dot: waiting) { sheet = .rewards }
-                hudButton("gearshape.fill", label: t("cd_settings"), id: "top.settings") { sheet = .settings }
+                hudButton("IconBook", label: t("l4_book"), id: "top.book") { sheet = .book }
+                hudButton(waiting ? "IconGift" : "IconGiftOpen", label: t("cd_rewards", waiting ? 1 : 0), id: "top.rewards", dot: waiting) { sheet = .rewards }
+                hudButton("IconSettings", label: t("cd_settings"), id: "top.settings") { sheet = .settings }
             }
             HStack(spacing: Noir.s2) {
                 HStack(spacing: 8) {
-                    Circle().fill(Toon.window).frame(width: 30, height: 30)
-                        .overlay(Text(verbatim: "€").font(.system(size: 17, weight: .black, design: .rounded)).foregroundStyle(Color(hex: 0x8A6410)))
-                        .overlay(Circle().stroke(Color(hex: 0xC89520), lineWidth: 2))
+                    Image("HudCoin").resizable().frame(width: 34, height: 34)
                     RollingText(text: t.money(state.cash), value: state.cash)
                         .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundStyle(.white)
@@ -131,12 +132,10 @@ struct GameHUD: View {
         .dynamicTypeSize(...DynamicTypeSize.xxLarge)
     }
 
-    private func hudButton(_ symbol: String, label: String, id: String, dot: Bool = false, action: @escaping () -> Void) -> some View {
+    private func hudButton(_ image: String, label: String, id: String, dot: Bool = false, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Image(systemName: symbol)
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(.white)
-                .frame(width: 40, height: 40)
+            Image(image).resizable().frame(width: 30, height: 30)
+                .frame(width: 42, height: 42)
                 .background(Color.black.opacity(0.35), in: Circle())
                 .overlay(alignment: .topTrailing) {
                     if dot { Circle().fill(Color(hex: 0xE5484D)).frame(width: 11, height: 11).offset(x: 1, y: -1) }
@@ -158,11 +157,11 @@ struct BottomBar: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            item("envelope.fill", "l4_orders", .orders, "nav.orders", badge: Flow.boardOpen(state) ? state.offers.count : 0)
-            item("person.2.fill", "l4_customers", .contacts, "nav.contacts")
-            item("person.3.fill", "l4_crew", .crew, "nav.crew")
-            item("map.fill", "l4_city", .city, "nav.city")
-            item("book.closed.fill", "l4_book", .book, "nav.book")
+            item("NavOrders", "l4_orders", .orders, "nav.orders", badge: Flow.boardOpen(state) ? state.offers.count : 0)
+            item("NavCustomers", "l4_customers", .contacts, "nav.contacts")
+            item("NavCrew", "l4_crew", .crew, "nav.crew")
+            item("NavCity", "l4_city", .city, "nav.city")
+            item("NavBook", "l4_book", .book, "nav.book")
         }
         .padding(.top, 6)
         .padding(.bottom, 2)
@@ -170,10 +169,10 @@ struct BottomBar: View {
         .overlay(alignment: .top) { Rectangle().fill(Color.white.opacity(0.08)).frame(height: 1) }
     }
 
-    private func item(_ symbol: String, _ key: String, _ target: LedgerSheet, _ id: String, badge: Int = 0) -> some View {
+    private func item(_ image: String, _ key: String, _ target: LedgerSheet, _ id: String, badge: Int = 0) -> some View {
         Button { sheet = target } label: {
             VStack(spacing: 2) {
-                Image(systemName: symbol).font(.system(size: 20, weight: .bold))
+                Image(image).resizable().frame(width: 30, height: 30)
                     .frame(width: 44, height: 30)
                     .overlay(alignment: .topTrailing) {
                         if badge > 0 {

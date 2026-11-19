@@ -38,7 +38,7 @@
       "png": {
         "source": "brand/app-icon-master-1024.png",
         "width": 1024,
-        "sha256": "b4c15944bbaf24545aeced3add656ce740bc33c59c888df491dc67e940a1f0f5"
+        "sha256": "45b6d89df87b3719aaef437fca2aae42e4b51360ab3adb1c2c4108d33c128e40"
       },
       "exports": {
         "android": [
@@ -98,10 +98,9 @@
         "android": [
           "app/src/main/res/drawable-nodpi/nl_brand_wordmark.png"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/BrandWordmark.imageset (vector from shared-assets/brand/wordmark.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "product.glimmer",
@@ -795,10 +794,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_brandt.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewBrandt.imageset (vector from shared-assets/crew/portrait-brandt.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.varga",
@@ -822,10 +820,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_varga.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewVarga.imageset (vector from shared-assets/crew/portrait-varga.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.okafor",
@@ -850,10 +847,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_okafor.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewOkafor.imageset (vector from shared-assets/crew/portrait-okafor.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.morgen",
@@ -879,10 +875,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_morgen.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewMorgen.imageset (vector from shared-assets/crew/portrait-morgen.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.feld",
@@ -906,10 +901,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_feld.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewFeld.imageset (vector from shared-assets/crew/portrait-feld.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.wolff",
@@ -934,10 +928,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_wolff.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewWolff.imageset (vector from shared-assets/crew/portrait-wolff.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.kessler",
@@ -961,10 +954,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_kessler.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewKessler.imageset (vector from shared-assets/crew/portrait-kessler.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.hollis",
@@ -988,10 +980,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_hollis.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewHollis.imageset (vector from shared-assets/crew/portrait-hollis.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.sand",
@@ -1016,10 +1007,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_sand.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewSand.imageset (vector from shared-assets/crew/portrait-sand.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.reiter",
@@ -1045,10 +1035,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_reiter.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewReiter.imageset (vector from shared-assets/crew/portrait-reiter.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.kraus",
@@ -1074,10 +1063,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_kraus.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewKraus.imageset (vector from shared-assets/crew/portrait-kraus.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "crew.lind",
@@ -1102,10 +1090,9 @@
         "android": [
           "app/src/main/res/drawable/nl_crew_lind.xml"
         ],
-        "ios": [
-          "App/Resources/Assets.xcassets/CrewLind.imageset (vector from shared-assets/crew/portrait-lind.svg)"
-        ]
-      }
+        "ios": []
+      },
+      "note": "iOS uses the cartoon-night art in Assets.xcassets (docs/HERMES_ASSET_BRIEF_4.md) instead of this master."
     },
     {
       "id": "material.leather",

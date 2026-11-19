@@ -10,8 +10,52 @@ struct NoticeMessage: Equatable, Sendable, Identifiable {
 }
 
 /// What just happened, for sound and haptics.
-enum Feedback: Sendable, Equatable {
-    case tap, buy, milestone, reject, claim, chapter, raid, alarm, decision, prestige, purchase, boost
+/// Something the player should hear; the raw value names the sound file (`sfx_<raw>`).
+enum Feedback: String, Sendable, Equatable, CaseIterable {
+    case tap, buy, upgrade, milestone, reject, claim, reward, chapter, raid, alarm, decision, prestige, purchase, boost
+    case benchWeed = "bench_weed", benchCrystal = "bench_crystal", benchPills = "bench_pills", benchCoke = "bench_coke"
+    case vanDepart = "van_depart", vanArrive = "van_arrive", liftMove = "lift_move", liftDing = "lift_ding"
+    case coins, crateDrop = "crate_drop", shelfFull = "shelf_full", hire, unlockFloor = "unlock_floor"
+    case orderNew = "order_new", orderPaid = "order_paid", orderFailed = "order_failed"
+    case ability, attentionUp = "attention_up", attentionDown = "attention_down", siren
+    case challengeStart = "challenge_start", challengeWon = "challenge_won", clubStart = "club_start"
+    case uiOpen = "ui_open", uiClose = "ui_close", ink, scooterHorn = "scooter_horn", rebuild
+
+    static func bench(_ g: Good) -> Feedback {
+        switch g {
+        case .weed: .benchWeed
+        case .crystal: .benchCrystal
+        case .pills: .benchPills
+        case .coke: .benchCoke
+        }
+    }
+}
+
+/// The music and ambience a moment of the game wants.
+struct SoundMood: Equatable, Sendable {
+    var music: String
+    var ambience: String
+
+    static func of(_ s: FlowState) -> SoundMood {
+        guard s.start != nil else { return SoundMood(music: "music_prologue", ambience: "amb_street") }
+        if s.challenge != nil { return SoundMood(music: "music_challenge", ambience: "amb_street") }
+        let music = switch s.chapter {
+        case ...1: "music_main"
+        case 2: "music_oldtown"
+        case 3: "music_docks"
+        case 4: "music_night"
+        case 5: "music_crown"
+        default: "music_finale"
+        }
+        let top = s.openGoods.last ?? .weed
+        let ambience = switch top {
+        case .weed: "amb_cellar"
+        case .crystal: "amb_lab"
+        case .pills: "amb_club"
+        case .coke: "amb_villa"
+        }
+        return SoundMood(music: music, ambience: ambience)
+    }
 }
 
 /// A moment worth a banner.
@@ -190,12 +234,34 @@ final class LedgerStore {
         if state.counters.orders > before.counters.orders {
             let paid = state.ledger.last { $0.kind == .order }?.amount ?? 0
             celebrate(.orderDone(paid))
-            onFeedback?(.claim)
+            onFeedback?(.orderPaid)
         } else if state.counters.failed > before.counters.failed {
             show("order_failed", danger: true)
-            onFeedback?(.reject)
+            onFeedback?(.orderFailed)
         } else if state.offers.count > before.offers.count && !state.offers.isEmpty {
-            onFeedback?(.decision)
+            onFeedback?(.orderNew)
+        } else if gained > 0 {
+            onFeedback?(.coins)
+        }
+        if before.trip == nil, state.trip != nil {
+            onFeedback?(.liftMove)
+        } else if let trip = state.trip, let was = before.trip, trip.left <= trip.duration / 2, was.left > was.duration / 2 {
+            onFeedback?(.vanDepart)
+        } else if before.trip != nil, state.trip == nil {
+            onFeedback?(.vanArrive)
+        }
+        for g in state.openGoods {
+            let cap = Flow.shelfCapacity(state, g)
+            if (state.workshop(g)?.stock ?? 0) >= cap - 1e-9, (before.workshop(g)?.stock ?? 0) < cap - 1e-9 {
+                onFeedback?(.shelfFull)
+                break
+            }
+        }
+        let hot = { (s: FlowState) in Flow.tier(s.quarters.values.map(\.attention).max() ?? 0) }
+        let (tierNow, tierWas) = (hot(state), hot(before))
+        if tierNow > tierWas { onFeedback?(tierNow >= 2 ? .siren : .attentionUp) } else if tierNow < tierWas { onFeedback?(.attentionDown) }
+        if state.challengesDone.count > before.challengesDone.count {
+            onFeedback?(.challengeWon)
         }
         if Flow.chapterComplete(state) && !Flow.chapterComplete(before) {
             celebrate(.chapterReady(state.chapter))
@@ -225,9 +291,13 @@ final class LedgerStore {
         }
         state = r.state
         switch action {
-        case .tapBench, .tapFleet:
+        case .tapBench(let g):
             tapCount += 1
-            onFeedback?(.tap)
+            onFeedback?(.bench(g))
+            return r.gained
+        case .tapFleet:
+            tapCount += 1
+            onFeedback?(.liftMove)
             return r.gained
         default:
             break
@@ -247,33 +317,37 @@ final class LedgerStore {
                 celebrate(.milestone(station, reached))
                 onFeedback?(.milestone)
             } else {
-                onFeedback?(.buy)
+                onFeedback?(.upgrade)
             }
         case .openWorkshop(let g):
             celebrate(.opened(g))
-            onFeedback?(.milestone)
+            onFeedback?(.unlockFloor)
         case .hireLead(let g):
             celebrate(.hired(FlowContent.good(g).lead))
-            onFeedback?(.chapter)
+            onFeedback?(.hire)
         case .hireDispatcher:
             celebrate(.hired(FlowContent.dispatcher))
-            onFeedback?(.chapter)
+            onFeedback?(.hire)
         case .unlockContact:
             onFeedback?(.milestone)
         case .accept:
-            onFeedback?(.decision)
+            onFeedback?(.ink)
         case .closeChapter:
             onFeedback?(.prestige)
         case .use:
-            onFeedback?(.boost)
-        case .claimDaily, .collectOffline, .adReward:
+            onFeedback?(.ability)
+        case .claimDaily, .adReward:
+            onFeedback?(.reward)
+        case .collectOffline:
             onFeedback?(.claim)
         case .grant:
             onFeedback?(.purchase)
         case .buyFavorItem:
             onFeedback?(.boost)
-        case .choose, .startChallenge:
+        case .choose:
             onFeedback?(.chapter)
+        case .startChallenge:
+            onFeedback?(.challengeStart)
         default:
             break
         }

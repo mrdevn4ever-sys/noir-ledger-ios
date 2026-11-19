@@ -222,7 +222,7 @@ struct LedgerStoreTests {
         store.onFeedback = { heard.append($0) }
         store.dispatch(.tapBench(.weed))
         #expect(store.tapCount == 1)
-        #expect(heard.contains(.tap))
+        #expect(heard.contains(.benchWeed))
         #expect(store.dispatch(.hireDispatcher) == nil)
         #expect(heard.contains(.reject))
         store.tick(seconds: 5.25)
@@ -298,5 +298,39 @@ struct BuildFlavorTests {
         #else
         Issue.record("Debug test builds are expected to define NOIR_QA")
         #endif
+    }
+}
+
+// MARK: - Art and sound
+
+@MainActor
+@Suite("Delivered art and sound")
+struct ArtAndSoundTests {
+    @Test("Every image the scene composes from parts is in the asset catalog")
+    func sceneArt() {
+        let missing = SceneArt.composedNames.filter { UIImage(named: $0) == nil }
+        #expect(missing.isEmpty, "missing images: \(missing)")
+    }
+
+    @Test("Every sound effect, music piece and ambience bed is in the bundle")
+    func sounds() {
+        let url = { (name: String) in Bundle.main.url(forResource: name, withExtension: "m4a") }
+        let missing = Feedback.allCases.map { "sfx_" + $0.rawValue }.filter { url($0) == nil }
+        #expect(missing.isEmpty, "missing effects: \(missing)")
+        var moods: Set<String> = []
+        for chapter in 1...6 {
+            var s = Flow.newGame(seed: 1, nowMs: 0)
+            s = Flow.apply(s, .choose(.cashbox)).state
+            s.chapter = chapter
+            for g in Good.allCases where FlowContent.good(g).chapter <= chapter {
+                s.cash = 1e15
+                s = Flow.apply(s, .openWorkshop(g)).state
+            }
+            let m = SoundMood.of(s)
+            moods.formUnion([m.music, m.ambience])
+        }
+        moods.formUnion(["music_prologue", "music_challenge", "amb_street"])
+        #expect(moods.filter { url($0) == nil }.isEmpty)
+        #expect(moods.count >= 10)
     }
 }
