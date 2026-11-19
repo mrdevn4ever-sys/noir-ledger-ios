@@ -222,7 +222,7 @@ struct AttentionChip: View {
         Label {
             Text(verbatim: t(paused ? "l4_paused" : "l4_tier_\(tier)") + " · " + t.decimal(attention, digits: 0))
         } icon: {
-            Image(systemName: paused ? "pause.circle.fill" : (tier >= 2 ? "exclamationmark.triangle.fill" : "eye.fill"))
+            Image(SceneArt.attention(tier: tier, paused: paused)).resizable().frame(width: 20, height: 20)
         }
         .font(.caption.weight(.bold)).monospacedDigit()
         .foregroundStyle(tier >= 2 ? Noir.danger : (tier == 1 ? Noir.amber : Noir.inkSoft))
@@ -239,7 +239,15 @@ struct ContactRow: View {
     var body: some View {
         let owned = state.contacts[contact.id]
         HStack(spacing: Noir.s3) {
-            Mark(Glyph.product(contact.good.product), size: 22).opacity(owned == nil ? 0.5 : 1)
+            Image(SceneArt.contact(contact.id)).resizable().scaledToFill()
+                .frame(width: 52, height: 52)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(alignment: .bottomTrailing) {
+                    Mark(Glyph.product(contact.good.product), size: 18).padding(2)
+                        .background(Color.black.opacity(0.55), in: Circle()).offset(x: 4, y: 4)
+                }
+                .saturation(owned == nil ? 0.2 : 1).opacity(owned == nil ? 0.7 : 1)
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {
                 Text(verbatim: t(ContactText.name(contact.id))).font(.subheadline.weight(.semibold))
                 if owned != nil {

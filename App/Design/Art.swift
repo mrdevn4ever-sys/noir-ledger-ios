@@ -116,13 +116,10 @@ struct LedgerEmblem: View {
 /// The wordmark from `shared-assets/brand/wordmark.svg`.
 struct Wordmark: View {
     var body: some View {
-        VStack(spacing: Noir.s2) {
-            LedgerEmblem().frame(width: 64, height: 64)
-            Image("BrandWordmark")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 240)
-        }
+        Image("Wordmark")
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: 300)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: "NOIR LEDGER"))
         .accessibilityAddTraits(.isHeader)

@@ -158,9 +158,9 @@ struct PrologueView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
                 Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s5)
-                Image("SceneStreet")
+                Image("ScenePrologue")
                     .resizable().scaledToFill()
-                    .frame(height: 170).frame(maxWidth: .infinity).clipped()
+                    .frame(height: 230).frame(maxWidth: .infinity).clipped()
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
                 Panel(.paper) {
@@ -171,7 +171,8 @@ struct PrologueView: View {
                 ForEach(StartChoice.allCases, id: \.self) { choice in
                     Button { store.dispatch(.choose(choice)) } label: {
                         HStack(alignment: .top, spacing: Noir.s3) {
-                            Image(systemName: Self.symbol(choice)).font(.title).frame(width: 40).foregroundStyle(Noir.amber)
+                            Image(SceneArt.item(choice)).resizable().scaledToFit().frame(width: 56, height: 56)
+                                .accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(verbatim: t(StartText.title(choice))).font(.headline)
                                 Text(verbatim: t(StartText.desc(choice))).font(.subheadline)
@@ -311,6 +312,10 @@ struct ChapterSheet: View {
         let s = store.state
         SheetFrame("l4_chapter", identifier: "screen.chapter") {
             if let ch = FlowContent.chapter(s.chapter) {
+                Image(SceneArt.chapter(ch.number, outro: false)).resizable().scaledToFill()
+                    .frame(height: 180).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
                 HStack(spacing: Noir.s3) {
                     Portrait(crewId: ch.person, size: 64).clipShape(Circle())
                     VStack(alignment: .leading, spacing: 2) {
@@ -365,6 +370,10 @@ struct ChapterNewsSheet: View {
         let ch = FlowContent.chapter(number)
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
+                Image(SceneArt.chapter(number, outro: true)).resizable().scaledToFill()
+                    .frame(height: 200).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
                 Text(verbatim: t("l4_chapter_closed", number)).font(.caption.weight(.bold)).foregroundStyle(Noir.amber)
                 Text(verbatim: t(ChapterText.title(number))).font(.display(.title)).accessibilityIdentifier("chapter.news")
                 Text(verbatim: t(ChapterText.outro(number))).font(.body).fixedSize(horizontal: false, vertical: true)
@@ -407,6 +416,10 @@ struct ChallengesSheet: View {
             Text(verbatim: t("l4_challenges_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             if let c = s.challenge {
                 Panel(.leather) {
+                    Image(SceneArt.challenge(c.id)).resizable().scaledToFill()
+                    .frame(height: 130).frame(maxWidth: .infinity).clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .accessibilityHidden(true)
                     Text(verbatim: t(ChallengeText.name(c.id))).font(.headline)
                     Text(verbatim: t("l4_challenge_left", t.duration(max(0, c.endsAt - s.time)))).font(.subheadline).monospacedDigit()
                     ForEach(0..<3, id: \.self) { i in
@@ -419,7 +432,8 @@ struct ChallengesSheet: View {
             }
             ForEach(FlowContent.challenges) { def in
                 Panel(.anthracite) {
-                    HStack {
+                    HStack(spacing: Noir.s2) {
+                        Image(SceneArt.challenge(def.id, icon: true)).resizable().frame(width: 40, height: 40).accessibilityHidden(true)
                         Text(verbatim: t(ChallengeText.name(def.id))).font(.headline)
                         Spacer()
                         if s.challengesDone.contains(def.id) {

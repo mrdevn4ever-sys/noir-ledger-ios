@@ -77,6 +77,80 @@ enum SceneArt {
     static let police = Vehicle(body: "PoliceCarBody", wheel: "PoliceCarWheel", size: CGSize(width: 420, height: 240),
                                 wheels: [(85, 1), (321, 1)], wheelSize: 78)
 
+    // MARK: Sheets
+
+    static func contact(_ id: String) -> String { "Contact" + id.prefix(1).uppercased() + id.dropFirst() }
+
+    static func order(_ k: OrderKind) -> String {
+        switch k {
+        case .quiet: "OrderQuiet"
+        case .loud: "OrderLoud"
+        case .big: "OrderBig"
+        case .trust: "OrderTrust"
+        case .city: "OrderCity"
+        case .finale: "OrderFinale"
+        }
+    }
+
+    static func attention(tier: Int, paused: Bool) -> String {
+        if paused { return "AttentionUnderground" }
+        switch tier {
+        case 0: return "AttentionCalm"
+        case 1: return "AttentionWatched"
+        default: return "AttentionHot"
+        }
+    }
+
+    static func ability(_ a: Ability) -> String {
+        switch a {
+        case .doubleShift: "AbilityDoubleShift"
+        case .rushRun: "AbilityRushRun"
+        case .newWindow: "AbilityNewWindow"
+        case .quietWord: "AbilityQuietWord"
+        }
+    }
+
+    static func specialist(_ s: Specialist) -> String {
+        switch s {
+        case .okafor: "SpecialistOkafor"
+        case .morgen: "SpecialistMorgen"
+        case .sand: "SpecialistSand"
+        case .lind: "SpecialistLind"
+        case .kraus: "SpecialistKraus"
+        }
+    }
+
+    static func challenge(_ c: ChallengeId, icon: Bool = false) -> String {
+        let base = switch c {
+        case .fog: "ChallengeFog"
+        case .pressWeek: "ChallengePressWeek"
+        case .strike: "ChallengeStrike"
+        }
+        return icon ? base + "Icon" : base
+    }
+
+    static func chapter(_ n: Int, outro: Bool) -> String { "Chapter\(min(6, max(1, n)))" + (outro ? "Outro" : "Intro") }
+    static func quarter(_ q: Quarter, wide: Bool) -> String { "Quarter\(name(q))" + (wide ? "Wide" : "") }
+
+    static func item(_ c: StartChoice) -> String {
+        switch c {
+        case .cashbox: "ItemCashbox"
+        case .addressBook: "ItemAddressBook"
+        case .tools: "ItemTools"
+        }
+    }
+
+    static var sheetNames: [String] {
+        FlowContent.contacts.map { contact($0.id) } + OrderKind.allCases.map(order) + Ability.allCases.map(ability)
+            + Specialist.allCases.map(specialist) + ChallengeId.allCases.flatMap { [challenge($0), challenge($0, icon: true)] }
+            + (1...6).flatMap { [chapter($0, outro: false), chapter($0, outro: true)] }
+            + Quarter.allCases.flatMap { [quarter($0, wide: false), quarter($0, wide: true)] } + StartChoice.allCases.map(item)
+            + (0...2).map { attention(tier: $0, paused: false) } + [attention(tier: 0, paused: true)]
+            + ["ScenePrologue", "CityMap", "LedgerCover", "LedgerPage", "StampPaid", "StampMissed", "SealChapter", "ChapterRibbon",
+               "FavorPile", "Wordmark", "ShopBoost", "ShopCalm", "ShopWarp", "ShopStarter", "ShopPremium", "ShopNoAds",
+               "ShopFavorsSmall", "ShopFavorsMedium", "ShopFavorsLarge", "ShopFavorsVault"]
+    }
+
     /// Every image the scene composes from parts, for the test that keeps the catalog complete.
     static var composedNames: [String] {
         var names: [String] = []

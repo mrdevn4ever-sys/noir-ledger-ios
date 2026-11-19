@@ -199,7 +199,8 @@ struct OrderOfferCard: View {
         let loud = offer.attention > 0
         let slotsFull = state.orders.count >= Flow.orderSlots(state) && offer.kind != .finale
         Panel(loud ? .leather : .paper) {
-            HStack {
+            HStack(spacing: Noir.s2) {
+                Image(SceneArt.order(offer.kind)).resizable().frame(width: 44, height: 44).accessibilityHidden(true)
                 StatusChip(text: t(OrderText.kind(offer.kind)), symbol: loud ? "exclamationmark.bubble.fill" : "hand.thumbsup.fill",
                            danger: tierAfter >= 2)
                 Spacer()
@@ -214,10 +215,14 @@ struct OrderOfferCard: View {
             ValueRow(label: t("l4_offer_stock"), value: Good.allCases.compactMap { g in
                 offer.items[g] != nil ? t.money(state.workshop(g)?.stock ?? 0) : nil
             }.joined(separator: " · "))
-            Text(verbatim: t("l4_offer_attention", t(QuarterText.name(att.quarter)), t.decimal(att.before, digits: 0), t.decimal(att.after, digits: 0)))
-                .font(.subheadline.weight(.semibold)).monospacedDigit()
-                .foregroundStyle(tierAfter >= 2 ? Noir.danger : (loud ? Noir.amber : Noir.paperInk))
-                .accessibilityIdentifier("offer.\(index).attention")
+            HStack(spacing: Noir.s2) {
+                Image(SceneArt.attention(tier: tierAfter, paused: false)).resizable().frame(width: 26, height: 26).accessibilityHidden(true)
+                Text(verbatim: t("l4_offer_attention", t(QuarterText.name(att.quarter)), t.decimal(att.before, digits: 0), t.decimal(att.after, digits: 0)))
+                    .font(.subheadline.weight(.semibold)).monospacedDigit()
+                    .foregroundStyle(tierAfter >= 2 ? Noir.danger : (loud ? Noir.amber : Noir.paperInk))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("offer.\(index).attention")
+            }
             if tierAfter > tierBefore {
                 Label { Text(verbatim: t("l4_offer_tier_up", t("l4_tier_\(tierAfter)")) + " " + t("l4_tier_effect_\(tierAfter)")) } icon: {
                     Image(systemName: "exclamationmark.triangle.fill")
@@ -252,7 +257,8 @@ struct ActiveOrderCard: View {
     var body: some View {
         let left = max(0, order.deadline - state.time)
         Panel(.anthracite) {
-            HStack {
+            HStack(spacing: Noir.s2) {
+                Image(SceneArt.order(order.offer.kind)).resizable().frame(width: 34, height: 34).accessibilityHidden(true)
                 StatusChip(text: t(OrderText.kind(order.offer.kind)), symbol: "shippingbox.fill")
                 Spacer()
                 Text(verbatim: "+" + t.money(order.offer.pay)).font(.headline).monospacedDigit().foregroundStyle(Noir.amber)
@@ -341,6 +347,8 @@ struct CrewCard: View {
                 let g = pick.1
                 let st = s.ability(a)
                 Button { store.dispatch(.use(a, g)) } label: {
+                    HStack(spacing: Noir.s2) {
+                    Image(SceneArt.ability(a)).resizable().frame(width: 36, height: 36).accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: t(AbilityText.name(a))).font(.subheadline.weight(.bold))
                         Text(verbatim: st.active > 0 ? t("l4_ability_running", t.duration(st.active))
@@ -349,6 +357,7 @@ struct CrewCard: View {
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 .noirButton(st.cooldown <= 0 ? .primary : .secondary)
                 .disabled(st.cooldown > 0)
@@ -367,6 +376,10 @@ struct CitySheet: View {
     var body: some View {
         let s = store.state
         SheetFrame("l4_city", identifier: "screen.city") {
+            Image("CityMap").resizable().scaledToFill()
+                .frame(height: 200).frame(maxWidth: .infinity).clipped()
+                .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                .accessibilityHidden(true)
             Text(verbatim: t("l4_city_b")).font(.subheadline).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
             ForEach(Quarter.allCases, id: \.self) { q in
                 QuarterCard(quarter: q, state: s)
@@ -388,17 +401,23 @@ struct QuarterCard: View {
         let open = state.quarters[quarter] != nil
         let qs = state.quarter(quarter)
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: Noir.s3) {
-                Image(QuarterText.art(quarter))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 44, height: 44)
-                    .opacity(open ? 1 : 0.4)
-                    .accessibilityHidden(true)
-                Text(verbatim: t(QuarterText.name(quarter))).font(.headline)
-                Spacer(minLength: 0)
-            }
-            .padding([.horizontal, .top], Noir.s3)
+            Image(SceneArt.quarter(quarter, wide: true))
+                .resizable()
+                .scaledToFill()
+                .frame(height: 110)
+                .frame(maxWidth: .infinity)
+                .clipped()
+                .saturation(open ? 1 : 0.1)
+                .overlay(alignment: .bottomLeading) {
+                    Text(verbatim: t(QuarterText.name(quarter))).font(.headline).foregroundStyle(.white)
+                        .padding(.horizontal, 10).padding(.vertical, 4)
+                        .background(Color.black.opacity(0.6), in: Capsule())
+                        .padding(Noir.s2)
+                }
+                .overlay(alignment: .topTrailing) {
+                    if !open { Image(systemName: "lock.fill").font(.title3).foregroundStyle(.white).padding(Noir.s2) }
+                }
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: Noir.s2) {
                 Text(verbatim: t(QuarterText.desc(quarter))).font(.caption).foregroundStyle(Noir.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
@@ -484,6 +503,9 @@ struct BookSheet: View {
         let s = store.state
         let f = store.forecast
         SheetFrame("l4_book", identifier: "screen.book") {
+            Image("LedgerCover").resizable().scaledToFill().frame(height: 140).frame(maxWidth: .infinity).clipped()
+                .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                .accessibilityHidden(true)
             Panel(.paper) {
                 ValueRow(label: t("l4_book_earned"), value: t.money(s.earned))
                 ValueRow(label: t("l4_book_measured"), value: t("l4_per_min", t.money(store.measuredIncome)))

@@ -67,7 +67,7 @@ struct ShopView: View {
     private func wallet(_ s: FlowState) -> some View {
         Panel(.leather) {
             HStack(spacing: Noir.s3) {
-                Image(systemName: "seal.fill").font(.title).foregroundStyle(Noir.brass).accessibilityHidden(true)
+                Image("FavorPile").resizable().scaledToFit().frame(width: 56, height: 42).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 0) {
                     Text(verbatim: t("shop_wallet")).font(.caption).foregroundStyle(Noir.inkSoft)
                     RollingText(text: t.decimal(Double(s.meta.favors), digits: 0), value: Double(s.meta.favors))
@@ -98,7 +98,7 @@ private struct RewardRow: View {
         let block = blocked
         Panel(.anthracite) {
             HStack(spacing: Noir.s3) {
-                Image(systemName: symbol).font(.title3).foregroundStyle(Noir.amber).frame(width: 30).accessibilityHidden(true)
+                rewardIcon.accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: title).font(.subheadline.weight(.semibold))
                     Text(verbatim: block ?? detail).font(.caption).foregroundStyle(Noir.inkSoft)
@@ -121,12 +121,12 @@ private struct RewardRow: View {
         }
     }
 
-    private var symbol: String {
+    @ViewBuilder private var rewardIcon: some View {
         switch reward {
-        case .boost: "bolt.fill"
-        case .favors: "seal.fill"
-        case .coolHeat: "snowflake"
-        case .offlineDouble: "moon.zzz.fill"
+        case .boost: Image("ShopBoost").resizable().frame(width: 40, height: 40)
+        case .favors: Image("HudFavor").resizable().frame(width: 36, height: 36).frame(width: 40)
+        case .coolHeat: Image("ShopCalm").resizable().frame(width: 40, height: 40)
+        case .offlineDouble: Image(systemName: "moon.zzz.fill").font(.title3).foregroundStyle(Noir.amber).frame(width: 40)
         }
     }
 
@@ -176,7 +176,7 @@ private struct OfferCard: View {
         let owned = item.owned(state.meta)
         Panel(item.isConsumable ? .anthracite : .paper) {
             HStack(alignment: .top, spacing: Noir.s3) {
-                Image(systemName: item.symbol).font(.title2).frame(width: 34).accessibilityHidden(true)
+                Image(item.art).resizable().scaledToFit().frame(width: 64, height: 64).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: t(item.titleKey)).font(.headline)
                     Text(verbatim: detail).font(.subheadline).fixedSize(horizontal: false, vertical: true)
@@ -227,7 +227,7 @@ private struct FavorRow: View {
     var body: some View {
         Panel(.leather) {
             HStack(spacing: Noir.s3) {
-                Image(systemName: symbol).font(.title3).foregroundStyle(Noir.brass).frame(width: 30).accessibilityHidden(true)
+                favorIcon.accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: title).font(.subheadline.weight(.semibold))
                     Text(verbatim: detail).font(.caption).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
@@ -248,12 +248,12 @@ private struct FavorRow: View {
         }
     }
 
-    private var symbol: String {
+    @ViewBuilder private var favorIcon: some View {
         switch item {
-        case .boost4h: "bolt.fill"
-        case .warp2h, .warp8h, .warp24h: "forward.fill"
-        case .coolHeat: "snowflake"
-        case .loyalty: "heart.fill"
+        case .boost4h: Image("ShopBoost").resizable().frame(width: 40, height: 40)
+        case .warp2h, .warp8h, .warp24h: Image("ShopWarp").resizable().frame(width: 40, height: 40)
+        case .coolHeat: Image("ShopCalm").resizable().frame(width: 40, height: 40)
+        case .loyalty: Image(systemName: "heart.fill").font(.title3).foregroundStyle(Noir.brass).frame(width: 40)
         }
     }
 

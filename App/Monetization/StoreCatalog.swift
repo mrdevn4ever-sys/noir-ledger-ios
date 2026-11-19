@@ -60,6 +60,19 @@ enum StoreItem: String, CaseIterable, Identifiable, Sendable {
         }
     }
 
+    /// The delivered shop art for this product.
+    var art: String {
+        switch self {
+        case .starter: "ShopStarter"
+        case .premium: "ShopPremium"
+        case .noAds: "ShopNoAds"
+        case .favorsSmall: "ShopFavorsSmall"
+        case .favorsMedium: "ShopFavorsMedium"
+        case .favorsLarge: "ShopFavorsLarge"
+        case .favorsVault: "ShopFavorsVault"
+        }
+    }
+
     static let offers: [StoreItem] = [.starter, .premium, .noAds]
     static let favorPacks: [StoreItem] = [.favorsSmall, .favorsMedium, .favorsLarge, .favorsVault]
 

@@ -308,7 +308,7 @@ struct BuildFlavorTests {
 struct ArtAndSoundTests {
     @Test("Every image the scene composes from parts is in the asset catalog")
     func sceneArt() {
-        let missing = SceneArt.composedNames.filter { UIImage(named: $0) == nil }
+        let missing = (SceneArt.composedNames + SceneArt.sheetNames).filter { UIImage(named: $0) == nil }
         #expect(missing.isEmpty, "missing images: \(missing)")
     }
 
