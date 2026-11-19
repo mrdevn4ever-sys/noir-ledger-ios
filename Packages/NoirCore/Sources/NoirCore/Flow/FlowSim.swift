@@ -198,7 +198,13 @@ public enum Flow {
     /// A trip arrives: standing contacts pay (best price first) and orders count what they received.
     static func arrive(_ s: inout FlowState, _ trip: Trip) {
         var any = false
-        for (g, crates) in trip.standing where crates > 1e-12 {
+        // Crates for an order that failed while they were on the way go to the standing contacts instead.
+        var standing = trip.standing
+        for (id, items) in trip.orders where !s.orders.contains(where: { $0.id == id }) {
+            for (g, x) in items { standing[g, default: 0] += x }
+        }
+        for g in Good.allCases {
+            guard let crates = standing[g], crates > 1e-12 else { continue }
             var left = crates
             for id in contacts(s, of: g) where left > 1e-12 {
                 let open = s.contacts[id]?.open ?? 0
@@ -248,12 +254,13 @@ public enum Flow {
         }
     }
 
-    /// Orders past their deadline fail: what arrived is paid at the standing price; trust suffers.
+    /// Orders past their deadline fail: what arrived is paid at the standing price, crates still on the way go to
+    /// the standing contacts, trust suffers.
     static func ordersDue(_ s: inout FlowState) {
         var i = 0
         while i < s.orders.count {
             let o = s.orders[i]
-            if s.time >= o.deadline && o.inTransit.values.allSatisfy({ $0 <= 1e-12 }) {
+            if s.time >= o.deadline {
                 s.orders.remove(at: i)
                 var pay = 0.0
                 for (g, x) in o.delivered { pay += x * FlowContent.good(g).price * payMultiplier(s) }
