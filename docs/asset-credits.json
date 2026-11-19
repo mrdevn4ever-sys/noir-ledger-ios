@@ -737,5 +737,537 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "2ea106228c57e45231fab88314911e75aff390f115bdd73162d8c126e6e479a4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0.imageset/FloorWeed0.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f992545fdac815337d602caca8bc35dae09ce91024ea0b361d614d5c134ddb84"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1.imageset/FloorWeed1.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "10028564746861f83a2223fbf39d28acd54d34425ea6647190ecb680da508ee4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2.imageset/FloorWeed2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "80212db999733dd3a9d4f20deeeabf03b499a510be9e9ac6c7b66dd903504f04"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3.imageset/FloorWeed3.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b83010a1b93cda94496e15978099292f41076985d9ddceeff45ba9c7c8957c18"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4.imageset/FloorWeed4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cdcb2fb9842381d86b33964560f5462543270ab17431899bebf3973744acbd71"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5.imageset/FloorWeed5.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d911c86939f3509c4ef5777146dbdc43e1d9a4e845ae00cea991c1160e130d61"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeedLocked.imageset/FloorWeedLocked.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b9b7342b5bcc76882423176802a6b7ff58615e8a3a94fefdcea72b5e8f4998be"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0.imageset/FloorCrystal0.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "15a2aba866135c192821f55fff5a2f8ce36b74e62b08f427c2256042cd79d039"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1.imageset/FloorCrystal1.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "cd1157046fd91202697da83d59e1adc266d6e0082ce5cc288135ddcf4133726c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2.imageset/FloorCrystal2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5404bdfc35205154cc2595e2489983db98c8f59cef30c0a8d1afd78551288be8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3.imageset/FloorCrystal3.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "91927076b0f0d4bbe711d318f2b7a967eb15bdb54ae541d34cba253015e7beda"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4.imageset/FloorCrystal4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e1fe97239550a228a897f7323cc85a6d6d3c7e173a6531c545f183a7bf000aa7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5.imageset/FloorCrystal5.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d631983ee42abced53c21de4ab6df85ea148f85bc76c11a1396e29acfb9efe1f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystalLocked.imageset/FloorCrystalLocked.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "813303b9668266032f404c6a3e51c01921904fb615858952c16822b574dc1608"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0.imageset/FloorPills0.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f28a09a9eff1b0883abdc3bb12afa101bd756889ccd31244ae942058506f1c85"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1.imageset/FloorPills1.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f4ac0d62cfbdd3df7bc2072f07442c74da42fae3cf444c00ab35577d3a1bdffa"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2.imageset/FloorPills2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "eb0564224db3a51a77a652daef57262e9f5303e8c540d180dec1d274ce74bd6b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3.imageset/FloorPills3.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3e9db758fae339034c82feb58e577c351ca8cf1871704db89f060f03e1db43e4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4.imageset/FloorPills4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5ef73cb1054f5de3750f6a98b92f725716b0f48d3ab98aff2908a47c31624116"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5.imageset/FloorPills5.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "33a992f1f8fc8046c2c9507feedf1e76c1b065aa1cc170ca8c3c4126c4ed001c"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPillsLocked.imageset/FloorPillsLocked.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4789a3edc823fbfb2f6e14d8242fe171f44eee26e909d8bebb9e184b5cf6c03e"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0.imageset/FloorCoke0.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b81d87502524baa74a3d08d8af4f4ec217698b5924fc375bb19b17f9590de28d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1.imageset/FloorCoke1.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "30e7fbc7f8f5dabeaabdc00ad4fb9f404427102e425f1a2b23e9e050f1ff1977"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2.imageset/FloorCoke2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "764df1e6de929ca92ff3a0b37f9949c26b5cce80950f26ae8df067acbc5e69c1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3.imageset/FloorCoke3.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0ac416696cadd68f1b7cb63da22b0b3e2e12d1bd284cbaae678639b020cb0456"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4.imageset/FloorCoke4.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "566f417b129d18a67743295a371f6e5860af5023b54e26e2a8d455d35f72dc65"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5.imageset/FloorCoke5.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bc51aeeeeb9a5da8cd8c1dbbb6a0b0acf7d4423458c84dfa76841f513b87f664"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCokeLocked.imageset/FloorCokeLocked.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b331741ab611201103ab8392522eae3b38cf15780d8641dc8b1844f9ca20a15f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Foundation.imageset/Foundation.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "18d8aa451c4568ba4be84a32a694cce4b525dcddf2fbd746e83ac12bd948f3f1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorLampOn.imageset/FloorLampOn.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bc71756a3e9d8b71e5413d16e82717fac0922106bc3fdf4dbeb71cabcbd00285"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorLampOff.imageset/FloorLampOff.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0075d7f60203c3037f81a7560e2cff33d4c3b522e6ea1eb9be892881fa160f71"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/PlantWeedSway8.imageset/PlantWeedSway8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "90a9fea35344e7b7c35489d9371962e3237d848ff9d1fc750b0415ee787c0cdd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FlaskBubble8.imageset/FlaskBubble8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "3985aa81c5bf87f1f65165827bd77d84dd5498e7fbd2f93ad5e0fbfd24528425"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/PressStamp6.imageset/PressStamp6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "08630fc7697d987d8779d5e3709c99e76a1ff5b39cd62047c0bed555cdda4b9a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ScaleTip6.imageset/ScaleTip6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "47ace2518b200dae386e19e60216c017e8f25dbd674c5ef524c2b776b99d4c4d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ConveyorPills8.imageset/ConveyorPills8.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "de73d801dc7aafc82c645c0bcf194c4ce22f708af2332e18ac5ed5df77da5a28"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SteamPuff6.imageset/SteamPuff6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9568b33f46a9d7f679a7c35144144c86690fb888446a221c4dd79a6335d6c939"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DustPuff6.imageset/DustPuff6.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "36d236d40c2f058116a1a7c849ca9bc5311eaed2f080ce1033712028095e597b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed0.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f97cea813a776c679938a33aacaa80a6b93ed03fd2f0faf7bd4524e093834780"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed1.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "75323b2776cb135f0dfb208e73d758ea35adaa866a430977ba549ed8aa0d97a2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6a577568e4e16ccdc135a04392fd232593711f9d3dac7db216eadd8c687b4297"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed3.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "13371f6f7ef6d7f6fad34e49d0ecb8434035f2598d226b93c7c2ed673f6bcec2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "24e72f9e5964393754dd807ec0e10f79c9452ea6aabe811d5745f8c35f52fd67"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeed5.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "8b0a8a18d69aae8aa8060bd29e1bf8752e7cc928f981d0602900631dee00ebe4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorWeedLocked.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4a0bd3c3a25f4e4e56825afc10515e1c65b273f943828b09a175b6f87e2d78a4"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal0.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2669203bd6add4563b91c483048d2a4dfac12725e1ff6eacf963ea1f22d637b6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal1.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "75749779f4029e351b02f6d4be6f9ddb46d075b6906181ac4decdddb8e4db022"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5495664c4b2371eb91da7788dc98c4baa173febff98c8759c7e6651ac781b102"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal3.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f9d5b45ad8a3b92e5357a9c404d3f371107deee9c95baeb5515c2d82828b05f6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ceda45d72ee91b9fcbba466e7e22d947885346597c90bcf6ef5d0b4b93411ba1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystal5.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9e8e5c1393ab1a5380aee5147ef9eaa9de2e67f9674dba49d1aaf22f43b9abc2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCrystalLocked.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "01fe937b153a2a8f3e7a0c3b1cd232f9b878934526b085506f216366f30de9fd"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills0.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a9a4808c0082d45ff128f156fd594efce1a5696f3f8599d5afaffc43e20c50ea"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills1.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f6987d65bc8e9e956aac69a5876a3e1ea4b1e3234d5f4de50b696956e1a4e1e3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d0d04ab375a30a3e7324626e04c4fda0abb42fdbb44a5aaa3ea8253c7876a215"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills3.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4ab4cd969de3c928c31936466fd533925fb81c2818759c5dc96533c71e0bcf86"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b6e7070b7752a8d30eea343c12ccf90dc26e0c92f1eb5a343b859df95bcab8e5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPills5.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "692f0cd9c0a90bd00d3c6b93467768a61a3da0a522615a9ba0a2eba77c948260"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorPillsLocked.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "7c939ac85e93edf28ec405c05133205357d726a77679c3ce6ec6bc6615f70e9f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke0.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "26ff6598ee2574e0198344ad4800bed01f790b06f35e2316280a8dc73f867a26"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke1.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a8fc18df4efc5981a7d3313decaadae361de8bcf7c64f4758381bcb7718a3239"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6b739183ba0a79bdc4de3c59ffa3eec39d107fc3d2d407e484bc0141bb1e8d29"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke3.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "52415fd7eed626910c3a5d2d6ae08594b31ce662a43f23be8c9bd367de1ef568"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke4.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ce94bac8077a78850c4d09e71b0552b141ecbad37178a4a3fbc80f25000b37b3"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCoke5.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a1298431f7f0ee6eda370e8c9d76bd676d9b719bd474d33477738b787500f351"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorCokeLocked.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0a5fa5b8eb6c07ff8d37da734ee4d1a69a3de9e45ef194985d13cc3f284e2978"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Foundation.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5805bcd54de3cd5e47635120c7f7c883b0e33625dce883e88148d2c83b764b49"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorLampOn.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "bebd35884cd773bcf4579e02a234f552ebe3352cceb4f6a17ac51546d78ab914"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FloorLampOff.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "06a55f91595f49bc9e113beb27427d463665f8f1e9d50e9b409b0b3aa8155052"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/PlantWeedSway8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ddf677a4011949b6582b2a7e3df42f30862f4e015bf03e20915c3b656ecad23d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/FlaskBubble8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c8cdc7f19e2c865b7362b42a5543bf39dc22a471c96251e39a2516971fe602d7"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/PressStamp6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "074aaea8568dde2613356168f7cf4aa161a1507dbc2122609ed911fa2b9c96ac"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ScaleTip6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0981049f2e0a80086e6c7b797c1293ee0a6128eca753d06d385a217d86ce89c9"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/ConveyorPills8.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "688bc744b6fff873b5ba6dd5ac6e06b24c62adae50f7ead825d8ac6bddc01daa"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/SteamPuff6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5f4283a76f34b6c51706c5a76678ea831fc5517de8fbf15e46f5def3be4a677b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/DustPuff6.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "37925100b3455a53e3321be3654909d0ae0191b104ff7572050636849bd8ac89"
   }
 ]
