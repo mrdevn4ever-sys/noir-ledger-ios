@@ -181,6 +181,8 @@ final class TycoonStore {
             onFeedback?(.raid)
         } else if state.police != nil && before.police == nil {
             onFeedback?(.alarm)
+        } else if state.call != nil && state.call?.id != before.call?.id {
+            onFeedback?(.decision)
         } else if state.suitcase != nil && before.suitcase == nil {
             onFeedback?(.decision)
         }
@@ -208,6 +210,13 @@ final class TycoonStore {
             return r.gained
         }
         acceptedCount += 1
+        if case .answerCall = action {
+            switch r.won {
+            case .some(true): show("call_won")
+            case .some(false): show("call_lost", danger: true)
+            case .none: show("call_done")
+            }
+        }
         report(action, from: before)
         save()
         return r.gained
@@ -227,14 +236,18 @@ final class TycoonStore {
         case .open(let f):
             celebrate(.opened(f))
             onFeedback?(.milestone)
-        case .hireManager(let f):
+        case .hireManager(let f, _):
             celebrate(.manager(f))
             onFeedback?(.chapter)
         case .changeCity:
             celebrate(.newCity(state.meta.reputation - before.meta.reputation))
             onFeedback?(.prestige)
-        case .buyDeal, .bribe:
+        case .buyDeal, .bribe, .setCut:
             onFeedback?(.buy)
+        case .answerCall:
+            onFeedback?(.claim)
+        case .declineCall:
+            break
         case .grabSuitcase, .claimMission, .claimDaily, .collectOffline, .adReward:
             onFeedback?(.claim)
         case .grant:
@@ -335,6 +348,12 @@ final class TycoonStore {
 }
 
 extension FloorId {
+    /// Crew id of the floor's manager of the given kind (the hustler when none was chosen).
+    func managerId(_ trait: ManagerTrait?) -> String {
+        let def = TycoonContent.floor(self)
+        return trait == .ghost ? def.ghostId : def.managerId
+    }
+
     /// The 2.x product whose art, names and colours this floor uses.
     var product: ProductId {
         switch self {

@@ -55,6 +55,17 @@ final class ScreenshotTourUITests: NoirUITestCase {
         shot(p + "12_suitcase")
         app.terminate()
 
+        launch(["-qa-reset", "-qa-scenario", "call", "-qa-quiet"], language: lang)
+        wait("call.option.0")
+        shot(p + "16_call")
+        app.terminate()
+
+        launch(["-qa-reset", "-qa-seed", "5", "-qa-scenario", "starter", "-qa-quiet"], language: lang)
+        wait("screen.tycoon")
+        reveal(element("floor.WEED.manager.ghost"))
+        shot(p + "17_manager_pick")
+        app.terminate()
+
         launch(["-qa-reset", "-qa-scenario", "raid", "-qa-quiet"], language: lang)
         wait("raid.title")
         shot(p + "13_raid")

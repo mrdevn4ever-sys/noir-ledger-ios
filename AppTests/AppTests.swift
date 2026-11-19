@@ -25,7 +25,25 @@ struct LocalizationTests {
         for e in ActionError.allCases { keys.append(Labels.error(e)) }
         for h in TycoonHint.allCases { keys.append(TycoonText.hint(h)) }
         keys += ["ty_suitcase_got", "ad_unavailable", "ad_dismissed", "shop_pending", "shop_failed", "save_failed"]
+        keys += ["call_won", "call_lost", "call_done"]
+        for c in Cut.allCases { keys += [CutText.name(c), CutText.desc(c)] }
+        for call in TycoonContent.calls {
+            keys.append("call_\(call.id)_b")
+            for i in call.options.indices { keys.append("call_\(call.id)_o\(i)") }
+        }
         return keys
+    }
+
+    @Test("Every answer to every call says in words what it does, in both languages")
+    func callTexts() {
+        for call in TycoonContent.calls {
+            for effects in call.options {
+                for table in [en, de] {
+                    let text = CallText.effects(effects, unit: 1_000, table)
+                    #expect(!text.isEmpty && !text.contains("ty_fx"), "untranslated effect in \(call.id)")
+                }
+            }
+        }
     }
 
     @Test("Every label derived from game content exists in both languages")

@@ -9,10 +9,10 @@ import NoirCore
 /// - `-qa-corrupt-save`       overwrite the primary save with garbage before loading (backup recovery)
 /// - `-qa-future-save`        write a save from a newer schema before loading
 /// - `-qa-seed N`             seed for a fresh city
-/// - `-qa-scenario NAME`      starter, rich, police, suitcase, change, raid
+/// - `-qa-scenario NAME`      starter, rich, police, suitcase, change, raid, call
 /// - `-qa-away SECONDS`       pretend the app was closed this long (return summary)
 /// - `-qa-timescale X`        game seconds per real second
-/// - `-qa-quiet`              no Heat, no police and no suitcases during the session (applied before the scenario)
+/// - `-qa-quiet`              no Heat, no police, no suitcases and no calls during the session (applied before the scenario)
 /// - `-qa-ads`                sponsor videos finish instantly (read by `AdService`)
 enum QAAccelerator {
     private static var args: [String] { ProcessInfo.processInfo.arguments }
@@ -58,6 +58,8 @@ enum QAAccelerator {
             s.police = nil
             s.suitcase = nil
             s.nextSuitcaseAt = s.time + 1e9
+            s.call = nil
+            s.nextCallAt = s.time + 1e9
             store.replaceState(s)
         }
         if let name = value("-qa-scenario") {
@@ -82,14 +84,16 @@ enum QAAccelerator {
         switch name {
         case "starter":
             s.cash = 2_000
-        case "rich", "police", "suitcase", "change", "raid":
+        case "rich", "police", "suitcase", "change", "raid", "call":
             for f in FloorId.allCases {
                 s.updateFloor(f) { fl in
                     fl.count = max(fl.count, f == .weed ? 120 : 40)
                     fl.manager = true
                     fl.running = true
+                    fl.trait = f == .pills || f == .coke ? .ghost : .hustler
                 }
             }
+            s.updateFloor(.weed) { $0.cut = .cut }
             s.cash = 5e8
             s.runEarned = 2e8
             s.totalEarned = max(s.totalEarned, 2e8)
@@ -107,6 +111,9 @@ enum QAAccelerator {
             case "raid":
                 s.lastRaidLoss = 1.25e8
                 s.cash = 3.75e8
+            case "call":
+                s.call = ActiveCall(id: "villa", expiresAt: s.time + 600)
+                s.lastCallId = "villa"
             default:
                 break
             }

@@ -162,6 +162,14 @@ struct OfflineSheet: View {
                         .font(.subheadline).foregroundStyle(Noir.amber)
                         .fixedSize(horizontal: false, vertical: true)
                     }
+                    if report.raidLoss > 0 {
+                        Label { Text(verbatim: t("ty_offline_raid", t.money(report.raidLoss))) } icon: {
+                            Image(systemName: "light.beacon.max.fill")
+                        }
+                        .font(.subheadline.weight(.semibold)).foregroundStyle(Noir.danger)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("offline.raid")
+                    }
                 }
                 if store.state.meta.offlineBonus > 0, store.rewardOffered(ads: ads) {
                     Button {

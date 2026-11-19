@@ -9,6 +9,11 @@ import Foundation
  * 100 the police pull up and must be bribed within 30 seconds or they raid a quarter of the cash. A suitcase of cash
  * turns up on the street now and then. Changing city (prestige) trades the run for reputation: +10 % on every payout.
  *
+ * 3.1 adds choices: every floor sells its goods pure, cut or laced (more cash, more Heat); each floor's manager is
+ * one of two candidates (the hustler sells more, the ghost draws less Heat); and the phone rings every minute or two
+ * with an offer that has to be answered within 25 seconds, some of them a gamble. Laced goods keep heating up while the
+ * player is away, so leaving with a hot building can end in a raid.
+ *
  * Deterministic: all randomness comes from the state's own SplitMix64 stream.
  */
 
@@ -30,8 +35,47 @@ public struct FloorDef: Sendable, Equatable {
     /// One-time price to open the floor (0 for the first).
     public let unlockCost: Double
     public let managerCost: Double
-    /// Crew id whose portrait is the floor's manager.
+    /// Crew id of the hustler candidate for manager.
     public let managerId: String
+    /// Crew id of the ghost candidate for manager.
+    public let ghostId: String
+}
+
+/// How the goods of a floor are sold: pure, cut, or laced. More cash per cycle, more Heat.
+public enum Cut: Int, Codable, Sendable, CaseIterable {
+    case pure = 0, cut = 1, laced = 2
+
+    public var revenue: Double { [1.0, 1.6, 2.5][rawValue] }
+    public var heat: Double { [1.0, 2.0, 4.0][rawValue] }
+}
+
+/// The two kinds of manager a floor can hire.
+public enum ManagerTrait: String, Codable, Sendable, CaseIterable {
+    /// Sells half as much again.
+    case hustler = "HUSTLER"
+    /// Draws half the Heat.
+    case ghost = "GHOST"
+}
+
+/// What answering a call does. Amounts in seconds are seconds of the building's full income at that moment.
+public indirect enum CallEffect: Sendable, Equatable {
+    case cash(seconds: Double)
+    case pay(seconds: Double)
+    case heat(Double)
+    /// The floor (nil: every floor) sells double for `seconds`.
+    case rush(FloorId?, seconds: Double)
+    case favors(Int)
+    case gamble(chance: Double, win: [CallEffect], lose: [CallEffect])
+}
+
+public struct CallDef: Sendable, Equatable, Identifiable {
+    public let id: String
+    /// Crew id of the caller, for the portrait.
+    public let caller: String
+    /// The call only comes once this floor is open.
+    public let needs: FloorId
+    /// One entry per answer; an empty list means hanging up.
+    public let options: [[CallEffect]]
 }
 
 public struct DealDef: Sendable, Equatable, Identifiable {
@@ -51,6 +95,9 @@ public enum MissionKind: Sendable, Equatable {
     case bribes(Int)
     case deals(Int)
     case prestige(Int)
+    case calls(Int)
+    /// Sell any floor's goods cut or laced.
+    case cut
 }
 
 public struct MissionDef: Sendable, Equatable, Identifiable {
@@ -62,10 +109,10 @@ public struct MissionDef: Sendable, Equatable, Identifiable {
 
 public enum TycoonContent {
     public static let floors: [FloorDef] = [
-        FloorDef(id: .weed, unitCost: 4, growth: 1.07, cycle: 1, revenue: 1, unlockCost: 0, managerCost: 1_000, managerId: "brandt"),
-        FloorDef(id: .pills, unitCost: 60, growth: 1.15, cycle: 3, revenue: 60, unlockCost: 400, managerCost: 15_000, managerId: "varga"),
-        FloorDef(id: .crystal, unitCost: 720, growth: 1.14, cycle: 6, revenue: 540, unlockCost: 6_000, managerCost: 100_000, managerId: "feld"),
-        FloorDef(id: .coke, unitCost: 8_640, growth: 1.13, cycle: 12, revenue: 4_320, unlockCost: 90_000, managerCost: 500_000, managerId: "wolff"),
+        FloorDef(id: .weed, unitCost: 4, growth: 1.07, cycle: 1, revenue: 1, unlockCost: 0, managerCost: 1_000, managerId: "brandt", ghostId: "okafor"),
+        FloorDef(id: .pills, unitCost: 60, growth: 1.15, cycle: 3, revenue: 60, unlockCost: 400, managerCost: 15_000, managerId: "varga", ghostId: "morgen"),
+        FloorDef(id: .crystal, unitCost: 720, growth: 1.14, cycle: 6, revenue: 540, unlockCost: 6_000, managerCost: 100_000, managerId: "feld", ghostId: "kessler"),
+        FloorDef(id: .coke, unitCost: 8_640, growth: 1.13, cycle: 12, revenue: 4_320, unlockCost: 90_000, managerCost: 500_000, managerId: "wolff", ghostId: "hollis"),
     ]
 
     public static func floor(_ id: FloorId) -> FloorDef { floors.first { $0.id == id }! }
@@ -96,6 +143,8 @@ public enum TycoonContent {
     public static let missions: [MissionDef] = [
         MissionDef(id: "own_weed_10", kind: .own(.weed, 10), reward: 5),
         MissionDef(id: "taps_50", kind: .taps(50), reward: 5),
+        MissionDef(id: "call_1", kind: .calls(1), reward: 5),
+        MissionDef(id: "cut_1", kind: .cut, reward: 5),
         MissionDef(id: "own_weed_25", kind: .own(.weed, 25), reward: 5),
         MissionDef(id: "open_pills", kind: .own(.pills, 1), reward: 5),
         MissionDef(id: "mgr_weed", kind: .manager(.weed), reward: 10),
@@ -105,6 +154,7 @@ public enum TycoonContent {
         MissionDef(id: "suitcase_1", kind: .suitcases(1), reward: 10),
         MissionDef(id: "mgr_pills", kind: .manager(.pills), reward: 10),
         MissionDef(id: "bribe_1", kind: .bribes(1), reward: 10),
+        MissionDef(id: "call_5", kind: .calls(5), reward: 10),
         MissionDef(id: "deal_1", kind: .deals(1), reward: 10),
         MissionDef(id: "own_weed_100", kind: .own(.weed, 100), reward: 15),
         MissionDef(id: "open_coke", kind: .own(.coke, 1), reward: 15),
@@ -116,6 +166,7 @@ public enum TycoonContent {
         MissionDef(id: "earn_1e7", kind: .earn(1e7), reward: 20),
         MissionDef(id: "own_coke_25", kind: .own(.coke, 25), reward: 20),
         MissionDef(id: "suitcase_10", kind: .suitcases(10), reward: 20),
+        MissionDef(id: "call_20", kind: .calls(20), reward: 20),
         MissionDef(id: "deal_3", kind: .deals(3), reward: 20),
         MissionDef(id: "earn_1e8", kind: .earn(1e8), reward: 25),
         MissionDef(id: "prestige_1", kind: .prestige(1), reward: 50),
@@ -133,8 +184,94 @@ public enum TycoonContent {
 
     public static func mission(_ id: String) -> MissionDef? { missions.first { $0.id == id } }
 
-    /// Heat per second while the operation runs: about five minutes from calm to the police.
+    /// Heat per second for a building whose floors weigh 2 together (two pure floors): about five minutes from calm to
+    /// the police. One pure floor takes ten, four pure floors two and a half. See `Tycoon.heatRate`.
     public static let heatPerSecond = 100.0 / 300
+    /// A hustler sells this much more; a ghost draws this share of the Heat.
+    public static let hustlerRevenue = 1.5
+    public static let ghostHeat = 0.5
+    /// A rush doubles sales.
+    public static let rushMultiplier = 2.0
+    /// Calls: the first after this many seconds, then one every `callGap`; each rings this long.
+    public static let firstCall = 40.0
+    public static let callGap: ClosedRange<Double> = 70...120
+    public static let callSeconds = 25.0
+
+    /// The phone. Black humour, real choices: every call has a safe answer and at least one that pays more for a risk.
+    public static let calls: [CallDef] = [
+        CallDef(id: "stag", caller: "okafor", needs: .weed, options: [
+            [.cash(seconds: 60), .heat(10)],
+            [.gamble(chance: 0.6, win: [.cash(seconds: 160)], lose: [.heat(35)])],
+            [],
+        ]),
+        CallDef(id: "student", caller: "sand", needs: .weed, options: [
+            [.gamble(chance: 0.5, win: [.cash(seconds: 120)], lose: [])],
+            [.cash(seconds: 25)],
+        ]),
+        CallDef(id: "grandma", caller: "brandt", needs: .weed, options: [
+            [.favors(3)],
+            [.cash(seconds: 20)],
+        ]),
+        CallDef(id: "dog", caller: "varga", needs: .weed, options: [
+            [.pay(seconds: 5), .heat(-20)],
+            [.heat(25)],
+        ]),
+        CallDef(id: "copper", caller: "kraus", needs: .weed, options: [
+            [.pay(seconds: 30), .heat(-50)],
+            [.gamble(chance: 0.5, win: [.heat(-50)], lose: [.heat(30)])],
+            [],
+        ]),
+        CallDef(id: "books", caller: "morgen", needs: .weed, options: [
+            [.pay(seconds: 15), .favors(5)],
+            [.cash(seconds: 30), .heat(15)],
+        ]),
+        CallDef(id: "rain", caller: "morgen", needs: .weed, options: [
+            [.pay(seconds: 10), .rush(nil, seconds: 120)],
+            [.heat(-25)],
+        ]),
+        CallDef(id: "snitch", caller: "reiter", needs: .weed, options: [
+            [.pay(seconds: 25), .heat(-30)],
+            [.gamble(chance: 0.6, win: [.heat(-40)], lose: [.heat(40)])],
+            [.heat(20)],
+        ]),
+        CallDef(id: "rival", caller: "sand", needs: .pills, options: [
+            [.rush(nil, seconds: 90), .heat(15)],
+            [.gamble(chance: 0.7, win: [.rush(nil, seconds: 180)], lose: [.heat(50)])],
+            [],
+        ]),
+        CallDef(id: "influencer", caller: "lind", needs: .pills, options: [
+            [.pay(seconds: 10), .rush(.pills, seconds: 240)],
+            [],
+        ]),
+        CallDef(id: "festival", caller: "hollis", needs: .pills, options: [
+            [.cash(seconds: 90), .heat(30)],
+            [.gamble(chance: 0.75, win: [.cash(seconds: 70)], lose: [.heat(20)])],
+            [],
+        ]),
+        CallDef(id: "chemist", caller: "kessler", needs: .crystal, options: [
+            [.gamble(chance: 0.5, win: [.rush(.crystal, seconds: 300)], lose: [.heat(40)])],
+            [],
+        ]),
+        CallDef(id: "podcast", caller: "lind", needs: .crystal, options: [
+            [.gamble(chance: 0.5, win: [.favors(10)], lose: [.heat(50)])],
+            [],
+        ]),
+        CallDef(id: "diplomat", caller: "kraus", needs: .coke, options: [
+            [.cash(seconds: 180), .heat(20)],
+            [],
+        ]),
+        CallDef(id: "bulk", caller: "wolff", needs: .coke, options: [
+            [.pay(seconds: 60), .rush(.coke, seconds: 300)],
+            [],
+        ]),
+        CallDef(id: "villa", caller: "okafor", needs: .coke, options: [
+            [.cash(seconds: 120), .heat(25)],
+            [.gamble(chance: 0.5, win: [.cash(seconds: 320)], lose: [.heat(60)])],
+            [],
+        ]),
+    ]
+
+    public static func call(_ id: String) -> CallDef? { calls.first { $0.id == id } }
     public static let policeSeconds = 30.0
     public static let raidShare = 0.25
     /// A bribe costs this many seconds of income.
@@ -158,6 +295,9 @@ public struct FloorState: Codable, Sendable, Equatable {
     /// Fraction of the current cycle, 0..<1.
     public var progress = 0.0
     public var running = false
+    public var cut = Cut.pure
+    /// The kind of manager hired; nil for a manager hired before 3.1 (no bonus).
+    public var trait: ManagerTrait?
 
     public init() {}
 }
@@ -170,6 +310,8 @@ extension FloorState {
         manager = c.value(.manager, false)
         progress = c.value(.progress, 0.0)
         running = c.value(.running, false)
+        cut = c.value(.cut, Cut.pure)
+        trait = c.value(.trait, nil)
     }
 }
 
@@ -196,7 +338,19 @@ public struct Suitcase: Codable, Sendable, Equatable {
     }
 }
 
+/// A call waiting to be answered.
+public struct ActiveCall: Codable, Sendable, Equatable {
+    public var id: String
+    public var expiresAt: Double
+
+    public init(id: String, expiresAt: Double) {
+        self.id = id
+        self.expiresAt = expiresAt
+    }
+}
+
 public struct TycoonCounters: Codable, Sendable, Equatable {
+    public var calls = 0
     public var suitcases = 0
     public var bribes = 0
     public var raids = 0
@@ -209,6 +363,7 @@ extension TycoonCounters {
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         self.init()
+        calls = c.value(.calls, 0)
         suitcases = c.value(.suitcases, 0)
         bribes = c.value(.bribes, 0)
         raids = c.value(.raids, 0)
@@ -236,6 +391,12 @@ public struct TycoonState: Codable, Sendable, Equatable {
     public var police: Police?
     public var suitcase: Suitcase?
     public var nextSuitcaseAt = 60.0
+    public var call: ActiveCall?
+    public var nextCallAt = TycoonContent.firstCall
+    /// The last call that rang, so the same one does not ring twice in a row.
+    public var lastCallId: String?
+    /// Seconds of double sales left per floor.
+    public var rush: [FloorId: Double] = [:]
     public var claimedMissions: [String] = []
     public var counters = TycoonCounters()
     /// The four first-steps hints have all been followed once.
@@ -275,6 +436,10 @@ extension TycoonState {
         police = c.value(.police, nil)
         suitcase = c.value(.suitcase, nil)
         nextSuitcaseAt = c.value(.nextSuitcaseAt, 60.0)
+        call = c.value(.call, nil)
+        nextCallAt = c.value(.nextCallAt, TycoonContent.firstCall)
+        lastCallId = c.value(.lastCallId, nil)
+        rush = c.value(.rush, [FloorId: Double]())
         claimedMissions = c.value(.claimedMissions, [String]())
         counters = c.value(.counters, TycoonCounters())
         hintsDone = c.value(.hintsDone, false)
@@ -296,6 +461,8 @@ public struct TycoonOffline: Sendable, Equatable {
     public var capped: Bool
     public var earned: Double
     public var clockMovedBack: Bool
+    /// Cash the police took while the player was away (laced goods kept heating up).
+    public var raidLoss = 0.0
 }
 
 public enum Tycoon {
@@ -347,9 +514,47 @@ public enum Tycoon {
         s.deals.compactMap(TycoonContent.deal).filter { $0.floor == nil || $0.floor == f }.reduce(1) { $0 * $1.multiplier }
     }
 
+    /// What the floor's cut and manager do to its payout.
+    public static func choiceMultiplier(_ s: TycoonState, _ f: FloorId) -> Double {
+        let fl = s.floor(f)
+        return fl.cut.revenue * (fl.manager && fl.trait == .hustler ? TycoonContent.hustlerRevenue : 1)
+    }
+
+    public static func rushMultiplier(_ s: TycoonState, _ f: FloorId) -> Double {
+        (s.rush[f] ?? 0) > 0 ? TycoonContent.rushMultiplier : 1
+    }
+
     /// Cash one cycle of the floor pays.
     public static func revenuePerCycle(_ s: TycoonState, _ f: FloorId) -> Double {
-        TycoonContent.floor(f).revenue * Double(s.floor(f).count) * dealMultiplier(s, f) * globalMultiplier(s)
+        TycoonContent.floor(f).revenue * Double(s.floor(f).count) * dealMultiplier(s, f) * choiceMultiplier(s, f)
+            * rushMultiplier(s, f) * globalMultiplier(s)
+    }
+
+    /// How much Heat a floor draws: its cut, halved by a ghost.
+    public static func heatWeight(_ s: TycoonState, _ f: FloorId) -> Double {
+        let fl = s.floor(f)
+        guard fl.count > 0 else { return 0 }
+        return fl.cut.heat * (fl.manager && fl.trait == .ghost ? TycoonContent.ghostHeat : 1)
+    }
+
+    /// Heat per second while playing, from the floors that are selling right now.
+    public static func heatRate(_ s: TycoonState) -> Double {
+        let weight = FloorId.allCases.filter { s.floor($0).count > 0 && (s.floor($0).running || s.floor($0).manager) }
+            .reduce(0) { $0 + heatWeight(s, $1) }
+        return TycoonContent.heatPerSecond * 0.5 * weight
+    }
+
+    /// Heat per second while away: only what managed floors draw above a pure, plain floor.
+    public static func offlineHeatRate(_ s: TycoonState) -> Double {
+        let excess = FloorId.allCases.filter { s.floor($0).manager }.reduce(0) { $0 + max(0, heatWeight(s, $1) - 1) }
+        return TycoonContent.heatPerSecond * 0.25 * excess
+    }
+
+    /// The cash one second of income is worth for calls (never less than a few dollars).
+    public static func callUnit(_ s: TycoonState) -> Double {
+        var plain = s
+        plain.rush = [:]
+        return max(5, fullRate(plain))
     }
 
     /// Cash per second the floor makes while it runs without pause.
@@ -424,6 +629,8 @@ public enum Tycoon {
         case .bribes(let n): return (Double(s.counters.bribes), Double(n))
         case .deals(let n): return (Double(s.deals.count), Double(n))
         case .prestige(let n): return (Double(s.meta.prestiges), Double(n))
+        case .calls(let n): return (Double(s.counters.calls), Double(n))
+        case .cut: return (FloorId.allCases.contains { s.floor($0).cut != .pure } ? 1 : 0, 1)
         }
     }
 
@@ -456,6 +663,9 @@ public enum Tycoon {
         s.time += dt
         if s.meta.boostSeconds > 0 { s.meta.boostSeconds = max(0, s.meta.boostSeconds - dt) }
         if s.meta.heatAidCooldown > 0 { s.meta.heatAidCooldown = max(0, s.meta.heatAidCooldown - dt) }
+        if !offline && !s.rush.isEmpty {
+            for (f, left) in s.rush { s.rush[f] = left - dt > 0 ? left - dt : nil }
+        }
         var earned = 0.0
         var anyRunning = false
         for f in FloorId.allCases {
@@ -493,10 +703,20 @@ public enum Tycoon {
         if let p = s.police {
             if s.time >= p.deadline { raid(&s) }
         } else if anyRunning {
-            s.heat = min(100, s.heat + TycoonContent.heatPerSecond * dt)
-            if s.heat >= 100 {
-                s.police = Police(arrivedAt: s.time, deadline: s.time + TycoonContent.policeSeconds)
+            s.heat = min(100, s.heat + heatRate(s) * dt)
+            if s.heat >= 100 { policeArrive(&s) }
+        }
+        // The phone.
+        if let c = s.call, s.time >= c.expiresAt { s.call = nil }
+        if s.call == nil && s.time >= s.nextCallAt && anyRunning {
+            let eligible = TycoonContent.calls.filter { isOpen(s, $0.needs) && $0.id != s.lastCallId }
+            if !eligible.isEmpty {
+                let pick = eligible[min(eligible.count - 1, Int(nextRandom(&s) * Double(eligible.count)))]
+                s.call = ActiveCall(id: pick.id, expiresAt: s.time + TycoonContent.callSeconds)
+                s.lastCallId = pick.id
             }
+            let gap = TycoonContent.callGap
+            s.nextCallAt = s.time + TycoonContent.callSeconds + gap.lowerBound + (gap.upperBound - gap.lowerBound) * nextRandom(&s)
         }
         // A suitcase on the street.
         if let c = s.suitcase, s.time >= c.expiresAt { s.suitcase = nil }
@@ -517,6 +737,11 @@ public enum Tycoon {
         s.meta.lifetimeDirty += amount
     }
 
+    static func policeArrive(_ s: inout TycoonState) {
+        s.heat = 100
+        if s.police == nil { s.police = Police(arrivedAt: s.time, deadline: s.time + TycoonContent.policeSeconds) }
+    }
+
     static func raid(_ s: inout TycoonState) {
         let loss = s.cash * TycoonContent.raidShare
         s.cash -= loss
@@ -530,6 +755,7 @@ public enum Tycoon {
     static func managedEarnings(_ s: TycoonState, seconds: Double) -> Double {
         var plain = s
         plain.meta.boostSeconds = 0
+        plain.rush = [:]
         let base = managedRate(plain)
         let boosted = min(max(0, s.meta.boostSeconds), seconds)
         return base * (seconds + boosted * (Idle.boostMultiplier - 1))
@@ -548,10 +774,20 @@ public enum Tycoon {
         if elapsed < 5 { return (s, nil) }
         let cap = TycoonContent.offlineCapSeconds * (s.meta.premium ? 2 : 1)
         let credited = min(elapsed, cap)
+        let heatUp = s.police == nil ? offlineHeatRate(s) * credited : 0
         let earned = passTime(&s, seconds: credited)
-        if elapsed < 60 { return (s, nil) }
+        var raidLoss = 0.0
+        if heatUp > 0 {
+            s.heat = min(100, s.heat + heatUp)
+            if s.heat >= 100 {
+                raid(&s)
+                raidLoss = s.lastRaidLoss ?? 0
+            }
+        }
+        if elapsed < 60 && raidLoss == 0 { return (s, nil) }
         s.meta.offlineBonus = earned
-        return (s, TycoonOffline(awaySeconds: elapsed, creditedSeconds: credited, capped: elapsed > cap, earned: earned, clockMovedBack: false))
+        return (s, TycoonOffline(awaySeconds: elapsed, creditedSeconds: credited, capped: elapsed > cap, earned: earned,
+                                 clockMovedBack: false, raidLoss: raidLoss))
     }
 
     /// Lets `seconds` pass as time away: managed floors earn, timers run, nothing else happens. Returns the cash earned.
@@ -565,6 +801,9 @@ public enum Tycoon {
         if s.police != nil { s.police?.deadline += seconds }
         s.nextSuitcaseAt = max(s.nextSuitcaseAt, s.time + 20)
         s.suitcase = nil
+        s.call = nil
+        s.nextCallAt = max(s.nextCallAt, s.time + 20)
+        s.rush = [:]
         return earned
     }
 }
@@ -577,7 +816,13 @@ public enum TycoonAction: Sendable, Equatable {
     /// Buys `amount` units; 0 buys as many as the cash allows.
     case buy(FloorId, Int)
     case open(FloorId)
-    case hireManager(FloorId)
+    case hireManager(FloorId, ManagerTrait = .hustler)
+    /// Sell a floor's goods pure, cut or laced.
+    case setCut(FloorId, Cut)
+    /// Answer the ringing call with option `index`.
+    case answerCall(Int)
+    /// Hang up without an answer.
+    case declineCall
     case buyDeal(String)
     case bribe
     case grabSuitcase
@@ -597,6 +842,8 @@ public struct TycoonResult: Sendable {
     public let error: ActionError?
     /// Cash the action paid out (taps, suitcases, missions), for floaters.
     public let gained: Double
+    /// For a call with a gamble: whether it paid off.
+    public var won: Bool? = nil
 
     public var isOK: Bool { error == nil }
 }
@@ -636,13 +883,37 @@ extension Tycoon {
             s.updateFloor(f) { $0.count = 1 }
             return done()
 
-        case .hireManager(let f):
+        case .hireManager(let f, let trait):
             guard isOpen(s, f) else { return fail(.locked) }
             guard !s.floor(f).manager else { return fail(.invalid) }
             let cost = TycoonContent.floor(f).managerCost
             guard s.cash >= cost - 1e-9 else { return fail(.notAffordable) }
             s.cash -= cost
-            s.updateFloor(f) { $0.manager = true; $0.running = true }
+            s.updateFloor(f) { $0.manager = true; $0.running = true; $0.trait = trait }
+            return done()
+
+        case .setCut(let f, let cut):
+            guard isOpen(s, f) else { return fail(.locked) }
+            guard s.floor(f).cut != cut else { return fail(.invalid) }
+            s.updateFloor(f) { $0.cut = cut }
+            return done()
+
+        case .answerCall(let index):
+            guard let c = s.call, s.time < c.expiresAt, let def = TycoonContent.call(c.id) else { return fail(.invalid) }
+            guard def.options.indices.contains(index) else { return fail(.invalid) }
+            let effects = def.options[index]
+            let price = cashCost(effects, unit: callUnit(s))
+            guard s.cash >= price - 1e-9 else { return fail(.notAffordable) }
+            s.call = nil
+            s.counters.calls += 1
+            var won: Bool?
+            let unit = callUnit(s)
+            let gained = apply(effects, to: &s, unit: unit, won: &won)
+            return TycoonResult(state: s, error: nil, gained: gained, won: won)
+
+        case .declineCall:
+            guard s.call != nil else { return fail(.invalid) }
+            s.call = nil
             return done()
 
         case .buyDeal(let id):
@@ -691,6 +962,7 @@ extension Tycoon {
             fresh.counters = s.counters
             fresh.hintsDone = true
             fresh.nextSuitcaseAt = s.time + 60
+            fresh.nextCallAt = s.time + TycoonContent.firstCall
             s = fresh
             return done()
 
@@ -786,6 +1058,48 @@ extension Tycoon {
             s.meta.offlineBonus = 0
             return done(gained)
         }
+    }
+}
+
+// MARK: - Calls
+
+extension Tycoon {
+    /// Cash an answer costs up front (only certain payments; a gamble never costs).
+    public static func cashCost(_ effects: [CallEffect], unit: Double) -> Double {
+        effects.reduce(0) { total, e in
+            if case .pay(let seconds) = e { return total + seconds * unit }
+            return total
+        }
+    }
+
+    /// Applies the effects and returns the cash they paid out.
+    static func apply(_ effects: [CallEffect], to s: inout TycoonState, unit: Double, won: inout Bool?) -> Double {
+        var gained = 0.0
+        for e in effects {
+            switch e {
+            case .cash(let seconds):
+                let amount = seconds * unit
+                credit(&s, amount)
+                gained += amount
+            case .pay(let seconds):
+                s.cash = max(0, s.cash - seconds * unit)
+            case .heat(let delta):
+                s.heat = min(100, max(0, s.heat + delta))
+                if s.heat >= 100 { policeArrive(&s) }
+            case .rush(let floor, let seconds):
+                for f in FloorId.allCases where isOpen(s, f) && (floor == nil || floor == f) {
+                    s.rush[f] = (s.rush[f] ?? 0) + seconds
+                }
+            case .favors(let n):
+                s.meta.favors += n
+            case .gamble(let chance, let win, let lose):
+                let ok = nextRandom(&s) < chance
+                won = ok
+                gained += apply(ok ? win : lose, to: &s, unit: unit, won: &won)
+                won = ok
+            }
+        }
+        return gained
     }
 }
 
@@ -901,6 +1215,9 @@ public struct TycoonSaveStore: Sendable {
         s.meta.reputation = max(0, s.meta.reputation)
         s.meta.boostSeconds = fix(s.meta.boostSeconds, 0, Idle.boostCapSeconds)
         s.meta.offlineBonus = fix(s.meta.offlineBonus)
+        if let c = s.call, TycoonContent.call(c.id) == nil { s.call = nil }
+        s.nextCallAt = fix(s.nextCallAt)
+        s.rush = s.rush.filter { $0.value.isFinite && $0.value > 0 }.mapValues { min($0, 3_600) }
         if s.lastWallClockMs < 0 { s.lastWallClockMs = 0 }
     }
 }

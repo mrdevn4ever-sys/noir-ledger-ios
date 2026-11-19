@@ -119,7 +119,7 @@ struct CelebrationBanner: View {
         switch kind {
         case .milestone(let f, let count): t("ty_cel_milestone_b", t(Labels.product(f.product)), count)
         case .opened(let f): t("ty_cel_opened_b", t(Labels.product(f.product)))
-        case .manager(let f): t("ty_cel_manager_b", Content.crewDef(TycoonContent.floor(f).managerId)?.name ?? "", t(Labels.product(f.product)))
+        case .manager(let f): t("ty_cel_manager_b", Content.crewDef(f.managerId(store.state.floor(f).trait))?.name ?? "", t(Labels.product(f.product)))
         case .newCity(let gain): t("ty_cel_city_b", gain)
         }
     }

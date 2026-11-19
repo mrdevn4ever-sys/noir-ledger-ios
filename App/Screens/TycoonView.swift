@@ -58,7 +58,13 @@ struct TycoonView: View {
         .background(Noir.ground)
         .safeAreaInset(edge: .top, spacing: 0) { TopBar(state: s, sheet: $sheet).dynamicTypeSize(...DynamicTypeSize.xxLarge) }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            if let notice = store.notice { NoticeBanner(notice: notice).padding(Noir.s3) }
+            VStack(spacing: Noir.s2) {
+                if let call = s.call { CallCard(call: call, state: s).transition(.move(edge: .bottom).combined(with: .opacity)) }
+                if let notice = store.notice { NoticeBanner(notice: notice) }
+            }
+            .padding(.horizontal, Noir.s3)
+            .padding(.bottom, s.call != nil || store.notice != nil ? Noir.s2 : 0)
+            .animation(.snappy, value: s.call?.id)
         }
         .sheet(item: $sheet) { kind in
             NavigationStack { sheetContent(kind) }
@@ -174,6 +180,10 @@ struct HeatBar: View {
                     Text(verbatim: t("ty_heat")).font(.caption.weight(.semibold))
                 }
                 Spacer(minLength: 0)
+                if state.police == nil, Tycoon.heatRate(state) > 0 {
+                    Text(verbatim: t("ty_heat_rate", t.decimal(Tycoon.heatRate(state) * 60, digits: 0)))
+                        .font(.caption2.weight(.semibold)).monospacedDigit()
+                }
                 Text(verbatim: t.decimal(state.heat, digits: 0)).font(.caption.weight(.bold)).monospacedDigit()
             }
             .foregroundStyle(state.police != nil || state.heat >= 75 ? Noir.danger : Noir.inkSoft)
@@ -298,6 +308,8 @@ enum TycoonText {
         case .bribes(let n): t("ty_m_bribes", n)
         case .deals(let n): t("ty_m_deals", n)
         case .prestige(let n): t("ty_m_prestige", n)
+        case .calls(let n): t("ty_m_calls", n)
+        case .cut: t("ty_m_cut")
         }
     }
 
@@ -414,6 +426,7 @@ struct FloorCard: View {
             .accessibilityIdentifier("floor.\(floor.rawValue)")
             Meter(fraction: fl.running || fl.manager ? fl.progress : 0, tint: SceneTint.product(p), height: 6)
             controls(fl)
+            CutPicker(floor: floor, state: state)
             if !fl.manager { ManagerRow(floor: floor, state: state) }
         }
         .foregroundStyle(Noir.ink)
@@ -436,11 +449,20 @@ struct FloorCard: View {
                     .accessibilityIdentifier("floor.\(floor.rawValue).count")
             }
             Spacer(minLength: 0)
+            if let left = state.rush[floor], left > 0 {
+                Label { Text(verbatim: "×2 · " + t.duration(left)).monospacedDigit() } icon: { Image(systemName: "flame.fill") }
+                    .font(.caption.weight(.heavy))
+                    .padding(.horizontal, Noir.s2).padding(.vertical, 3)
+                    .foregroundStyle(Noir.onAmber)
+                    .background(Noir.amberFill, in: Capsule())
+                    .accessibilityIdentifier("floor.\(floor.rawValue).rush")
+            }
             if fl.manager {
                 HStack(spacing: Noir.s1) {
-                    Portrait(crewId: TycoonContent.floor(floor).managerId, size: 30)
+                    Portrait(crewId: floor.managerId(fl.trait), size: 30)
                         .clipShape(Circle())
-                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Noir.amber).imageScale(.small)
+                    Image(systemName: fl.trait == .ghost ? "eye.slash.circle.fill" : "checkmark.circle.fill")
+                        .foregroundStyle(Noir.amber).imageScale(.small)
                 }
                 .accessibilityHidden(true)
             }
@@ -502,39 +524,214 @@ struct FloorCard: View {
     }
 }
 
-/// The floor's manager, until hired: a face, a name and what they do.
+/// The floor's manager, until hired: two candidates to choose from, the hustler and the ghost.
 struct ManagerRow: View {
+    let floor: FloorId
+    let state: TycoonState
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let def = TycoonContent.floor(floor)
+        VStack(alignment: .leading, spacing: Noir.s2) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(verbatim: t("ty_mgr_pick")).font(.subheadline.weight(.bold))
+                Spacer(minLength: Noir.s2)
+                Text(verbatim: t.money(def.managerCost)).font(.subheadline.weight(.bold)).monospacedDigit()
+                    .foregroundStyle(state.cash >= def.managerCost ? Noir.amber : Noir.inkSoft)
+            }
+            Text(verbatim: t("ty_manager_b")).font(.caption).foregroundStyle(Noir.inkSoft)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack(spacing: Noir.s2) {
+                ManagerCandidate(floor: floor, trait: .hustler, state: state)
+                ManagerCandidate(floor: floor, trait: .ghost, state: state)
+            }
+        }
+        .padding(.horizontal, Noir.s3)
+        .padding(.bottom, Noir.s3)
+    }
+}
+
+/// One of the two people who could run a floor.
+struct ManagerCandidate: View {
+    let floor: FloorId
+    let trait: ManagerTrait
+    let state: TycoonState
+    @Environment(TycoonStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        let crew = floor.managerId(trait)
+        let name = Content.crewDef(crew)?.name ?? ""
+        let affordable = state.cash >= TycoonContent.floor(floor).managerCost
+        Button {
+            store.dispatch(.hireManager(floor, trait))
+        } label: {
+            VStack(spacing: 3) {
+                Portrait(crewId: crew, size: 46).clipShape(Circle())
+                Text(verbatim: name).font(.caption.weight(.bold)).lineLimit(1).minimumScaleFactor(0.7)
+                Label { Text(verbatim: t(trait == .hustler ? "ty_mgr_hustler" : "ty_mgr_ghost")) } icon: {
+                    Image(systemName: trait == .hustler ? "banknote.fill" : "eye.slash.fill")
+                }
+                .font(.caption.weight(.heavy))
+                .foregroundStyle(Noir.amber)
+                Text(verbatim: t(trait == .hustler ? "ty_mgr_hustler_b" : "ty_mgr_ghost_b"))
+                    .font(.caption2).foregroundStyle(Noir.inkSoft)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text(verbatim: t("ty_manager_hire"))
+                    .font(.footnote.weight(.bold))
+                    .frame(maxWidth: .infinity, minHeight: 34)
+                    .foregroundStyle(affordable ? Noir.onAmber : Noir.inkSoft)
+                    .background(affordable ? Noir.amberFill : Noir.raised, in: Capsule())
+                    .padding(.top, 2)
+            }
+            .padding(Noir.s2)
+            .frame(maxWidth: .infinity)
+            .background(Noir.ground.opacity(0.55), in: RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous)
+                .strokeBorder(affordable ? Noir.amber.opacity(0.7) : Noir.hairline, lineWidth: 1))
+            .foregroundStyle(Noir.ink)
+        }
+        .buttonStyle(.plain)
+        .disabled(!affordable)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier(trait == .hustler ? "floor.\(floor.rawValue).manager" : "floor.\(floor.rawValue).manager.ghost")
+    }
+}
+
+/// How the floor sells its goods: pure, cut or laced.
+struct CutPicker: View {
     let floor: FloorId
     let state: TycoonState
     @Environment(TycoonStore.self) private var store
     @Environment(\.l10n) private var t
 
     var body: some View {
-        let def = TycoonContent.floor(floor)
-        let name = Content.crewDef(def.managerId)?.name ?? ""
-        let affordable = state.cash >= def.managerCost
-        HStack(spacing: Noir.s3) {
-            Portrait(crewId: def.managerId, size: 44).clipShape(Circle())
-            VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: t("ty_manager_t", name)).font(.subheadline.weight(.semibold))
-                Text(verbatim: t("ty_manager_b")).font(.caption).foregroundStyle(Noir.inkSoft)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            Button {
-                store.dispatch(.hireManager(floor))
-            } label: {
-                VStack(spacing: 2) {
-                    Text(verbatim: t("ty_manager_hire"))
-                    Text(verbatim: t.money(def.managerCost)).font(.caption.weight(.semibold)).monospacedDigit().opacity(0.85)
+        let current = state.floor(floor).cut
+        VStack(alignment: .leading, spacing: Noir.s1) {
+            HStack(spacing: Noir.s2) {
+                ForEach(Cut.allCases, id: \.self) { cut in
+                    let selected = cut == current
+                    Button {
+                        store.dispatch(.setCut(floor, cut))
+                    } label: {
+                        VStack(spacing: 1) {
+                            Text(verbatim: t(CutText.name(cut))).font(.caption.weight(.bold)).lineLimit(1).minimumScaleFactor(0.7)
+                            Text(verbatim: t("ty_cut_mult", t.decimal(cut.revenue, digits: 1), t.decimal(cut.heat, digits: 0)))
+                                .font(.caption2).monospacedDigit().lineLimit(1).minimumScaleFactor(0.7)
+                                .opacity(0.85)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: Noir.minTarget)
+                        .foregroundStyle(selected ? (cut == .laced ? Noir.onDanger : Noir.onAmber) : Noir.ink)
+                        .background(selected ? (cut == .laced ? Noir.dangerFill : Noir.amberFill) : Noir.raised,
+                                    in: RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: Noir.controlCorner, style: .continuous)
+                            .strokeBorder(selected ? Color.clear : Noir.hairline, lineWidth: 1))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityAddTraits(selected ? .isSelected : [])
+                    .accessibilityIdentifier("floor.\(floor.rawValue).cut.\(cut.rawValue)")
                 }
             }
-            .noirButton(affordable ? .primary : .secondary, fullWidth: false)
-            .disabled(!affordable)
-            .accessibilityIdentifier("floor.\(floor.rawValue).manager")
+            Text(verbatim: t(CutText.desc(current))).font(.caption2).foregroundStyle(current == .laced ? Noir.danger : Noir.inkSoft)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.horizontal, Noir.s3)
         .padding(.bottom, Noir.s3)
+    }
+}
+
+enum CutText {
+    static func name(_ c: Cut) -> String { ["ty_cut_pure", "ty_cut_cut", "ty_cut_laced"][c.rawValue] }
+    static func desc(_ c: Cut) -> String { ["ty_cut_pure_b", "ty_cut_cut_b", "ty_cut_laced_b"][c.rawValue] }
+}
+
+// MARK: - The phone
+
+/// An incoming call: who, what they want, and two or three answers with what each one does.
+struct CallCard: View {
+    let call: ActiveCall
+    let state: TycoonState
+    @Environment(TycoonStore.self) private var store
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        if let def = TycoonContent.call(call.id) {
+            let unit = Tycoon.callUnit(state)
+            let left = max(0, call.expiresAt - state.time)
+            VStack(alignment: .leading, spacing: Noir.s2) {
+                HStack(spacing: Noir.s3) {
+                    Portrait(crewId: def.caller, size: 42).clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 1) {
+                        Label { Text(verbatim: t("ty_call_from", Content.crewDef(def.caller)?.name ?? "")) } icon: {
+                            Image(systemName: "phone.fill")
+                        }
+                        .font(.subheadline.weight(.bold))
+                        .accessibilityIdentifier("call.card")
+                        Text(verbatim: t("ty_call_hangs", t.duration(left))).font(.caption).monospacedDigit()
+                            .foregroundStyle(left < 8 ? Noir.paperRed : Noir.paperInk.opacity(0.7))
+                    }
+                    Spacer(minLength: 0)
+                    Button { store.dispatch(.declineCall) } label: {
+                        Image(systemName: "phone.down.fill")
+                            .frame(width: Noir.minTarget, height: Noir.minTarget)
+                            .foregroundStyle(Noir.onDanger)
+                            .background(Noir.dangerFill, in: Circle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(verbatim: t("ty_call_decline")))
+                    .accessibilityIdentifier("call.decline")
+                }
+                Meter(fraction: left / TycoonContent.callSeconds, tint: left < 8 ? Noir.paperRed : Noir.paperGold, height: 3)
+                Text(verbatim: t("call_\(def.id)_b")).font(.subheadline).fixedSize(horizontal: false, vertical: true)
+                ForEach(Array(def.options.enumerated()), id: \.offset) { i, effects in
+                    let price = Tycoon.cashCost(effects, unit: unit)
+                    Button {
+                        store.dispatch(.answerCall(i))
+                    } label: {
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(verbatim: t("call_\(def.id)_o\(i)")).font(.subheadline.weight(.bold))
+                            Text(verbatim: CallText.effects(effects, unit: unit, t)).font(.caption).opacity(0.85)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .noirButton(effects.isEmpty ? .secondary : .primary)
+                    .disabled(state.cash < price - 1e-9)
+                    .accessibilityIdentifier("call.option.\(i)")
+                }
+            }
+            .padding(Noir.s3)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(Noir.paperInk)
+            .background(Noir.paper, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.amber, lineWidth: 2))
+            .shadow(color: .black.opacity(0.5), radius: 16, y: 4)
+            .environment(\.noirSurface, .paper)
+            .dynamicTypeSize(...DynamicTypeSize.xxLarge)
+        }
+    }
+}
+
+/// What an answer does, in words: "+1.2k · Heat +10", "60 % chance: +5k · otherwise: Heat +35".
+enum CallText {
+    static func effects(_ effects: [CallEffect], unit: Double, _ t: L10n) -> String {
+        if effects.isEmpty { return t("ty_fx_nothing") }
+        return effects.map { effect($0, unit: unit, t) }.joined(separator: " · ")
+    }
+
+    static func effect(_ e: CallEffect, unit: Double, _ t: L10n) -> String {
+        switch e {
+        case .cash(let seconds): return "+" + t.money(seconds * unit)
+        case .pay(let seconds): return "−" + t.money(seconds * unit)
+        case .heat(let d): return t(d >= 0 ? "ty_fx_heat_up" : "ty_fx_heat_down", t.decimal(abs(d), digits: 0))
+        case .rush(let f, let seconds):
+            if let f { return t("ty_fx_rush", t(Labels.product(f.product)), t.duration(seconds)) }
+            return t("ty_fx_rush_all", t.duration(seconds))
+        case .favors(let n): return t("ty_fx_favors", n)
+        case .gamble(let chance, let win, let lose):
+            return t("ty_fx_gamble", t.percent(chance), effects(win, unit: unit, t), effects(lose, unit: unit, t))
+        }
     }
 }
 

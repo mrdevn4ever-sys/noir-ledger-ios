@@ -61,6 +61,18 @@ final class GameFlowUITests: NoirUITestCase {
         XCTAssertFalse(element("street.suitcase").waitForExistence(timeout: 2), "the suitcase is taken")
     }
 
+    func testCallAnswerAndCut() {
+        launch(["-qa-reset", "-qa-scenario", "call", "-qa-quiet"])
+        wait("call.option.0")
+        shot("en_23_call")
+        element("call.option.0").tap()
+        XCTAssertFalse(element("call.option.0").waitForExistence(timeout: 2), "the call is answered")
+        wait("notice")
+        tapRevealed("floor.PILLS.cut.2")
+        XCTAssertTrue(element("floor.PILLS.cut.2").isSelected, "the pills are laced now")
+        shot("en_24_laced")
+    }
+
     func testRaidIsShownOnce() {
         launch(["-qa-reset", "-qa-scenario", "raid", "-qa-quiet"])
         wait("raid.title")

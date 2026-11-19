@@ -49,6 +49,8 @@ class NoirUITestCase: XCTestCase {
         if tabBar.exists { bottom = min(bottom, tabBar.frame.minY) }
         let notice = element("notice")
         if notice.exists && notice.frame.height > 0 { bottom = min(bottom, notice.frame.minY - 8) }
+        let call = element("call.card")
+        if call.exists && call.frame.height > 0 { bottom = min(bottom, call.frame.minY - 24) }
         return bottom - 8
     }
 
