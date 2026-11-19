@@ -7401,5 +7401,68 @@
     "license": "OFL-1.1",
     "source_url": "https://raw.githubusercontent.com/google/fonts/cc5661d43cd4f9aad5567033a8e15ca28dc35c86/ofl/fredoka/OFL.txt",
     "sha256": "5c9e7eee5c6b25f4b05b8d53b2e470ea4962f9ced742d044a98f7d95d1375bab"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_lift_door.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6489be42129826163c2fcd49e73a34ddda4c3d9f54e8237097f097b7d8505a62"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_whistle.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "5549ae27f6364b4edc6ab0c8ad863575ece40e4bcb658a664a8b8365095865c7"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_confetti.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a783ecb53f4131318dfe15814aea62a7f8042be312735560c46d040bf537da49"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_stamp.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "87be90c00ebe0425aae51ada1928ffa7d58d908ded1bd45017537b2911c8c187"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_toggle.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2b22064a1975f425c75e85ea943629a569f7ea0d2d2a5c938c6784a38576ac10"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ability_shift.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "d6b6dc723108ebe93f0b58a167f9e8eb5c7eab5e5165ce3ff5ed810c4a347f57"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ability_rush.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "a75e8df0fefb2494b98c8daf3cf2b1ece898380625a6cfe82cd67fc20221e9ea"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ability_shush.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ef3dbf2f19ca2f503da82c8c7675e2b19b019eb191218210199393ceeac2170e"
+  },
+  {
+    "file": "App/Resources/Audio/sfx_ability_window.m4a",
+    "origin": "Für NOIR LEDGER 4.0 eigens synthetisierter Cartoon-Soundeffekt ohne Drittaufnahmen",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "892cb8d4c04700bb00c2cf17c13f0fbf2cd7ffac8f2fb12def5bc7035e1f286d"
   }
 ]
