@@ -119,6 +119,9 @@ final class SceneImages {
 }
 
 extension SceneArt {
+    /// The newest quarter the operation sells in: its house stands across the street.
+    static func newestQuarter(_ s: FlowState) -> Quarter { Quarter.allCases.last { s.quarters[$0] != nil } ?? .cellars }
+
     /// What the scene shows for this state, and the next look of each floor, to decode before it is needed.
     static func prewarmList(_ s: FlowState) -> [(name: String, frames: Int)] {
         var list: [(name: String, frames: Int)] = [("SkyNight", 1), ("SkylineFar", 1), ("SkylineNear", 1), ("Street", 1), ("ShaftTile", 1),
@@ -140,7 +143,7 @@ extension SceneArt {
         list.append((v.body, 1))
         if let wheel = v.wheel { list.append((wheel, 1)) } else { list.append(("Fleet0Push8", 8)) }
         list.append((depot(fleetLevel: s.fleet), 1))
-        let quarter = Quarter.allCases.last { s.quarters[$0] != nil } ?? .cellars
+        let quarter = newestQuarter(s)
         list += [(customers(quarter, hot: false), 1), (customers(quarter, hot: true), 1), (buyer(quarter, walking: false), 2),
                  ("Buyer\(name(quarter))Carry8", 8)]
         list += [(body(FlowContent.dispatcher), 2), (talk(FlowContent.dispatcher), 4), ("BodyVargaWhistle4", 4)]

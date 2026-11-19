@@ -23,9 +23,24 @@ extension LedgerStore {
     }
 
     /// The trip's phase (0–1) at `date`: 0–0.5 the lift collects, 0.5–0.75 the vehicle drives over, 0.75–1 it returns.
-    func tripPhase(_ state: FlowState, at date: Date) -> Double {
-        guard let trip = state.trip else { return 0 }
+    func tripPhase(_ trip: TripMotion?, at date: Date) -> Double {
+        guard let trip else { return 0 }
         return min(1, max(0, 1 - max(0, trip.left - sinceTick(date)) / max(0.1, trip.duration)))
+    }
+}
+
+/// The part of a trip the scene draws, as plain values: views that take it are skipped when it has not changed
+/// (the whole game state never compares equal cheaply, so views never get it).
+struct TripMotion: Equatable {
+    var left: Double
+    var duration: Double
+    var loaded: Bool
+
+    init?(_ trip: Trip?) {
+        guard let trip else { return nil }
+        left = trip.left
+        duration = trip.duration
+        loaded = trip.crates > 0.5
     }
 }
 

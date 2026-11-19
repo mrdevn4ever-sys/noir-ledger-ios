@@ -41,7 +41,7 @@ struct BuildingScene: View {
                 }
                 Image("Foundation").resizable().frame(height: Self.foundationHeight).accessibilityHidden(true)
             }
-            LiftCar(state: state, floors: goods.count)
+            LiftCar(trip: TripMotion(state.trip), floors: goods.count)
         }
         .environment(\.sceneAnimating, !covered && !reduceMotion)
         .onAppear { SceneImages.shared.prewarm(SceneArt.prewarmList(state)) }
@@ -93,27 +93,8 @@ struct StreetSection: View {
             let h = geo.size.height
             let streetY = h - BuildingScene.roadHeight
             let buildingTop = streetY + 4 - Self.buildingHeight
-            let gapMid = (Self.depotWidth + w - Self.houseWidth) / 2
             ZStack(alignment: .topLeading) {
-                // The sky art is 270 pt tall; the scene shows its lower part.
-                SceneImage("SkyNight", w, 270).offset(y: h - 270)
-                SceneImage("Moon", 44, 44).idle(.bob(4), duration: 2.6)
-                    .position(x: w * 0.6, y: 28)
-                SceneImage("SkylineFar", w, 100).position(x: w / 2, y: streetY - 62)
-                if (state.quarters.values.map(\.attention).max() ?? 0) < 30 {
-                    AnimatedStrip(name: "Fireflies8", frames: 8, fps: 5, size: CGSize(width: 100, height: 100))
-                        .opacity(0.8).position(x: w * 0.3, y: streetY - 120)
-                }
-                SceneImage("SkylineNear", w, 120).position(x: w / 2, y: streetY - 60)
-                // Road with the shaft opening on the left
-                SceneImage("Street", w, BuildingScene.roadHeight + 1).position(x: w / 2, y: h - BuildingScene.roadHeight / 2)
-                SceneImage("ShaftTile", BuildingScene.shaftWidth, BuildingScene.floorHeight)
-                    .frame(width: BuildingScene.shaftWidth, height: BuildingScene.roadHeight, alignment: .top).clipped()
-                    .position(x: BuildingScene.shaftWidth / 2, y: h - BuildingScene.roadHeight / 2)
-                // Lamp between the houses
-                SceneImage("StreetLampGlow", 110, 110).opacity(0.85).idle(.glow(0.8), duration: 0.9)
-                    .position(x: gapMid, y: streetY - 70)
-                SceneImage("StreetLamp", 47, 87).position(x: gapMid, y: streetY - 42)
+                StreetBackdrop(width: w, height: h, fireflies: (state.quarters.values.map(\.attention).max() ?? 0) < 30)
                 CustomersHouse(state: state, forecast: forecast, sheet: $sheet)
                     .frame(width: Self.houseWidth, height: Self.buildingHeight)
                     .position(x: w - Self.houseWidth / 2, y: buildingTop + Self.buildingHeight / 2)
@@ -121,11 +102,12 @@ struct StreetSection: View {
                     .frame(width: Self.depotWidth, height: Self.buildingHeight)
                     .position(x: Self.depotWidth / 2, y: buildingTop + Self.buildingHeight / 2)
                 dispatcher(streetY: streetY)
-                if state.trip != nil {
-                    BuyerLeaving(state: state, x0: w - Self.houseWidth + 10, y: streetY + 2 - 32)
+                if let trip = TripMotion(state.trip) {
+                    BuyerLeaving(quarter: SceneArt.newestQuarter(state), trip: trip, x0: w - Self.houseWidth + 10, y: streetY + 2 - 32)
                 }
                 police(w: w, h: h, streetY: streetY)
-                MovingVehicle(state: state, start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h)
+                MovingVehicle(fleet: state.fleet, trip: TripMotion(state.trip), rush: state.ability(.rushRun).active > 0,
+                              start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h)
                 goButton(w: w, h: h)
                 if state.ability(.quietWord).active > 0 {
                     AnimatedStrip(name: "ShushBubble4", frames: 4, fps: 4, size: CGSize(width: 54, height: 54))
@@ -182,7 +164,7 @@ struct StreetSection: View {
     @ViewBuilder private func dispatcher(streetY: CGFloat) -> some View {
         let x = Self.depotWidth + 24
         if state.dispatcher {
-            Dispatcher(state: state).position(x: x, y: streetY + 2 - 33)
+            Dispatcher(trip: TripMotion(state.trip)).position(x: x, y: streetY + 2 - 33)
         } else {
             Button { store.dispatch(.hireDispatcher) } label: {
                 ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
@@ -220,10 +202,49 @@ struct StreetSection: View {
     }
 }
 
+/// The still street behind everything: sky, moon, skyline, road, lamp. Laid out again only when the size changes.
+struct StreetBackdrop: View {
+    let width: CGFloat
+    let height: CGFloat
+    let fireflies: Bool
+
+    var body: some View {
+        let w = width
+        let h = height
+        let streetY = h - BuildingScene.roadHeight
+        let gapMid = (StreetSection.depotWidth + w - StreetSection.houseWidth) / 2
+        ZStack(alignment: .topLeading) {
+            // The sky art is 270 pt tall; the scene shows its lower part.
+            SceneImage("SkyNight", w, 270).offset(y: h - 270)
+            SceneImage("Moon", 44, 44).idle(.bob(4), duration: 2.6)
+                .position(x: w * 0.6, y: 28)
+            SceneImage("SkylineFar", w, 100).position(x: w / 2, y: streetY - 62)
+            if fireflies {
+                AnimatedStrip(name: "Fireflies8", frames: 8, fps: 5, size: CGSize(width: 100, height: 100))
+                    .opacity(0.8).position(x: w * 0.3, y: streetY - 120)
+            }
+            SceneImage("SkylineNear", w, 120).position(x: w / 2, y: streetY - 60)
+            // Road with the shaft opening on the left
+            SceneImage("Street", w, BuildingScene.roadHeight + 1).position(x: w / 2, y: h - BuildingScene.roadHeight / 2)
+            SceneImage("ShaftTile", BuildingScene.shaftWidth, BuildingScene.floorHeight)
+                .frame(width: BuildingScene.shaftWidth, height: BuildingScene.roadHeight, alignment: .top).clipped()
+                .position(x: BuildingScene.shaftWidth / 2, y: h - BuildingScene.roadHeight / 2)
+            // Lamp between the houses
+            SceneImage("StreetLampGlow", 110, 110).opacity(0.85).idle(.glow(0.8), duration: 0.9)
+                .position(x: gapMid, y: streetY - 70)
+            SceneImage("StreetLamp", 47, 87).position(x: gapMid, y: streetY - 42)
+        }
+        .frame(width: w, height: h, alignment: .topLeading)
+        .allowsHitTesting(false)
+    }
+}
+
 /// The vehicle on the road: it waits in front of the depot, drives to the customers and comes back. Runs at the
 /// display's rate while it drives and reads the trip between simulation ticks.
 struct MovingVehicle: View {
-    let state: FlowState
+    let fleet: Int
+    let trip: TripMotion?
+    let rush: Bool
     let start: CGFloat
     let end: CGFloat
     let h: CGFloat
@@ -231,19 +252,19 @@ struct MovingVehicle: View {
     @Environment(\.sceneAnimating) private var animating
 
     var body: some View {
-        let v = SceneArt.vehicle(fleetLevel: state.fleet)
+        let v = SceneArt.vehicle(fleetLevel: fleet)
         let scale: CGFloat = 0.8
         let vw = v.size.width * scale / 3
         let vh = v.size.height * scale / 3
         let from = start + vw / 2
         let to = end - vw / 2
-        TimelineView(.animation(paused: !animating || state.trip == nil)) { tl in
+        TimelineView(.animation(paused: !animating || trip == nil)) { tl in
             let time = tl.date.timeIntervalSinceReferenceDate
-            let p = store.tripPhase(state, at: tl.date)
-            let driving = state.trip != nil && p >= 0.5
+            let p = store.tripPhase(trip, at: tl.date)
+            let driving = trip != nil && p >= 0.5
             let x: CGFloat = p < 0.5 ? from : (p < 0.75 ? from + (to - from) * CGFloat((p - 0.5) / 0.25)
                                                          : to - (to - from) * CGFloat((p - 0.75) / 0.25))
-            let facing: CGFloat = state.trip != nil && p >= 0.75 ? -1 : 1
+            let facing: CGFloat = trip != nil && p >= 0.75 ? -1 : 1
             let bob: CGFloat = driving ? CGFloat(sin(time * 18)) * 0.8 : 0
             ZStack {
                 if v.wheel == nil && driving {
@@ -251,11 +272,11 @@ struct MovingVehicle: View {
                 } else {
                     VehicleSprite(vehicle: v, wheelAngle: driving ? time * 9 * Double(facing) : 0, scale: scale)
                 }
-                if driving && state.ability(.rushRun).active > 0 {
+                if driving && rush {
                     SpriteStrip(name: "SpeedLines6", frames: 6, frame: Int(time * 14), size: CGSize(width: 80, height: 54))
                         .offset(x: -vw / 2 - 30)
                 }
-                if driving && state.fleet >= 25 {
+                if driving && fleet >= 25 {
                     SpriteStrip(name: "Exhaust6", frames: 6, frame: Int(time * 12), size: CGSize(width: 22, height: 22))
                         .offset(x: -vw / 2 - 6, y: vh / 2 - 12)
                 }
@@ -269,15 +290,15 @@ struct MovingVehicle: View {
 
 /// Emil Varga at the curb: waits, talks now and then, whistles the vehicle off.
 struct Dispatcher: View {
-    let state: FlowState
+    let trip: TripMotion?
     @Environment(LedgerStore.self) private var store
     @Environment(\.sceneAnimating) private var animating
 
     var body: some View {
         TimelineView(.animation(minimumInterval: 1.0 / 6, paused: !animating)) { tl in
             let time = tl.date.timeIntervalSinceReferenceDate
-            let p = store.tripPhase(state, at: tl.date)
-            let move: (String, Int, Double) = state.trip != nil && p > 0.4 && p < 0.55 ? ("BodyVargaWhistle4", 4, 6)
+            let p = store.tripPhase(trip, at: tl.date)
+            let move: (String, Int, Double) = trip != nil && p > 0.4 && p < 0.55 ? ("BodyVargaWhistle4", 4, 6)
                 : (Int(time / 4) % 3 == 0 ? (SceneArt.talk(FlowContent.dispatcher), 4, 5) : (SceneArt.body(FlowContent.dispatcher), 2, 1.5))
             SpriteStrip(name: move.0, frames: move.1, frame: Int(time * move.2), size: CGSize(width: 44, height: 66))
         }
@@ -287,16 +308,16 @@ struct Dispatcher: View {
 
 /// When the goods arrive, a buyer carries a crate off along the pavement.
 struct BuyerLeaving: View {
-    let state: FlowState
+    let quarter: Quarter
+    let trip: TripMotion
     let x0: CGFloat
     let y: CGFloat
     @Environment(LedgerStore.self) private var store
     @Environment(\.sceneAnimating) private var animating
 
     var body: some View {
-        let quarter = Quarter.allCases.last { state.quarters[$0] != nil } ?? .cellars
         TimelineView(.animation(paused: !animating)) { tl in
-            let p = store.tripPhase(state, at: tl.date)
+            let p = store.tripPhase(trip, at: tl.date)
             if p > 0.75 {
                 let f = CGFloat((p - 0.75) / 0.25)
                 SpriteStrip(name: "Buyer\(SceneArt.name(quarter))Carry8", frames: 8,
@@ -394,7 +415,7 @@ struct CustomersHouse: View {
     var body: some View {
         let neck = state.openGoods.contains { forecast.good($0)?.bottleneck == .demand }
         let demand = state.openGoods.reduce(0) { $0 + (forecast.good($1)?.demand ?? 0) }
-        let quarter = Quarter.allCases.last { state.quarters[$0] != nil } ?? .cellars
+        let quarter = SceneArt.newestQuarter(state)
         let hot = Flow.tier(state.quarter(quarter).attention) >= 2
         Button { sheet = .contacts } label: {
             ZStack(alignment: .topLeading) {
@@ -425,7 +446,7 @@ struct CustomersHouse: View {
 
 /// The lift car: parked in the depot, goes down to the deepest floor and back in the first half of a trip.
 struct LiftCar: View {
-    let state: FlowState
+    let trip: TripMotion?
     let floors: Int
     @Environment(LedgerStore.self) private var store
     @Environment(\.sceneAnimating) private var animating
@@ -438,11 +459,11 @@ struct LiftCar: View {
         let bottom = BuildingScene.streetHeight + CGFloat(max(1, floors)) * BuildingScene.floorHeight - BuildingScene.floorBoards - Self.size.height
         // The cable hangs from the pulley in the lift head.
         let pulley = streetY + 4 - StreetSection.buildingHeight + 42 + 22
-        TimelineView(.animation(paused: !animating || state.trip == nil)) { tl in
-            let p = state.trip == nil ? 1 : store.tripPhase(state, at: tl.date)
+        TimelineView(.animation(paused: !animating || trip == nil)) { tl in
+            let p = trip == nil ? 1 : store.tripPhase(trip, at: tl.date)
             let phase: CGFloat = p < 0.25 ? CGFloat(p / 0.25) : (p < 0.5 ? 1 - CGFloat((p - 0.25) / 0.25) : 0)
             let y = top + phase * (bottom - top)
-            let loaded = (state.trip?.crates ?? 0) > 0.5 && (p > 0.25 || phase > 0.9)
+            let loaded = (trip?.loaded ?? false) && (p > 0.25 || phase > 0.9)
             ZStack(alignment: .top) {
                 Image("LiftCable").resizable(resizingMode: .tile)
                     .frame(width: 4, height: max(0, y - pulley))
@@ -487,42 +508,15 @@ struct FloorRow: View {
             let floorY = height - BuildingScene.floorBoards
             let machine = (start: 150 * k, end: 317 * k)
             ZStack(alignment: .topLeading) {
-                SceneImage(SceneArt.floor(good, level: w.bench), width, height)
-                SceneImage("ShaftTile", BuildingScene.shaftWidth, height)
-                // While the floor works its lights are on and its machines move; otherwise the room is dim.
-                if running || w.lead {
-                    SceneImage(SceneArt.floorLit(good, level: w.bench), width, height)
-                        .allowsHitTesting(false)
-                    AnimatedStrip(name: SceneArt.floorRun(good, level: w.bench), frames: 4, fps: 6, size: CGSize(width: width, height: height))
-                        .allowsHitTesting(false)
-                } else {
-                    Rectangle().fill(Color.black.opacity(0.22)).frame(width: width - BuildingScene.shaftWidth, height: height)
-                        .offset(x: BuildingScene.shaftWidth).allowsHitTesting(false)
-                }
+                FloorStage(good: good, bench: w.bench, lit: running || w.lead, width: width, height: height)
                 // Double shift: a warm pulsing glow with turning gears over the machines.
                 if state.ability(.doubleShift).active > 0, state.ability(.doubleShift).good == good {
                     AnimatedStrip(name: "ShiftGlow6", frames: 6, fps: 10, size: CGSize(width: 200, height: 100))
                         .position(x: (machine.start + machine.end) / 2, y: floorY - 70)
                         .allowsHitTesting(false)
                 }
-                // Workers
-                ForEach(0..<(1 + min(2, stage / 2)), id: \.self) { i in
-                    let station = machine.start + (machine.end - machine.start) * (0.15 + 0.35 * CGFloat(i))
-                    let shelfX = BuildingScene.shaftWidth + 90
-                    Group {
-                        if w.lead {
-                            WorkerLoop(good: good, worker: i, shelfX: shelfX, station: station)
-                                .offset(y: floorY - 70)
-                        } else if running {
-                            SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, phase: Double(i))
-                                .position(x: station, y: floorY - 35)
-                        } else {
-                            SceneFigure(sheet: SceneArt.worker(good, .sleep), move: .sleep, phase: Double(i) * 0.7)
-                                .position(x: station, y: floorY - 35)
-                        }
-                    }
-                    .allowsHitTesting(false)
-                }
+                FloorCrew(good: good, count: 1 + min(2, stage / 2), lead: w.lead, running: running,
+                          machineStart: machine.start, machineEnd: machine.end, width: width, height: height)
                 // The shelf with its crates
                 Button { sheet = .station(.shelf(good)) } label: {
                     CrateShelf(good: good, stock: w.stock, capacity: capacity, full: full, neck: forecast?.bottleneck == .shelf)
@@ -578,7 +572,7 @@ struct FloorRow: View {
                 }
                 // Cycle progress
                 if running {
-                    CycleBar(good: good, state: state, width: machine.end - machine.start)
+                    CycleBar(cycle: w.cycle ?? 0, seconds: Flow.cycleSeconds(state, good), width: machine.end - machine.start)
                         .offset(x: machine.start, y: floorY + 6)
                 }
                 OneShotStrip(name: "DustPuff6", frames: 6, size: 120, start: rebuildAt, fps: 9)
@@ -617,6 +611,65 @@ struct FloorRow: View {
                 floaters.removeAll { $0.id == id }
             }
         }
+    }
+}
+
+/// A floor's room: the art for its stage, lit with moving machines while it works, dim while it waits.
+struct FloorStage: View {
+    let good: Good
+    let bench: Int
+    let lit: Bool
+    let width: CGFloat
+    let height: CGFloat
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            SceneImage(SceneArt.floor(good, level: bench), width, height)
+            SceneImage("ShaftTile", BuildingScene.shaftWidth, height)
+            if lit {
+                SceneImage(SceneArt.floorLit(good, level: bench), width, height)
+                AnimatedStrip(name: SceneArt.floorRun(good, level: bench), frames: 4, fps: 6, size: CGSize(width: width, height: height))
+            } else {
+                Rectangle().fill(Color.black.opacity(0.22)).frame(width: width - BuildingScene.shaftWidth, height: height)
+                    .offset(x: BuildingScene.shaftWidth)
+            }
+        }
+        .frame(width: width, height: height, alignment: .topLeading)
+        .allowsHitTesting(false)
+    }
+}
+
+/// A floor's workers: with a lead they walk, work and carry; without, they work while a cycle runs and doze otherwise.
+struct FloorCrew: View {
+    let good: Good
+    let count: Int
+    let lead: Bool
+    let running: Bool
+    let machineStart: CGFloat
+    let machineEnd: CGFloat
+    let width: CGFloat
+    let height: CGFloat
+
+    var body: some View {
+        let floorY = height - BuildingScene.floorBoards
+        ZStack(alignment: .topLeading) {
+            ForEach(0..<count, id: \.self) { i in
+                let station = machineStart + (machineEnd - machineStart) * (0.15 + 0.35 * CGFloat(i))
+                let shelfX = BuildingScene.shaftWidth + 90
+                if lead {
+                    WorkerLoop(good: good, worker: i, shelfX: shelfX, station: station)
+                        .offset(y: floorY - 70)
+                } else if running {
+                    SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, phase: Double(i))
+                        .position(x: station, y: floorY - 35)
+                } else {
+                    SceneFigure(sheet: SceneArt.worker(good, .sleep), move: .sleep, phase: Double(i) * 0.7)
+                        .position(x: station, y: floorY - 35)
+                }
+            }
+        }
+        .frame(width: width, height: height, alignment: .topLeading)
+        .allowsHitTesting(false)
     }
 }
 
@@ -665,19 +718,18 @@ struct LeadFigure: View {
 
 /// The running cycle's progress under the machines, smooth between simulation ticks.
 struct CycleBar: View {
-    let good: Good
-    let state: FlowState
+    let cycle: Double
+    let seconds: Double
     let width: CGFloat
     @Environment(LedgerStore.self) private var store
     @Environment(\.sceneAnimating) private var animating
 
     var body: some View {
-        let cycle = state.workshop(good)?.cycle ?? 0
-        let seconds = max(0.1, Flow.cycleSeconds(state, good))
+        let span = max(0.1, seconds)
         ZStack(alignment: .leading) {
             Capsule().fill(Color.black.opacity(0.5)).frame(width: width, height: 7)
             TimelineView(.animation(paused: !animating)) { tl in
-                let p = min(1, cycle + store.sinceTick(tl.date) / seconds)
+                let p = min(1, cycle + store.sinceTick(tl.date) / span)
                 Capsule().fill(Toon.up).frame(width: max(7, width * CGFloat(p)), height: 7)
             }
         }
