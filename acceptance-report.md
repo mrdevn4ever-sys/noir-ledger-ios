@@ -1,0 +1,81 @@
+# CI evidence — a4dc36f1791d24fbd7e3fb1cb52b0ca49ab19cfb
+
+- Run: https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44512136131 (attempt 1)
+- Generated: 2026-11-19T12:07:30+00:00
+- Runner: {'os': 'macOS', 'image': 'macos26', 'image_version': '20261112.0504.1', 'macos': '26.7.2'}
+- Xcode: Xcode 26.6 Build version 17F113
+- Swift: swift-driver version: 1.148.6 Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+- Simulator: {'name': 'iPhone 17', 'runtime': 'iOS 26.5', 'udid': 'F5450765-59B9-4D0C-9B64-845B8C9EE51F'}
+- Xcode tests: {'result': 'Passed', 'totalTestCount': 30, 'passedTests': 30, 'failedTests': 0, 'skippedTests': 0}
+- Core tests: ✔ Test run with 151 tests in 13 suites passed after 23.312 seconds.
+- Playthroughs:
+  - seed=1 won after 3.16 h, raids=0, investigations=0, peakHeat=74, legacy=19
+  - seed=42 won after 7.83 h, raids=0, investigations=0, peakHeat=71, legacy=20
+  - NG+ won after 5.42 h
+  - seed=2024 won after 11.05 h, raids=0, investigations=2, peakHeat=81, legacy=22
+- Checks:
+  - l10n: L10N_OK
+  - asset-parity: ASSET_PARITY_OK
+  - release-exclusion: RELEASE_EXCLUSION_OK
+  - scan: SCAN_OK
+- Screenshots (60):
+  - de_42_settings.png
+  - de_tour_01_prologue.png
+  - de_tour_02_cellar.png
+  - de_tour_03_bottleneck.png
+  - de_tour_04_upgrade_preview.png
+  - de_tour_05_orders.png
+  - de_tour_06_chain.png
+  - de_tour_07_chapter.png
+  - de_tour_08_harbour.png
+  - de_tour_09_harbour_fleet.png
+  - de_tour_10_city.png
+  - de_tour_11_crew.png
+  - de_tour_12_book.png
+  - de_tour_13_night.png
+  - de_tour_14_late.png
+  - de_tour_15_hot_quarter.png
+  - de_tour_15b_customers.png
+  - de_tour_16_challenges.png
+  - de_tour_17_return.png
+  - de_tour_18_large_text.png
+  - en_01_prologue.png
+  - en_02_cellar.png
+  - en_03_upgrade_preview.png
+  - en_04_bottleneck.png
+  - en_05_fix_preview.png
+  - en_06_orders.png
+  - en_07_order_running.png
+  - en_08_chapter_goals.png
+  - en_09_chapter_news.png
+  - en_10_city.png
+  - en_11_crew.png
+  - en_12_book.png
+  - en_13_return.png
+  - en_40_shop.png
+  - en_41_rewards.png
+  - en_43_reset_confirm.png
+  - en_44_save_recovered.png
+  - en_45_future_save.png
+  - en_50_large_text.png
+  - en_51_large_text_fleet.png
+  - en_60_home_screen_icon.png
+  - en_tour_01_prologue.png
+  - en_tour_02_cellar.png
+  - en_tour_03_bottleneck.png
+  - en_tour_04_upgrade_preview.png
+  - en_tour_05_orders.png
+  - en_tour_06_chain.png
+  - en_tour_07_chapter.png
+  - en_tour_08_harbour.png
+  - en_tour_09_harbour_fleet.png
+  - en_tour_10_city.png
+  - en_tour_11_crew.png
+  - en_tour_12_book.png
+  - en_tour_13_night.png
+  - en_tour_14_late.png
+  - en_tour_15_hot_quarter.png
+  - en_tour_15b_customers.png
+  - en_tour_16_challenges.png
+  - en_tour_17_return.png
+  - en_tour_18_large_text.png
