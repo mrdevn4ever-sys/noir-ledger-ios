@@ -527,5 +527,145 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "df1120291fe44a3ffbb26b3644b3ba854f2fb68e215e08d348ccf69320d8cc56"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCellars.imageset/CustomersCellars.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "ae5a4cd885d7c7630e5aafcd08782662342ee8ec10ebff44f0e4699c873a4059"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCellarsHot.imageset/CustomersCellarsHot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "22e3292db22240e3c540f6613d03775893effa97e4ff704bf46a7ddb1993be96"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersOldTown.imageset/CustomersOldTown.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "00bf0ede95b711d7ce2ad702c10fc9326281440af7f20a9c0daf35d385877473"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersOldTownHot.imageset/CustomersOldTownHot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c72990b0271df1c4559c44ea0df09757c917f62c53b8a8b0653d2fbab1eaf4bb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersDocks.imageset/CustomersDocks.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "f3f9ce593be5215dad03f32f800620d566da87e20598391af5fb6cd155fbec34"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersDocksHot.imageset/CustomersDocksHot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c60ce150f7c593d81cef913998f257fb2abbda5bb85690217fc98634e31605c6"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersNight.imageset/CustomersNight.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4878f5d4d37f12809fae9f8ada88ff662fe1e8048c2a4ff67bcb3d418aa2518d"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersNightHot.imageset/CustomersNightHot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "50af12d80324e76b16e77863db942e2f656604db001fc13a0eaa5d0ad82552b8"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCrown.imageset/CustomersCrown.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "28071ab39ae0b8ada52ed0ce8cfdb6597655fe2eeac5b60b4f82e871b4c66be2"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCrownHot.imageset/CustomersCrownHot.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0ab79660f087abcec25334b1ccfa22ca71f95e715d76a4ab092f5e7706298cbf"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCellars.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6b5fa8b2e2e6eb25ff2c88d0c564a6e0541252bf89de945bcb122bb45038988f"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCellarsHot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "824edb1c0625a33eecad50c7f636eb042e91541d217ff1875abe960d7cf88346"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersOldTown.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6a8d94517aec899c804571035cfb8493e501cda9314d028878521a6a70de70ca"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersOldTownHot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "dca45abb04667b4fe24079e60d0824a3a772f7104b63d6d85296aa0be7f44aa1"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersDocks.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "6d47630ebe240fc14dc89bf1559a0ed3a996d9d30929e363d43d1356d1c650d5"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersDocksHot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "9b3cc3cd92641523d176bd87866cf0cc98b293962046232f39773c0722096b38"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersNight.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e73dc04555b632f11a864aa1af5fa51b5ce68eb1706c79e16ca5ba3bf40b6802"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersNightHot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "09ac73cb88661300c705b521a863432ef37cefeaa5b114ab48e725919cc4ae25"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCrown.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "2a6b4d877ac742d58101f50ff9c8dfa2bac0441674619bcbddd5cb28a00d0669"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/CustomersCrownHot.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "b17e70b36efd95556c87fd2185c2fcadc77665bbaccda23bb0ebb4c1b442dbcf"
   }
 ]
