@@ -29,7 +29,7 @@ struct BuildingScene: View {
                     if let next = Good.allCases.first(where: { !state.isOpen($0) }) {
                         LockedFloor(good: next, state: state).frame(height: 132)
                     }
-                    Foundation().frame(height: 70)
+                    GroundFoundation().frame(height: 70)
                 }
                 LiftCar(state: state, floors: goods.count, time: time)
             }
@@ -535,7 +535,7 @@ struct LockedFloor: View {
     }
 }
 
-struct Foundation: View {
+struct GroundFoundation: View {
     var body: some View {
         Canvas { ctx, size in
             ctx.fill(Path(CGRect(origin: .zero, size: size)),
