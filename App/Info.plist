@@ -51,6 +51,8 @@
 		<string>Fredoka[wdth,wght].ttf</string>
 		<string>LilitaOne-Regular.ttf</string>
 	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

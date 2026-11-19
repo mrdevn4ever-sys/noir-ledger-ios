@@ -24,10 +24,10 @@ final class SoundEngine {
     private var active = false
 
     private static let extensions = ["m4a", "caf", "wav", "mp3"]
-    static let musicVolume: Float = 0.32
-    static let ambienceVolume: Float = 0.18
+    nonisolated static let musicVolume: Float = 0.32
+    nonisolated static let ambienceVolume: Float = 0.18
 
-    private static func url(_ name: String) -> URL? {
+    nonisolated private static func url(_ name: String) -> URL? {
         for ext in extensions {
             if let url = Bundle.main.url(forResource: name, withExtension: ext) { return url }
         }
@@ -54,57 +54,83 @@ final class SoundEngine {
         }
     }
 
-    /// Loads the files and starts the beds. The game never interrupts the player's own music.
+    /// Loads the files off the main thread and starts the beds. The game never interrupts the player's own music.
     func start(mood: SoundMood) {
-        try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
-        try? AVAudioSession.sharedInstance().setActive(true)
-        for effect in Effect.allCases {
-            guard let url = Self.url("sfx_" + effect.rawValue) else { continue }
-            let voices = [.tap, .buy, .upgrade, .benchWeed, .benchCrystal, .benchPills, .benchCoke].contains(effect) ? 4 : 2
-            pools[effect] = (0..<voices).compactMap { _ in
-                let player = try? AVAudioPlayer(contentsOf: url)
-                player?.prepareToPlay()
-                return player
-            }
-        }
         self.mood = mood
-        music = Self.loop(mood.music, volume: Self.musicVolume)
-        ambience = Self.loop(mood.ambience, volume: Self.ambienceVolume)
         active = true
-        resumeBeds()
+        Task { [weak self] in
+            let loaded = await Task.detached(priority: .utility) { () -> Loaded in
+                try? AVAudioSession.sharedInstance().setCategory(.ambient, options: [.mixWithOthers])
+                try? AVAudioSession.sharedInstance().setActive(true)
+                var pools: [Effect: [AVAudioPlayer]] = [:]
+                for effect in Effect.allCases {
+                    guard let url = SoundEngine.url("sfx_" + effect.rawValue) else { continue }
+                    let voices = [.tap, .buy, .upgrade, .benchWeed, .benchCrystal, .benchPills, .benchCoke].contains(effect) ? 4 : 2
+                    pools[effect] = (0..<voices).compactMap { _ in
+                        let player = try? AVAudioPlayer(contentsOf: url)
+                        player?.prepareToPlay()
+                        return player
+                    }
+                }
+                return Loaded(pools: pools,
+                              music: SoundEngine.loop(mood.music, volume: SoundEngine.musicVolume),
+                              ambience: SoundEngine.loop(mood.ambience, volume: SoundEngine.ambienceVolume))
+            }.value
+            guard let self else { return }
+            self.pools = loaded.pools
+            // A mood that changed while loading wins over the first one.
+            if self.music == nil, self.mood.music == mood.music { self.music = loaded.music }
+            if self.ambience == nil, self.mood.ambience == mood.ambience { self.ambience = loaded.ambience }
+            self.resumeBeds()
+        }
     }
+
+    /// Players made off the main thread and handed over once.
+    private struct Loaded: @unchecked Sendable {
+        let pools: [Effect: [AVAudioPlayer]]
+        let music: AVAudioPlayer?
+        let ambience: AVAudioPlayer?
+    }
+
+    private struct Bed: @unchecked Sendable { let player: AVAudioPlayer? }
 
     /// Crossfades to another piece of music or ambience when the chapter or the deepest floor changes.
     func setMood(_ new: SoundMood) {
         guard new != mood else { return }
-        if new.music != mood.music {
-            music = crossfade(from: music, to: new.music, volume: Self.musicVolume, enabled: musicEnabled)
-        }
-        if new.ambience != mood.ambience {
-            ambience = crossfade(from: ambience, to: new.ambience, volume: Self.ambienceVolume, enabled: effectsEnabled)
-        }
+        let old = mood
         mood = new
+        if new.music != old.music { swapBed(music: true, to: new.music) }
+        if new.ambience != old.ambience { swapBed(music: false, to: new.ambience) }
     }
 
-    private func crossfade(from old: AVAudioPlayer?, to name: String, volume: Float, enabled: Bool) -> AVAudioPlayer? {
-        if let old {
+    private var bedGeneration = (music: 0, ambience: 0)
+
+    private func swapBed(music isMusic: Bool, to name: String) {
+        if let old = isMusic ? music : ambience {
             old.setVolume(0, fadeDuration: 1.5)
             Task { @MainActor in
                 try? await Task.sleep(for: .seconds(1.6))
                 old.stop()
             }
         }
-        guard let player = Self.loop(name, volume: 0) else { return nil }
-        if active && enabled {
-            player.play()
-            player.setVolume(volume, fadeDuration: 1.5)
-        } else {
-            player.volume = volume
+        if isMusic { music = nil; bedGeneration.music += 1 } else { ambience = nil; bedGeneration.ambience += 1 }
+        let generation = isMusic ? bedGeneration.music : bedGeneration.ambience
+        let volume = isMusic ? Self.musicVolume : Self.ambienceVolume
+        Task { [weak self] in
+            let bed = await Task.detached(priority: .utility) { Bed(player: SoundEngine.loop(name, volume: 0)) }.value
+            guard let self, let player = bed.player,
+                  generation == (isMusic ? self.bedGeneration.music : self.bedGeneration.ambience) else { return }
+            if isMusic { self.music = player } else { self.ambience = player }
+            if self.active && (isMusic ? self.musicEnabled : self.effectsEnabled) {
+                player.play()
+                player.setVolume(volume, fadeDuration: 1.5)
+            } else {
+                player.volume = volume
+            }
         }
-        return player
     }
 
-    private static func loop(_ name: String, volume: Float) -> AVAudioPlayer? {
+    nonisolated private static func loop(_ name: String, volume: Float) -> AVAudioPlayer? {
         guard let url = url(name), let player = try? AVAudioPlayer(contentsOf: url) else { return nil }
         player.numberOfLoops = -1
         player.volume = volume

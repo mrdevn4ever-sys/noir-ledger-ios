@@ -23,7 +23,7 @@ struct LedgerView: View {
                     .padding(.horizontal, Noir.s3)
                     .padding(.top, 2)
                     .padding(.bottom, 6)
-                    BuildingScene(state: s, forecast: f, sheet: $sheet)
+                    BuildingScene(state: s, forecast: f, sheet: $sheet, covered: sheet != nil)
                         .dynamicTypeSize(...DynamicTypeSize.xLarge)
                 }
                 .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.ledger", title: t("app_name")) }

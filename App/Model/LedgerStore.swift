@@ -116,6 +116,8 @@ final class LedgerStore {
     @ObservationIgnored private let wallClockMs: @Sendable () -> Int64
     @ObservationIgnored private let makeSeed: @Sendable () -> UInt64
     @ObservationIgnored private var tickTask: Task<Void, Never>?
+    /// Reference-date seconds of the last simulation tick; the scene draws between ticks from here.
+    @ObservationIgnored private(set) var lastTickAt = Date().timeIntervalSinceReferenceDate
     @ObservationIgnored private var secondsSinceSave = 0.0
     @ObservationIgnored private var noticeCounter = 0
     @ObservationIgnored private var celebrationCounter = 0
@@ -226,6 +228,7 @@ final class LedgerStore {
         let before = state
         let scaled = timeScale > 1 ? seconds * timeScale : min(Self.maxOnlineTick, max(0, seconds))
         Flow.advance(&state, seconds: scaled, offline: false)
+        lastTickAt = Date().timeIntervalSinceReferenceDate
         state.lastWallClockMs = wallClockMs()
         observe(from: before)
         secondsSinceSave += seconds

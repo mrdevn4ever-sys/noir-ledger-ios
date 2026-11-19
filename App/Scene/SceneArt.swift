@@ -203,7 +203,8 @@ enum SceneArt {
     }
 }
 
-/// One frame of a horizontal sprite sheet.
+/// One frame of a horizontal sprite sheet. Draws the prepared, trimmed frame from `SceneImages` once it is decoded,
+/// and the catalog image until then.
 struct SpriteStrip: View {
     let name: String
     let frames: Int
@@ -212,30 +213,65 @@ struct SpriteStrip: View {
     let size: CGSize
 
     var body: some View {
-        let index = CGFloat(((frame % max(1, frames)) + frames) % max(1, frames))
-        Image(name)
-            .resizable()
-            .interpolation(.high)
-            .frame(width: size.width * CGFloat(frames), height: size.height)
-            .offset(x: -size.width * index)
-            .frame(width: size.width, height: size.height, alignment: .leading)
-            .clipped()
-            .accessibilityHidden(true)
+        let count = max(1, frames)
+        let index = ((frame % count) + count) % count
+        Group {
+            if let sheet = SceneImages.shared.sheet(name, frames: count), index < sheet.frames.count {
+                let c = sheet.crop
+                Image(decorative: sheet.frames[index], scale: 1)
+                    .resizable()
+                    .frame(width: size.width * c.width, height: size.height * c.height)
+                    .offset(x: size.width * c.minX, y: size.height * c.minY)
+                    .frame(width: size.width, height: size.height, alignment: .topLeading)
+            } else {
+                Image(name)
+                    .resizable()
+                    .frame(width: size.width * CGFloat(count), height: size.height)
+                    .offset(x: -size.width * CGFloat(index))
+                    .frame(width: size.width, height: size.height, alignment: .leading)
+                    .clipped()
+            }
+        }
+        .accessibilityHidden(true)
     }
 }
 
-/// A person of the scene at 44 × 70 points, standing on the bottom edge, facing right unless mirrored.
+/// A still picture of the scene, drawn from the prepared cache.
+struct SceneImage: View {
+    let name: String
+    let size: CGSize
+
+    init(_ name: String, _ width: CGFloat, _ height: CGFloat) {
+        self.name = name
+        size = CGSize(width: width, height: height)
+    }
+
+    var body: some View { SpriteStrip(name: name, frames: 1, frame: 0, size: size) }
+}
+
+extension SceneArt.Move {
+    var fps: Double {
+        switch self {
+        case .idle, .sleep: 2
+        case .work: 6
+        case .walk, .carry: 10
+        }
+    }
+}
+
+/// A person of the scene at 44 × 70 points, standing on the bottom edge, facing right unless mirrored. Plays on its
+/// own clock.
 struct SceneFigure: View {
     let sheet: String
     let move: SceneArt.Move
-    let time: Double
     var facing: CGFloat = 1
     var scale: CGFloat = 1
     var phase: Double = 0
 
+    static func size(_ scale: CGFloat) -> CGSize { CGSize(width: 44 * scale, height: 70 * scale) }
+
     var body: some View {
-        let fps: Double = move == .idle || move == .sleep ? 2 : (move == .work ? 6 : 10)
-        SpriteStrip(name: sheet, frames: move.frames, frame: Int((time + phase) * fps), size: CGSize(width: 44 * scale, height: 70 * scale))
+        AnimatedStrip(name: sheet, frames: move.frames, fps: move.fps, size: Self.size(scale), phase: phase)
             .scaleEffect(x: facing, y: 1)
     }
 }
@@ -254,32 +290,14 @@ struct VehicleSprite: View {
             if let wheel = vehicle.wheel {
                 ForEach(0..<vehicle.wheels.count, id: \.self) { i in
                     let d = vehicle.wheelSize * k * vehicle.wheels[i].scale
-                    Image(wheel).resizable().frame(width: d, height: d)
+                    SceneImage(wheel, d, d)
                         .rotationEffect(.radians(wheelAngle))
                         .offset(x: vehicle.wheels[i].x * k - d / 2, y: h - 2 * k - d)
                 }
             }
-            Image(vehicle.body).resizable().frame(width: w, height: h)
+            SceneImage(vehicle.body, w, h)
         }
         .frame(width: w, height: h, alignment: .topLeading)
         .accessibilityHidden(true)
-    }
-}
-
-/// A short burst (coins, dust, steam) that plays once from `start` and then disappears.
-struct BurstSprite: View {
-    let name: String
-    let frames: Int
-    let size: CGFloat
-    let start: Double
-    let time: Double
-    var fps: Double = 12
-
-    var body: some View {
-        let f = Int((time - start) * fps)
-        if start > 0, f >= 0, f < frames {
-            SpriteStrip(name: name, frames: frames, frame: f, size: CGSize(width: size, height: size))
-                .allowsHitTesting(false)
-        }
     }
 }

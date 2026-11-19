@@ -21,26 +21,52 @@ struct BuildingScene: View {
     /// Width the floor art was drawn for; positions on a floor scale with the screen.
     static let artWidth: CGFloat = 402
 
+    /// A sheet covers the scene: nothing needs to move behind it.
+    var covered = false
+
     var body: some View {
-        TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion)) { timeline in
-            let time = reduceMotion ? 0 : timeline.date.timeIntervalSinceReferenceDate
-            let goods = state.openGoods
-            ZStack(alignment: .topLeading) {
-                VStack(spacing: 0) {
-                    StreetSection(state: state, forecast: forecast, time: time, sheet: $sheet)
-                        .frame(height: Self.streetHeight)
-                    ForEach(Array(goods.enumerated()), id: \.element) { i, g in
-                        FloorRow(good: g, index: i, state: state, forecast: forecast.good(g), time: time, sheet: $sheet)
-                            .frame(height: Self.floorHeight)
-                    }
-                    if let next = Good.allCases.first(where: { !state.isOpen($0) }) {
-                        LockedFloor(good: next, state: state).frame(height: Self.lockedHeight)
-                    }
-                    Image("Foundation").resizable().frame(height: Self.foundationHeight).accessibilityHidden(true)
+        let goods = state.openGoods
+        ZStack(alignment: .topLeading) {
+            VStack(spacing: 0) {
+                StreetSection(state: state, forecast: forecast, sheet: $sheet)
+                    .frame(height: Self.streetHeight)
+                    .modifier(ScrollVisibility())
+                ForEach(Array(goods.enumerated()), id: \.element) { i, g in
+                    FloorRow(good: g, index: i, state: state, forecast: forecast.good(g), sheet: $sheet)
+                        .frame(height: Self.floorHeight)
+                        .modifier(ScrollVisibility())
                 }
-                LiftCar(state: state, floors: goods.count)
+                if let next = Good.allCases.first(where: { !state.isOpen($0) }) {
+                    LockedFloor(good: next, state: state).frame(height: Self.lockedHeight)
+                }
+                Image("Foundation").resizable().frame(height: Self.foundationHeight).accessibilityHidden(true)
             }
+            LiftCar(state: state, floors: goods.count)
         }
+        .environment(\.sceneAnimating, !covered && !reduceMotion)
+        .onAppear { SceneImages.shared.prewarm(SceneArt.prewarmList(state)) }
+        .onChange(of: prewarmKey) { _, _ in SceneImages.shared.prewarm(SceneArt.prewarmList(state)) }
+    }
+
+    /// Changes when the scene's looks change: a floor's stage, the fleet's stage, the newest quarter.
+    private var prewarmKey: String {
+        state.openGoods.map { "\($0.rawValue)\(SceneArt.stage(level: state.workshop($0)?.bench ?? 1))" }.joined()
+            + "\(SceneArt.stage(level: state.fleet))\(state.quarters.count)"
+    }
+}
+
+/// Lets the part of the scene that is scrolled out of view stand still.
+struct ScrollVisibility: ViewModifier {
+    @Environment(\.sceneAnimating) private var parent
+    @State private var visible = true
+
+    func body(content: Content) -> some View {
+        content
+            .environment(\.sceneAnimating, parent && visible)
+            .onGeometryChange(for: Bool.self) { proxy in
+                guard let bounds = proxy.bounds(of: .scrollView) else { return true }
+                return CGRect(origin: .zero, size: proxy.size).intersects(bounds.insetBy(dx: 0, dy: -60))
+            } action: { visible = $0 }
     }
 }
 
@@ -49,10 +75,10 @@ struct BuildingScene: View {
 struct StreetSection: View {
     let state: FlowState
     let forecast: Forecast
-    let time: Double
     @Binding var sheet: LedgerSheet?
     @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
+    @Environment(\.sceneAnimating) private var animating
     @State private var floaters: [Floater] = []
     @State private var floaterSeq = 0
     @State private var burstAt = 0.0
@@ -70,43 +96,43 @@ struct StreetSection: View {
             let gapMid = (Self.depotWidth + w - Self.houseWidth) / 2
             ZStack(alignment: .topLeading) {
                 // The sky art is 270 pt tall; the scene shows its lower part.
-                Image("SkyNight").resizable().frame(width: w, height: 270)
-                    .frame(width: w, height: h, alignment: .bottom).clipped()
-                Image("Moon").resizable().frame(width: 44, height: 44)
-                    .position(x: w * 0.6, y: 30 + 2 * CGFloat(sin(time * 0.2)))
-                Image("SkylineFar").resizable().scaledToFill().frame(width: w, height: 100).clipped()
-                    .position(x: w / 2, y: streetY - 62)
+                SceneImage("SkyNight", w, 270).offset(y: h - 270)
+                SceneImage("Moon", 44, 44).idle(.bob(4), duration: 2.6)
+                    .position(x: w * 0.6, y: 28)
+                SceneImage("SkylineFar", w, 100).position(x: w / 2, y: streetY - 62)
                 if (state.quarters.values.map(\.attention).max() ?? 0) < 30 {
-                    SpriteStrip(name: "Fireflies8", frames: 8, frame: Int(time * 5), size: CGSize(width: 100, height: 100))
+                    AnimatedStrip(name: "Fireflies8", frames: 8, fps: 5, size: CGSize(width: 100, height: 100))
                         .opacity(0.8).position(x: w * 0.3, y: streetY - 120)
                 }
-                Image("SkylineNear").resizable().scaledToFill().frame(width: w, height: 120).clipped()
-                    .position(x: w / 2, y: streetY - 60)
+                SceneImage("SkylineNear", w, 120).position(x: w / 2, y: streetY - 60)
                 // Road with the shaft opening on the left
-                Image("Street").resizable().frame(width: w, height: BuildingScene.roadHeight + 1).position(x: w / 2, y: h - BuildingScene.roadHeight / 2)
-                Image("ShaftTile").resizable().frame(width: BuildingScene.shaftWidth, height: BuildingScene.floorHeight)
+                SceneImage("Street", w, BuildingScene.roadHeight + 1).position(x: w / 2, y: h - BuildingScene.roadHeight / 2)
+                SceneImage("ShaftTile", BuildingScene.shaftWidth, BuildingScene.floorHeight)
                     .frame(width: BuildingScene.shaftWidth, height: BuildingScene.roadHeight, alignment: .top).clipped()
                     .position(x: BuildingScene.shaftWidth / 2, y: h - BuildingScene.roadHeight / 2)
                 // Lamp between the houses
-                Image("StreetLampGlow").resizable().frame(width: 110, height: 110).blendMode(.screen)
-                    .opacity(0.75 + 0.1 * sin(time * 3)).position(x: gapMid, y: streetY - 70)
-                Image("StreetLamp").resizable().frame(width: 47, height: 87).position(x: gapMid, y: streetY - 42)
-                CustomersHouse(state: state, forecast: forecast, time: time, sheet: $sheet)
+                SceneImage("StreetLampGlow", 110, 110).opacity(0.85).idle(.glow(0.8), duration: 0.9)
+                    .position(x: gapMid, y: streetY - 70)
+                SceneImage("StreetLamp", 47, 87).position(x: gapMid, y: streetY - 42)
+                CustomersHouse(state: state, forecast: forecast, sheet: $sheet)
                     .frame(width: Self.houseWidth, height: Self.buildingHeight)
                     .position(x: w - Self.houseWidth / 2, y: buildingTop + Self.buildingHeight / 2)
-                Depot(state: state, time: time, sheet: $sheet)
+                Depot(state: state, forecast: forecast, sheet: $sheet)
                     .frame(width: Self.depotWidth, height: Self.buildingHeight)
                     .position(x: Self.depotWidth / 2, y: buildingTop + Self.buildingHeight / 2)
                 dispatcher(streetY: streetY)
-                buyerLeaving(w: w, streetY: streetY)
+                if state.trip != nil {
+                    BuyerLeaving(state: state, x0: w - Self.houseWidth + 10, y: streetY + 2 - 32)
+                }
                 police(w: w, h: h, streetY: streetY)
-                vehicle(w: w, h: h)
+                MovingVehicle(state: state, start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h)
+                goButton(w: w, h: h)
                 if state.ability(.quietWord).active > 0 {
-                    SpriteStrip(name: "ShushBubble4", frames: 4, frame: Int(time * 4), size: CGSize(width: 54, height: 54))
+                    AnimatedStrip(name: "ShushBubble4", frames: 4, fps: 4, size: CGSize(width: 54, height: 54))
                         .position(x: w - Self.houseWidth + 26, y: buildingTop + 50)
                         .allowsHitTesting(false)
                 }
-                BurstSprite(name: "CoinBurst8", frames: 8, size: 72, start: burstAt, time: time)
+                OneShotStrip(name: "CoinBurst8", frames: 8, size: 72, start: burstAt)
                     .position(x: w - Self.houseWidth / 2, y: buildingTop + 60)
                 ForEach(floaters) { f in
                     FloaterView(floater: f).position(x: w - 70, y: buildingTop + 20)
@@ -116,7 +142,7 @@ struct StreetSection: View {
         }
         .onChange(of: store.bookings) { _, _ in
             guard let last = state.ledger.last, last.amount > 0 else { return }
-            burstAt = Date().timeIntervalSinceReferenceDate
+            if animating { burstAt = Date().timeIntervalSinceReferenceDate }
             floaterSeq += 1
             let id = floaterSeq
             floaters.append(Floater(id: id, text: "+" + t.money(last.amount), at: .zero))
@@ -128,42 +154,12 @@ struct StreetSection: View {
         }
     }
 
-    /// The trip's phase: 0–0.5 the lift collects the crates, 0.5–0.75 the vehicle drives over, 0.75–1 it comes back.
-    private var tripPhase: Double { state.trip.map { 1 - $0.left / max(0.1, $0.duration) } ?? 0 }
-
-    /// The vehicle on the road: it waits in front of the depot, drives to the customers and comes back.
-    @ViewBuilder private func vehicle(w: CGFloat, h: CGFloat) -> some View {
-        let v = SceneArt.vehicle(fleetLevel: state.fleet)
-        let scale: CGFloat = 0.8
-        let vw = v.size.width * scale / 3
-        let vh = v.size.height * scale / 3
-        let p = tripPhase
-        let start = BuildingScene.shaftWidth + 4 + vw / 2
-        let end = w - Self.houseWidth + 26 - vw / 2
-        let driving = state.trip != nil && p >= 0.5
-        let x: CGFloat = p < 0.5 ? start : (p < 0.75 ? start + (end - start) * CGFloat((p - 0.5) / 0.25)
-                                                       : end - (end - start) * CGFloat((p - 0.75) / 0.25))
-        let facing: CGFloat = state.trip != nil && p >= 0.75 ? -1 : 1
-        let bob: CGFloat = driving ? CGFloat(sin(time * 18)) * 0.8 : 0
-        ZStack {
-            if v.wheel == nil && driving {
-                SpriteStrip(name: "Fleet0Push8", frames: 8, frame: Int(time * 12), size: CGSize(width: vw, height: vh))
-            } else {
-                VehicleSprite(vehicle: v, wheelAngle: driving ? time * 9 * Double(facing) : 0, scale: scale)
-            }
-            if driving && state.ability(.rushRun).active > 0 {
-                SpriteStrip(name: "SpeedLines6", frames: 6, frame: Int(time * 14), size: CGSize(width: 80, height: 54))
-                    .offset(x: -vw / 2 - 30)
-            }
-            if driving && state.fleet >= 25 {
-                SpriteStrip(name: "Exhaust6", frames: 6, frame: Int(time * 12), size: CGSize(width: 22, height: 22))
-                    .offset(x: -vw / 2 - 6, y: vh / 2 - 12)
-            }
-        }
-        .scaleEffect(x: facing, y: 1)
-        .position(x: x, y: h - 3 - vh / 2 + bob)
-        .animation(.linear(duration: 0.25), value: x)
+    /// "Go!" next to the waiting vehicle while nobody sends it by themselves.
+    @ViewBuilder private func goButton(w: CGFloat, h: CGFloat) -> some View {
         if !state.dispatcher && state.trip == nil {
+            let v = SceneArt.vehicle(fleetLevel: state.fleet)
+            let vw = v.size.width * 0.8 / 3
+            let start = BuildingScene.shaftWidth + 4 + vw / 2
             Button { store.dispatch(.tapFleet) } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "play.fill").font(.toon(12, .black))
@@ -173,8 +169,8 @@ struct StreetSection: View {
                 .padding(.horizontal, 14).padding(.vertical, 8)
                 .background(Toon.window, in: Capsule())
                 .overlay(Capsule().stroke(Color.white.opacity(0.8), lineWidth: 1.5))
-                .shadow(color: Toon.window.opacity(0.7), radius: 8)
-                .scaleEffect(1 + 0.05 * CGFloat(sin(time * 4)))
+                .background(Capsule().fill(Toon.window.opacity(0.35)).padding(-5))
+                .idle(.pulse(1.05), duration: 0.8)
             }
             .buttonStyle(.plain)
             .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
@@ -186,11 +182,7 @@ struct StreetSection: View {
     @ViewBuilder private func dispatcher(streetY: CGFloat) -> some View {
         let x = Self.depotWidth + 24
         if state.dispatcher {
-            let p = tripPhase
-            let move: (String, Int, Double) = state.trip != nil && p > 0.4 && p < 0.55 ? ("BodyVargaWhistle4", 4, 6)
-                : (Int(time / 4) % 3 == 0 ? ("BodyVargaTalk4", 4, 5) : (SceneArt.body(FlowContent.dispatcher), 2, 1.5))
-            SpriteStrip(name: move.0, frames: move.1, frame: Int(time * move.2), size: CGSize(width: 44, height: 66))
-                .position(x: x, y: streetY + 2 - 33)
+            Dispatcher(state: state).position(x: x, y: streetY + 2 - 33)
         } else {
             Button { store.dispatch(.hireDispatcher) } label: {
                 ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
@@ -203,19 +195,6 @@ struct StreetSection: View {
         }
     }
 
-    /// When the goods arrive, a buyer carries a crate off along the pavement.
-    @ViewBuilder private func buyerLeaving(w: CGFloat, streetY: CGFloat) -> some View {
-        let p = tripPhase
-        let quarter = Quarter.allCases.last { state.quarters[$0] != nil } ?? .cellars
-        if state.trip != nil, p > 0.75 {
-            let f = CGFloat((p - 0.75) / 0.25)
-            SceneFigure(sheet: "Buyer\(SceneArt.name(quarter))Carry8", move: .carry, time: time, facing: -1, scale: 0.9)
-                .position(x: w - Self.houseWidth + 10 - f * 110, y: streetY + 2 - 32)
-                .opacity(Double(1 - max(0, f - 0.8) * 5))
-                .allowsHitTesting(false)
-        }
-    }
-
     /// Watched: a cop walks the pavement. Hot: the patrol car stands at the kerb, its light turning, the cop writing.
     @ViewBuilder private func police(w: CGFloat, h: CGFloat, streetY: CGFloat) -> some View {
         let hottest = state.quarters.values.map(\.attention).max() ?? 0
@@ -223,44 +202,146 @@ struct StreetSection: View {
         if tier >= 2 {
             let car = SceneArt.police
             let ch = car.size.height * 0.7 / 3
-            SpriteStrip(name: "SirenGlow4", frames: 4, frame: Int(time * 6), size: CGSize(width: 200, height: 100))
-                .blendMode(.screen)
+            AnimatedStrip(name: "SirenGlow4", frames: 4, fps: 6, size: CGSize(width: 200, height: 100))
                 .position(x: w * 0.55, y: h - 8 - ch)
                 .allowsHitTesting(false)
             VehicleSprite(vehicle: car, wheelAngle: 0, scale: 0.7)
                 .overlay(alignment: .top) {
-                    SpriteStrip(name: "PoliceSiren2", frames: 2, frame: Int(time * 4), size: CGSize(width: 28, height: 14))
+                    AnimatedStrip(name: "PoliceSiren2", frames: 2, fps: 4, size: CGSize(width: 28, height: 14))
                         .offset(x: 4, y: -8)
                 }
                 .position(x: w * 0.55, y: h - 8 - ch / 2)
-            SceneFigure(sheet: "CopNotebook4", move: .work, time: time)
+            SceneFigure(sheet: "CopNotebook4", move: .work)
                 .position(x: w - Self.houseWidth - 22, y: streetY + 2 - 35)
         } else if tier == 1 {
-            let span = Double(w - Self.depotWidth - Self.houseWidth + 40)
+            WalkingCop(from: Self.depotWidth - 20, span: Double(w - Self.depotWidth - Self.houseWidth + 40))
+                .position(x: 0, y: streetY + 2 - 35)
+        }
+    }
+}
+
+/// The vehicle on the road: it waits in front of the depot, drives to the customers and comes back. Runs at the
+/// display's rate while it drives and reads the trip between simulation ticks.
+struct MovingVehicle: View {
+    let state: FlowState
+    let start: CGFloat
+    let end: CGFloat
+    let h: CGFloat
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        let v = SceneArt.vehicle(fleetLevel: state.fleet)
+        let scale: CGFloat = 0.8
+        let vw = v.size.width * scale / 3
+        let vh = v.size.height * scale / 3
+        let from = start + vw / 2
+        let to = end - vw / 2
+        TimelineView(.animation(paused: !animating || state.trip == nil)) { tl in
+            let time = tl.date.timeIntervalSinceReferenceDate
+            let p = store.tripPhase(state, at: tl.date)
+            let driving = state.trip != nil && p >= 0.5
+            let x: CGFloat = p < 0.5 ? from : (p < 0.75 ? from + (to - from) * CGFloat((p - 0.5) / 0.25)
+                                                         : to - (to - from) * CGFloat((p - 0.75) / 0.25))
+            let facing: CGFloat = state.trip != nil && p >= 0.75 ? -1 : 1
+            let bob: CGFloat = driving ? CGFloat(sin(time * 18)) * 0.8 : 0
+            ZStack {
+                if v.wheel == nil && driving {
+                    SpriteStrip(name: "Fleet0Push8", frames: 8, frame: Int(time * 12), size: CGSize(width: vw, height: vh))
+                } else {
+                    VehicleSprite(vehicle: v, wheelAngle: driving ? time * 9 * Double(facing) : 0, scale: scale)
+                }
+                if driving && state.ability(.rushRun).active > 0 {
+                    SpriteStrip(name: "SpeedLines6", frames: 6, frame: Int(time * 14), size: CGSize(width: 80, height: 54))
+                        .offset(x: -vw / 2 - 30)
+                }
+                if driving && state.fleet >= 25 {
+                    SpriteStrip(name: "Exhaust6", frames: 6, frame: Int(time * 12), size: CGSize(width: 22, height: 22))
+                        .offset(x: -vw / 2 - 6, y: vh / 2 - 12)
+                }
+            }
+            .scaleEffect(x: facing, y: 1)
+            .position(x: x, y: h - 3 - vh / 2 + bob)
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+/// Emil Varga at the curb: waits, talks now and then, whistles the vehicle off.
+struct Dispatcher: View {
+    let state: FlowState
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 1.0 / 6, paused: !animating)) { tl in
+            let time = tl.date.timeIntervalSinceReferenceDate
+            let p = store.tripPhase(state, at: tl.date)
+            let move: (String, Int, Double) = state.trip != nil && p > 0.4 && p < 0.55 ? ("BodyVargaWhistle4", 4, 6)
+                : (Int(time / 4) % 3 == 0 ? (SceneArt.talk(FlowContent.dispatcher), 4, 5) : (SceneArt.body(FlowContent.dispatcher), 2, 1.5))
+            SpriteStrip(name: move.0, frames: move.1, frame: Int(time * move.2), size: CGSize(width: 44, height: 66))
+        }
+        .frame(width: 44, height: 66)
+    }
+}
+
+/// When the goods arrive, a buyer carries a crate off along the pavement.
+struct BuyerLeaving: View {
+    let state: FlowState
+    let x0: CGFloat
+    let y: CGFloat
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        let quarter = Quarter.allCases.last { state.quarters[$0] != nil } ?? .cellars
+        TimelineView(.animation(paused: !animating)) { tl in
+            let p = store.tripPhase(state, at: tl.date)
+            if p > 0.75 {
+                let f = CGFloat((p - 0.75) / 0.25)
+                SpriteStrip(name: "Buyer\(SceneArt.name(quarter))Carry8", frames: 8,
+                            frame: Int(tl.date.timeIntervalSinceReferenceDate * SceneArt.Move.carry.fps), size: SceneFigure.size(0.9))
+                    .scaleEffect(x: -1, y: 1)
+                    .position(x: x0 - f * 110, y: y)
+                    .opacity(Double(1 - max(0, f - 0.8) * 5))
+            }
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+/// A cop walking the pavement back and forth.
+struct WalkingCop: View {
+    let from: CGFloat
+    let span: Double
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        TimelineView(.animation(paused: !animating)) { tl in
+            let time = tl.date.timeIntervalSinceReferenceDate
             let raw = (time * 14).truncatingRemainder(dividingBy: span * 2)
             let forward = raw < span
-            let x = Self.depotWidth - 20 + CGFloat(forward ? raw : span * 2 - raw)
-            SceneFigure(sheet: "CopWalk8", move: .walk, time: time, facing: forward ? 1 : -1)
-                .position(x: x, y: streetY + 2 - 35)
+            SpriteStrip(name: "CopWalk8", frames: 8, frame: Int(time * SceneArt.Move.walk.fps), size: SceneFigure.size(1))
+                .scaleEffect(x: forward ? 1 : -1, y: 1)
+                .offset(x: from + CGFloat(forward ? raw : span * 2 - raw))
         }
+        .allowsHitTesting(false)
     }
 }
 
 /// Our building on the street: the lift head over the shaft, the fleet's level, the mailbox with new orders.
 struct Depot: View {
     let state: FlowState
-    let time: Double
+    let forecast: Forecast
     @Binding var sheet: LedgerSheet?
     @Environment(\.l10n) private var t
 
     var body: some View {
-        let f = Flow.forecast(state)
-        let neck = state.openGoods.contains { f.good($0)?.bottleneck == .fleet }
+        let neck = state.openGoods.contains { forecast.good($0)?.bottleneck == .fleet }
         let mail = Flow.boardOpen(state) && !state.offers.isEmpty
         ZStack(alignment: .topLeading) {
-            Image(SceneArt.depot(fleetLevel: state.fleet)).resizable()
-                .frame(width: StreetSection.depotWidth, height: StreetSection.buildingHeight)
-            Image("LiftHead").resizable().frame(width: BuildingScene.shaftWidth, height: 40).offset(y: 42)
+            SceneImage(SceneArt.depot(fleetLevel: state.fleet), StreetSection.depotWidth, StreetSection.buildingHeight)
+            SceneImage("LiftHead", BuildingScene.shaftWidth, 40).offset(y: 42)
             // Fleet level
             Button { sheet = .station(.fleet) } label: {
                 LevelBadge(level: state.fleet, caption: t("l4_fleet"), affordable: state.cash >= Flow.fleetCost(state, 1), bottleneck: neck)
@@ -271,11 +352,16 @@ struct Depot: View {
             .accessibilityIdentifier("fleet.open")
             // Mailbox: new orders
             Button { sheet = .orders } label: {
-                Image(mail ? "Mailbox" : "MailboxClosed").resizable().frame(width: 34, height: 34)
-                    .rotationEffect(.degrees(mail ? 4 * sin(time * 6) : 0))
+                Group {
+                    if mail {
+                        Image("Mailbox").resizable().frame(width: 34, height: 34).idle(.sway(4), duration: 0.5)
+                    } else {
+                        Image("MailboxClosed").resizable().frame(width: 34, height: 34)
+                    }
+                }
                     .overlay {
                         if state.ability(.newWindow).active > 0 {
-                            SpriteStrip(name: "WindowSparkle6", frames: 6, frame: Int(time * 10), size: CGSize(width: 54, height: 54))
+                            AnimatedStrip(name: "WindowSparkle6", frames: 6, fps: 10, size: CGSize(width: 54, height: 54))
                                 .allowsHitTesting(false)
                         }
                     }
@@ -302,7 +388,6 @@ struct Depot: View {
 struct CustomersHouse: View {
     let state: FlowState
     let forecast: Forecast
-    let time: Double
     @Binding var sheet: LedgerSheet?
     @Environment(\.l10n) private var t
 
@@ -313,10 +398,9 @@ struct CustomersHouse: View {
         let hot = Flow.tier(state.quarter(quarter).attention) >= 2
         Button { sheet = .contacts } label: {
             ZStack(alignment: .topLeading) {
-                Image(SceneArt.customers(quarter, hot: hot)).resizable()
-                    .frame(width: StreetSection.houseWidth, height: StreetSection.buildingHeight)
+                SceneImage(SceneArt.customers(quarter, hot: hot), StreetSection.houseWidth, StreetSection.buildingHeight)
                 if !hot {
-                    SceneFigure(sheet: SceneArt.buyer(quarter, walking: false), move: .idle, time: time, scale: 0.9)
+                    SceneFigure(sheet: SceneArt.buyer(quarter, walking: false), move: .idle, scale: 0.9)
                         .offset(x: 2, y: StreetSection.buildingHeight - 4 - 63)
                 }
                 VStack(spacing: 1) {
@@ -343,29 +427,31 @@ struct CustomersHouse: View {
 struct LiftCar: View {
     let state: FlowState
     let floors: Int
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.sceneAnimating) private var animating
 
     static let size = CGSize(width: 46, height: 56)
 
     var body: some View {
-        let p = state.trip.map { 1 - $0.left / max(0.1, $0.duration) } ?? 1
-        let phase: CGFloat = p < 0.25 ? CGFloat(p / 0.25) : (p < 0.5 ? 1 - CGFloat((p - 0.25) / 0.25) : 0)
         let streetY = BuildingScene.streetHeight - BuildingScene.roadHeight
         let top = streetY + 4 - Self.size.height
         let bottom = BuildingScene.streetHeight + CGFloat(max(1, floors)) * BuildingScene.floorHeight - BuildingScene.floorBoards - Self.size.height
-        let y = top + phase * (bottom - top)
         // The cable hangs from the pulley in the lift head.
         let pulley = streetY + 4 - StreetSection.buildingHeight + 42 + 22
-        let loaded = (state.trip?.crates ?? 0) > 0.5 && (p > 0.25 || phase > 0.9)
-        ZStack(alignment: .top) {
-            Image("LiftCable").resizable(resizingMode: .tile)
-                .frame(width: 4, height: max(0, y - pulley))
-                .offset(y: -max(0, y - pulley))
-            Image(loaded ? "LiftCarLoaded" : "LiftCarEmpty").resizable()
-                .frame(width: Self.size.width, height: Self.size.height)
+        TimelineView(.animation(paused: !animating || state.trip == nil)) { tl in
+            let p = state.trip == nil ? 1 : store.tripPhase(state, at: tl.date)
+            let phase: CGFloat = p < 0.25 ? CGFloat(p / 0.25) : (p < 0.5 ? 1 - CGFloat((p - 0.25) / 0.25) : 0)
+            let y = top + phase * (bottom - top)
+            let loaded = (state.trip?.crates ?? 0) > 0.5 && (p > 0.25 || phase > 0.9)
+            ZStack(alignment: .top) {
+                Image("LiftCable").resizable(resizingMode: .tile)
+                    .frame(width: 4, height: max(0, y - pulley))
+                    .offset(y: -max(0, y - pulley))
+                SceneImage(loaded ? "LiftCarLoaded" : "LiftCarEmpty", Self.size.width, Self.size.height)
+            }
+            .frame(width: Self.size.width, height: Self.size.height, alignment: .top)
+            .offset(x: (BuildingScene.shaftWidth - Self.size.width) / 2, y: y)
         }
-        .frame(width: Self.size.width, height: Self.size.height, alignment: .top)
-        .offset(x: (BuildingScene.shaftWidth - Self.size.width) / 2, y: y)
-        .animation(.linear(duration: 0.25), value: y)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }
@@ -379,10 +465,10 @@ struct FloorRow: View {
     let index: Int
     let state: FlowState
     let forecast: GoodForecast?
-    let time: Double
     @Binding var sheet: LedgerSheet?
     @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
+    @Environment(\.sceneAnimating) private var animating
     @State private var floaters: [Floater] = []
     @State private var floaterSeq = 0
     @State private var rebuildAt = 0.0
@@ -396,33 +482,46 @@ struct FloorRow: View {
         let def = FlowContent.good(good)
         GeometryReader { geo in
             let width = geo.size.width
+            let height = geo.size.height
             let k = width / BuildingScene.artWidth
-            let floorY = geo.size.height - BuildingScene.floorBoards
+            let floorY = height - BuildingScene.floorBoards
             let machine = (start: 150 * k, end: 317 * k)
             ZStack(alignment: .topLeading) {
-                Image(SceneArt.floor(good, level: w.bench)).resizable().frame(width: width, height: geo.size.height)
-                Image("ShaftTile").resizable().frame(width: BuildingScene.shaftWidth, height: geo.size.height)
+                SceneImage(SceneArt.floor(good, level: w.bench), width, height)
+                SceneImage("ShaftTile", BuildingScene.shaftWidth, height)
                 // While the floor works its lights are on and its machines move; otherwise the room is dim.
                 if running || w.lead {
-                    Image(SceneArt.floorLit(good, level: w.bench)).resizable().frame(width: width, height: geo.size.height)
+                    SceneImage(SceneArt.floorLit(good, level: w.bench), width, height)
                         .allowsHitTesting(false)
-                    SpriteStrip(name: SceneArt.floorRun(good, level: w.bench), frames: 4, frame: Int(time * 6),
-                                size: CGSize(width: width, height: geo.size.height))
+                    AnimatedStrip(name: SceneArt.floorRun(good, level: w.bench), frames: 4, fps: 6, size: CGSize(width: width, height: height))
                         .allowsHitTesting(false)
                 } else {
-                    Rectangle().fill(Color.black.opacity(0.22)).frame(width: width - BuildingScene.shaftWidth, height: geo.size.height)
+                    Rectangle().fill(Color.black.opacity(0.22)).frame(width: width - BuildingScene.shaftWidth, height: height)
                         .offset(x: BuildingScene.shaftWidth).allowsHitTesting(false)
                 }
                 // Double shift: a warm pulsing glow with turning gears over the machines.
                 if state.ability(.doubleShift).active > 0, state.ability(.doubleShift).good == good {
-                    SpriteStrip(name: "ShiftGlow6", frames: 6, frame: Int(time * 10), size: CGSize(width: 200, height: 100))
+                    AnimatedStrip(name: "ShiftGlow6", frames: 6, fps: 10, size: CGSize(width: 200, height: 100))
                         .position(x: (machine.start + machine.end) / 2, y: floorY - 70)
-                        .blendMode(.screen)
                         .allowsHitTesting(false)
                 }
                 // Workers
                 ForEach(0..<(1 + min(2, stage / 2)), id: \.self) { i in
-                    worker(i, shelfX: BuildingScene.shaftWidth + 90, machine: machine, floorY: floorY, running: running, lead: w.lead)
+                    let station = machine.start + (machine.end - machine.start) * (0.15 + 0.35 * CGFloat(i))
+                    let shelfX = BuildingScene.shaftWidth + 90
+                    Group {
+                        if w.lead {
+                            WorkerLoop(good: good, worker: i, shelfX: shelfX, station: station)
+                                .offset(y: floorY - 70)
+                        } else if running {
+                            SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, phase: Double(i))
+                                .position(x: station, y: floorY - 35)
+                        } else {
+                            SceneFigure(sheet: SceneArt.worker(good, .sleep), move: .sleep, phase: Double(i) * 0.7)
+                                .position(x: station, y: floorY - 35)
+                        }
+                    }
+                    .allowsHitTesting(false)
                 }
                 // The shelf with its crates
                 Button { sheet = .station(.shelf(good)) } label: {
@@ -435,10 +534,7 @@ struct FloorRow: View {
                 // Workshop lead
                 Group {
                     if w.lead {
-                        let talking = Int(time / 5 + Double(index)) % 3 == 0
-                        SpriteStrip(name: talking ? SceneArt.talk(def.lead) : SceneArt.body(def.lead), frames: talking ? 4 : 2,
-                                    frame: Int(time * (talking ? 5 : 1.5) + Double(index)), size: CGSize(width: 44, height: 66))
-                            .accessibilityHidden(true)
+                        LeadFigure(crew: def.lead, index: index)
                     } else {
                         Button { store.dispatch(.hireLead(good)) } label: {
                             ManagerSlot(crew: def.lead, hired: false, cost: def.leadCost, affordable: state.cash >= def.leadCost)
@@ -474,20 +570,18 @@ struct FloorRow: View {
                             .foregroundStyle(Color(hex: 0x1B1B28))
                             .padding(.horizontal, 12).padding(.vertical, 6)
                             .background(Toon.window, in: Capsule())
-                            .shadow(color: Toon.window.opacity(0.6), radius: 8)
-                        SpriteStrip(name: "TapHand4", frames: 4, frame: Int(time * 6), size: CGSize(width: 40, height: 40))
+                            .background(Capsule().fill(Toon.window.opacity(0.35)).padding(-5))
+                        AnimatedStrip(name: "TapHand4", frames: 4, fps: 6, size: CGSize(width: 40, height: 40))
                     }
-                    .position(x: cx, y: geo.size.height * 0.42)
+                    .position(x: cx, y: height * 0.42)
                     .allowsHitTesting(false)
                 }
                 // Cycle progress
                 if running {
-                    Capsule().fill(Color.black.opacity(0.5)).frame(width: machine.end - machine.start, height: 7)
-                        .offset(x: machine.start, y: floorY + 6)
-                    Capsule().fill(Toon.up).frame(width: max(7, (machine.end - machine.start) * CGFloat(w.cycle ?? 0)), height: 7)
+                    CycleBar(good: good, state: state, width: machine.end - machine.start)
                         .offset(x: machine.start, y: floorY + 6)
                 }
-                BurstSprite(name: "DustPuff6", frames: 6, size: 120, start: rebuildAt, time: time, fps: 9)
+                OneShotStrip(name: "DustPuff6", frames: 6, size: 120, start: rebuildAt, fps: 9)
                     .position(x: (machine.start + machine.end) / 2, y: floorY - 60)
                 ForEach(floaters) { f in
                     FloaterView(floater: f).position(x: BuildingScene.shaftWidth + 34, y: floorY - CrateShelf.height - 14)
@@ -510,10 +604,10 @@ struct FloorRow: View {
                 .accessibilityIdentifier("bench.\(good.rawValue)")
         }
         .onChange(of: stage) { old, new in
-            if new > old { rebuildAt = Date().timeIntervalSinceReferenceDate }
+            if new > old && animating { rebuildAt = Date().timeIntervalSinceReferenceDate }
         }
         .onChange(of: w.stock) { old, new in
-            guard new > old + 0.5 else { return }
+            guard new > old + 0.5, animating else { return }
             floaterSeq += 1
             let id = floaterSeq
             floaters.append(Floater(id: id, text: "+" + t.money(new - old), at: .zero))
@@ -524,35 +618,70 @@ struct FloorRow: View {
             }
         }
     }
+}
 
-    /// A worker's day: with a lead they walk to the machine, work, and carry a crate back to the shelf; a cycle started
-    /// by hand keeps them working at the machine; with nothing to do they doze.
-    @ViewBuilder private func worker(_ i: Int, shelfX: CGFloat, machine: (start: CGFloat, end: CGFloat), floorY: CGFloat,
-                                     running: Bool, lead: Bool) -> some View {
-        let station = machine.start + (machine.end - machine.start) * (0.15 + 0.35 * CGFloat(i))
-        Group {
-            if lead {
-                let loop = 7.0
-                let t0 = (time + Double(i) * 2.3).truncatingRemainder(dividingBy: loop) / loop
-                if t0 < 0.3 {
-                    SceneFigure(sheet: SceneArt.worker(good, .walk), move: .walk, time: time, phase: Double(i))
-                        .position(x: shelfX + (station - shelfX) * CGFloat(t0 / 0.3), y: floorY - 35)
-                } else if t0 < 0.6 {
-                    SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, time: time, phase: Double(i))
-                        .position(x: station, y: floorY - 35)
-                } else {
-                    SceneFigure(sheet: SceneArt.worker(good, .carry), move: .carry, time: time, facing: -1, phase: Double(i))
-                        .position(x: station - (station - shelfX) * CGFloat((t0 - 0.6) / 0.4), y: floorY - 35)
-                }
-            } else if running {
-                SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, time: time, phase: Double(i))
-                    .position(x: station, y: floorY - 35)
-            } else {
-                SceneFigure(sheet: SceneArt.worker(good, .sleep), move: .sleep, time: time, phase: Double(i) * 0.7)
-                    .position(x: station, y: floorY - 35)
+/// A worker's day with a lead: walk to the machine, work, carry a crate back to the shelf. At the display's rate.
+struct WorkerLoop: View {
+    let good: Good
+    let worker: Int
+    let shelfX: CGFloat
+    let station: CGFloat
+    @Environment(\.sceneAnimating) private var animating
+
+    static let loop = 7.0
+
+    var body: some View {
+        TimelineView(.animation(paused: !animating)) { tl in
+            let time = tl.date.timeIntervalSinceReferenceDate
+            let phase = Double(worker)
+            let t0 = (time + phase * 2.3).truncatingRemainder(dividingBy: Self.loop) / Self.loop
+            let (move, x, facing): (SceneArt.Move, CGFloat, CGFloat) =
+                t0 < 0.3 ? (.walk, shelfX + (station - shelfX) * CGFloat(t0 / 0.3), 1)
+                : (t0 < 0.6 ? (.work, station, 1) : (.carry, station - (station - shelfX) * CGFloat((t0 - 0.6) / 0.4), -1))
+            SpriteStrip(name: SceneArt.worker(good, move), frames: move.frames, frame: Int((time + phase) * move.fps),
+                        size: SceneFigure.size(1))
+                .scaleEffect(x: facing, y: 1)
+                .offset(x: x - 22)
+        }
+    }
+}
+
+/// The workshop lead at the shelf: stands, and now and then talks.
+struct LeadFigure: View {
+    let crew: String
+    let index: Int
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 1.0 / 5, paused: !animating)) { tl in
+            let time = tl.date.timeIntervalSinceReferenceDate
+            let talking = Int(time / 5 + Double(index)) % 3 == 0
+            SpriteStrip(name: talking ? SceneArt.talk(crew) : SceneArt.body(crew), frames: talking ? 4 : 2,
+                        frame: Int(time * (talking ? 5 : 1.5) + Double(index)), size: CGSize(width: 44, height: 66))
+        }
+        .accessibilityHidden(true)
+    }
+}
+
+/// The running cycle's progress under the machines, smooth between simulation ticks.
+struct CycleBar: View {
+    let good: Good
+    let state: FlowState
+    let width: CGFloat
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.sceneAnimating) private var animating
+
+    var body: some View {
+        let cycle = state.workshop(good)?.cycle ?? 0
+        let seconds = max(0.1, Flow.cycleSeconds(state, good))
+        ZStack(alignment: .leading) {
+            Capsule().fill(Color.black.opacity(0.5)).frame(width: width, height: 7)
+            TimelineView(.animation(paused: !animating)) { tl in
+                let p = min(1, cycle + store.sinceTick(tl.date) / seconds)
+                Capsule().fill(Toon.up).frame(width: max(7, width * CGFloat(p)), height: 7)
             }
         }
-        .allowsHitTesting(false)
+        .frame(width: width, height: 7, alignment: .leading)
     }
 }
 
