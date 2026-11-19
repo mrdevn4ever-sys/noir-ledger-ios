@@ -443,5 +443,89 @@
     "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
     "source_url": null,
     "sha256": "d5c75133203efdbf2dab3b4fafee1d54dcc56678c85aab0cc150f02f982b9138"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot0.imageset/Depot0.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "855063e68770c6c62eb861aa81deb70312a22931226548d94bc756888b3bb4bc"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot1.imageset/Depot1.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "41c7fcfdc8cf9cfe9df581b79e87612adb3c25ca8af296d851c01864cca2d859"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot2.imageset/Depot2.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "e6965863503715adac51a4b70a001939c2b09f498b197a81e49b7831e01c3f06"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftHead.imageset/LiftHead.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1478d3db9809287b0cb21966d76955d7534da723697cc74242b318e1b2bfa0bb"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Mailbox.imageset/Mailbox.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "982169103b8955c3bb921889573d8f11d3df3119531b49420bc4db1b73dc9197"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/MailboxClosed.imageset/MailboxClosed.png",
+    "origin": "Für NOIR LEDGER 4.0 eigens erstellte Vektor-/Rasterillustration",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "0fc9e6d4e00a2024768aee7acd167899ebf0329e07410bef9d3d2e628c6ef2ed"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot0.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "325661895f152135d7b55b14af43eb2b142624a3f543e22165759c07a7776489"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot1.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "4e83e9cbe0bd708c526cb22adbfaa000408a731cf229f11507fd3a68a9bb1dae"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Depot2.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "c62d07cd61c61d23abf090576e29f5e6df820dee7e2a743bf2cc8ee196e1b78a"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/LiftHead.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "1ec1bc4625e3c75444e7f82668e317df05247976f41e39a3a8fcdce1ef935771"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/Mailbox.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "457a57e8ecefb5f44257e99f3165665525bc788794c495c405579794c5738d1b"
+  },
+  {
+    "file": "App/Resources/Assets.xcassets/MailboxClosed.imageset/Contents.json",
+    "origin": "Xcode-Metadaten für eigens erstelltes Projekt-Asset",
+    "license": "Original für das Projekt; keine Drittanbieter-Assets oder Namensnennung",
+    "source_url": null,
+    "sha256": "df1120291fe44a3ffbb26b3644b3ba854f2fb68e215e08d348ccf69320d8cc56"
   }
 ]
