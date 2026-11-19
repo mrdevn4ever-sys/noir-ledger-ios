@@ -1,0 +1,77 @@
+name: Scene pacing comparison
+
+# Builds two commits on the same runner and simulator and runs the pacing test on each in turns (A, B, A, B), so
+# their frame numbers can be compared fairly. Only the PERF lines are kept; nothing is uploaded or pushed.
+on:
+  push:
+    paths: [".github/workflows/perf.yml"]
+  workflow_dispatch:
+    inputs:
+      commits:
+        description: "Commits to compare, separated by spaces (first is the baseline)"
+        required: true
+      rounds:
+        description: "Turns per commit"
+        required: false
+        default: "2"
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: perf-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  pacing:
+    runs-on: macos-26
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select the newest Xcode
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_2[6-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          xcodebuild -version
+      - name: Tools and simulator
+        run: |
+          brew install xcodegen
+          python3 scripts/ci/pick_simulator.py | tee sim.env
+          source sim.env
+          echo "SIM_UDID=$SIM_UDID" >> "$GITHUB_ENV"
+          xcrun simctl boot "$SIM_UDID" || true
+          xcrun simctl bootstatus "$SIM_UDID" -b
+      - name: Build each commit for testing
+        env:
+          COMMITS: ${{ inputs.commits || '2b8cab2 eb27c30' }}
+        run: |
+          for c in $COMMITS; do
+            git worktree add --detach "wt-$c" "$c"
+            (cd "wt-$c" && xcodegen generate --quiet)
+            (cd "wt-$c" && xcodebuild build-for-testing -project NoirLedger.xcodeproj -scheme NoirLedger \
+              -configuration Debug -destination "id=$SIM_UDID" -derivedDataPath "../dd-$c" \
+              CODE_SIGNING_ALLOWED=NO > "../build-$c.log" 2>&1) || { tail -60 "build-$c.log"; exit 1; }
+            echo "built $c"
+          done
+      - name: Pacing test in turns
+        env:
+          COMMITS: ${{ inputs.commits || '2b8cab2 eb27c30' }}
+          ROUNDS: ${{ inputs.rounds || '2' }}
+        run: |
+          for r in $(seq 1 "$ROUNDS"); do
+            for c in $COMMITS; do
+              (cd "wt-$c" && xcodebuild test-without-building -project NoirLedger.xcodeproj -scheme NoirLedger \
+                -configuration Debug -destination "id=$SIM_UDID" -derivedDataPath "../dd-$c" \
+                -only-testing:NoirLedgerUITests/PerformanceUITests \
+                CODE_SIGNING_ALLOWED=NO > "../test-$c-$r.log" 2>&1) || echo "test run $c round $r failed"
+              grep "PERF " "test-$c-$r.log" | sed "s/^/[$c r$r] /" | tee -a perf.txt || true
+            done
+          done
+          echo "## Pacing" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/    /' perf.txt >> "$GITHUB_STEP_SUMMARY"
