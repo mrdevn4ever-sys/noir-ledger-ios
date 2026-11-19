@@ -801,7 +801,8 @@ public enum Tycoon {
         if s.police != nil { s.police?.deadline += seconds }
         s.nextSuitcaseAt = max(s.nextSuitcaseAt, s.time + 20)
         s.suitcase = nil
-        s.call = nil
+        // A ringing call keeps ringing through a short trip to another app; after a long absence it has hung up.
+        if let c = s.call, s.time >= c.expiresAt { s.call = nil }
         s.nextCallAt = max(s.nextCallAt, s.time + 20)
         s.rush = [:]
         return earned

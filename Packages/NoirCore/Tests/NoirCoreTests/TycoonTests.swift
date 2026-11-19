@@ -332,6 +332,11 @@ struct TycoonTests {
         poor.call = ActiveCall(id: "copper", expiresAt: poor.time + 20)
         poor.cash = 0
         #expect(Self.error(poor, .answerCall(0)) == .notAffordable)
+        // A short trip to another app does not hang up; a long one does.
+        let (brief, _) = Tycoon.applyOffline(s, nowMs: s.lastWallClockMs + 8_000)
+        #expect(brief.call == s.call)
+        let (long, _) = Tycoon.applyOffline(s, nowMs: s.lastWallClockMs + 600_000)
+        #expect(long.call == nil)
         // Heat from a call can bring the police.
         var hot = s
         hot.call = ActiveCall(id: "dog", expiresAt: hot.time + 20)
