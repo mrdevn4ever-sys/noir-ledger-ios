@@ -1,0 +1,76 @@
+# CI evidence — 9b84130cd5b7f9fdd3e99078e115919f3d68ca30
+
+- Run: https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44486437382 (attempt 1)
+- Generated: 2026-11-19T09:07:45+00:00
+- Runner: {'os': 'macOS', 'image': 'macos26', 'image_version': '20261112.0504.1', 'macos': '26.7.2'}
+- Xcode: Xcode 26.6 Build version 17F113
+- Swift: swift-driver version: 1.148.6 Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+- Simulator: {'name': 'iPhone 17', 'runtime': 'iOS 26.5', 'udid': 'F5450765-59B9-4D0C-9B64-845B8C9EE51F'}
+- Xcode tests: {'result': 'Passed', 'totalTestCount': 31, 'passedTests': 31, 'failedTests': 0, 'skippedTests': 0}
+- Core tests: ✔ Test run with 134 tests in 12 suites passed after 34.037 seconds.
+- Playthroughs:
+  - seed=1 won after 3.16 h, raids=0, investigations=0, peakHeat=74, legacy=19
+  - seed=42 won after 7.83 h, raids=0, investigations=0, peakHeat=71, legacy=20
+  - seed=2024 won after 11.05 h, raids=0, investigations=2, peakHeat=81, legacy=22
+  - NG+ won after 5.42 h
+- Checks:
+  - l10n: L10N_OK
+  - asset-parity: ASSET_PARITY_OK
+  - release-exclusion: RELEASE_EXCLUSION_OK
+  - scan: SCAN_OK
+- Screenshots (55):
+  - de_42_settings.png
+  - de_tour_01_first_launch.png
+  - de_tour_02_building.png
+  - de_tour_03_floors.png
+  - de_tour_04_floors_end.png
+  - de_tour_05_deals.png
+  - de_tour_06_change_city.png
+  - de_tour_07_shop.png
+  - de_tour_08_shop_offers.png
+  - de_tour_09_rewards.png
+  - de_tour_10_settings.png
+  - de_tour_11_police.png
+  - de_tour_12_suitcase.png
+  - de_tour_13_raid.png
+  - de_tour_14_offline_return.png
+  - de_tour_15_large_text.png
+  - de_tour_16_call.png
+  - de_tour_17_manager_pick.png
+  - en_01_first_launch.png
+  - en_02_pills_open.png
+  - en_03_manager.png
+  - en_10_deals.png
+  - en_11_city.png
+  - en_12_new_city.png
+  - en_20_police.png
+  - en_21_suitcase.png
+  - en_22_raid.png
+  - en_23_call.png
+  - en_24_laced.png
+  - en_30_offline_return.png
+  - en_40_shop.png
+  - en_41_rewards.png
+  - en_43_reset_confirm.png
+  - en_44_save_recovered.png
+  - en_45_future_save.png
+  - en_50_large_text.png
+  - en_51_large_text_floors.png
+  - en_60_home_screen_icon.png
+  - en_tour_01_first_launch.png
+  - en_tour_02_building.png
+  - en_tour_03_floors.png
+  - en_tour_04_floors_end.png
+  - en_tour_05_deals.png
+  - en_tour_06_change_city.png
+  - en_tour_07_shop.png
+  - en_tour_08_shop_offers.png
+  - en_tour_09_rewards.png
+  - en_tour_10_settings.png
+  - en_tour_11_police.png
+  - en_tour_12_suitcase.png
+  - en_tour_13_raid.png
+  - en_tour_14_offline_return.png
+  - en_tour_15_large_text.png
+  - en_tour_16_call.png
+  - en_tour_17_manager_pick.png
