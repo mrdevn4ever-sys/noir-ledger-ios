@@ -1,0 +1,44 @@
+name: Quick compile
+
+# Fast feedback while the app changes a lot: core tests and a simulator build of the app, no UI tests.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    name: Core tests and app build
+    runs-on: macos-26
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select the newest Xcode (27 when available)
+        run: |
+          set -e
+          pick=$(ls -d /Applications/Xcode_2[7-9]*.app /Applications/Xcode_3[0-9]*.app 2>/dev/null | sort -V | tail -1 || true)
+          if [ -z "$pick" ]; then
+            pick=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1 || true)
+          fi
+          [ -n "$pick" ] || { echo "no Xcode found"; exit 1; }
+          sudo xcode-select -s "$pick/Contents/Developer"
+          xcodebuild -version
+      - name: Core tests
+        run: cd Packages/NoirCore && swift test 2>&1 | tee ../../core-tests.log | grep -E "error:|✘|pacing|Test run" || true
+      - name: Core result
+        run: grep -q "Test run with .* passed" core-tests.log
+      - name: Generate the Xcode project
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen generate
+      - name: Build the app and the tests for the simulator
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing -project NoirLedger.xcodeproj -scheme NoirLedger -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO 2>&1 \
+            | tee build.log | grep -E " error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED\|TEST BUILD SUCCEEDED" build.log
+      - name: Errors
+        if: failure()
+        run: grep -E " error:" build.log core-tests.log | sort -u | head -80 || true
