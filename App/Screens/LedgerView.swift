@@ -36,11 +36,7 @@ struct LedgerView: View {
             VStack(spacing: Noir.s3) {
                 ChapterStrip(state: s, sheet: $sheet)
                 if let hint = Flow.hint(s) { HintBubble(hint: hint) }
-                ForEach(s.openGoods, id: \.self) { g in
-                    if let gf = f.good(g), let w = s.workshop(g) {
-                        BottleneckBanner(good: g, forecast: gf, workshop: w, state: s, sheet: $sheet)
-                    }
-                }
+                if s.counters.deliveries > 0 { BottleneckPanel(state: s, forecast: f, sheet: $sheet) }
                 ForEach(s.openGoods, id: \.self) { g in
                     WorkshopCard(good: g, state: s, forecast: f.good(g), sheet: $sheet)
                 }
@@ -237,7 +233,34 @@ struct HintBubble: View {
     }
 }
 
-/// Where a good's flow stops right now, in numbers, with the station that would fix it.
+/// Where each good's flow stops right now, in one compact panel.
+struct BottleneckPanel: View {
+    let state: FlowState
+    let forecast: Forecast
+    @Binding var sheet: LedgerSheet?
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Noir.s2) {
+            Text(verbatim: t("l4_neck_title")).font(.caption.weight(.heavy)).foregroundStyle(Noir.inkSoft)
+                .accessibilityAddTraits(.isHeader)
+            ForEach(state.openGoods, id: \.self) { g in
+                if let gf = forecast.good(g), let w = state.workshop(g) {
+                    BottleneckBanner(good: g, forecast: gf, workshop: w, state: state, sheet: $sheet)
+                }
+            }
+            if !state.dispatcher || state.openGoods.contains(where: { state.workshop($0)?.lead != true }) {
+                Text(verbatim: t("l4_neck_manual")).font(.caption2).foregroundStyle(Noir.inkSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(Noir.s3)
+        .background(Noir.raised, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.hairline, lineWidth: 1))
+    }
+}
+
+/// One good's line in the panel: where it stops, the three rates, the station that would fix it.
 struct BottleneckBanner: View {
     let good: Good
     let forecast: GoodForecast
@@ -248,30 +271,25 @@ struct BottleneckBanner: View {
 
     var body: some View {
         let fix = StationText.fix(forecast.bottleneck, good: good, state: state)
-        HStack(alignment: .top, spacing: Noir.s3) {
-            Mark(Glyph.product(good.product), size: 26)
-            VStack(alignment: .leading, spacing: 3) {
+        let piling = workshop.stock >= Flow.shelfCapacity(state, good) * 0.8
+        HStack(alignment: .center, spacing: Noir.s2) {
+            Mark(Glyph.product(good.product), size: 22)
+            VStack(alignment: .leading, spacing: 2) {
                 Text(verbatim: t(NeckText.key(forecast.bottleneck), t(GoodText.name(good))))
                     .font(.subheadline.weight(.bold))
-                    .foregroundStyle(forecast.bottleneck == .fleet || forecast.bottleneck == .shelf ? Noir.danger : Noir.ink)
+                    .foregroundStyle(piling && forecast.bottleneck != .bench ? Noir.danger : Noir.ink)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
                     .font(.caption).monospacedDigit().foregroundStyle(Noir.inkSoft)
                     .fixedSize(horizontal: false, vertical: true)
-                if !workshop.lead || !state.dispatcher {
-                    Text(verbatim: t("l4_neck_manual")).font(.caption2).foregroundStyle(Noir.inkSoft)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if let fix {
-                Button { sheet = .station(fix) } label: { Text(verbatim: t("l4_neck_fix")) }
+                Button { sheet = .station(fix) } label: { Text(verbatim: t("l4_neck_fix")).font(.subheadline.weight(.bold)) }
                     .noirButton(.primary, fullWidth: false)
                     .accessibilityIdentifier("neck.\(good.rawValue).fix")
             }
         }
-        .padding(Noir.s3)
-        .background(Noir.raised, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.hairline, lineWidth: 1))
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("neck.\(good.rawValue)")
     }
@@ -296,7 +314,7 @@ struct WorkshopCard: View {
         VStack(spacing: 0) {
             ZStack(alignment: .topLeading) {
                 RoomScene(product: good.product, tier: min(3, Flow.milestonesReached(w.bench)), workers: w.lead ? 3 : 1,
-                          running: running, pile: min(1, w.stock / max(1, capacity)))
+                          running: running)
                     .frame(height: 128)
                 LinearGradient(colors: [Noir.ground.opacity(0.85), Noir.ground.opacity(0)], startPoint: .top, endPoint: .bottom)
                     .frame(height: 56)
@@ -304,10 +322,7 @@ struct WorkshopCard: View {
                     .accessibilityHidden(true)
                 HStack(alignment: .top, spacing: Noir.s2) {
                     Mark(Glyph.product(good.product), size: 26)
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(verbatim: t("l4_workshop", t(GoodText.name(good)))).font(.headline)
-                        Text(verbatim: t(GoodText.role(good))).font(.caption2).foregroundStyle(Noir.inkSoft)
-                    }
+                    Text(verbatim: t("l4_workshop", t(GoodText.name(good)))).font(.headline)
                     Spacer(minLength: 0)
                     if w.lead {
                         Portrait(crewId: FlowContent.good(good).lead, size: 30).clipShape(Circle())

@@ -67,9 +67,14 @@ struct StationSheet: View {
                 ValueRow(label: t("l4_level_label"), value: "\(level) → \(Flow.level(after, station))")
                 ValueRow(label: t("l4_capacity"), value: StationText.capacity(station, s, t) + " → " + StationText.capacity(station, after, t),
                          valueColor: Noir.amber)
-                if let g = good, let before = preview.before.good(g), let next = preview.after.good(g) {
-                    ValueRow(label: t("l4_sold"), value: t("l4_per_min_crates", t.money(before.sold)) + " → " + t("l4_per_min_crates", t.money(next.sold)))
-                    ValueRow(label: t("l4_shelf_trend"), value: t.money(before.piling) + " → " + t.money(next.piling))
+                ForEach(good.map { [$0] } ?? s.openGoods, id: \.self) { g in
+                    if let before = preview.before.good(g), let next = preview.after.good(g) {
+                        ValueRow(label: t("l4_sold") + (good == nil ? " · " + t(GoodText.name(g)) : ""),
+                                 value: t.money(before.sold) + " → " + t("l4_per_min_crates", t.money(next.sold)))
+                        if good != nil {
+                            ValueRow(label: t("l4_shelf_trend"), value: t.money(before.piling) + " → " + t.money(next.piling))
+                        }
+                    }
                 }
                 let gain = preview.after.income - preview.before.income
                 ValueRow(label: t("l4_income"), value: t("l4_per_min", t.money(preview.before.income)) + " → " + t("l4_per_min", t.money(preview.after.income)),
@@ -211,7 +216,7 @@ struct OrderOfferCard: View {
             }.joined(separator: " · "))
             Text(verbatim: t("l4_offer_attention", t(QuarterText.name(att.quarter)), t.decimal(att.before, digits: 0), t.decimal(att.after, digits: 0)))
                 .font(.subheadline.weight(.semibold)).monospacedDigit()
-                .foregroundStyle(tierAfter >= 2 ? Noir.danger : (loud ? Noir.amber : Noir.ink))
+                .foregroundStyle(tierAfter >= 2 ? Noir.danger : (loud ? Noir.amber : Noir.paperInk))
                 .accessibilityIdentifier("offer.\(index).attention")
             if tierAfter > tierBefore {
                 Label { Text(verbatim: t("l4_offer_tier_up", t("l4_tier_\(tierAfter)")) + " " + t("l4_tier_effect_\(tierAfter)")) } icon: {
@@ -220,7 +225,8 @@ struct OrderOfferCard: View {
                 .font(.caption.weight(.semibold)).foregroundStyle(Noir.danger)
                 .fixedSize(horizontal: false, vertical: true)
             }
-            Text(verbatim: t(offer.kind == .trust ? "l4_offer_fail_trust" : "l4_offer_fail")).font(.caption).foregroundStyle(Noir.inkSoft)
+            Text(verbatim: t(offer.kind == .trust ? "l4_offer_fail_trust" : "l4_offer_fail")).font(.caption)
+                .foregroundStyle(loud ? Noir.inkSoft : Noir.paperInk.opacity(0.7))
                 .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: Noir.s2) {
                 Button { store.dispatch(.decline(offer.id)) } label: { Text(verbatim: t("l4_decline")) }
@@ -232,7 +238,7 @@ struct OrderOfferCard: View {
                     .accessibilityIdentifier("offer.\(index).accept")
             }
             if slotsFull {
-                Text(verbatim: t("l4_slots_full")).font(.caption).foregroundStyle(Noir.inkSoft)
+                Text(verbatim: t("l4_slots_full")).font(.caption).foregroundStyle(loud ? Noir.inkSoft : Noir.paperInk.opacity(0.7))
             }
         }
     }
