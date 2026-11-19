@@ -15,13 +15,14 @@ struct LedgerView: View {
             GameHUD(state: s, sheet: $sheet)
             ScrollView {
                 VStack(spacing: 0) {
-                    VStack(spacing: Noir.s2) {
+                    VStack(spacing: 6) {
                         ChapterStrip(state: s, sheet: $sheet)
                         if let hint = Flow.hint(s) { HintBubble(hint: hint) }
                         if s.counters.deliveries > 0 { BottleneckPanel(state: s, forecast: f, sheet: $sheet) }
                     }
                     .padding(.horizontal, Noir.s3)
-                    .padding(.vertical, Noir.s2)
+                    .padding(.top, 2)
+                    .padding(.bottom, 6)
                     BuildingScene(state: s, forecast: f, sheet: $sheet)
                 }
                 .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.ledger", title: t("app_name")) }

@@ -10,7 +10,7 @@ struct BuildingScene: View {
     @Binding var sheet: LedgerSheet?
     @Environment(\.noirReduceMotion) private var reduceMotion
 
-    static let streetHeight: CGFloat = 270
+    static let streetHeight: CGFloat = 232
     static let floorHeight: CGFloat = 196
     static let shaftWidth: CGFloat = 54
 
@@ -56,23 +56,24 @@ struct StreetSection: View {
             let streetY = h - 46
             ZStack(alignment: .topLeading) {
                 LinearGradient(colors: [Toon.skyTop, Toon.skyBottom], startPoint: .top, endPoint: .bottom)
-                Circle().fill(Toon.moon).frame(width: 46, height: 46).position(x: w * 0.62, y: 46)
-                    .shadow(color: Toon.moon.opacity(0.6), radius: 18)
+                stars(w: w, streetY: streetY)
+                Circle().fill(Toon.moon).frame(width: 34, height: 34).position(x: w * 0.56, y: 30)
+                    .shadow(color: Toon.moon.opacity(0.6), radius: 16)
                 Skyline().frame(width: w, height: 130).position(x: w / 2, y: streetY - 65)
-                StreetLamp().position(x: w * 0.38, y: streetY - 40)
-                StreetLamp().position(x: w * 0.72, y: streetY - 40)
-                // Street
+                StreetLamp().position(x: (Depot.width + w - CustomersHouse.width) / 2, y: streetY - 40)
+                // Street with the shaft opening on the left
                 Rectangle().fill(Toon.street).frame(width: w, height: 46).position(x: w / 2, y: h - 23)
                 Rectangle().fill(Toon.curb).frame(width: w, height: 5).position(x: w / 2, y: streetY + 2)
                 ForEach(0..<6, id: \.self) { i in
                     Capsule().fill(Color.white.opacity(0.25)).frame(width: 22, height: 3)
-                        .position(x: CGFloat(i) * w / 5 + 20, y: h - 18)
+                        .position(x: BuildingScene.shaftWidth + 24 + CGFloat(i) * (w - BuildingScene.shaftWidth) / 5, y: h - 21)
                 }
-                Depot(state: state, sheet: $sheet).frame(width: 128, height: 150).position(x: 64, y: streetY - 75)
-                CustomersHouse(state: state, forecast: forecast, sheet: $sheet).frame(width: 118, height: 150)
-                    .position(x: w - 59, y: streetY - 75)
+                ShaftSegment().frame(width: BuildingScene.shaftWidth, height: 46).position(x: BuildingScene.shaftWidth / 2, y: h - 23)
+                Depot(state: state, sheet: $sheet).frame(width: Depot.width, height: 150).position(x: Depot.width / 2, y: streetY - 75)
+                CustomersHouse(state: state, forecast: forecast, sheet: $sheet).frame(width: CustomersHouse.width, height: 150)
+                    .position(x: w - CustomersHouse.width / 2, y: streetY - 75)
                 police(w: w, streetY: streetY)
-                van(w: w, streetY: streetY)
+                van(w: w, h: h)
                 ForEach(floaters) { f in
                     FloaterView(floater: f).position(x: w - 70, y: streetY - 150)
                 }
@@ -94,24 +95,34 @@ struct StreetSection: View {
 
     /// The van's place on the street: it waits at the depot, drives to the customers in the second half of a trip
     /// (the first half is the lift collecting the crates) and comes back.
-    @ViewBuilder private func van(w: CGFloat, streetY: CGFloat) -> some View {
+    @ViewBuilder private func van(w: CGFloat, h: CGFloat) -> some View {
         let p = state.trip.map { 1 - $0.left / max(0.1, $0.duration) } ?? 0
-        let start: CGFloat = 150
-        let end = w - 150
+        let start: CGFloat = BuildingScene.shaftWidth + 50
+        let end = w - 64
         let x: CGFloat = p < 0.5 ? start : (p < 0.75 ? start + (end - start) * CGFloat((p - 0.5) / 0.25)
                                                        : end - (end - start) * CGFloat((p - 0.75) / 0.25))
         let facing: CGFloat = p >= 0.75 ? -1 : 1
         Scooter(wheel: state.trip != nil && p >= 0.5 ? time * 12 : 0)
             .scaleEffect(x: facing, y: 1)
-            .position(x: x, y: streetY - 6)
+            .position(x: x, y: h - 30)
             .animation(.linear(duration: 0.25), value: x)
+    }
+
+    /// A few twinkling stars above the skyline.
+    @ViewBuilder private func stars(w: CGFloat, streetY: CGFloat) -> some View {
+        let points: [(CGFloat, CGFloat)] = [(0.08, 14), (0.22, 40), (0.34, 18), (0.47, 52), (0.7, 16), (0.81, 44), (0.93, 24), (0.62, 66)]
+        ForEach(0..<points.count, id: \.self) { i in
+            let blink = 0.55 + 0.45 * sin(time * 1.7 + Double(i) * 1.3)
+            Circle().fill(Color.white.opacity(0.5 + 0.4 * blink)).frame(width: i % 3 == 0 ? 3 : 2, height: i % 3 == 0 ? 3 : 2)
+                .position(x: w * points[i].0, y: points[i].1)
+        }
     }
 
     @ViewBuilder private func police(w: CGFloat, streetY: CGFloat) -> some View {
         let hottest = state.quarters.values.map(\.attention).max() ?? 0
         let tier = Flow.tier(hottest)
         if tier >= 2 {
-            PoliceCar(time: time, siren: true).position(x: w * 0.5, y: streetY + 14)
+            PoliceCar(time: time, siren: true).position(x: w * 0.55, y: streetY + 16)
         } else if tier == 1 {
             let x = CGFloat((time * 30).truncatingRemainder(dividingBy: Double(w + 160))) - 80
             PoliceCar(time: time).position(x: x, y: streetY + 16)
@@ -119,8 +130,10 @@ struct StreetSection: View {
     }
 }
 
-/// Our building's top floor on the street: the lift head, the door, the dispatcher's place, the van's level.
+/// Our building's top floor on the street: the lift head over the shaft, the fleet's level, the dispatcher's place,
+/// the garage door and, while nobody dispatches, the big "Go!" button.
 struct Depot: View {
+    static let width: CGFloat = 172
     let state: FlowState
     @Binding var sheet: LedgerSheet?
     @Environment(LedgerStore.self) private var store
@@ -129,38 +142,52 @@ struct Depot: View {
     var body: some View {
         let f = Flow.forecast(state)
         let neck = state.openGoods.contains { f.good($0)?.bottleneck == .fleet }
+        let shaft = BuildingScene.shaftWidth
         ZStack(alignment: .topLeading) {
-            // Building
-            RoundedRectangle(cornerRadius: 4).fill(Toon.wall).frame(width: 128, height: 118).offset(y: 32)
-            Rectangle().fill(Toon.roof).frame(width: 136, height: 12).offset(x: -4, y: 26)
-            // Lift head with pulley
-            Rectangle().fill(Toon.shaft).frame(width: BuildingScene.shaftWidth, height: 118).offset(x: 0, y: 32)
-            Circle().stroke(Toon.metal, lineWidth: 4).frame(width: 22, height: 22).offset(x: 16, y: 6)
-            Rectangle().fill(Toon.metal).frame(width: 4, height: 30).offset(x: 25, y: 4)
-            // Door
-            RoundedRectangle(cornerRadius: 3).fill(Toon.wallDark).frame(width: 30, height: 46).offset(x: 86, y: 104)
+            // Building and roof
+            RoundedRectangle(cornerRadius: 4).fill(Toon.wall).frame(width: Self.width, height: 118).offset(y: 32)
+            Rectangle().fill(Toon.wallDark).frame(width: Self.width, height: 6).offset(y: 32)
+            Rectangle().fill(Toon.roof).frame(width: Self.width + 6, height: 12).offset(x: -3, y: 24)
+            // Lift head: an open shaft with the pulley under the roof
+            Rectangle().fill(Toon.shaft).frame(width: shaft, height: 112).offset(y: 38)
+            Rectangle().fill(Toon.metalDark).frame(width: 3, height: 112).offset(x: 6, y: 38)
+            Rectangle().fill(Toon.metalDark).frame(width: 3, height: 112).offset(x: shaft - 9, y: 38)
+            Rectangle().fill(Toon.metal).frame(width: shaft - 8, height: 5).offset(x: 4, y: 40)
+            Circle().stroke(Toon.metal, lineWidth: 4).frame(width: 20, height: 20).offset(x: shaft / 2 - 10, y: 42)
+            Circle().fill(Toon.metalDark).frame(width: 6, height: 6).offset(x: shaft / 2 - 3, y: 49)
+            // Garage door with the depot's light
+            ZStack(alignment: .top) {
+                RoundedRectangle(cornerRadius: 3).fill(Toon.wallDark).frame(width: 46, height: 40)
+                ForEach(0..<4, id: \.self) { i in
+                    Rectangle().fill(Color.black.opacity(0.18)).frame(width: 46, height: 2).offset(y: 8 + CGFloat(i) * 9)
+                }
+                Capsule().fill(Toon.lamp).frame(width: 16, height: 4).offset(y: -7).shadow(color: Toon.lamp, radius: 6)
+            }
+            .offset(x: Self.width - 52, y: 110)
             // Fleet level
             Button { sheet = .station(.fleet) } label: {
                 LevelBadge(level: state.fleet, caption: t("l4_fleet"), affordable: state.cash >= Flow.fleetCost(state, 1), bottleneck: neck)
             }
             .buttonStyle(.plain)
-            .offset(x: 62, y: 44)
+            .offset(x: shaft + 4, y: 46)
             .accessibilityLabel(Text(verbatim: t("l4_fleet") + " " + t("l4_level", state.fleet)))
             .accessibilityIdentifier("fleet.open")
             // Dispatcher
-            if state.dispatcher {
-                ManagerSlot(crew: FlowContent.dispatcher, hired: true, cost: 0, affordable: false).offset(x: 6, y: 96)
-                    .accessibilityHidden(true)
-            } else {
-                Button { store.dispatch(.hireDispatcher) } label: {
-                    ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
-                                affordable: state.cash >= FlowContent.dispatcherCost)
+            Group {
+                if state.dispatcher {
+                    ManagerSlot(crew: FlowContent.dispatcher, hired: true, cost: 0, affordable: false)
+                        .accessibilityHidden(true)
+                } else {
+                    Button { store.dispatch(.hireDispatcher) } label: {
+                        ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
+                                    affordable: state.cash >= FlowContent.dispatcherCost)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(verbatim: t("l4_dispatcher_t", Content.crewDef(FlowContent.dispatcher)?.name ?? "")))
+                    .accessibilityIdentifier("dispatcher.hire")
                 }
-                .buttonStyle(.plain)
-                .offset(x: 6, y: 84)
-                .accessibilityLabel(Text(verbatim: t("l4_dispatcher_t", Content.crewDef(FlowContent.dispatcher)?.name ?? "")))
-                .accessibilityIdentifier("dispatcher.hire")
             }
+            .offset(x: Self.width - 50, y: 44)
             if !state.dispatcher && state.trip == nil {
                 Button { store.dispatch(.tapFleet) } label: {
                     Text(verbatim: t("l4_go"))
@@ -168,19 +195,33 @@ struct Depot: View {
                         .foregroundStyle(Color(hex: 0x1B1B28))
                         .padding(.horizontal, 12).padding(.vertical, 7)
                         .background(Toon.window, in: Capsule())
+                        .overlay(Capsule().stroke(Color.white.opacity(0.7), lineWidth: 1.5))
                         .shadow(color: Toon.window.opacity(0.6), radius: 6)
                 }
                 .buttonStyle(.plain)
-                .offset(x: 60, y: 0)
+                .offset(x: shaft + 6, y: 114)
                 .accessibilityIdentifier("fleet.go")
             }
         }
-        .frame(width: 128, height: 150, alignment: .topLeading)
+        .frame(width: Self.width, height: 150, alignment: .topLeading)
+    }
+}
+
+/// The open shaft where it crosses a band (the street): dark, with the two rails.
+struct ShaftSegment: View {
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            Rectangle().fill(Toon.shaft)
+            Rectangle().fill(Toon.metalDark).frame(width: 3).offset(x: 6)
+            Rectangle().fill(Toon.metalDark).frame(width: 3).offset(x: BuildingScene.shaftWidth - 9)
+        }
+        .accessibilityHidden(true)
     }
 }
 
 /// The customers' house across the street: who buys, how much, a buyer at the door.
 struct CustomersHouse: View {
+    static let width: CGFloat = 118
     let state: FlowState
     let forecast: Forecast
     @Binding var sheet: LedgerSheet?
@@ -229,13 +270,16 @@ struct LiftCar: View {
 
     var body: some View {
         let p = state.trip.map { 1 - $0.left / max(0.1, $0.duration) } ?? 1
-        let depth = CGFloat(max(1, floors)) * BuildingScene.floorHeight
         let phase: CGFloat = p < 0.25 ? CGFloat(p / 0.25) : (p < 0.5 ? 1 - CGFloat((p - 0.25) / 0.25) : 0)
-        let top = BuildingScene.streetHeight - 74
-        let y = top + phase * (depth - 10)
+        // Parked in the depot just above the street; at the bottom it stands on the deepest floor's boards.
+        let top = BuildingScene.streetHeight - 46 - 60
+        let bottom = BuildingScene.streetHeight + CGFloat(max(1, floors)) * BuildingScene.floorHeight - 18 - 56
+        let y = top + phase * (bottom - top)
         let load = state.trip?.crates ?? 0
         ZStack {
-            Rectangle().fill(Toon.metal.opacity(0.7)).frame(width: 2, height: max(0, y - 30)).offset(y: -max(0, y - 30) / 2 - 30)
+            // The cable up to the pulley under the depot roof.
+            let cable = max(0, y - (BuildingScene.streetHeight - 46 - 150 + 52))
+            Rectangle().fill(Toon.metal.opacity(0.8)).frame(width: 2, height: cable).offset(y: -cable / 2 - 28)
             RoundedRectangle(cornerRadius: 5).fill(Toon.metalDark).frame(width: 46, height: 56)
             RoundedRectangle(cornerRadius: 3).stroke(Toon.metal, lineWidth: 2).frame(width: 40, height: 50)
             if load > 0.5 {
@@ -249,7 +293,7 @@ struct LiftCar: View {
             }
         }
         .frame(width: 46, height: 56)
-        .offset(x: 4, y: y)
+        .offset(x: (BuildingScene.shaftWidth - 46) / 2, y: y)
         .animation(.linear(duration: 0.25), value: y)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
@@ -312,8 +356,15 @@ struct FloorRow: View {
                 Rectangle().fill(Toon.metalDark).frame(width: 3, height: geo.size.height).offset(x: 6)
                 Rectangle().fill(Toon.metalDark).frame(width: 3, height: geo.size.height).offset(x: BuildingScene.shaftWidth - 9)
                 // Lamps along the ceiling
-                ForEach(0..<4, id: \.self) { i in
-                    HangingLamp(on: running || w.lead).offset(x: workArea.start + CGFloat(i) * (workArea.end - workArea.start) / 4 + 10, y: 0)
+                // Warm light from the lamps; brighter while the bench runs
+                RadialGradient(colors: [Toon.lamp.opacity(running || w.lead ? 0.22 : 0.12), .clear],
+                               center: .center, startRadius: 4, endRadius: (workArea.end - workArea.start) * 0.75)
+                    .frame(width: workArea.end - workArea.start + 80, height: geo.size.height)
+                    .offset(x: workArea.start - 40)
+                    .allowsHitTesting(false)
+                ForEach(0..<3, id: \.self) { i in
+                    HangingLamp(on: true).opacity(running || w.lead ? 1 : 0.7)
+                        .offset(x: workArea.start + CGFloat(i) * (workArea.end - workArea.start) / 3 + 14, y: 0)
                 }
                 // The goods being made
                 production(stage: stage, running: running || w.lead)
@@ -321,7 +372,7 @@ struct FloorRow: View {
                     .offset(x: workArea.start, y: floorY - 110)
                 // Workers
                 ForEach(0..<(1 + min(2, stage / 2)), id: \.self) { i in
-                    worker(i, from: 112, to: workArea.end - 30, floorY: floorY, active: running || w.lead)
+                    worker(i, from: BuildingScene.shaftWidth + 78, to: width - 44, floorY: floorY, active: running || w.lead)
                 }
                 // Crate stack = the shelf
                 Button { sheet = .station(.shelf(good)) } label: {
@@ -329,7 +380,7 @@ struct FloorRow: View {
                                neck: forecast?.bottleneck == .shelf)
                 }
                 .buttonStyle(.plain)
-                .offset(x: BuildingScene.shaftWidth + 4, y: floorY - 96)
+                .offset(x: BuildingScene.shaftWidth + 4, y: floorY - 92)
                 .accessibilityLabel(Text(verbatim: t("l4_shelf_count", t.decimal(w.stock.rounded(.down), digits: 0), t.money(capacity))))
                 .accessibilityIdentifier("shelf.\(good.rawValue)")
                 // Workshop lead
@@ -412,28 +463,22 @@ struct FloorRow: View {
     }
 
     @ViewBuilder private func production(stage: Int, running: Bool) -> some View {
+        let grow = 1 + 0.07 * CGFloat(min(stage, 5))
         switch good {
         case .weed:
-            HStack(alignment: .bottom, spacing: 4) {
-                ForEach(0..<(3 + min(stage, 2)), id: \.self) { i in
+            HStack(alignment: .bottom, spacing: 8) {
+                ForEach(0..<3, id: \.self) { i in
                     Plant(stage: stage, sway: time * 1.3 + Double(i), bud: stage >= 3 ? Color(hex: 0xC6E85A) : Toon.leaf)
+                        .scaleEffect(1.3, anchor: .bottom)
+                        .frame(width: 44)
                 }
             }
         case .crystal:
-            HStack(alignment: .bottom, spacing: 0) {
-                LabBench(stage: stage, time: time)
-                if stage >= 3 { LabBench(stage: stage, time: time + 1) }
-            }
+            LabBench(stage: stage, time: time).scaleEffect(grow, anchor: .bottom)
         case .pills:
-            HStack(alignment: .bottom, spacing: 0) {
-                PillPress(stage: stage, time: time, running: running)
-                if stage >= 3 { PillPress(stage: stage, time: time + 0.5, running: running) }
-            }
+            PillPress(stage: stage, time: time, running: running).scaleEffect(grow, anchor: .bottom)
         case .coke:
-            HStack(alignment: .bottom, spacing: 0) {
-                BlockTable(stage: stage)
-                if stage >= 3 { BlockTable(stage: stage) }
-            }
+            BlockTable(stage: stage).scaleEffect(grow, anchor: .bottom)
         }
     }
 
@@ -452,7 +497,9 @@ struct FloorRow: View {
         let raw = (time * speed + Double(i) * 0.37).truncatingRemainder(dividingBy: 1)
         let goingRight = raw < 0.5
         let f = goingRight ? raw * 2 : (1 - raw) * 2
-        let x = active ? from + (to - from) * CGFloat(f) : to - 40 - CGFloat(i) * 46
+        // Idle: one waits under the level badge, the others by the crates.
+        let idle: [CGFloat] = [to + 8, BuildingScene.shaftWidth + 82, to - 34]
+        let x = active ? from + (to - from) * CGFloat(f) : idle[min(i, 2)]
         Figure(look: look, walk: active ? time * 9 + Double(i) : nil, facing: active ? (goingRight ? 1 : -1) : 1,
                carrying: active && !goingRight ? Toon.crate : nil, skinIndex: i + index)
             .position(x: x, y: floorY - 33)
@@ -470,28 +517,43 @@ struct CrateStack: View {
     var body: some View {
         let fraction = capacity > 0 ? min(1, stock / capacity) : 0
         let count = Int((fraction * 6).rounded(.up))
-        VStack(spacing: 2) {
-            Text(verbatim: full ? t("l4_full") : t.money(stock.rounded(.down)))
+        VStack(spacing: 3) {
+            Text(verbatim: full ? t("l4_full") : t.money(stock.rounded(.down)) + "/" + t.money(capacity))
                 .font(.system(size: 12, weight: .heavy, design: .rounded)).monospacedDigit()
+                .lineLimit(1).minimumScaleFactor(0.6)
                 .foregroundStyle(.white)
                 .padding(.horizontal, 6).padding(.vertical, 2)
-                .background(full ? Color(hex: 0xE5484D) : Color.black.opacity(0.5), in: Capsule())
+                .background(full ? Color(hex: 0xE5484D) : Color.black.opacity(0.55), in: Capsule())
             ZStack(alignment: .bottom) {
-                RoundedRectangle(cornerRadius: 3).fill(Color.black.opacity(0.25)).frame(width: 56, height: 62)
-                VStack(spacing: 1) {
+                // The wooden shelf: two posts and three boards
+                HStack {
+                    Rectangle().fill(Toon.crateDark).frame(width: 4)
+                    Spacer(minLength: 0)
+                    Rectangle().fill(Toon.crateDark).frame(width: 4)
+                }
+                .frame(width: 62, height: 70)
+                VStack(spacing: 18) {
+                    ForEach(0..<3, id: \.self) { _ in
+                        Rectangle().fill(Color(hex: 0x8A5A2E)).frame(width: 62, height: 4)
+                    }
+                }
+                .frame(width: 62, height: 70, alignment: .bottom)
+                VStack(spacing: 4) {
                     ForEach(0..<3, id: \.self) { row in
                         HStack(spacing: 1) {
                             ForEach(0..<2, id: \.self) { col in
                                 let n = (2 - row) * 2 + col
-                                Crate(size: 26).opacity(n < count ? 1 : 0)
+                                Crate(size: 24).opacity(n < count ? 1 : 0)
                             }
                         }
                     }
                 }
+                .padding(.bottom, 4)
             }
+            .frame(width: 62, height: 70)
         }
-        .frame(width: 60, height: 84)
-        .overlay(alignment: .topTrailing) { if neck || full { BottleneckDot().offset(x: 8, y: 6) } }
+        .frame(width: 66, height: 92)
+        .overlay(alignment: .topTrailing) { if neck || full { BottleneckDot().offset(x: 8, y: 4) } }
     }
 }
 
