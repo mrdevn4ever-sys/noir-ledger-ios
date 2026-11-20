@@ -16,26 +16,20 @@ extension EnvironmentValues {
 }
 
 extension LedgerStore {
+    var tickWindow: SceneTickWindow { SceneTickWindow(interval: Self.tickInterval, timeScale: timeScale) }
+
     /// Simulation seconds since the last tick, to draw what happened in between (never more than one tick and a half).
     func sinceTick(_ date: Date) -> Double {
-        let real = min(Self.tickInterval * 1.5, max(0, date.timeIntervalSinceReferenceDate - lastTickAt))
-        return timeScale > 1 ? real * timeScale : real
+        tickWindow.seconds(forAge: date.timeIntervalSinceReferenceDate - lastTickAt)
     }
 
     /// The trip's phase (0–1) at `date`: 0–0.5 the lift collects, 0.5–0.75 the vehicle drives over, 0.75–1 it returns.
     func tripPhase(_ trip: TripMotion?, at date: Date) -> Double {
-        guard let trip else { return 0 }
-        return min(1, max(0, 1 - max(0, trip.left - sinceTick(date)) / max(0.1, trip.duration)))
+        trip?.phase(after: sinceTick(date)) ?? 0
     }
 }
 
-/// The part of a trip the scene draws, as plain values: views that take it are skipped when it has not changed
-/// (the whole game state never compares equal cheaply, so views never get it).
-struct TripMotion: Equatable {
-    var left: Double
-    var duration: Double
-    var loaded: Bool
-
+extension TripMotion {
     init?(_ trip: Trip?) {
         guard let trip else { return nil }
         left = trip.left

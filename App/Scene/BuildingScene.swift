@@ -278,7 +278,8 @@ struct MovingVehicle: View {
         let vh = v.size.height * scale / 3
         let from = start + vw / 2
         let to = end - vw / 2
-        TimelineView(.animation(paused: !animating || trip == nil)) { tl in
+        let needsFrames = store.tickWindow.vanNeedsFrames(for: trip, animating: animating)
+        TimelineView(.animation(paused: !needsFrames)) { tl in
             let time = tl.date.timeIntervalSinceReferenceDate
             let p = store.tripPhase(trip, at: tl.date)
             let driving = trip != nil && p >= 0.5
