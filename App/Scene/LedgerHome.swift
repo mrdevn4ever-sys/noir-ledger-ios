@@ -17,7 +17,12 @@ struct LedgerView: View {
                 VStack(spacing: 0) {
                     VStack(spacing: 6) {
                         ChapterStrip(state: s, sheet: $sheet)
-                        if let hint = Flow.hint(s) { HintBubble(hint: hint) }
+                        if Flow.firstVanUpgradeReady(s) {
+                            VanOffer(cost: Flow.fleetCost(s, 1), slotsNow: VanCrateSlots.slots(Flow.fleetCapacity(s)),
+                                     slotsAfter: VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(s, .fleet, 1)))) {
+                                _ = store.dispatch(.upgrade(.fleet, 1))
+                            }
+                        } else if let hint = Flow.hint(s) { HintBubble(hint: hint) }
                         if s.counters.deliveries > 0 { BottleneckPanel(state: s, forecast: f, sheet: $sheet) }
                     }
                     .padding(.horizontal, Noir.s3)

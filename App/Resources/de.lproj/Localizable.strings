@@ -959,7 +959,7 @@
 "l4_tier_effect_3" = "Die Kontakte sind abgetaucht und kaufen nichts, bis es ruhiger wird.";
 "l4_hint_tapBench" = "Tipp auf die Werkbank. Leopolds alte Maschine macht eine Kiste Gras.";
 "l4_hint_tapFleet" = "Die Kiste liegt im Regal. Schick den Wagen los: Erst die Lieferung bringt Geld.";
-"l4_hint_firstUpgrade" = "Das Geld reicht für den ersten Ausbau. Der Wagen fasst eine Kiste pro Fahrt: Tipp auf das Angebot am Wagen und sieh zwei Plätze, bevor du zahlst.";
+"l4_hint_firstUpgrade" = "Zeigt den zusätzlichen Kistenplatz. Du zahlst erst, wenn du den Kauf bestätigst.";
 "l4_hint_bottleneck" = "Das Regal läuft voll: Die Werkbank macht mehr, als der Wagen wegfährt. Bau den Wagen aus, nicht die Werkbank.";
 "l4_hint_hireLead" = "Stell Jonas Brandt ein. Dann läuft die Werkbank von allein, auch wenn du weg bist.";
 "l4_hint_chooseOrder" = "Zwei Aufträge, dieselben 20 Kisten: ruhig für 100 oder laut für 145 mit Aufmerksamkeit. Öffne die Aufträge und entscheide.";
@@ -1003,7 +1003,8 @@
 "l4_advice_bench_b" = "Die Werkbank steht still, und im Regal ist Platz.";
 "l4_advice_saving" = "Nächste Einstellung: %1$@ für %2$@ (noch %3$@).";
 "l4_van_slots" = "Wagen: %1$d Kistenplätze pro Fahrt";
-"l4_van_offer" = "Wagen %1$d → %2$d Kisten · %3$@";
+"l4_van_offer" = "Wagenausbau ansehen: %1$d → %2$d Kisten · %3$@";
+"l4_van_capacity" = "Kisten pro Fahrt: %1$d";
 "l4_van_confirm_title" = "Ein größerer Wagen";
 "l4_van_confirm_b" = "Jede Fahrt nimmt %2$d Kisten statt %1$d mit. Der Straßenpreis pro Kiste bleibt gleich.";
 "l4_van_later" = "Nicht jetzt";

@@ -27,7 +27,7 @@ final class ScreenshotTourUITests: NoirUITestCase {
         wait("van.confirm")
         shot(p + "02b_van_confirm")
         element("van.confirm").tap()
-        waitValue("van.slots", "2")
+        waitForVanCapacity(2, language: lang)
         shot(p + "02c_van_bigger")
         app.terminate()
 
@@ -135,6 +135,15 @@ final class ScreenshotTourUITests: NoirUITestCase {
         wait("screen.ledger")
         reveal(wait("van.offer"))
         shot(p + "21_large_van_offer")
+        element("van.offer").tap()
+        tapRevealed("van.later")
+        waitForVanCapacity(1, language: lang)
+        tapRevealed("van.offer")
+        reveal(wait("van.confirm"))
+        shot(p + "22_large_van_confirm")
+        element("van.confirm").tap()
+        waitForVanCapacity(2, language: lang)
+        shot(p + "23_large_van_bought")
         app.terminate()
     }
 }

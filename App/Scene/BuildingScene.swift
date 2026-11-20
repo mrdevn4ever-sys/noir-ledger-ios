@@ -82,8 +82,7 @@ struct StreetSection: View {
     @State private var floaters: [Floater] = []
     @State private var floaterSeq = 0
     @State private var burstAt = 0.0
-    /// The first van upgrade is being confirmed at the van.
-    @State private var confirmingVan = false
+
     /// Reference-date seconds of the last fleet upgrade, to mark the new crate slot for a moment.
     @State private var vanGrewAt = 0.0
 
@@ -115,7 +114,7 @@ struct StreetSection: View {
                               slots: VanCrateSlots.slots(Flow.fleetCapacity(state)), load: state.trip?.crates ?? 0,
                               grewAt: vanGrewAt)
                 goButton(w: w, h: h)
-                vanOffer(w: w, streetY: streetY)
+
                 if state.ability(.quietWord).active > 0 {
                     AnimatedStrip(name: "ShushBubble4", frames: 4, fps: 4, size: CGSize(width: 54, height: 54))
                         .position(x: w - Self.houseWidth + 26, y: buildingTop + 50)
@@ -131,7 +130,6 @@ struct StreetSection: View {
         }
         .onChange(of: state.fleet) { old, new in
             if new > old { vanGrewAt = Date().timeIntervalSinceReferenceDate }
-            confirmingVan = false
         }
         .onChange(of: store.bookings) { _, _ in
             guard let last = state.ledger.last, last.amount > 0 else { return }
@@ -168,20 +166,6 @@ struct StreetSection: View {
             .buttonStyle(.plain)
             .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
             .accessibilityIdentifier("fleet.go")
-        }
-    }
-
-    /// The first ordinary upgrade, offered at the van it changes: a chip with the price, then a confirmation that
-    /// shows the crate slots before and after. Bought only on the confirming tap.
-    @ViewBuilder private func vanOffer(w: CGFloat, streetY: CGFloat) -> some View {
-        if Flow.firstVanUpgradeReady(state) {
-            let now = VanCrateSlots.slots(Flow.fleetCapacity(state))
-            let next = VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(state, .fleet, 1)))
-            VanOffer(cost: Flow.fleetCost(state, 1), slotsNow: now, slotsAfter: next, confirming: $confirmingVan) {
-                _ = store.dispatch(.upgrade(.fleet, 1))
-            }
-            // Over the gap between the depot and the customers, clear of the hire place and the level plaques.
-            .position(x: w / 2, y: confirmingVan ? streetY - 96 : streetY - 100)
         }
     }
 
@@ -355,10 +339,8 @@ struct VanCrateSlots: View {
                     .background(Color.black.opacity(0.45), in: Capsule())
             }
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: t("l4_van_slots", slots)))
-        .accessibilityValue(Text(verbatim: "\(slots)"))
-        .accessibilityIdentifier("van.slots")
+        // The stationary depot button announces capacity; travelling sprites are decorative.
+        .accessibilityHidden(true)
         .task(id: grewAt) {
             guard grewAt > 0, Date().timeIntervalSinceReferenceDate - grewAt < 3 else { return }
             fresh = true
@@ -368,14 +350,16 @@ struct VanCrateSlots: View {
     }
 }
 
-/// The first van upgrade at the van: the price on a chip, then before/after crate slots and a confirming buy.
+/// An expandable delivery slip above the street. It takes layout space, never a station's hit area.
 struct VanOffer: View {
     let cost: Double
     let slotsNow: Int
     let slotsAfter: Int
-    @Binding var confirming: Bool
+    @State private var confirming = false
     let buy: () -> Void
     @Environment(\.l10n) private var t
+    @Environment(\.dynamicTypeSize) private var textSize
+    @Environment(LedgerStore.self) private var store
 
     var body: some View {
         if confirming {
@@ -389,8 +373,9 @@ struct VanOffer: View {
                 Text(verbatim: t("l4_van_confirm_b", slotsNow, slotsAfter)).font(.toon(11, .semibold))
                     .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("van.confirm.text")
-                HStack(spacing: 6) {
-                    Button { confirming = false } label: {
+                let actions = textSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 6)) : AnyLayout(HStackLayout(spacing: 12))
+                actions {
+                    Button { confirming = false; store.onFeedback?(.uiClose) } label: {
                         Text(verbatim: t("l4_van_later")).font(.toon(13, .bold))
                             .frame(minWidth: 64, minHeight: Noir.minTarget)
                     }
@@ -409,25 +394,26 @@ struct VanOffer: View {
             }
             .foregroundStyle(Noir.paperInk)
             .padding(10)
-            .frame(width: 228)
+            .frame(maxWidth: .infinity)
             .background(Noir.paper, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Toon.window, lineWidth: 2))
             .accessibilityElement(children: .contain)
-            .accessibilityIdentifier("van.confirm.card")
         } else {
-            Button { confirming = true } label: {
+            Button { confirming = true; store.onFeedback?(.uiOpen) } label: {
                 HStack(spacing: 4) {
                     Image("ArrowUp").resizable().frame(width: 18, height: 18).accessibilityHidden(true)
                     Text(verbatim: t("l4_van_offer", slotsNow, slotsAfter, t.money(cost))).font(.toon(14, .heavy))
+                        .fixedSize(horizontal: false, vertical: true)
+                    Image(systemName: "chevron.down").accessibilityHidden(true)
                 }
                 .foregroundStyle(Color(hex: 0x1B1B28))
                 .padding(.horizontal, 12)
-                .frame(minHeight: Noir.minTarget)
+                .frame(maxWidth: .infinity, minHeight: Noir.minTarget)
                 .background(Toon.window, in: Capsule())
                 .overlay(Capsule().stroke(Color.white.opacity(0.8), lineWidth: 1.5))
-                .idle(.pulse(1.04), duration: 0.8)
             }
             .buttonStyle(.plain)
+            .accessibilityHint(Text(verbatim: t("l4_hint_firstUpgrade")))
             .accessibilityIdentifier("van.offer")
         }
     }
@@ -530,6 +516,7 @@ struct Depot: View {
             .buttonStyle(.plain)
             .offset(x: BuildingScene.shaftWidth + 6, y: 40)
             .accessibilityLabel(Text(verbatim: t("l4_fleet") + " " + t("l4_level", state.fleet)))
+            .accessibilityValue(Text(verbatim: t("l4_van_capacity", VanCrateSlots.slots(Flow.fleetCapacity(state)))))
             .accessibilityIdentifier("fleet.open")
             // Mailbox: new orders
             Button { sheet = .orders } label: {

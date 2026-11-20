@@ -14,15 +14,17 @@ final class OpeningTimingUITests: NoirUITestCase {
         launch(["-qa-reset", "-qa-seed", "3"])
         let collect = wait("estate.collect", 45)
         XCTAssertTrue(collect.isHittable, "the first screen is interactive")
-        let t0 = Date()
+        let t0 = ProcessInfo.processInfo.systemUptime
         collect.tap()
         wait("estate.receipt", 10)
-        let reward = Date().timeIntervalSince(t0)
-        tapRevealed("start.\(start)")
+        let reward = ProcessInfo.processInfo.systemUptime - t0
+        let heirloom = wait("start.\(start)")
+        if !heirloom.isHittable { reveal(heirloom) }
+        heirloom.tap()
         wait("van.offer", 15).tap()
         wait("van.confirm", 10).tap()
-        waitValue("van.slots", "2", 10)
-        let upgrade = Date().timeIntervalSince(t0)
+        waitForVanCapacity(2)
+        let upgrade = ProcessInfo.processInfo.systemUptime - t0
         let line = String(format: "OPENING start=%@ reward_s=%.2f confirmed_upgrade_s=%.2f", start, reward, upgrade)
         print(line)
         let attachment = XCTAttachment(string: line)

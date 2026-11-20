@@ -105,12 +105,11 @@ class NoirUITestCase: XCTestCase {
         wait("screen.ledger", 15, file: file, line: line)
     }
 
-    /// Waits until an element's accessibility value equals `value`.
-    func waitValue(_ id: String, _ value: String, _ timeout: TimeInterval = 10, file: StaticString = #filePath, line: UInt = #line) {
-        let e = element(id)
-        let match = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", value), object: e)
-        XCTAssertEqual(XCTWaiter.wait(for: [match], timeout: timeout), .completed,
-                       "\(id) did not show \(value) (shows \(String(describing: e.value)))", file: file, line: line)
+    /// Query the actionable depot, not the animated roof. Require the exact capacity from the live station.
+    func waitForVanCapacity(_ slots: Int, language: String = "en", file: StaticString = #filePath, line: UInt = #line) {
+        let value = language == "de" ? "Kisten pro Fahrt: \(slots)" : "Crates per trip: \(slots)"
+        let station = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@", "fleet.open", value)).firstMatch
+        XCTAssertTrue(station.waitForExistence(timeout: 10), "Depot did not report \(value)", file: file, line: line)
     }
 
     func dismissSheets() {

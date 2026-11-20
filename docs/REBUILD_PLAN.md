@@ -30,6 +30,12 @@ The first playable slice is ready for native testing, not release. The paid tran
   derives 24 h from `FlowContent.offlineCap`.
 - **Saves:** schema 2 with `FlowMigration`, pre-migration copy, damaged-file set-aside, lossy ledger lines.
 
+### What the first simulator tour showed
+
+The first playable build ([screens, including the large German offer](https://github.com/mrdevn4ever-sys/noir-ledger-ios/tree/0fbcb3c1c936b2a20c4a470fc52ee519f63f8b7a/screenshots)) reached receipt / confirmed upgrade in 2.42 / 16.22 s (cash box), 1.92 / 18.93 s (address book), and 2.40 / 13.51 s (tools). These are automated, unaccelerated iPhone 17 simulator times, not human playtest data. The app job passed on that revision, the separate core job did not. The lead-only return screen actually showed +0, the full shelf and the dispatch action.
+
+At enlarged text the van offer covered both the depot level and the customer sign. Replace the floating offer and separate instruction with one expandable delivery slip immediately above the street. It grows with text, leaves both station controls exposed, and charges only on confirmation. The stationary depot button announces capacity per trip for VoiceOver; the roof keeps its visual slots. Check cancel, purchase and the new framing in both languages. On the later [wallet and timing run](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44769463021), 27 hosted app tests passed, including restart write failure and redelivery; the cash-box test timed out trying to read the animated roof. Do not count that run as a timing pass.
+
 Known gaps in M1: no swipe/large-text check of the van card on the smallest supported phone yet; the first order's
 side-by-side comparison, pinned goal and all-quarter attention preview are M2.
 

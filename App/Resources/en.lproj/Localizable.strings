@@ -959,7 +959,7 @@
 "l4_tier_effect_3" = "The contacts have gone to ground and buy nothing until it calms down.";
 "l4_hint_tapBench" = "Tap the bench. Leopold's old machine makes a crate of weed.";
 "l4_hint_tapFleet" = "The crate is on the shelf. Send the van: only a delivery brings money.";
-"l4_hint_firstUpgrade" = "The cash covers your first upgrade. The van carries one crate per trip: tap the offer at the van to see two slots before you pay.";
+"l4_hint_firstUpgrade" = "Preview the extra crate slot. You only pay when you confirm.";
 "l4_hint_bottleneck" = "The shelf is filling up: the bench makes more than the van takes away. Upgrade the van, not the bench.";
 "l4_hint_hireLead" = "Hire Jonas Brandt. Then the bench runs on its own, even while you are away.";
 "l4_hint_chooseOrder" = "Two orders, the same 20 crates: quietly for 100 or loudly for 145 with attention. Open the orders and decide.";
@@ -1003,7 +1003,8 @@
 "l4_advice_bench_b" = "The bench stands still and the shelf has room.";
 "l4_advice_saving" = "Next hire: %1$@ for %2$@ (%3$@ to go).";
 "l4_van_slots" = "Van: %1$d crate slots per trip";
-"l4_van_offer" = "Van %1$d → %2$d crates · %3$@";
+"l4_van_offer" = "View van upgrade: %1$d → %2$d crates · %3$@";
+"l4_van_capacity" = "Crates per trip: %1$d";
 "l4_van_confirm_title" = "A bigger van";
 "l4_van_confirm_b" = "Each trip carries %2$d crates instead of %1$d. The street price per crate stays the same.";
 "l4_van_later" = "Not now";
