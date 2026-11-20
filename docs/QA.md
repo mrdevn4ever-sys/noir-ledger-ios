@@ -41,6 +41,11 @@ accelerator's symbols and strings on every CI run (`release-exclusion.log`).
 
 ## M1 opening and return evidence (rebuild/varnholm)
 
+For quick feedback without cancelling the full screenshot tour on this branch, dispatch `compile.yml` with
+`opening=true`. It runs the hosted app tests and all three unaccelerated openings on the selected iPhone simulator.
+`OPENING_UI_OK` requires measured receipt and upgrade times for every heirloom; the raw log and result bundle
+are retained even on failure. This diagnostic run does not replace `ios.yml`, screenshot review or `perf.yml`.
+
 | Test | Proves | Not proof of |
 | --- | --- | --- |
 | `OpeningTimingUITests` (three starts, no `-qa-timescale`) | from the first interactive screen (cellar door, after launch) to the visible pickup booking ≤ 5 s and to the confirmed first van level ≤ 20 s; prints `OPENING start=… reward_s=… confirmed_upgrade_s=…` | how fast a person reads or decides; fun or retention |

@@ -1,8 +1,13 @@
 name: Quick compile
 
-# Fast feedback while the app changes a lot: core tests and a simulator build of the app, no UI tests.
+# Core tests and a simulator build. Manual runs can exercise the short opening and persistence suite too.
 on:
   workflow_dispatch:
+    inputs:
+      opening:
+        description: "Run app tests and time each unaccelerated opening on the simulator"
+        type: boolean
+        default: false
   push:
     branches: ["claude/**"]
 
@@ -47,6 +52,41 @@ jobs:
             -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO 2>&1 \
             | tee build.log | grep -E " error:|BUILD (SUCCEEDED|FAILED)" || true
           grep -q "BUILD SUCCEEDED\|TEST BUILD SUCCEEDED" build.log
+      - name: Run app tests and the three openings
+        if: github.event_name == 'workflow_dispatch' && inputs.opening
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ci/pick_simulator.py > sim.env
+          source sim.env
+          echo "OPENING_DEVICE $SIM_NAME $SIM_RUNTIME source=$GITHUB_SHA"
+          xcrun simctl boot "$SIM_UDID" || true
+          xcrun simctl bootstatus "$SIM_UDID" -b
+          xcodebuild test-without-building -project NoirLedger.xcodeproj -scheme NoirLedger \
+            -configuration Debug -destination "id=$SIM_UDID" -derivedDataPath build \
+            -parallel-testing-enabled NO -resultBundlePath build/Opening.xcresult \
+            -only-testing:NoirLedgerTests -only-testing:NoirLedgerUITests/OpeningTimingUITests \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee opening.log | grep -E 'Test Case|Test Suite|OPENING |error:|✘|✔|\*\* TEST'
+      - name: Preserve the focused test evidence
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.opening
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool get test-results summary --path build/Opening.xcresult --compact > opening-summary.json
+          xcrun xcresulttool get test-results tests --path build/Opening.xcresult --compact > opening-tests.json
+          python3 -m json.tool opening-summary.json
+          python3 scripts/ci/opening_report.py opening.log opening-summary.json opening-tests.json
+      - name: Upload the focused test result
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.opening
+        uses: actions/upload-artifact@v4
+        with:
+          name: opening-${{ github.sha }}
+          path: |
+            opening.log
+            opening-summary.json
+            opening-tests.json
+            build/Opening.xcresult
+          retention-days: 7
       - name: Errors
         if: failure()
         run: grep -E " error:" build.log core-tests.log | sort -u | head -80 || true
