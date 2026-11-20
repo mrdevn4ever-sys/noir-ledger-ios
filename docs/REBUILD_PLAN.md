@@ -36,6 +36,10 @@ The first playable build ([screens, including the large German offer](https://gi
 
 At enlarged text the van offer covered both the depot level and the customer sign. Replace the floating offer and separate instruction with one expandable delivery slip immediately above the street. It grows with text, leaves both station controls exposed, and charges only on confirmation. The stationary depot button announces capacity per trip for VoiceOver; the roof keeps its visual slots. Check cancel, purchase and the new framing in both languages. On the later [wallet and timing run](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44769463021), 27 hosted app tests passed, including restart write failure and redelivery; the cash-box test timed out trying to read the animated roof. Do not count that run as a timing pass.
 
+### Latest opening evidence and scroll blocker
+
+On `d37d69c`, the [focused simulator run](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44774191673) passed: receipt / confirmed purchase in 1.58 / 8.32 s (cash box), 2.19 / 14.12 s (address book), 1.47 / 7.87 s (tools), measured from the interactive screen. That does not clear release: the [three-round comparison](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44774330811) regressed on late scrolling and hot-quarter hitch time against `1d69565`. The next candidate moves timed crew travel into per-floor compositing and avoids reformatting a moving van's unchanged cargo. This is a hypothesis until measured; no change to the meter, scene fixtures, or swipe path. Use `scripts/qa/perf_gate.py LOG BASE_SHA CANDIDATE_SHA 3` on the full job log; require all six scenario/motion medians for both p95 and hitch time. Keep the [art, motion and sound list](HERMES_ASSET_BRIEF_REBUILD.md) separate from evidence of shipped assets.
+
 Known gaps in M1: no swipe/large-text check of the van card on the smallest supported phone yet; the first order's
 side-by-side comparison, pinned goal and all-quarter attention preview are M2.
 

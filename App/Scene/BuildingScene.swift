@@ -299,6 +299,7 @@ struct MovingVehicle: View {
             .scaleEffect(x: facing, y: 1)
             .overlay(alignment: .top) {
                 VanCrateSlots(slots: slots, filled: trip == nil ? 0 : Int(load.rounded(.up)), grewAt: grewAt)
+                    .equatable()
                     .offset(y: -22)
             }
             .position(x: x, y: h - 3 - vh / 2 + bob)
@@ -309,12 +310,17 @@ struct MovingVehicle: View {
 
 /// The crates one trip holds, as slots over the van: empty boards while it waits, crates while it drives. The slot
 /// an upgrade just added glows for a moment. Above eight slots it shows the number instead.
-struct VanCrateSlots: View {
+struct VanCrateSlots: View, Equatable {
     let slots: Int
     let filled: Int
     let grewAt: Double
     @Environment(\.l10n) private var t
     @State private var fresh = false
+
+    // Travelling moves the parent every frame; the manifest only changes on loading, unloading or an upgrade.
+    nonisolated static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.slots == rhs.slots && lhs.filled == rhs.filled && lhs.grewAt == rhs.grewAt
+    }
 
     static func slots(_ capacity: Double) -> Int { max(1, Int((capacity + 1e-9).rounded(.down))) }
 
@@ -800,49 +806,22 @@ struct FloorCrew: View {
     var body: some View {
         let floorY = height - BuildingScene.floorBoards
         ZStack(alignment: .topLeading) {
-            ForEach(0..<count, id: \.self) { i in
-                let station = machineStart + (machineEnd - machineStart) * (0.15 + 0.35 * CGFloat(i))
-                let shelfX = BuildingScene.shaftWidth + 90
-                if lead {
-                    WorkerLoop(good: good, worker: i, shelfX: shelfX, station: station)
-                        .offset(y: floorY - 70)
-                } else if running {
-                    SceneFigure(sheet: SceneArt.worker(good, .work), move: .work, phase: Double(i))
-                        .position(x: station, y: floorY - 35)
-                } else {
-                    SceneFigure(sheet: SceneArt.worker(good, .sleep), move: .sleep, phase: Double(i) * 0.7)
+            if lead {
+                StaffedCrew(good: good, count: count, shelf: BuildingScene.shaftWidth + 90, start: machineStart, end: machineEnd)
+                    .frame(width: width, height: 70)
+                    .offset(y: floorY - 70)
+                    .accessibilityHidden(true)
+            } else {
+                ForEach(0..<count, id: \.self) { i in
+                    let station = CrewRoute.station(i, start: machineStart, end: machineEnd)
+                    let move: SceneArt.Move = running ? .work : .sleep
+                    SceneFigure(sheet: SceneArt.worker(good, move), move: move, phase: Double(i) * (running ? 1 : 0.7))
                         .position(x: station, y: floorY - 35)
                 }
             }
         }
         .frame(width: width, height: height, alignment: .topLeading)
         .allowsHitTesting(false)
-    }
-}
-
-/// A worker's day with a lead: walk to the machine, work, carry a crate back to the shelf. At the display's rate.
-struct WorkerLoop: View {
-    let good: Good
-    let worker: Int
-    let shelfX: CGFloat
-    let station: CGFloat
-    @Environment(\.sceneAnimating) private var animating
-
-    static let loop = 7.0
-
-    var body: some View {
-        TimelineView(.animation(paused: !animating)) { tl in
-            let time = tl.date.timeIntervalSinceReferenceDate
-            let phase = Double(worker)
-            let t0 = (time + phase * 2.3).truncatingRemainder(dividingBy: Self.loop) / Self.loop
-            let (move, x, facing): (SceneArt.Move, CGFloat, CGFloat) =
-                t0 < 0.3 ? (.walk, shelfX + (station - shelfX) * CGFloat(t0 / 0.3), 1)
-                : (t0 < 0.6 ? (.work, station, 1) : (.carry, station - (station - shelfX) * CGFloat((t0 - 0.6) / 0.4), -1))
-            SpriteStrip(name: SceneArt.worker(good, move), frames: move.frames, frame: Int((time + phase) * move.fps),
-                        size: SceneFigure.size(1))
-                .scaleEffect(x: facing, y: 1)
-                .offset(x: x - 22)
-        }
     }
 }
 
