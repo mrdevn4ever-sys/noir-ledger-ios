@@ -108,7 +108,7 @@ struct StationSheet: View {
                     }
                 }
                 let gain = preview.after.income - preview.before.income
-                ValueRow(label: t("l4_income"), value: t("l4_per_min", t.money(preview.before.income)) + " → " + t("l4_per_min", t.money(preview.after.income)),
+                ValueRow(label: t("l4_income_running"), value: t("l4_per_min", t.money(preview.before.income)) + " → " + t("l4_per_min", t.money(preview.after.income)),
                          valueColor: gain > 0.0001 ? Noir.amber : Noir.inkSoft)
                     .accessibilityIdentifier("station.income")
             }
@@ -632,6 +632,8 @@ struct BookSheet: View {
             t("l4_book_failed", t(OrderText.kind(OrderKind(rawValue: e.subject) ?? .quiet)), t.money(e.crates))
         case .away:
             t("l4_book_away")
+        case .estate:
+            t("l4_book_estate", t.money(e.crates))
         }
     }
 }

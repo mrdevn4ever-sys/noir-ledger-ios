@@ -154,62 +154,221 @@ struct FutureSaveView: View {
     }
 }
 
-// MARK: - Prologue
+// MARK: - Opening
 
-/// The notary's office in the rain: a key, an address, a leather-bound ledger, and one of Leopold's things to take.
+/// The first minutes before the ledger: one crate at the cellar door for a buyer who already signed for it, then
+/// one of Leopold's things to take. The notary's story is there to read, never in the way.
 struct PrologueView: View {
     @Environment(LedgerStore.self) private var store
+
+    var body: some View {
+        if store.state.estate == .waiting {
+            EstateDoorView()
+        } else {
+            HeirloomChoiceView(receipt: store.state.ledger.last { $0.kind == .estate }?.amount)
+        }
+    }
+}
+
+/// The first interactive screen: the street at night, the cellar door, the waiting buyer and the crate. One big
+/// control books the one-time pickup.
+struct EstateDoorView: View {
+    @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
+    @Environment(\.noirReduceMotion) private var reduceMotion
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s4) {
-                Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s5)
+                Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s4)
+                EstateDoorScene(collect: collect)
+                    .frame(height: BuildingScene.streetHeight)
+                    .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                    .environment(\.sceneAnimating, !reduceMotion)
+                    .dynamicTypeSize(...DynamicTypeSize.xLarge)
+                Text(verbatim: t("l4_estate_title")).font(.display(.title2)).accessibilityAddTraits(.isHeader)
+                Text(verbatim: t("l4_estate_body", t.money(FlowContent.estatePickupCash)))
+                    .font(.toon(.body)).foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
+                Button(action: collect) {
+                    Label {
+                        Text(verbatim: t("l4_estate_collect", t.money(FlowContent.estatePickupCash)))
+                    } icon: {
+                        Image(systemName: "key.fill")
+                    }
+                    .font(.toon(.title3, .heavy))
+                }
+                .noirButton(.primary)
+                .accessibilityIdentifier("estate.collect")
+            }
+            .padding(Noir.s4)
+            .background(alignment: .topLeading) {
+                ZStack {
+                    ScreenMarker(identifier: "screen.prologue", title: t("l4_estate_title"))
+                    ScreenMarker(identifier: "screen.estate", title: t("l4_estate_title"))
+                }
+            }
+        }
+        .background { SheetBackdrop() }
+        .onAppear { SceneImages.shared.prewarm(EstateDoorScene.prewarm) }
+    }
+
+    private func collect() {
+        store.dispatch(.collectEstate)
+    }
+}
+
+/// The street of the first screen from the delivered art, with plain values only: the shed with its door, the
+/// buyer waiting with the signed slip, the one crate.
+struct EstateDoorScene: View {
+    let collect: () -> Void
+
+    static let prewarm: [(name: String, frames: Int)] = [
+        ("SkyNight", 1), ("SkylineFar", 1), ("SkylineNear", 1), ("Street", 1), ("ShaftTile", 1), ("StreetLampGlow", 1),
+        ("StreetLamp", 1), ("Moon", 1), ("Fireflies8", 8), (SceneArt.depot(fleetLevel: 1), 1),
+        (SceneArt.customers(.cellars, hot: false), 1), (SceneArt.buyer(.cellars, walking: false), 2), (SceneArt.crate(.weed), 1),
+    ]
+
+    var body: some View {
+        GeometryReader { geo in
+            let w = geo.size.width
+            let h = geo.size.height
+            let streetY = h - BuildingScene.roadHeight
+            let top = streetY + 4 - StreetSection.buildingHeight
+            ZStack(alignment: .topLeading) {
+                StreetBackdrop(width: w, height: h, fireflies: true)
+                SceneImage(SceneArt.customers(.cellars, hot: false), StreetSection.houseWidth, StreetSection.buildingHeight)
+                    .position(x: w - StreetSection.houseWidth / 2, y: top + StreetSection.buildingHeight / 2)
+                SceneImage(SceneArt.depot(fleetLevel: 1), StreetSection.depotWidth, StreetSection.buildingHeight)
+                    .position(x: StreetSection.depotWidth / 2, y: top + StreetSection.buildingHeight / 2)
+                SceneFigure(sheet: SceneArt.buyer(.cellars, walking: false), move: .idle, facing: -1)
+                    .position(x: StreetSection.depotWidth + 40, y: streetY + 2 - 35)
+                // The crate at the door is a second, smaller way to hand it over.
+                Button(action: collect) {
+                    SceneImage(SceneArt.crate(.weed), 40, 32)
+                        .idle(.bob(2), duration: 0.7)
+                        .frame(width: 56, height: 56)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .position(x: StreetSection.depotWidth + 2, y: streetY - 14)
+                .accessibilityHidden(true)
+            }
+            .frame(width: w, height: h, alignment: .topLeading)
+        }
+    }
+}
+
+/// After the pickup: the booking it made, and Leopold's three things, one sentence each. The notary's letter is a
+/// tap away for whoever wants the story.
+struct HeirloomChoiceView: View {
+    /// The pickup's booking when it was made in this game.
+    let receipt: Double?
+    @Environment(LedgerStore.self) private var store
+    @Environment(\.l10n) private var t
+    @State private var letter = false
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Noir.s3) {
+                Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s4)
+                if let receipt {
+                    EstateReceipt(amount: receipt)
+                }
+                Text(verbatim: t("l4_prologue_choose")).font(.toon(.headline)).accessibilityAddTraits(.isHeader)
+                ForEach(StartChoice.allCases, id: \.self) { choice in
+                    Button { store.dispatch(.choose(choice)) } label: {
+                        HStack(alignment: .center, spacing: Noir.s3) {
+                            Image(SceneArt.item(choice)).resizable().scaledToFit().frame(width: 52, height: 52)
+                                .accessibilityHidden(true)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(verbatim: t(StartText.title(choice))).font(.toon(.headline))
+                                Text(verbatim: t(StartText.effect(choice))).font(.toon(.subheadline, .semibold))
+                                    .foregroundStyle(Noir.amber).fixedSize(horizontal: false, vertical: true)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            Image(systemName: "chevron.right").font(.toon(.caption, .bold)).foregroundStyle(Noir.inkSoft)
+                                .accessibilityHidden(true)
+                        }
+                        .padding(Noir.s3)
+                        .foregroundStyle(Noir.ink)
+                        .background(Noir.leather, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.leatherEdge, lineWidth: 1))
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("start.\(choice.rawValue)")
+                }
+                Button { letter = true } label: {
+                    Label { Text(verbatim: t("l4_letter_open")) } icon: { Image(systemName: "envelope.open.fill") }
+                }
+                .noirButton(.quiet)
+                .accessibilityIdentifier("prologue.letter")
+            }
+            .padding(Noir.s4)
+            .background(alignment: .topLeading) {
+                ZStack {
+                    ScreenMarker(identifier: "screen.prologue", title: t("l4_prologue_choose"))
+                    ScreenMarker(identifier: "screen.heirlooms", title: t("l4_prologue_choose"))
+                }
+            }
+        }
+        .background { SheetBackdrop() }
+        .sheet(isPresented: $letter) {
+            NotaryLetterSheet().environment(\.l10n, t)
+        }
+    }
+}
+
+/// The ledger's first line: the signed pickup, booked once.
+struct EstateReceipt: View {
+    let amount: Double
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        HStack(spacing: Noir.s3) {
+            Image("StampPaid").resizable().scaledToFit().frame(width: 52, height: 52).rotationEffect(.degrees(-8))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(verbatim: t("l4_estate_booked")).font(.toon(.subheadline, .semibold)).fixedSize(horizontal: false, vertical: true)
+                Text(verbatim: t("l4_estate_once")).font(.toon(.caption)).foregroundStyle(Noir.paperInk.opacity(0.7))
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(verbatim: "+" + t.money(amount)).font(.toon(.title2, .heavy)).monospacedDigit()
+        }
+        .padding(Noir.s3)
+        .foregroundStyle(Noir.paperInk)
+        .background(Noir.paper, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("estate.receipt")
+    }
+}
+
+/// The notary's office in the rain, for whoever wants to read it.
+struct NotaryLetterSheet: View {
+    @Environment(\.l10n) private var t
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Noir.s4) {
                 Image("ScenePrologue")
                     .resizable().scaledToFill()
-                    .frame(height: 230).frame(maxWidth: .infinity).clipped()
+                    .frame(height: 200).frame(maxWidth: .infinity).clipped()
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
                 Panel(.paper) {
                     Text(verbatim: t("l4_prologue_title")).font(.display(.title2)).accessibilityAddTraits(.isHeader)
                     Text(verbatim: t("l4_prologue_body")).font(.toon(.body)).fixedSize(horizontal: false, vertical: true)
                 }
-                Text(verbatim: t("l4_prologue_choose")).font(.toon(.headline))
-                ForEach(StartChoice.allCases, id: \.self) { choice in
-                    Button { store.dispatch(.choose(choice)) } label: {
-                        HStack(alignment: .top, spacing: Noir.s3) {
-                            Image(SceneArt.item(choice)).resizable().scaledToFit().frame(width: 56, height: 56)
-                                .accessibilityHidden(true)
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(verbatim: t(StartText.title(choice))).font(.toon(.headline))
-                                Text(verbatim: t(StartText.desc(choice))).font(.toon(.subheadline))
-                                    .foregroundStyle(Noir.inkSoft).fixedSize(horizontal: false, vertical: true)
-                                Text(verbatim: t(StartText.effect(choice))).font(.toon(.caption, .bold))
-                                    .foregroundStyle(Noir.amber).fixedSize(horizontal: false, vertical: true)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .padding(Noir.s3)
-                        .foregroundStyle(Noir.ink)
-                        .background(Noir.leather, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
-                        .overlay(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous).strokeBorder(Noir.leatherEdge, lineWidth: 1))
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityIdentifier("start.\(choice.rawValue)")
-                }
+                Button { dismiss() } label: { Text(verbatim: t("btn_continue")) }
+                    .noirButton(.primary)
+                    .accessibilityIdentifier("letter.close")
             }
             .padding(Noir.s4)
-            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.prologue", title: t("l4_prologue_title")) }
+            .background(alignment: .topLeading) { ScreenMarker(identifier: "screen.letter", title: t("l4_prologue_title")) }
         }
         .background { SheetBackdrop() }
-    }
-
-    static func symbol(_ c: StartChoice) -> String {
-        switch c {
-        case .cashbox: "banknote.fill"
-        case .addressBook: "book.fill"
-        case .tools: "wrench.and.screwdriver.fill"
-        }
     }
 }
 
@@ -266,11 +425,27 @@ struct ReturnSheet: View {
                             Text(verbatim: t("l4_return_manual")).font(.toon(.caption)).fixedSize(horizontal: false, vertical: true)
                         }
                     }
-                    if let next = Self.nextStep(s) {
-                        Label { Text(verbatim: t("l4_return_next", StationText.title(next, t))) } icon: { Image("IconUpgrade").resizable().frame(width: 20, height: 20) }
-                            .font(.toon(.subheadline, .semibold)).foregroundStyle(Noir.amber)
+                    if let advice = Flow.returnAdvice(s) {
+                        Panel(.leather) {
+                            Text(verbatim: t("l4_advice_title")).font(.toon(.caption, .bold)).foregroundStyle(Noir.amber)
+                            Text(verbatim: AdviceText.reason(advice, t)).font(.toon(.subheadline))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .accessibilityIdentifier("welcome.next")
+                            // Carried out only on this tap; the summary closes afterwards.
+                            Button {
+                                if store.dispatch(advice.action) != nil { store.dispatch(.collectOffline(doubled: false)) }
+                            } label: {
+                                Text(verbatim: AdviceText.button(advice, t))
+                            }
+                            .noirButton(.go)
+                            .accessibilityIdentifier("welcome.advice.\(AdviceText.id(advice))")
+                        }
+                    }
+                    if let hire = Flow.nextHire(s), s.cash + 1e-9 < hire.cost {
+                        Text(verbatim: t("l4_advice_saving", AdviceText.who(hire.advice), t.money(hire.cost), t.money(hire.cost - s.cash)))
+                            .font(.toon(.caption)).foregroundStyle(Noir.inkSoft)
                             .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityIdentifier("welcome.next")
+                            .accessibilityIdentifier("welcome.saving")
                     }
                 }
                 if s.meta.offlineBonus > 0, store.rewardOffered(ads: ads) {
@@ -302,15 +477,6 @@ struct ReturnSheet: View {
         }
     }
 
-    /// The station of the main good's bottleneck, if the cash already buys a level.
-    static func nextStep(_ s: FlowState) -> Station? {
-        let f = Flow.forecast(s)
-        for g in s.openGoods.reversed() {
-            guard let gf = f.good(g), let st = StationText.fix(gf.bottleneck, good: g, state: s) else { continue }
-            if Flow.cost(s, st, 1) <= s.cash { return st }
-        }
-        return nil
-    }
 }
 
 // MARK: - Chapters

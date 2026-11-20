@@ -85,7 +85,9 @@ Die Produkt-IDs müssen exakt stimmen, der Code findet sie nur darüber.
 Beschreibungen (DE / EN), jeweils höchstens 45 Zeichen (Apple lehnt längere mit HTTP 409 ab):
 
 - starter: „200 Gefallen und 4 Stunden doppelter Ertrag. Einmalig.“ / „200 favors and a 4 hour ×2 boost. Once.“
-- premium2x: „Jeder Ertrag dauerhaft ×2, 16 h offline.“ / „Every payout ×2 for good, 16 h offline.“
+- premium2x: „Jeder Ertrag dauerhaft ×2, 24 h offline.“ / „Every payout ×2 for good, 24 h offline.“ (Der Ledger
+  rechnet 12 h frei und 24 h mit Teilhaber, `FlowContent.offlineCap`; der frühere Text „16 h“ stammte aus der
+  Altfassung. Hinterlegten Store-Text vor einer Einreichung durch den Eigentümer abgleichen; keine Preisänderung.)
 - noads: „Alle Sponsorenbelohnungen ohne Video.“ / „Every sponsor reward without a video.“
 - favors.*: „80 / 500 / 1.200 / 3.000 Gefallen“ / „80 / 500 / 1,200 / 3,000 favors“
 

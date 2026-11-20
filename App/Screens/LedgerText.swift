@@ -115,14 +115,7 @@ enum StationText {
 
     /// The station that would lift a bottleneck, if any.
     static func fix(_ neck: Bottleneck, good: Good, state: FlowState) -> Station? {
-        switch neck {
-        case .bench: return .bench(good)
-        case .fleet: return .fleet
-        case .shelf: return .shelf(good)
-        case .demand:
-            return Flow.contacts(state, of: good).first.map { .contact($0) }
-        case .balanced: return nil
-        }
+        Flow.fixStation(neck, good: good, state: state)
     }
 
     /// Capacity of a station in its own unit, for the before/after line.
@@ -132,6 +125,51 @@ enum StationText {
         case .shelf(let g): t("l4_crates", t.money(Flow.shelfCapacity(s, g)))
         case .fleet: t("l4_per_trip", t.money(Flow.fleetCapacity(s)))
         case .contact(let c): t("l4_per_min_crates", t.money(Flow.contactAverageRate(s, c) * 60))
+        }
+    }
+}
+
+enum AdviceText {
+    /// The button that carries out a return advice.
+    static func button(_ a: ReturnAdvice, _ t: L10n) -> String {
+        switch a {
+        case .hireLead(let g):
+            t("l4_advice_hire", Content.crewDef(FlowContent.good(g).lead)?.name ?? "", t.money(FlowContent.good(g).leadCost))
+        case .hireDispatcher:
+            t("l4_advice_hire", Content.crewDef(FlowContent.dispatcher)?.name ?? "", t.money(FlowContent.dispatcherCost))
+        case .upgrade(let st): t("l4_return_next", StationText.title(st, t))
+        case .sendVan: t("l4_advice_send")
+        case .startBench(let g): t("l4_advice_bench", t(GoodText.name(g)))
+        }
+    }
+
+    /// Why this is the step: what it changes, in words that do not promise income a stopped chain cannot earn.
+    static func reason(_ a: ReturnAdvice, _ t: L10n) -> String {
+        switch a {
+        case .hireLead: t("l4_advice_hire_lead_b")
+        case .hireDispatcher: t("l4_advice_hire_dispatcher_b")
+        case .upgrade: t("l4_advice_upgrade_b")
+        case .sendVan: t("l4_advice_send_b")
+        case .startBench: t("l4_advice_bench_b")
+        }
+    }
+
+    /// The person a hire advice is about.
+    static func who(_ a: ReturnAdvice) -> String {
+        switch a {
+        case .hireLead(let g): Content.crewDef(FlowContent.good(g).lead)?.name ?? ""
+        case .hireDispatcher: Content.crewDef(FlowContent.dispatcher)?.name ?? ""
+        case .upgrade, .sendVan, .startBench: ""
+        }
+    }
+
+    static func id(_ a: ReturnAdvice) -> String {
+        switch a {
+        case .hireLead: "hireLead"
+        case .hireDispatcher: "hireDispatcher"
+        case .upgrade: "upgrade"
+        case .sendVan: "sendVan"
+        case .startBench: "startBench"
         }
     }
 }

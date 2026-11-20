@@ -1,5 +1,36 @@
 # Save format, migration and recovery
 
+## The 4.x ledger: `noir_flow.save` (schema 2)
+
+The playable game writes `FlowSaveStore` files; the `noir_ledger.save` sections below describe the 2.x campaign,
+whose wallet is only read once for favors and purchases.
+
+| File | Purpose |
+| --- | --- |
+| `noir_flow.save` | primary, `{"schema": 2, "savedAt": ms, "state": FlowState}`, sorted keys, written atomically |
+| `noir_flow.save.bak` | the previous primary that still decoded |
+| `noir_flow.save.tmp` | write in progress (never loaded) |
+| `noir_flow.save.pre-migration` | the untouched file of an older schema, copied once before it is migrated |
+| `noir_flow.save.damaged` | an unreadable primary, set aside before a fresh game is written |
+
+Loading order: primary → backup → pre-migration copy (each flagged as restored) → fresh game. A schema newer than the
+app is never written over (protected screen). "Start over" erases primary, backup, temp and the pre-migration copy.
+
+Schema 2 adds, with safe defaults when missing:
+
+- `state.estate` (`WAITING` / `BOOKED` / `NOT_OFFERED`, default `NOT_OFFERED`): the one-time signed pickup at the
+  cellar door. `FlowMigration` gives a schema-1 save `WAITING` only when nothing was chosen, earned, delivered or
+  booked; every business already in play gets `NOT_OFFERED` and can never book it.
+- `LedgerKind.ESTATE`: the pickup's single ledger line (not counted as a delivery).
+- `state.meta.deliveredTransactions`: verified store transaction ids already booked, oldest first, at most 1,000.
+  The grant and its id are written in the same save; only then is the transaction finished. The 3.x/4.0 marker
+  `store.deliveredTransactions` in UserDefaults is read as a fallback and copied into the save; it is never written
+  again. A reset keeps the ids together with favors and the permanent purchases.
+
+Unknown fields are ignored; an unreadable ledger line is dropped on its own instead of emptying the ledger.
+Tests: `FlowOpeningTests` (schema-1 business and prologue fixtures, unknown fields, recovery chain) and
+`LedgerStoreTests` (relaunch, time away once, forced write failure, redelivery after a successful write).
+
 ## Location and files
 
 `Application Support/NoirLedger/` inside the app container:

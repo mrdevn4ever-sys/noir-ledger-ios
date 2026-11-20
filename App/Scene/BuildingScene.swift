@@ -82,6 +82,10 @@ struct StreetSection: View {
     @State private var floaters: [Floater] = []
     @State private var floaterSeq = 0
     @State private var burstAt = 0.0
+    /// The first van upgrade is being confirmed at the van.
+    @State private var confirmingVan = false
+    /// Reference-date seconds of the last fleet upgrade, to mark the new crate slot for a moment.
+    @State private var vanGrewAt = 0.0
 
     static let depotWidth: CGFloat = 128
     static let houseWidth: CGFloat = 118
@@ -107,8 +111,11 @@ struct StreetSection: View {
                 }
                 police(w: w, h: h, streetY: streetY)
                 MovingVehicle(fleet: state.fleet, trip: TripMotion(state.trip), rush: state.ability(.rushRun).active > 0,
-                              start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h)
+                              start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h,
+                              slots: VanCrateSlots.slots(Flow.fleetCapacity(state)), load: state.trip?.crates ?? 0,
+                              grewAt: vanGrewAt)
                 goButton(w: w, h: h)
+                vanOffer(w: w, streetY: streetY)
                 if state.ability(.quietWord).active > 0 {
                     AnimatedStrip(name: "ShushBubble4", frames: 4, fps: 4, size: CGSize(width: 54, height: 54))
                         .position(x: w - Self.houseWidth + 26, y: buildingTop + 50)
@@ -121,6 +128,10 @@ struct StreetSection: View {
                 }
             }
             .clipped()
+        }
+        .onChange(of: state.fleet) { old, new in
+            if new > old { vanGrewAt = Date().timeIntervalSinceReferenceDate }
+            confirmingVan = false
         }
         .onChange(of: store.bookings) { _, _ in
             guard let last = state.ledger.last, last.amount > 0 else { return }
@@ -157,6 +168,20 @@ struct StreetSection: View {
             .buttonStyle(.plain)
             .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
             .accessibilityIdentifier("fleet.go")
+        }
+    }
+
+    /// The first ordinary upgrade, offered at the van it changes: a chip with the price, then a confirmation that
+    /// shows the crate slots before and after. Bought only on the confirming tap.
+    @ViewBuilder private func vanOffer(w: CGFloat, streetY: CGFloat) -> some View {
+        if Flow.firstVanUpgradeReady(state) {
+            let now = VanCrateSlots.slots(Flow.fleetCapacity(state))
+            let next = VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(state, .fleet, 1)))
+            VanOffer(cost: Flow.fleetCost(state, 1), slotsNow: now, slotsAfter: next, confirming: $confirmingVan) {
+                _ = store.dispatch(.upgrade(.fleet, 1))
+            }
+            // Over the gap between the depot and the customers, clear of the hire place and the level plaques.
+            .position(x: w / 2, y: confirmingVan ? streetY - 96 : streetY - 100)
         }
     }
 
@@ -248,6 +273,12 @@ struct MovingVehicle: View {
     let start: CGFloat
     let end: CGFloat
     let h: CGFloat
+    /// Whole crates one trip carries, drawn as slots on the roof while there are few.
+    var slots = 1
+    /// Crates on the current trip.
+    var load = 0.0
+    /// Reference-date seconds of the last van upgrade (marks the new slot).
+    var grewAt = 0.0
     @Environment(LedgerStore.self) private var store
     @Environment(\.sceneAnimating) private var animating
 
@@ -282,9 +313,138 @@ struct MovingVehicle: View {
                 }
             }
             .scaleEffect(x: facing, y: 1)
+            .overlay(alignment: .top) {
+                VanCrateSlots(slots: slots, filled: trip == nil ? 0 : Int(load.rounded(.up)), grewAt: grewAt)
+                    .offset(y: -22)
+            }
             .position(x: x, y: h - 3 - vh / 2 + bob)
         }
         .allowsHitTesting(false)
+    }
+}
+
+/// The crates one trip holds, as slots over the van: empty boards while it waits, crates while it drives. The slot
+/// an upgrade just added glows for a moment. Above eight slots it shows the number instead.
+struct VanCrateSlots: View {
+    let slots: Int
+    let filled: Int
+    let grewAt: Double
+    @Environment(\.l10n) private var t
+    @State private var fresh = false
+
+    static func slots(_ capacity: Double) -> Int { max(1, Int((capacity + 1e-9).rounded(.down))) }
+
+    var body: some View {
+        Group {
+            if slots <= 8 {
+                HStack(spacing: 2) {
+                    ForEach(0..<slots, id: \.self) { i in
+                        SceneImage(i < filled ? SceneArt.crate(.weed) : "CrateSlot", 18, 14)
+                            .overlay {
+                                if fresh && i == slots - 1 {
+                                    RoundedRectangle(cornerRadius: 3).stroke(Toon.window, lineWidth: 2).padding(-2)
+                                }
+                            }
+                    }
+                }
+                .padding(3)
+                .background(Color.black.opacity(0.45), in: Capsule())
+            } else {
+                Text(verbatim: "×" + t.money(Double(slots))).font(.toon(11, .heavy)).monospacedDigit().foregroundStyle(.white)
+                    .padding(.horizontal, 6).padding(.vertical, 2)
+                    .background(Color.black.opacity(0.45), in: Capsule())
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: t("l4_van_slots", slots)))
+        .accessibilityValue(Text(verbatim: "\(slots)"))
+        .accessibilityIdentifier("van.slots")
+        .task(id: grewAt) {
+            guard grewAt > 0, Date().timeIntervalSinceReferenceDate - grewAt < 3 else { return }
+            fresh = true
+            try? await Task.sleep(for: .seconds(2.5))
+            fresh = false
+        }
+    }
+}
+
+/// The first van upgrade at the van: the price on a chip, then before/after crate slots and a confirming buy.
+struct VanOffer: View {
+    let cost: Double
+    let slotsNow: Int
+    let slotsAfter: Int
+    @Binding var confirming: Bool
+    let buy: () -> Void
+    @Environment(\.l10n) private var t
+
+    var body: some View {
+        if confirming {
+            VStack(spacing: 6) {
+                Text(verbatim: t("l4_van_confirm_title")).font(.toon(14, .heavy))
+                HStack(spacing: 6) {
+                    slotRow(slotsNow, highlight: false)
+                    Image(systemName: "arrow.right").font(.toon(12, .black)).accessibilityHidden(true)
+                    slotRow(slotsAfter, highlight: true)
+                }
+                Text(verbatim: t("l4_van_confirm_b", slotsNow, slotsAfter)).font(.toon(11, .semibold))
+                    .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("van.confirm.text")
+                HStack(spacing: 6) {
+                    Button { confirming = false } label: {
+                        Text(verbatim: t("l4_van_later")).font(.toon(13, .bold))
+                            .frame(minWidth: 64, minHeight: Noir.minTarget)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("van.later")
+                    Button(action: buy) {
+                        Text(verbatim: t("l4_van_buy", t.money(cost))).font(.toon(14, .heavy))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 14)
+                            .frame(minHeight: Noir.minTarget)
+                            .background(Toon.up, in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("van.confirm")
+                }
+            }
+            .foregroundStyle(Noir.paperInk)
+            .padding(10)
+            .frame(width: 228)
+            .background(Noir.paper, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Toon.window, lineWidth: 2))
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("van.confirm.card")
+        } else {
+            Button { confirming = true } label: {
+                HStack(spacing: 4) {
+                    Image("ArrowUp").resizable().frame(width: 18, height: 18).accessibilityHidden(true)
+                    Text(verbatim: t("l4_van_offer", slotsNow, slotsAfter, t.money(cost))).font(.toon(14, .heavy))
+                }
+                .foregroundStyle(Color(hex: 0x1B1B28))
+                .padding(.horizontal, 12)
+                .frame(minHeight: Noir.minTarget)
+                .background(Toon.window, in: Capsule())
+                .overlay(Capsule().stroke(Color.white.opacity(0.8), lineWidth: 1.5))
+                .idle(.pulse(1.04), duration: 0.8)
+            }
+            .buttonStyle(.plain)
+            .accessibilityIdentifier("van.offer")
+        }
+    }
+
+    private func slotRow(_ n: Int, highlight: Bool) -> some View {
+        HStack(spacing: 2) {
+            ForEach(0..<n, id: \.self) { i in
+                SceneImage("CrateSlot", 18, 14)
+                    .overlay {
+                        if highlight && i >= slotsNow {
+                            RoundedRectangle(cornerRadius: 3).stroke(Toon.up, lineWidth: 2).padding(-2)
+                        }
+                    }
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: t("l4_van_slots", n)))
     }
 }
 

@@ -102,6 +102,9 @@ public struct MetaState: Codable, Sendable, Equatable {
     public var offlineBonus = 0.0
     /// Boosted street cash divided by base street cash in the last step with sales (at least 1).
     public var payoutRatio = 1.0
+    /// Verified store transactions already booked, oldest first. Written in the same save as what they granted, so a
+    /// transaction the store delivers again is acknowledged without a second grant.
+    public var deliveredTransactions: [String] = []
 
     public init() {}
 }
@@ -131,6 +134,7 @@ extension MetaState {
         bestStage = c.value(.bestStage, 0)
         offlineBonus = c.value(.offlineBonus, 0.0)
         payoutRatio = c.value(.payoutRatio, 1.0)
+        deliveredTransactions = c.value(.deliveredTransactions, [String]())
     }
 }
 

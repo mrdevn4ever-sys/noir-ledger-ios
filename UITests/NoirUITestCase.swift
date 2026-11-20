@@ -97,6 +97,22 @@ class NoirUITestCase: XCTestCase {
         }
     }
 
+    /// The opening as a player meets it: hand the crate over at the cellar door, then take one of Leopold's things.
+    func openCellar(_ choice: String, file: StaticString = #filePath, line: UInt = #line) {
+        wait("estate.collect", 45, file: file, line: line).tap()
+        wait("estate.receipt", 10, file: file, line: line)
+        tapRevealed("start.\(choice)", file: file, line: line)
+        wait("screen.ledger", 15, file: file, line: line)
+    }
+
+    /// Waits until an element's accessibility value equals `value`.
+    func waitValue(_ id: String, _ value: String, _ timeout: TimeInterval = 10, file: StaticString = #filePath, line: UInt = #line) {
+        let e = element(id)
+        let match = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", value), object: e)
+        XCTAssertEqual(XCTWaiter.wait(for: [match], timeout: timeout), .completed,
+                       "\(id) did not show \(value) (shows \(String(describing: e.value)))", file: file, line: line)
+    }
+
     func dismissSheets() {
         for id in ["welcome.ok", "chapter.news.ok"] where element(id).exists {
             element(id).tap()

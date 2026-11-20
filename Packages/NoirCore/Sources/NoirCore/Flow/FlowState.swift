@@ -149,6 +149,26 @@ public enum LedgerKind: String, Codable, Sendable {
     case order = "ORDER"
     case orderFailed = "ORDER_FAILED"
     case away = "AWAY"
+    /// The one-time signed estate pickup at the cellar door (never an ordinary delivery).
+    case estate = "ESTATE"
+}
+
+/// The signed estate pickup that opens a new game: waiting at the cellar door, booked once, or never offered (saves
+/// that were already in play before it existed, and anything unreadable).
+public enum EstatePickup: String, Codable, Sendable {
+    case waiting = "WAITING"
+    case booked = "BOOKED"
+    case notOffered = "NOT_OFFERED"
+}
+
+/// Decodes one element of an array and drops it alone when it cannot be read (an unknown kind, a damaged entry), so
+/// one bad line never empties the whole list.
+struct Lossy<T: Decodable>: Decodable {
+    let value: T?
+
+    init(from decoder: Decoder) throws {
+        value = try? T(from: decoder)
+    }
 }
 
 public struct LedgerEntry: Codable, Sendable, Equatable, Identifiable {
@@ -243,7 +263,8 @@ public struct FlowReturn: Codable, Sendable, Equatable {
 
 // MARK: - State
 
-public let flowSchemaVersion = 1
+/// 1: the 4.0 ledger. 2: the estate pickup and the purchase receipts (see `FlowMigration`).
+public let flowSchemaVersion = 2
 
 public struct FlowState: Codable, Sendable, Equatable {
     public var version = flowSchemaVersion
@@ -252,6 +273,8 @@ public struct FlowState: Codable, Sendable, Equatable {
     public var time = 0.0
     /// Wall clock of the last tick (ms since 1970); used only to credit time away.
     public var lastWallClockMs: Int64 = 0
+    /// The signed pickup at the cellar door. Not offered unless a new game (or an untouched old prologue) says so.
+    public var estate = EstatePickup.notOffered
     /// nil until the player picks what to take from Leopold's things.
     public var start: StartChoice?
     public var chapter = 1
@@ -324,6 +347,7 @@ extension FlowState {
         rng = c.value(.rng, UInt64Box(1))
         time = c.value(.time, 0.0)
         lastWallClockMs = c.value(.lastWallClockMs, Int64(0))
+        estate = c.value(.estate, EstatePickup.notOffered)
         start = c.value(.start, nil)
         chapter = c.value(.chapter, 1)
         chapterNews = c.value(.chapterNews, nil)
@@ -346,7 +370,7 @@ extension FlowState {
         abilities = c.value(.abilities, [Ability: AbilityState]())
         challenge = c.value(.challenge, nil)
         challengesDone = c.value(.challengesDone, [ChallengeId]())
-        ledger = c.value(.ledger, [LedgerEntry]())
+        ledger = c.value(.ledger, [Lossy<LedgerEntry>]()).compactMap(\.value)
         nextLedgerId = c.value(.nextLedgerId, 1)
         counters = c.value(.counters, FlowCounters())
         welcome = c.value(.welcome, nil)

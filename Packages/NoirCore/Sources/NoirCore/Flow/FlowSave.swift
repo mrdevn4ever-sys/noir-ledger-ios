@@ -1,7 +1,22 @@
 import Foundation
 
-/// Versioned, crash-safe save of the ledger: `{"schema": 1, "savedAt": ms, "state": {...}}`, written atomically with
-/// the previous good file kept as a backup.
+/// Upgrades a decoded state from the schema it was written with to `flowSchemaVersion`. Old saves never need old
+/// Swift types: the state decodes leniently (missing fields take safe defaults), then each step fixes meaning.
+public enum FlowMigration {
+    public static func migrate(_ s: inout FlowState, fromSchema schema: Int) {
+        if schema < 2 {
+            // Schema 1 knew no estate pickup. Only an untouched prologue gets it; a business already in play (or any
+            // save that booked anything) never receives it afterwards.
+            let untouched = s.start == nil && s.earned <= 0 && s.ledger.isEmpty && s.counters.deliveries == 0
+            s.estate = untouched ? .waiting : .notOffered
+        }
+        s.version = flowSchemaVersion
+    }
+}
+
+/// Versioned, crash-safe save of the ledger: `{"schema": 2, "savedAt": ms, "state": {...}}`, written atomically with
+/// the previous good file kept as a backup. A save from an older schema is copied once, untouched, before it is
+/// migrated; a file that cannot be read at all is set aside instead of being overwritten.
 public struct FlowSaveStore: Sendable {
     public enum Loaded: Sendable {
         case fresh
@@ -12,6 +27,10 @@ public struct FlowSaveStore: Sendable {
     public let directory: URL
     public var primaryURL: URL { directory.appendingPathComponent("noir_flow.save") }
     public var backupURL: URL { directory.appendingPathComponent("noir_flow.save.bak") }
+    /// The untouched file of the last older schema that was migrated (last resort when primary and backup fail).
+    public var archiveURL: URL { directory.appendingPathComponent("noir_flow.save.pre-migration") }
+    /// An unreadable primary save, set aside before a new game is written.
+    public var damagedURL: URL { directory.appendingPathComponent("noir_flow.save.damaged") }
     var tempURL: URL { directory.appendingPathComponent("noir_flow.save.tmp") }
 
     public init(directory: URL) {
@@ -25,34 +44,60 @@ public struct FlowSaveStore: Sendable {
     }
 
     private enum Read {
-        case ok(FlowState), future(Int), bad
+        case ok(FlowState, schema: Int), future(Int), bad
     }
 
     private func read(_ url: URL) -> Read? {
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
         guard let data = try? Data(contentsOf: url) else { return .bad }
-        if let raw = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-           let schema = (raw["schema"] as? NSNumber)?.intValue, schema > flowSchemaVersion {
-            return .future(schema)
-        }
+        let raw = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        let schema = (raw?["schema"] as? NSNumber)?.intValue ?? 1
+        if schema > flowSchemaVersion { return .future(schema) }
         guard let env = try? JSONDecoder().decode(Envelope.self, from: data) else { return .bad }
         var s = env.state
+        FlowMigration.migrate(&s, fromSchema: schema)
         Self.sanitize(&s)
-        return .ok(s)
+        return .ok(s, schema: schema)
     }
 
     public func load() -> Loaded {
         let primary = read(primaryURL)
         switch primary {
-        case .some(.ok(let s)): return .loaded(s, restoredFromBackup: false)
-        case .some(.future(let v)): return .futureVersion(v)
-        default: break
+        case .some(.ok(let s, let schema)):
+            if schema < flowSchemaVersion { archive(primaryURL) }
+            return .loaded(s, restoredFromBackup: false)
+        case .some(.future(let v)):
+            return .futureVersion(v)
+        default:
+            break
         }
         switch read(backupURL) {
-        case .some(.ok(let s)): return .loaded(s, restoredFromBackup: primary != nil)
-        case .some(.future(let v)): return .futureVersion(v)
-        default: return .fresh
+        case .some(.ok(let s, let schema)):
+            if schema < flowSchemaVersion { archive(backupURL) }
+            return .loaded(s, restoredFromBackup: primary != nil)
+        case .some(.future(let v)):
+            return .futureVersion(v)
+        default:
+            break
         }
+        if case .some(.ok(let s, _)) = read(archiveURL) {
+            return .loaded(s, restoredFromBackup: true)
+        }
+        if primary != nil { setAside(primaryURL) }
+        return .fresh
+    }
+
+    /// Keeps the first untouched copy of an older-schema save.
+    private func archive(_ url: URL) {
+        let fm = FileManager.default
+        guard !fm.fileExists(atPath: archiveURL.path) else { return }
+        try? fm.copyItem(at: url, to: archiveURL)
+    }
+
+    private func setAside(_ url: URL) {
+        let fm = FileManager.default
+        if fm.fileExists(atPath: damagedURL.path) { try? fm.removeItem(at: damagedURL) }
+        try? fm.copyItem(at: url, to: damagedURL)
     }
 
     public func write(_ state: FlowState, savedAtMs: Int64) throws {
@@ -76,8 +121,10 @@ public struct FlowSaveStore: Sendable {
         try fm.moveItem(at: tempURL, to: primaryURL)
     }
 
+    /// Starting over: the game files go, including the pre-migration copy (it would otherwise bring the old game
+    /// back as a last resort).
     public func erase() {
-        for url in [primaryURL, backupURL, tempURL] where FileManager.default.fileExists(atPath: url.path) {
+        for url in [primaryURL, backupURL, tempURL, archiveURL] where FileManager.default.fileExists(atPath: url.path) {
             try? FileManager.default.removeItem(at: url)
         }
     }
@@ -122,6 +169,9 @@ public struct FlowSaveStore: Sendable {
         s.meta.favors = max(0, s.meta.favors)
         s.meta.boostSeconds = fix(s.meta.boostSeconds, 0, Idle.boostCapSeconds)
         s.meta.offlineBonus = fix(s.meta.offlineBonus)
+        if s.meta.deliveredTransactions.count > FlowContent.receiptMemory {
+            s.meta.deliveredTransactions.removeFirst(s.meta.deliveredTransactions.count - FlowContent.receiptMemory)
+        }
         if s.lastWallClockMs < 0 { s.lastWallClockMs = 0 }
     }
 }

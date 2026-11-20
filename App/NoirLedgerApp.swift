@@ -31,7 +31,8 @@ struct NoirLedgerApp: App {
         sound.musicEnabled = settings.music
         sound.start(mood: SoundMood.of(store.state))
         store.onFeedback = { [sound] feedback in sound.play(feedback) }
-        shop.deliver = { [store] item in store.deliver(item.grant) }
+        shop.deliver = { [store] item, transaction in store.book(item.grant, transaction: transaction) }
+        shop.adoptDelivered = { [store] ids in store.adoptDeliveredTransactions(ids) }
         self.sound = sound
         self.notifier = Notifier()
         _store = State(initialValue: store)

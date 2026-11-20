@@ -61,7 +61,9 @@ struct FlowTests {
         #expect(s.counters.deliveries == 1)
         #expect(abs(s.cash - 5 * 1.5) < 1e-9, "the baker pays half again")
         #expect(s.ledger.last?.kind == .delivery && s.ledger.last?.subject == "baeckerei")
-        #expect(Flow.hint(s) == .firstUpgrade)
+        // 7.5 buys no station yet: the hint keeps the chain going instead of pointing at an upgrade it cannot pay
+        // (the affordable case is covered in FlowOpeningTests).
+        #expect(Flow.hint(s) == .tapBench)
         #expect(Self.error(s, .tapFleet) == .requirements, "an empty shelf sends nobody out")
     }
 

@@ -37,8 +37,30 @@ struct LocalizationTests {
         for st in [Station.fleet, .bench(.weed), .shelf(.weed), .contact("muehlgasse")] { keys.append(StationSheet.explainKey(st)) }
         for item in StoreItem.allCases { keys.append(item.titleKey) }
         for e in ActionError.allCases { keys.append(Labels.error(e)) }
-        keys += ["ad_unavailable", "ad_dismissed", "shop_pending", "shop_failed", "save_failed", "order_failed", "hint_shelf_empty", "hint_shelf_full"]
+        keys += ["ad_unavailable", "ad_dismissed", "shop_pending", "shop_failed", "shop_not_booked", "save_failed", "order_failed",
+                 "hint_shelf_empty", "hint_shelf_full"]
         return keys
+    }
+
+    @Test("Every return advice and the estate booking read as sentences in both languages")
+    func adviceTexts() {
+        var advice: [ReturnAdvice] = [.hireDispatcher, .sendVan, .upgrade(.fleet), .upgrade(.bench(.weed))]
+        for g in Good.allCases { advice += [ReturnAdvice.hireLead(g), ReturnAdvice.startBench(g)] }
+        for table in [en, de] {
+            for a in advice {
+                for text in [AdviceText.button(a, table), AdviceText.reason(a, table)] {
+                    #expect(!text.isEmpty && !text.contains("l4_"), "untranslated advice \(a)")
+                }
+            }
+            let picked = Flow.apply(Flow.newGame(seed: 1, nowMs: 1), .collectEstate).state
+            if let entry = picked.ledger.last {
+                #expect(entry.kind == .estate && !BookSheet.line(entry, table).contains("l4_"))
+            } else {
+                Issue.record("the pickup books a line")
+            }
+            #expect(table("shop_premium_d", table.duration(FlowContent.offlineCap * 2)).contains(table.duration(24 * 3_600)),
+                    "the silent partner promises the 24 hours the ledger credits")
+        }
     }
 
     @Test("Every label derived from game content exists in both languages")
@@ -168,17 +190,20 @@ struct LedgerStoreTests {
         #expect(third.state.welcome == nil)
     }
 
-    @Test("Reset keeps what was paid for and starts over in the cellar")
+    @Test("Reset keeps what was paid for and the booked transactions, and starts over at the cellar door")
     func resetKeepsWallet() {
         let store = makeStore(tempDir(), clock: Clock())
         store.load()
         store.dispatch(.choose(.cashbox))
-        #expect(store.deliver(.premium))
-        #expect(store.deliver(.favors(80)))
+        #expect(store.book(.premium, transaction: "9001") == .booked)
+        #expect(store.book(.favors(80), transaction: "9002") == .booked)
         store.resetEverything()
         #expect(store.state.meta.premium)
         #expect(store.state.meta.favors == 80)
-        #expect(store.state.start == nil)
+        #expect(store.state.meta.deliveredTransactions == ["9001", "9002"])
+        #expect(store.state.start == nil && store.state.estate == .waiting)
+        #expect(store.book(.favors(80), transaction: "9002") == .alreadyBooked, "a redelivery after a reset pays nothing")
+        #expect(store.state.meta.favors == 80)
     }
 
     @Test("A damaged save is restored from the backup and flagged")
@@ -230,8 +255,167 @@ struct LedgerStoreTests {
         store.tick(seconds: 5)
         store.tick(seconds: 5.25)
         #expect(store.state.counters.deliveries == 1)
-        #expect(store.measuredIncome > 0)
+        let booked = store.state.ledger.filter { $0.kind == .delivery }.map(\.amount).reduce(0, +)
+        #expect(booked > 0)
+        #expect(abs(store.measuredIncome - booked) < 1e-9, "the last minute shows what was booked, not an extrapolation")
+        for _ in 0..<13 { store.tick(seconds: 5) }
+        #expect(store.measuredIncome == 0, "a minute without bookings shows nothing")
     }
+
+    // MARK: Opening and old saves
+
+    @Test("The pickup at the door is booked once and survives a relaunch before the choice")
+    func estateOnceAcrossRelaunch() {
+        let dir = tempDir()
+        let clock = Clock()
+        let store = makeStore(dir, clock: clock)
+        store.load()
+        #expect(store.state.estate == .waiting && store.state.start == nil)
+        #expect(store.dispatch(.collectEstate) == FlowContent.estatePickupCash)
+        let again = makeStore(dir, clock: clock)
+        again.load()
+        #expect(again.state.estate == .booked && again.state.cash == 20 && again.state.start == nil)
+        #expect(again.dispatch(.collectEstate) == nil, "relaunching halfway never pays twice")
+        #expect(again.dispatch(.choose(.tools)) != nil)
+        #expect(again.state.cash == 20)
+        #expect(Flow.firstVanUpgradeReady(again.state))
+        #expect(again.dispatch(.upgrade(.fleet, 1)) != nil)
+        #expect(Flow.fleetCapacity(again.state) == 2)
+    }
+
+    @Test("A build-56 business loads with crew, orders, favors, purchases and time away, and never gets the pickup")
+    func oldBusinessSave() throws {
+        let dir = tempDir()
+        try Data(OldSaves.business.utf8).write(to: FlowSaveStore(directory: dir).primaryURL)
+        let clock = Clock()
+        clock.ms = 1_700_000_000_000 + 2 * 3_600_000
+        let store = makeStore(dir, clock: clock)
+        store.load()
+        let s = store.state
+        #expect(store.phase == .ready && s.start == .tools && s.chapter == 2)
+        #expect(s.estate == .notOffered && !s.ledger.contains { $0.kind == .estate })
+        #expect(s.dispatcher && s.workshop(.weed)?.lead == true && s.specialists == [.okafor])
+        #expect(s.meta.favors == 77 && s.meta.premium && s.meta.noAds && s.meta.starterBought)
+        let report = try #require(s.welcome, "two hours away are credited")
+        #expect(report.earned > 0)
+        #expect(store.dispatch(.collectEstate) == nil)
+        let cash = s.cash
+        let again = makeStore(dir, clock: clock)
+        again.load()
+        #expect(abs(again.state.cash - cash) < 1e-6, "loading the same save again does not pay again")
+        #expect(again.state.welcome != nil)
+    }
+
+    // MARK: Paid delivery
+
+    /// Makes the next save fail the way a full or broken disk does: the temporary file's path is taken by a folder.
+    private func blockWrites(_ store: LedgerStore) throws {
+        let blocker = store.saveStore.directory.appendingPathComponent("noir_flow.save.tmp")
+        try FileManager.default.createDirectory(at: blocker, withIntermediateDirectories: true)
+        try Data("x".utf8).write(to: blocker.appendingPathComponent("keep"))
+    }
+
+    private func unblockWrites(_ store: LedgerStore) throws {
+        try FileManager.default.removeItem(at: store.saveStore.directory.appendingPathComponent("noir_flow.save.tmp"))
+    }
+
+    @Test("A paid grant is booked only together with its transaction id on disk; a failed write books nothing")
+    func paidDeliveryWriteFailure() throws {
+        let dir = tempDir()
+        let clock = Clock()
+        let store = makeStore(dir, clock: clock)
+        store.load()
+        store.dispatch(.collectEstate)
+        store.dispatch(.choose(.cashbox))
+        let favors = store.state.meta.favors
+        try blockWrites(store)
+        #expect(store.book(.favors(500), transaction: "77001") == .notBooked)
+        #expect(store.state.meta.favors == favors && store.state.meta.deliveredTransactions.isEmpty, "nothing shown that is not saved")
+        let reloaded = makeStore(dir, clock: clock)
+        reloaded.load()
+        #expect(reloaded.state.meta.favors == favors)
+        try unblockWrites(store)
+        // The store delivers the unfinished transaction again: now it is booked, exactly once.
+        #expect(reloaded.book(.favors(500), transaction: "77001") == .booked)
+        #expect(reloaded.state.meta.favors == favors + 500)
+        // A crash after the write and before the store hears about it: on relaunch the same id comes again.
+        let relaunched = makeStore(dir, clock: clock)
+        relaunched.load()
+        #expect(relaunched.state.meta.favors == favors + 500)
+        #expect(relaunched.book(.favors(500), transaction: "77001") == .alreadyBooked)
+        #expect(relaunched.state.meta.favors == favors + 500)
+    }
+
+    @Test("Purchases are not booked while the save is from a newer version")
+    func noBookingOnFutureSave() throws {
+        let dir = tempDir()
+        try Data("{\"schema\": 99, \"savedAt\": 1, \"state\": {}}".utf8).write(to: FlowSaveStore(directory: dir).primaryURL)
+        let store = makeStore(dir, clock: Clock())
+        store.load()
+        #expect(store.book(.favors(80), transaction: "5") == .notBooked)
+    }
+
+    @Test("The store finishes a transaction only after the booking; old markers and redeliveries never pay twice")
+    func storeSettlement() throws {
+        let suite = "noir.tests.store.\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        defaults.set(["31337"], forKey: StoreService.legacyDeliveredKey)
+        let store = makeStore(tempDir(), clock: Clock())
+        store.load()
+        let shop = StoreService(defaults: defaults)
+        shop.deliver = { item, id in store.book(item.grant, transaction: id) }
+        shop.adoptDelivered = { ids in store.adoptDeliveredTransactions(ids) }
+
+        shop.adoptLegacyMarkers()
+        #expect(store.state.meta.deliveredTransactions == ["31337"], "the old marker moves into the save")
+        let legacy = shop.settle(productID: StoreItem.favorsSmall.rawValue, transactionID: "31337", revoked: false)
+        #expect(legacy == StoreService.Settlement(finish: true, booked: true))
+        #expect(store.state.meta.favors == 0, "booked by the earlier version, not again")
+
+        let fresh = shop.settle(productID: StoreItem.favorsSmall.rawValue, transactionID: "40001", revoked: false)
+        #expect(fresh == StoreService.Settlement(finish: true, booked: true))
+        #expect(store.state.meta.favors == 80)
+        let redelivered = shop.settle(productID: StoreItem.favorsSmall.rawValue, transactionID: "40001", revoked: false)
+        #expect(redelivered == StoreService.Settlement(finish: true, booked: true))
+        #expect(store.state.meta.favors == 80)
+
+        try blockWrites(store)
+        let failed = shop.settle(productID: StoreItem.favorsMedium.rawValue, transactionID: "40002", revoked: false)
+        #expect(failed == StoreService.Settlement(finish: false, booked: false), "left open for the next attempt")
+        #expect(store.state.meta.favors == 80)
+        try unblockWrites(store)
+        #expect(shop.settle(productID: StoreItem.favorsMedium.rawValue, transactionID: "40002", revoked: false).booked)
+        #expect(store.state.meta.favors == 580)
+
+        #expect(shop.settle(productID: StoreItem.premium.rawValue, transactionID: "40003", revoked: true)
+                == StoreService.Settlement(finish: true, booked: false))
+        #expect(!store.state.meta.premium)
+        #expect(shop.settle(productID: "io.example.unknown", transactionID: "40004", revoked: false).finish)
+        #expect(shop.settle(productID: StoreItem.premium.rawValue, transactionID: "40005", revoked: false).booked)
+        #expect(store.state.meta.premium)
+        #expect(shop.settle(productID: StoreItem.premium.rawValue, transactionID: "40005", revoked: false).finish,
+                "a restored permanent purchase is acknowledged without a second grant")
+    }
+}
+
+/// Saves written by earlier builds, kept verbatim.
+enum OldSaves {
+    /// Schema 1, chapter two, crew, a trip, an active order, favors and all three permanent purchases.
+    static let business = """
+    {"savedAt":1700000000000,"schema":1,"state":{"abilities":{},"autoQuiet":false,"cash":4321.5,"challengesDone":[],"chapter":2,\
+    "contacts":{"altmarkt":{"level":1,"open":0,"trust":0},"baeckerei":{"level":3,"open":2.5,"trust":0},"muehlgasse":{"level":8,"open":4,"trust":0}},\
+    "counters":{"big":0,"city":0,"clubBest":0,"clubNow":0,"crates":900,"deliveries":420,"failed":1,"finale":false,"loud":2,"orders":3,\
+    "purchases":41,"quiet":2,"taps":300},"dispatcher":true,"earned":70000,"fleet":10,"lastWallClockMs":1700000000000,\
+    "ledger":[{"amount":75,"crates":15,"good":"WEED","id":7,"kind":"DELIVERY","subject":"muehlgasse","time":1200}],\
+    "meta":{"favors":77,"noAds":true,"premium":true,"starterBought":true},"nextLedgerId":8,"nextOfferAt":1300,"nextOrderId":6,\
+    "offers":[],"orders":[{"deadline":1500,"delivered":{"WEED":4},"inTransit":{"WEED":3},"offer":{"attention":-5,"expiresAt":1350,"id":4,\
+    "items":{"WEED":20},"kind":"QUIET","pay":150,"quarter":"CELLARS","window":400}}],"ordersFirst":true,\
+    "priority":["WEED","CRYSTAL","PILLS","COKE"],"quarters":{"CELLARS":{"attention":12,"paused":false},"OLD_TOWN":{"attention":0,"paused":false}},\
+    "rng":"2a","specialists":["OKAFOR"],"start":"TOOLS","time":1280,\
+    "trip":{"duration":10,"left":4,"orders":{"4":{"WEED":3}},"standing":{"WEED":2}},"version":1,\
+    "workshops":{"WEED":{"bench":12,"cycle":0.5,"fullFor":0,"lead":true,"shelf":6,"stock":8}}}}
+    """
 }
 
 // MARK: - Settings

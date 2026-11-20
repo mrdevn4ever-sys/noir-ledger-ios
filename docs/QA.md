@@ -29,7 +29,7 @@ configuration alone. It has no UI; UI tests drive it with launch arguments:
 | --- | --- |
 | `-qa-reset` | erase save and settings before loading |
 | `-qa-seed N` | seed for a fresh campaign |
-| `-qa-scenario NAME` | `chapter2`…`chapter5`, `final_ready`, `won`, `ngplus`, `investigation`, `raid`, `event`, `rich` |
+| `-qa-scenario NAME` | 4.x ledger: `cellar`, `neck`, `board`, `chain`, `lead`, `lead-rich`, `harbour`, `night`, `crown`, `late`, `contract`, `finale`, `hot` (see `QAAccelerator.swift`; every scenario starts through the real pickup and choice). Older campaign names in the 2.x history: `chapter2`…`chapter5`, `final_ready`, `won`, `ngplus`, `investigation`, `raid`, `event`, `rich` |
 | `-qa-timescale X` | game seconds per real second (shortens waits; rules unchanged) |
 | `-qa-away S` | pretend the app was closed S seconds (offline summary) |
 | `-qa-corrupt-save` / `-qa-future-save` | damage the primary save / write a newer-schema save before loading |
@@ -38,6 +38,17 @@ configuration alone. It has no UI; UI tests drive it with launch arguments:
 Scenarios only skip play time (unlock districts and fronts reached in earlier chapters, add money, hire regulars);
 `won` and `ngplus` play the final operation through the engine's own actions. The Release build is scanned for the
 accelerator's symbols and strings on every CI run (`release-exclusion.log`).
+
+## M1 opening and return evidence (rebuild/varnholm)
+
+| Test | Proves | Not proof of |
+| --- | --- | --- |
+| `OpeningTimingUITests` (three starts, no `-qa-timescale`) | from the first interactive screen (cellar door, after launch) to the visible pickup booking ≤ 5 s and to the confirmed first van level ≤ 20 s; prints `OPENING start=… reward_s=… confirmed_upgrade_s=…` | how fast a person reads or decides; fun or retention |
+| `GameFlowUITests.testPrologueFirstDeliveryAndUpgrade` | pickup +20, optional letter, heirloom, van 1 → 2 slots at the van, first ordinary delivery | |
+| `GameFlowUITests.testFourMinuteReturnWithoutDispatcher` (`lead`, `lead-rich`) | 4 min away with a lead and no dispatcher books +0; advice is "send the van" (with the hire still out of reach) or "hire the dispatcher" when affordable; it runs only on the tap | |
+| Tour shots `*_tour_00`…`02c`, `17b`, `19`…`21` (EN/DE) | door, letter, heirlooms, van offer/confirm/after, lead-only return, accessibility-size opening | a reviewed image until a person has looked at it |
+| `FlowOpeningTests` (core) | pickup once, every start can buy the van at 20, the street ticket stays 5, receipts once, schema-1 fixtures, recovery, return advice | the UI |
+| `LedgerStoreTests` (app) | relaunch halfway, build-56 business with time away once, forced write failure, redelivery after a write, legacy marker, reset keeps ids | real StoreKit payment (never used in tests) |
 
 ## Screenshot inventory
 

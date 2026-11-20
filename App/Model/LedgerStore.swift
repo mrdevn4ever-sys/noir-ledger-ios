@@ -83,6 +83,17 @@ struct Celebration: Equatable, Identifiable, Sendable {
     let kind: Kind
 }
 
+/// What happened to a verified store transaction in the game.
+enum PurchaseBooking: Equatable, Sendable {
+    /// Granted and written to disk together with its transaction id: the store may finish the transaction.
+    case booked
+    /// This transaction id is already in the save: finish it again without a second grant.
+    case alreadyBooked
+    /// Not booked (the save could not be written, or the game is not ready): leave the transaction unfinished so
+    /// the store delivers it again.
+    case notBooked
+}
+
 /// Owns the live ledger: loading, time away, the online tick, actions, autosave and reset. All rules live in
 /// `NoirCore.Flow`; this type only schedules them, measures the real income stream and persists the result.
 @MainActor
@@ -103,7 +114,8 @@ final class LedgerStore {
     private(set) var acceptedCount = 0
     private(set) var rejectedCount = 0
     private(set) var tapCount = 0
-    /// Cash booked in the last minute of play, per minute: the real income stream (not the forecast).
+    /// Cash actually booked in the last 60 game seconds of play: the plain sum, never extrapolated (the forecast "with
+    /// the chain running" is a separate number).
     private(set) var measuredIncome = 0.0
     /// Increments with every booking, for the ledger's ink animation.
     private(set) var bookings = 0
@@ -242,9 +254,8 @@ final class LedgerStore {
             recent.append((state.time, gained))
             bookings += 1
         }
-        recent.removeAll { state.time - $0.time > 60 }
-        let window = min(60, max(1, state.time - (recent.first?.time ?? state.time) + 1))
-        measuredIncome = recent.reduce(0) { $0 + $1.amount } * 60 / max(window, 10)
+        recent.removeAll { state.time - $0.time >= 60 }
+        measuredIncome = recent.reduce(0) { $0 + $1.amount }
         if state.counters.orders > before.counters.orders {
             let paid = state.ledger.last { $0.kind == .order }?.amount ?? 0
             celebrate(.orderDone(paid))
@@ -358,8 +369,11 @@ final class LedgerStore {
             onFeedback?(.reward)
         case .collectOffline:
             onFeedback?(.claim)
-        case .grant:
+        case .grant, .deliverPurchase:
             onFeedback?(.purchase)
+        case .collectEstate:
+            bookings += 1
+            onFeedback?(.stamp)
         case .buyFavorItem:
             onFeedback?(.boost)
         case .choose:
@@ -412,27 +426,60 @@ final class LedgerStore {
 
     func rewardOffered(ads: AdService) -> Bool { state.meta.noAds || ads.ready }
 
+    /// Books a verified store purchase. The grant and its transaction id are written to disk in one save before the
+    /// game shows them; if that write fails nothing changes in memory and the store must not finish the
+    /// transaction. A transaction already in the save is reported as such and never granted again.
+    func book(_ grant: Grant, transaction id: String) -> PurchaseBooking {
+        guard phase == .ready else { return .notBooked }
+        if state.meta.deliveredTransactions.contains(id) { return .alreadyBooked }
+        let r = Flow.apply(state, .deliverPurchase(grant, transaction: id))
+        guard r.isOK else { return .notBooked }
+        guard persist(r.state) else { return .notBooked }
+        let before = state
+        state = r.state
+        acceptedCount += 1
+        report(.deliverPurchase(grant, transaction: id), from: before)
+        return .booked
+    }
+
+    /// Adds transaction ids that an earlier version marked as delivered outside the save. Returns true when they
+    /// are all in the save on disk now.
     @discardableResult
-    func deliver(_ grant: Grant) -> Bool {
+    func adoptDeliveredTransactions(_ ids: [String]) -> Bool {
         guard phase == .ready else { return false }
-        return dispatch(.grant(grant)) != nil
+        let missing = ids.filter { !$0.isEmpty && !state.meta.deliveredTransactions.contains($0) }
+        guard !missing.isEmpty else { return true }
+        var next = state
+        next.meta.deliveredTransactions.append(contentsOf: missing)
+        let extra = next.meta.deliveredTransactions.count - FlowContent.receiptMemory
+        if extra > 0 { next.meta.deliveredTransactions.removeFirst(extra) }
+        guard persist(next) else { return false }
+        state = next
+        return true
     }
 
     // MARK: Persistence
 
     func save() {
         guard phase == .ready else { return }
+        _ = persist(state)
+    }
+
+    /// Writes `candidate` and reports whether it is on disk; a failed write is shown and changes nothing else.
+    private func persist(_ candidate: FlowState) -> Bool {
         let now = wallClockMs()
         do {
-            try saveStore.write(state, savedAtMs: now)
+            try saveStore.write(candidate, savedAtMs: now)
             lastSavedAtMs = now
             secondsSinceSave = 0
+            return true
         } catch {
             show("save_failed", danger: true)
+            return false
         }
     }
 
-    /// Starts over in Leopold's cellar. What the player paid for stays.
+    /// Starts over in Leopold's cellar. What the player paid for stays, and so do the booked transaction ids.
     func resetEverything() {
         var wallet = MetaState()
         if phase == .ready {
@@ -440,6 +487,7 @@ final class LedgerStore {
             wallet.premium = state.meta.premium
             wallet.noAds = state.meta.noAds
             wallet.starterBought = state.meta.starterBought
+            wallet.deliveredTransactions = state.meta.deliveredTransactions
         }
         saveStore.erase()
         restoredFromBackup = false

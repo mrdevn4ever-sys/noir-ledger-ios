@@ -47,6 +47,10 @@ jobs:
       - name: Build and test the deterministic core
         working-directory: Packages/NoirCore
         run: swift test 2>&1 | tee ../../core-tests.log
+      - name: Read and resave files produced by the previous release
+        run: |
+          git fetch --no-tags --depth=1 --filter=blob:none origin 1d695653c3929c236c74b9d6bd192593d338ef52
+          python3 scripts/ci/save-compat/save_compat.py | tee -a core-tests.log
       - name: Keep the core log for the app job
         if: always()
         continue-on-error: true

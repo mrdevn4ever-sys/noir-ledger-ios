@@ -198,6 +198,7 @@ private struct OfferCard: View {
                         case .pending: store.show("shop_pending")
                         case .cancelled: break
                         case .failed: store.show("shop_failed", danger: true)
+                        case .notBooked: store.show("shop_not_booked", danger: true)
                         }
                     }
                 } label: {
@@ -214,7 +215,8 @@ private struct OfferCard: View {
     private var detail: String {
         switch item {
         case .starter: t("shop_starter_d", Idle.starterFavors, t.duration(Idle.starterBoostSeconds))
-        case .premium: t("shop_premium_d", t.duration(Double(2 * Content.offlineCapSeconds)))
+        // The ledger credits time away up to `FlowContent.offlineCap`; the silent partner doubles it.
+        case .premium: t("shop_premium_d", t.duration(FlowContent.offlineCap * 2))
         case .noAds: t("shop_noads_d")
         default: t("shop_favors_d", item.favors)
         }

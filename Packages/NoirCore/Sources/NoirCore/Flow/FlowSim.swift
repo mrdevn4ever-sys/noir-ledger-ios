@@ -5,9 +5,11 @@ public enum Flow {
 
     // MARK: Start
 
-    /// Leopold's cellar before the player has chosen what to take: one bench, one shelf, the corner of Mühlgasse.
+    /// Leopold's cellar before the player has chosen what to take: one bench, one shelf, the corner of Mühlgasse, and
+    /// one crate at the door for a buyer who already signed for it.
     public static func newGame(seed: UInt64, nowMs: Int64, meta: MetaState = MetaState()) -> FlowState {
         var s = FlowState()
+        s.estate = .waiting
         s.rng = UInt64Box(seed == 0 ? 1 : seed)
         s.lastWallClockMs = nowMs
         s.meta = meta

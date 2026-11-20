@@ -9,7 +9,7 @@ import NoirCore
 /// - `-qa-corrupt-save`       overwrite the primary save with garbage before loading (backup recovery)
 /// - `-qa-future-save`        write a save from a newer schema before loading
 /// - `-qa-seed N`             seed for a fresh game
-/// - `-qa-scenario NAME`      cellar, neck, board, chain, harbour, night, crown, late, contract, finale, hot
+/// - `-qa-scenario NAME`      cellar, neck, board, chain, lead, lead-rich, harbour, night, crown, late, contract, finale, hot
 /// - `-qa-away SECONDS`       pretend the app was closed this long (return summary)
 /// - `-qa-timescale X`        game seconds per real second
 /// - `-qa-quiet`              no new orders on the board during the session (applied before the scenario)
@@ -76,7 +76,9 @@ enum QAAccelerator {
         }
     }
 
+    /// The player's real first steps: the pickup at the door (when it waits), then the cash box.
     private static func choose(_ s: inout FlowState) {
+        if s.estate == .waiting { s = Flow.apply(s, .collectEstate).state }
         if s.start == nil { s = Flow.apply(s, .choose(.cashbox)).state }
     }
 
@@ -182,6 +184,16 @@ enum QAAccelerator {
             s.counters.orders = 120
             s.counters.city = name == "late" ? 1 : 3
             s.counters.finale = name == "finale"
+        case "lead", "lead-rich":
+            // A few minutes into chapter one: the bench has its lead, nobody drives the van. Leaving now sells nothing;
+            // the return must say so and offer the dispatcher only when the cash covers him.
+            choose(&s)
+            s.updateWorkshop(.weed) { $0.lead = true; $0.stock = 0; $0.cycle = nil }
+            s.fleet = 2
+            s.cash = name == "lead" ? 40 : FlowContent.dispatcherCost + 40
+            s.earned = 180
+            s.counters.deliveries = 12
+            s.counters.purchases = 3
         case "hot":
             choose(&s)
             automate(&s, bench: 8, fleet: 8, contact: 8)

@@ -1,6 +1,8 @@
 import Foundation
 
 public enum FlowAction: Sendable, Equatable {
+    /// Hands the waiting crate to the buyer with the signed slip at the cellar door: one booking, once per game.
+    case collectEstate
     /// Picks what to take from Leopold's things; starts the game.
     case choose(StartChoice)
     /// Starts one bench cycle by hand (until the workshop has a lead).
@@ -30,6 +32,9 @@ public enum FlowAction: Sendable, Equatable {
     case buyFavorItem(FavorItem)
     case adReward(AdReward, day: Int)
     case grant(Grant)
+    /// A verified store purchase: the grant and its transaction id are booked together, and an id that was already
+    /// booked is rejected (`.invalid`) so a redelivered transaction never pays twice.
+    case deliverPurchase(Grant, transaction: String)
     case collectOffline(doubled: Bool)
 }
 
@@ -54,18 +59,30 @@ extension Flow {
             return true
         }
 
+        // Before Leopold's things are chosen only the pickup at the door, the choice and purchases can happen.
         if s.start == nil {
-            guard case .choose(let choice) = action else {
-                if case .grant = action {} else { return fail(.tutorial) }
-                return applyGrant(&s, action) ? done() : fail(.invalid)
+            switch action {
+            case .choose(let choice):
+                applyStart(&s, choice)
+                return done()
+            case .collectEstate, .grant, .deliverPurchase:
+                break
+            default:
+                return fail(.tutorial)
             }
-            applyStart(&s, choice)
-            return done()
         }
 
         switch action {
         case .choose:
             return fail(.invalid)
+
+        case .collectEstate:
+            guard s.estate == .waiting else { return fail(.invalid) }
+            s.estate = .booked
+            let paid = FlowContent.estatePickupCash
+            credit(&s, paid)
+            book(&s, .estate, subject: "estate", good: .weed, crates: FlowContent.estatePickupCrates, amount: paid)
+            return done(paid)
 
         case .tapBench(let g):
             guard let w = s.workshop(g) else { return fail(.locked) }
@@ -279,6 +296,15 @@ extension Flow {
 
         case .grant:
             return applyGrant(&s, action) ? done() : fail(.invalid)
+
+        case .deliverPurchase(let grant, let transaction):
+            let id = transaction.trimmingCharacters(in: .whitespaces)
+            guard !id.isEmpty, !s.meta.deliveredTransactions.contains(id) else { return fail(.invalid) }
+            guard applyGrant(&s, .grant(grant)) else { return fail(.invalid) }
+            s.meta.deliveredTransactions.append(id)
+            let extra = s.meta.deliveredTransactions.count - FlowContent.receiptMemory
+            if extra > 0 { s.meta.deliveredTransactions.removeFirst(extra) }
+            return done()
 
         case .collectOffline(let doubled):
             var gained = 0.0

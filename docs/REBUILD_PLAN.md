@@ -10,6 +10,29 @@
 4. **Building, controls and feedback.** Separate workers' drop points; verify silhouettes over an entire cycle. At large type, retain the current objective and reachable navigation before secondary numbers. An accepted tap has immediate visual feedback; optional sound and haptics respect settings. Reduced Motion gets the same information without travel animations. Keep local clocks, cached sprites, paused hidden views and background audio loading. Measure late scrolling separately from idle.
 5. **Store and release polish.** Capture the real cellar, larger van, full building, contract choice and return in DE/EN. Keep unused marketing art outside the app target after measuring archive size. Verify licensed sources, fair optional purchases, actual StoreKit prices and benefit caps. No fundraising language, fictitious countdowns or paid random packs. Recommend the highest applicable age rating to the owner; no submission or tester invitation.
 
+## M1 candidate (not cleared for TestFlight)
+
+The first playable slice is ready for native testing, not release. Two known blockers remain: the receipt journal drops old transaction IDs after 1,000 entries, and a failed reset can erase the old wallet before its replacement is durable. Do not promote this revision.
+
+- **Model before code:** `scripts/qa/estate_opening.py` picks the pickup amount (20 is the smallest that pays the
+  unchanged 20 van level for every start; wallets after the confirmed upgrade 60 / 0 / 0). The historical baseline
+  `scripts/qa/flow_opening.py` is unchanged (first booking 16.5 s; 20 cash at 0 / 38 / 48.75 s).
+- **Opening:** `FlowAction.collectEstate` books 20 once as `LedgerKind.estate` (no delivery counted, no recurring
+  income), then the heirloom choice (one line each), notary letter optional. The first van level is offered and
+  confirmed at the van; the van draws its crate slots (1 → 2). `Flow.hint` only suggests an upgrade the cash covers
+  and otherwise keeps the manual chain moving.
+- **Return:** `Flow.returnAdvice` (affordable hire → send the van → start an idle bench; upgrades only for a fully
+  staffed chain; nothing while the van drives) with a button that acts on the tap, plus the next hire and the cash
+  still missing. Measured income is the plain sum booked in the last 60 s; the forecast is labelled "with the chain
+  running".
+- **Paid delivery:** grant + transaction id in one save, finish only after the write; unfinished transactions retried
+  at launch without the catalogue; old UserDefaults markers adopted; ids kept on reset. Silent-partner copy now
+  derives 24 h from `FlowContent.offlineCap`.
+- **Saves:** schema 2 with `FlowMigration`, pre-migration copy, damaged-file set-aside, lossy ledger lines.
+
+Known gaps in M1: no swipe/large-text check of the van card on the smallest supported phone yet; the first order's
+side-by-side comparison, pinned goal and all-quarter attention preview are M2.
+
 ## Evidence and promotion
 
 - From the **first interactive screen**, aim for first visible player-triggered booking ≤5 s and first confirmed upgrade ≤20 s. Measure all three starts in unaccelerated UI tests. Python establishes affordability and required actions, not how fast a person reads or acts. Keep the original [baseline](../scripts/qa/flow_opening.py) for comparison.

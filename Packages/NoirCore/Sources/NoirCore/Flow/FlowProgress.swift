@@ -286,18 +286,31 @@ extension Flow {
 
     // MARK: Hints
 
-    /// The first steps in the cellar: start the bench, send the crates, invest, fix the bottleneck, automate, choose.
+    /// True while the first ordinary upgrade (the van, one crate more per trip) is waiting and the cash covers it.
+    public static func firstVanUpgradeReady(_ s: FlowState) -> Bool {
+        s.start != nil && s.counters.purchases == 0 && s.fleet == 1 && s.cash + 1e-9 >= fleetCost(s, 1)
+    }
+
+    /// The first steps in the cellar: the van upgrade the pickup paid for, start the bench, send the crates, fix the
+    /// bottleneck, automate, choose. A step is only suggested when it can be done now; while the next hire is out
+    /// of reach the hint keeps the chain going by hand.
     public static func hint(_ s: FlowState) -> FlowHint? {
         guard s.start != nil, s.chapter == 1, let w = s.workshop(.weed) else { return nil }
+        if firstVanUpgradeReady(s) { return .firstUpgrade }
+        let benchIdle = w.stock < 1 && w.cycle == nil && !w.lead
+        let vanReady = w.stock >= 1 && s.trip == nil && !s.dispatcher
         if s.counters.deliveries == 0 {
-            if w.stock < 1 && w.cycle == nil && !w.lead { return .tapBench }
-            if w.stock >= 1 && s.trip == nil && !s.dispatcher { return .tapFleet }
+            if benchIdle { return .tapBench }
+            if vanReady { return .tapFleet }
             return nil
         }
-        if s.counters.purchases == 0 { return .firstUpgrade }
         if !w.lead {
             if forecast(s).good(.weed)?.bottleneck == .fleet && w.stock >= shelfCapacity(s, .weed) * 0.8 && s.fleet < 3 {
                 return .bottleneck
+            }
+            if s.cash + 1e-9 < FlowContent.good(.weed).leadCost {
+                if benchIdle { return .tapBench }
+                if vanReady { return .tapFleet }
             }
             return .hireLead
         }

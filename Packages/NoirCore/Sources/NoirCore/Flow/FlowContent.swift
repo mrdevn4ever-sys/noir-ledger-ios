@@ -329,6 +329,15 @@ public enum FlowContent {
 
     // MARK: Start
 
+    /// The one-time estate pickup at the cellar door: a buyer with a signed slip for exactly one crate. It is not a
+    /// standing contact and never recurs; the ordinary per-crate price stays `good(.weed).price`. The amount is the
+    /// smallest that makes the first ordinary van level (`fleetCost`) affordable for every start
+    /// (scripts/qa/estate_opening.py).
+    public static let estatePickupCash = 20.0
+    public static let estatePickupCrates = 1.0
+    /// Verified store transactions remembered in the save so a redelivered one is never booked twice.
+    public static let receiptMemory = 1_000
+
     public static let cashboxCash = 60.0
     public static let toolsBench = 3
     public static let toolsShelf = 2
