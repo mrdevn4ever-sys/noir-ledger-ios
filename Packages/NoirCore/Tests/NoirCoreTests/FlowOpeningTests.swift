@@ -324,8 +324,13 @@ struct FlowOpeningTests {
     func adviceCases() throws {
         var driving = Self.leadOnly(cash: 40)
         driving.updateWorkshop(.weed) { $0.stock = 3 }
+        #expect(Self.error(driving, .tapFleet) == .requirements, "stock alone does not make a buyer")
+        #expect(Flow.returnAdvice(driving) == nil, "do not suggest an empty trip")
+        Flow.advance(&driving, seconds: 10, offline: false)
+        #expect(Flow.returnAdvice(driving) == .sendVan, "a buyer now wants the stock")
         driving = Self.ok(driving, .tapFleet)
-        #expect(driving.trip != nil)
+        let trip = try #require(driving.trip)
+        #expect(trip.crates > 0, "a live trip must have cargo")
         #expect(Flow.returnAdvice(driving) == nil, "the van is on the road and the lead keeps the bench busy")
 
         var manual = Self.opened(.addressBook)

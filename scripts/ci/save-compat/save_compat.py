@@ -42,10 +42,9 @@ def verify(case, before, after):
     old, new = json.loads(before), json.loads(after)
     assert old['schema'] == old['state']['version'] == 1
     assert old['savedAt'] == new['savedAt']
-    assert new['schema'] == new['state']['version'] >= 1
+    assert new['schema'] == new['state']['version'] >= 2, 'candidate did not migrate the schema-1 file'
     unchanged(old['state'], new['state'])
-    if new['schema'] >= 2:
-        assert new['state']['estate'] == ('WAITING' if case == 'unopened' else 'NOT_OFFERED'), case
+    assert new['state']['estate'] == ('WAITING' if case == 'unopened' else 'NOT_OFFERED'), case
     if case != 'unopened':
         s = old['state']
         assert s['meta']['favors'] == 73 and s['meta']['premium'] and s['meta']['noAds']
