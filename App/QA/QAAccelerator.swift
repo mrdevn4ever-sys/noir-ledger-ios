@@ -9,7 +9,7 @@ import NoirCore
 /// - `-qa-corrupt-save`       overwrite the primary save with garbage before loading (backup recovery)
 /// - `-qa-future-save`        write a save from a newer schema before loading
 /// - `-qa-seed N`             seed for a fresh game
-/// - `-qa-scenario NAME`      cellar, neck, board, chain, harbour, night, late, finale, hot
+/// - `-qa-scenario NAME`      cellar, neck, board, chain, harbour, night, crown, late, contract, finale, hot
 /// - `-qa-away SECONDS`       pretend the app was closed this long (return summary)
 /// - `-qa-timescale X`        game seconds per real second
 /// - `-qa-quiet`              no new orders on the board during the session (applied before the scenario)
@@ -154,6 +154,19 @@ enum QAAccelerator {
             s.earned = 5e9
             s.counters.deliveries = 20_000
             s.counters.orders = 30
+        case "crown":
+            // Start at the chapter-five purchase decision, not after the new floor has appeared.
+            scenario(&s, "night", quiet: quiet)
+            s.chapter = 5
+            s.specialists.append(.lind)
+            s.quarters[.crown] = QuarterState()
+            s.cash = FlowContent.good(.coke).openCost + FlowContent.good(.coke).leadCost
+            s.earned = 3e10
+        case "contract":
+            scenario(&s, "late", quiet: quiet)
+            s.counters.city = 3
+            // Let the normal board generate the final contract; do not manufacture a win or an offer.
+            Flow.advance(&s, seconds: 0.25, offline: false)
         case "late", "finale":
             choose(&s)
             s.chapter = name == "late" ? 6 : FlowContent.chapters.count + 1
