@@ -1,0 +1,1 @@
+OPENING start=CASHBOX reward_s=1.59 confirmed_upgrade_s=8.69
