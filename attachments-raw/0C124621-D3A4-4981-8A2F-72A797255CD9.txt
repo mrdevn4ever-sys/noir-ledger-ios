@@ -1,0 +1,1 @@
+OPENING start=ADDRESS_BOOK reward_s=1.81 confirmed_upgrade_s=11.49
