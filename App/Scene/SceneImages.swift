@@ -66,14 +66,20 @@ final class SceneImages {
     /// its own bitmap.
     nonisolated static func make(_ name: String, frames n: Int) -> SpriteSheet? {
         guard let image = UIImage(named: name)?.cgImage else { return nil }
+        return make(image, frames: n)
+    }
+
+    nonisolated static func make(_ image: CGImage, frames n: Int) -> SpriteSheet? {
         let w = image.width
         let h = image.height
         let count = max(1, n)
         let fw = w / count
+        // A little-endian premultiplied ARGB word is B,G,R,A in memory. Alpha stays at byte 3.
+        let bgra = CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
         guard fw > 0, h > 0,
+              let space = CGColorSpace(name: CGColorSpace.sRGB),
               let ctx = CGContext(data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4,
-                                  space: CGColorSpace(name: CGColorSpace.sRGB)!,
-                                  bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+                                  space: space, bitmapInfo: bgra)
         else { return nil }
         ctx.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
         guard let decoded = ctx.makeImage(), let data = ctx.data else { return nil }
@@ -105,8 +111,7 @@ final class SceneImages {
         for i in 0..<count {
             guard let part = decoded.cropping(to: CGRect(x: i * fw + minX, y: minY, width: bw, height: bh)),
                   let fctx = CGContext(data: nil, width: bw, height: bh, bitsPerComponent: 8, bytesPerRow: bw * 4,
-                                       space: CGColorSpace(name: CGColorSpace.sRGB)!,
-                                       bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+                                       space: space, bitmapInfo: bgra)
             else { return nil }
             fctx.draw(part, in: CGRect(x: 0, y: 0, width: bw, height: bh))
             guard let frame = fctx.makeImage() else { return nil }

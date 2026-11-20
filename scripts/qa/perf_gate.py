@@ -16,10 +16,12 @@ MODES = ('idle', 'scroll')
 ROW = re.compile(r'\[([0-9a-f]{40}) r(\d+)\] PERF (\w+) (\w+): perf fps=([\d.]+) p95=([\d.]+)ms worst=([\d.]+)ms hitch=([\d.]+)ms/s dropped=(\d+) frames=(\d+)\s*$')
 
 
-def check(log, base, candidate, rounds):
-    if base == candidate or rounds < 1 or not all(re.fullmatch('[0-9a-f]{40}', sha) for sha in (base, candidate)):
-        raise ValueError('two distinct full revisions and a positive round count are required')
-    expected = set(itertools.product((base, candidate), range(1, rounds + 1), SCENES, MODES))
+def matrix(log, revisions, rounds):
+    if len(set(revisions)) != len(revisions) or rounds < 1 or not all(re.fullmatch('[0-9a-f]{40}', s) for s in revisions):
+        raise ValueError('distinct full revisions and a positive round count are required')
+    if re.search(r'test run [0-9a-f]{40} round \d+ failed', log):
+        raise ValueError('a measurement test failed')
+    expected = set(itertools.product(revisions, range(1, rounds + 1), SCENES, MODES))
     samples = {}
     for line in log.splitlines():
         if not re.search(r'\[[0-9a-f]+ r\d+\] PERF ', line):
@@ -37,6 +39,11 @@ def check(log, base, candidate, rounds):
         samples[key] = (float(p95), float(hitch))
     if samples.keys() != expected:
         raise ValueError(f'missing PERF rows: {sorted(expected - samples.keys())}')
+    return samples
+
+
+def check(log, base, candidate, rounds):
+    samples = matrix(log, (base, candidate), rounds)
     report = []
     ok = True
     for scene, mode in itertools.product(SCENES, MODES):
@@ -48,14 +55,38 @@ def check(log, base, candidate, rounds):
     return ok, report
 
 
+def crew_trial(log, base, control, candidate):
+    """Paired p95 within the same round, not a comparison of independently sorted medians."""
+    revs = (base, control, candidate)
+    samples = matrix(log, revs, 3)
+    passed, report = True, ['round values: base / control / candidate']
+    for scene, mode in itertools.product(SCENES, MODES):
+        hits = 0
+        for r in (1, 2, 3):
+            p95, hitch = zip(*(samples[s, r, scene, mode] for s in revs))
+            hits += p95[2] <= p95[0]
+            report.append(f'{scene} {mode} r{r}: p95 {p95} ms; hitch {hitch} ms/s')
+        if mode == 'idle' and scene in ('harbour', 'late'):
+            report.append(f'{scene} idle paired p95: {hits}/3')
+            passed &= hits >= 2
+    return passed, report
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('log', type=Path)
     parser.add_argument('base')
     parser.add_argument('candidate')
     parser.add_argument('rounds', type=int)
+    parser.add_argument('--crew-control', help='Run the three-round M1 paired idle trial with this intermediate revision')
     args = parser.parse_args()
-    success, rows = check(args.log.read_text(encoding='utf-8-sig'), args.base, args.candidate, args.rounds)
+    log = args.log.read_text(encoding='utf-8-sig')
+    if args.crew_control:
+        if args.rounds != 3:
+            parser.error('the crew trial requires exactly three rounds')
+        success, rows = crew_trial(log, args.base, args.crew_control, args.candidate)
+    else:
+        success, rows = check(log, args.base, args.candidate, args.rounds)
     print('\n'.join(rows))
     print('PERF_GATE_OK' if success else 'PERF_GATE_REGRESSION')
     raise SystemExit(0 if success else 1)
