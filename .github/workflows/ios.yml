@@ -62,7 +62,7 @@ jobs:
   app:
     name: App (Xcode build, unit + UI tests, Release, evidence)
     runs-on: macos-26
-    timeout-minutes: 120
+    timeout-minutes: 160
     permissions:
       # Needed only to push the evidence branch while the account's artifact storage quota is exhausted.
       contents: write
@@ -137,6 +137,26 @@ jobs:
           else
             echo "no result bundle"; exit 1
           fi
+
+      - name: Large-type purchase on the compact iPhone in both languages
+        run: |
+          set -euo pipefail
+          OUT="$EVIDENCE/compact"
+          mkdir -p "$OUT"
+          UDID=$(python3 scripts/ci/compact_street.py device "$SIM_UDID")
+          echo "sha=$GITHUB_SHA simulator=$UDID runtime=$SIM_RUNTIME" | tee "$OUT/inventory.txt"
+          xcrun simctl shutdown "$SIM_UDID" || true
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          rc=0
+          xcodebuild test -project NoirLedger.xcodeproj -scheme NoirLedger -configuration Debug \
+            -destination "id=$UDID" -parallel-testing-enabled NO -resultBundlePath build/Compact.xcresult \
+            -only-testing:NoirLedgerUITests/ScreenshotTourUITests/testLargeStreetGerman \
+            -only-testing:NoirLedgerUITests/ScreenshotTourUITests/testLargeStreetEnglish \
+            CODE_SIGNING_ALLOWED=NO > "$OUT/xcodebuild-test.log" 2>&1 || rc=$?
+          python3 scripts/ci/export_results.py build/Compact.xcresult "$OUT"
+          test "$rc" = 0
+          python3 scripts/ci/compact_street.py verify "$OUT"
 
       - name: Release build for the simulator and QA-exclusion proof
         run: |

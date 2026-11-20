@@ -164,8 +164,8 @@ struct StreetSection: View {
                 .idle(.pulse(1.05), duration: 0.8)
             }
             .buttonStyle(.plain)
-            .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
             .accessibilityIdentifier("fleet.go")
+            .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
         }
     }
 
@@ -180,9 +180,14 @@ struct StreetSection: View {
                             affordable: state.cash >= FlowContent.dispatcherCost)
             }
             .buttonStyle(.plain)
-            .position(x: x, y: streetY - 30)
             .accessibilityLabel(Text(verbatim: t("l4_dispatcher_t", Content.crewDef(FlowContent.dispatcher)?.name ?? "")))
+            .accessibilityValue(Text(verbatim: t("event_cost", t.money(FlowContent.dispatcherCost))))
             .accessibilityIdentifier("dispatcher.hire")
+            // Anchor the bottom of the price rather than the centre of a variable-height silhouette.
+            // Even at accessibility sizes the price stays on the pavement, above the Go button and its halo.
+            .fixedSize()
+            .frame(height: 100, alignment: .bottom)
+            .position(x: x, y: streetY - 16 - 50)
         }
     }
 
@@ -579,15 +584,18 @@ struct CustomersHouse: View {
                 }
                 VStack(spacing: 1) {
                     Text(verbatim: t("l4_customers")).font(.toon(11, .bold))
+                        .lineLimit(1).minimumScaleFactor(0.8)
                     Text(verbatim: t("l4_per_min", t.money(demand))).font(.toon(14, .heavy)).monospacedDigit()
                         .lineLimit(1).minimumScaleFactor(0.6)
                 }
                 .foregroundStyle(.white)
-                .padding(.horizontal, 6)
-                .frame(width: 92, height: 40)
+                .padding(.horizontal, 4).padding(.vertical, 3)
+                .frame(width: StreetSection.houseWidth)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(minHeight: 40)
                 .background(Image("BadgePlate").resizable())
                 .overlay(alignment: .topTrailing) { if neck { BottleneckDot().offset(x: 8, y: -8) } }
-                .offset(x: 18, y: -4)
+                .offset(x: -9, y: -4)
             }
             .frame(width: StreetSection.houseWidth, height: StreetSection.buildingHeight, alignment: .topLeading)
         }

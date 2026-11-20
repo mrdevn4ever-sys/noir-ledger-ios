@@ -124,7 +124,14 @@ final class ScreenshotTourUITests: NoirUITestCase {
         wait("screen.ledger", 30)
         shot(p + "18_large_text")
         app.terminate()
+    }
 
+    // Also run just this purchase on the compact iPhone; do not omit it on the ordinary tour.
+    func testLargeStreetGerman() { largeStreet("de") }
+    func testLargeStreetEnglish() { largeStreet("en") }
+
+    private func largeStreet(_ lang: String) {
+        let p = "\(lang)_tour_"
         launch(["-qa-reset", "-qa-seed", "43"], language: lang, largeText: true)
         reveal(wait("estate.collect", 45))
         shot(p + "19_large_estate")
@@ -135,7 +142,15 @@ final class ScreenshotTourUITests: NoirUITestCase {
         wait("screen.ledger")
         reveal(wait("van.offer"))
         shot(p + "21_large_van_offer")
-        element("van.offer").tap()
+        let go = wait("fleet.go")
+        reveal(go)
+        let hire = wait("dispatcher.hire")
+        XCTAssertTrue((hire.value as? String)?.contains("300") == true)
+        XCTAssertGreaterThan(hire.frame.height, 0)
+        XCTAssertGreaterThan(go.frame.height, 0)
+        XCTAssertLessThanOrEqual(hire.frame.maxY + 4, go.frame.minY, "Keep the hire price and the send button visually separate")
+        shot(p + "21b_large_street_prices")
+        tapRevealed("van.offer")
         tapRevealed("van.later")
         waitForVanCapacity(1, language: lang)
         tapRevealed("van.offer")
