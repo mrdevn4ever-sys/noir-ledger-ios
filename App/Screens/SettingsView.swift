@@ -9,6 +9,7 @@ struct SettingsView: View {
     @Environment(AdService.self) private var ads
     @Environment(\.dismiss) private var dismiss
     @State private var confirmReset = false
+    @State private var resetFailed = false
 
     private var t: L10n { settings.l10n }
 
@@ -144,8 +145,7 @@ struct SettingsView: View {
         }
         .alert(Text(verbatim: t("reset_confirm_title")), isPresented: $confirmReset) {
             Button(role: .destructive) {
-                store.resetEverything()
-                dismiss()
+                if store.resetEverything() { dismiss() } else { resetFailed = true }
             } label: {
                 Text(verbatim: t("reset_confirm_btn"))
             }
@@ -153,6 +153,9 @@ struct SettingsView: View {
             Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
         } message: {
             Text(verbatim: t("reset_confirm_body"))
+        }
+        .alert(Text(verbatim: t("reset_failed")), isPresented: $resetFailed) {
+            Button(role: .cancel) {} label: { Text(verbatim: t("btn_continue")) }
         }
     }
 

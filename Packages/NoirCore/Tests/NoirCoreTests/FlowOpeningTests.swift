@@ -294,6 +294,76 @@ struct FlowOpeningTests {
         #expect(try Data(contentsOf: store.damagedURL) == Data("damaged".utf8), "the unreadable file is set aside first")
     }
 
+    @Test("A restart staging failure leaves all three prior files untouched")
+    func rejectedReset() throws {
+        let dir = Self.directory(), disk = FlowSaveStore(directory: dir)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        try Data(Self.schema1Business.utf8).write(to: disk.primaryURL)
+        let (old, _) = try #require(Self.load(disk))
+        try disk.write(old, savedAtMs: 3)
+        let files = [disk.primaryURL, disk.backupURL, disk.archiveURL]
+        let before = try files.map { try Data(contentsOf: $0) }
+        try FileManager.default.createDirectory(at: disk.tempURL, withIntermediateDirectories: false)
+        try Data([1]).write(to: disk.tempURL.appendingPathComponent("block"))
+        let replacement = Flow.newGame(seed: 9, nowMs: 4, meta: old.meta)
+        #expect(throws: (any Error).self) { try disk.commitReset(replacement, savedAtMs: 4) }
+        let after = try files.map { try Data(contentsOf: $0) }
+        #expect(before == after)
+        #expect(!FileManager.default.fileExists(atPath: disk.resetURL.path))
+        let (stillOld, _) = try #require(Self.load(disk))
+        #expect(stillOld == old)
+        try FileManager.default.removeItem(at: disk.tempURL)
+        try disk.commitReset(replacement, savedAtMs: 4)
+        let (restarted, _) = try #require(Self.load(disk))
+        #expect(restarted == replacement)
+    }
+
+    @Test("Relaunch after the restart commit finishes installation at each interruption boundary", arguments: [0, 1, 2])
+    func interruptedRestart(installed: Int) throws {
+        let dir = Self.directory(), disk = FlowSaveStore(directory: dir)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let oldBytes = Data(Self.schema1Business.utf8)
+        try oldBytes.write(to: disk.primaryURL)
+        let (old, _) = try #require(Self.load(disk))
+        try disk.write(old, savedAtMs: 3)
+        let paid = Self.ok(old, .deliverPurchase(.favors(80), transaction: "paid"))
+        let fresh = Flow.newGame(seed: 77, nowMs: 4, meta: paid.meta)
+        let source = Self.directory(), staged = FlowSaveStore(directory: source)
+        defer { try? FileManager.default.removeItem(at: source) }
+        try staged.write(fresh, savedAtMs: 4)
+        let newBytes = try Data(contentsOf: staged.primaryURL)
+        try newBytes.write(to: disk.resetURL)
+        for url in [disk.primaryURL, disk.backupURL].prefix(installed) { try newBytes.write(to: url) }
+        let (resumed, _) = try #require(Self.load(disk))
+        #expect(resumed == fresh && resumed.meta.deliveredTransactions == ["paid"])
+        #expect(try Data(contentsOf: disk.backupURL) == newBytes)
+        #expect(try Data(contentsOf: disk.primaryURL) == newBytes)
+        #expect(!FileManager.default.fileExists(atPath: disk.resetURL.path))
+        let retired = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)
+            .filter { $0.lastPathComponent.hasPrefix("noir_flow.retired-") }
+        try #require(retired.count == 1)
+        #expect(try Data(contentsOf: retired[0]) == oldBytes)
+        let chosen = Self.ok(Self.ok(resumed, .collectEstate), .choose(.tools))
+        try disk.write(chosen, savedAtMs: 5)
+        let (again, _) = try #require(Self.load(disk))
+        #expect(again == chosen, "recovery must not replay the restart over later play")
+    }
+
+    @Test("A newer primary, backup, archive or restart protects every file from ordinary writes and restarts", arguments: [0, 1, 2, 3])
+    func protectedCopies(index: Int) throws {
+        let dir = Self.directory(), disk = FlowSaveStore(directory: dir)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let current = Self.opened(.tools)
+        try disk.write(current, savedAtMs: 5)
+        let files = [disk.primaryURL, disk.backupURL, disk.archiveURL, disk.resetURL]
+        try Data("{\"schema\":99,\"unknownWallet\":true}".utf8).write(to: files[index])
+        let before = files.map { try? Data(contentsOf: $0) }
+        guard case .futureVersion(99) = disk.load() else { Issue.record("newer copy was not protected"); return }
+        #expect(throws: (any Error).self) { try disk.write(current, savedAtMs: 6) }
+        #expect(throws: (any Error).self) { try disk.commitReset(current, savedAtMs: 6) }
+        #expect(files.map { try? Data(contentsOf: $0) } == before)
+    }
+
     // MARK: Return advice
 
     /// Four minutes into chapter one: the bench has its lead, nobody drives.

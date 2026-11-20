@@ -102,6 +102,7 @@ final class LedgerStore {
     enum Phase: Equatable {
         case loading
         case futureSave(Int)
+        case saveUnavailable
         case ready
     }
 
@@ -166,6 +167,9 @@ final class LedgerStore {
 
     func load() {
         switch saveStore.load() {
+        case .unavailable:
+            phase = .saveUnavailable
+            return
         case .futureVersion(let v):
             phase = .futureSave(v)
             return
@@ -485,23 +489,36 @@ final class LedgerStore {
     }
 
     /// Starts over in Leopold's cellar. What the player paid for stays, and so do the booked transaction ids.
-    func resetEverything() {
+    @discardableResult
+    func resetEverything() -> Bool {
+        guard phase == .ready else { return false }
         var wallet = MetaState()
-        if phase == .ready {
-            wallet.favors = state.meta.favors
-            wallet.premium = state.meta.premium
-            wallet.noAds = state.meta.noAds
-            wallet.starterBought = state.meta.starterBought
-            wallet.deliveredTransactions = state.meta.deliveredTransactions
+        wallet.favors = state.meta.favors
+        wallet.premium = state.meta.premium
+        wallet.noAds = state.meta.noAds
+        wallet.starterBought = state.meta.starterBought
+        wallet.boostSeconds = state.meta.boostSeconds
+        wallet.deliveredTransactions = state.meta.deliveredTransactions
+        wallet.dailyLastDay = state.meta.dailyLastDay
+        wallet.dailyClaims = state.meta.dailyClaims
+        wallet.adFavorsDay = state.meta.adFavorsDay
+        wallet.adFavorsToday = state.meta.adFavorsToday
+        let now = wallClockMs()
+        let replacement = Flow.newGame(seed: makeSeed(), nowMs: now, meta: wallet)
+        do {
+            try saveStore.commitReset(replacement, savedAtMs: now)
+        } catch {
+            return false
         }
-        saveStore.erase()
+        state = replacement
+        lastSavedAtMs = now
+        secondsSinceSave = 0
         restoredFromBackup = false
         celebration = nil
+        notice = nil
         recent.removeAll()
         measuredIncome = 0
-        state = Flow.newGame(seed: makeSeed(), nowMs: wallClockMs(), meta: wallet)
-        phase = .ready
-        save()
+        return true
     }
 
     #if NOIR_QA

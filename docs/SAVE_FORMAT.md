@@ -10,11 +10,19 @@ whose wallet is only read once for favors and purchases.
 | `noir_flow.save` | primary, `{"schema": 2, "savedAt": ms, "state": FlowState}`, sorted keys, written atomically |
 | `noir_flow.save.bak` | the previous primary that still decoded |
 | `noir_flow.save.tmp` | write in progress (never loaded) |
+| `noir_flow.save.reset` | complete, committed restart awaiting installation in primary and backup |
 | `noir_flow.save.pre-migration` | the untouched file of an older schema, copied once before it is migrated |
 | `noir_flow.save.damaged` | an unreadable primary, set aside before a fresh game is written |
 
-Loading order: primary → backup → pre-migration copy (each flagged as restored) → fresh game. A schema newer than the
-app is never written over (protected screen). "Start over" erases primary, backup, temp and the pre-migration copy.
+Before loading or writing, check the schema of every active file, including the backup even when the primary is valid.
+A newer file is read-only in this build; the player is asked to update, never to erase it. An I/O error is not a fresh install.
+Loading order: committed restart → primary → backup → pre-migration copy → fresh game.
+
+A confirmed restart prepares the replacement envelope in the same directory, then renames it to `.reset` before changing
+the live business. A failed staging write leaves the original files and wallet in use. Once the rename succeeds, the new game
+is authoritative even after an interruption. Recovery installs identical primary and backup copies, moves the old migration
+archive out of the recovery path without changing its bytes, and removes `.reset` last. Ordinary writes must finish this
+installation first. Favors, remaining boost time, permanent purchases, receipt IDs and daily claim limits carry over.
 
 Schema 2 adds, with safe defaults when missing:
 
@@ -31,7 +39,9 @@ Unknown fields are ignored; an unreadable ledger line is dropped on its own inst
 Tests: `FlowOpeningTests` (schema-1 business and prologue fixtures, unknown fields, recovery chain) and
 `LedgerStoreTests` (relaunch, time away once, forced write failure, redelivery after a successful write).
 
-## Location and files
+## Legacy 2.x campaign (historical format and behavior below)
+
+### Location and files
 
 `Application Support/NoirLedger/` inside the app container:
 

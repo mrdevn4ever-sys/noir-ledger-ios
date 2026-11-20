@@ -12,7 +12,7 @@
 
 ## M1 candidate (not cleared for TestFlight)
 
-The first playable slice is ready for native testing, not release. The paid transaction journal no longer expires old IDs. Verify redelivery across more than 1,000 later bookings and a relaunch. A failed reset can still erase the old wallet before its replacement is durable; do not promote this revision.
+The first playable slice is ready for native testing, not release. The paid transaction journal no longer expires old IDs. A restart now commits a complete replacement before changing the live business; an older build cannot erase a newer save. Exercise staging failure, interrupted installation, redelivery after 1,005 intervening purchases, and schema-1 migration in native tests before promotion.
 
 - **Model before code:** `scripts/qa/estate_opening.py` picks the pickup amount (20 is the smallest that pays the
   unchanged 20 van level for every start; wallets after the confirmed upgrade 60 / 0 / 0). The historical baseline

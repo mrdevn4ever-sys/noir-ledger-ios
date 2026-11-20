@@ -22,6 +22,7 @@ public struct FlowSaveStore: Sendable {
         case fresh
         case loaded(FlowState, restoredFromBackup: Bool)
         case futureVersion(Int)
+        case unavailable
     }
 
     public let directory: URL
@@ -32,6 +33,7 @@ public struct FlowSaveStore: Sendable {
     /// An unreadable primary save, set aside before a new game is written.
     public var damagedURL: URL { directory.appendingPathComponent("noir_flow.save.damaged") }
     var tempURL: URL { directory.appendingPathComponent("noir_flow.save.tmp") }
+    var resetURL: URL { directory.appendingPathComponent("noir_flow.save.reset") }
 
     public init(directory: URL) {
         self.directory = directory
@@ -60,7 +62,33 @@ public struct FlowSaveStore: Sendable {
         return .ok(s, schema: schema)
     }
 
+    private struct Header: Decodable { let schema: Int }
+    private enum SaveError: Error { case newer(Int), unreadableReset }
+
+    // Check recovery copies too: a valid older primary is not permission to rotate a newer backup away.
+    // Missing is normal on first launch. A file that exists but cannot be read is not a missing save.
+    private func checkVersions() throws {
+        for url in [primaryURL, backupURL, archiveURL, resetURL] {
+            let data: Data
+            do { data = try Data(contentsOf: url) }
+            catch let error as CocoaError where error.code == .fileReadNoSuchFile { continue }
+            if let header = try? JSONDecoder().decode(Header.self, from: data), header.schema > flowSchemaVersion {
+                throw SaveError.newer(header.schema)
+            }
+        }
+    }
+
     public func load() -> Loaded {
+        do {
+            try checkVersions()
+            if let pending = read(resetURL) {
+                guard case .ok(let state, _) = pending else { return .unavailable }
+                // The journal is already the committed game. A full disk can delay housekeeping, not undo the reset.
+                try? installCommittedReset()
+                return .loaded(state, restoredFromBackup: false)
+            }
+        } catch SaveError.newer(let version) { return .futureVersion(version) }
+        catch { return .unavailable }
         let primary = read(primaryURL)
         switch primary {
         case .some(.ok(let s, let schema)):
@@ -100,15 +128,47 @@ public struct FlowSaveStore: Sendable {
         try? fm.copyItem(at: url, to: damagedURL)
     }
 
-    public func write(_ state: FlowState, savedAtMs: Int64) throws {
-        let fm = FileManager.default
-        try fm.createDirectory(at: directory, withIntermediateDirectories: true)
+    private func encoded(_ state: FlowState, savedAtMs: Int64) throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf", negativeInfinity: "-inf", nan: "nan")
         var s = state
         s.version = flowSchemaVersion
-        let data = try encoder.encode(Envelope(schema: flowSchemaVersion, savedAt: savedAtMs, state: s))
+        return try encoder.encode(Envelope(schema: flowSchemaVersion, savedAt: savedAtMs, state: s))
+    }
+
+    private func installCommittedReset() throws {
+        let fm = FileManager.default
+        guard fm.fileExists(atPath: resetURL.path) else { return }
+        guard case .some(.ok) = read(resetURL) else { throw SaveError.unreadableReset }
+        let data = try Data(contentsOf: resetURL)
+        // Idempotent after an interruption at any line. The journal is retired last.
+        try data.write(to: primaryURL, options: .atomic)
+        try data.write(to: backupURL, options: .atomic)
+        if fm.fileExists(atPath: archiveURL.path) {
+            let retired = directory.appendingPathComponent("noir_flow.retired-\(UUID().uuidString)")
+            try fm.moveItem(at: archiveURL, to: retired)
+        }
+        try fm.removeItem(at: resetURL)
+    }
+
+    /// Before the journal rename, no file belonging to the live business changes. After it, the new wallet wins.
+    public func commitReset(_ state: FlowState, savedAtMs: Int64) throws {
+        try checkVersions()
+        try installCommittedReset()
+        let fm = FileManager.default
+        try fm.createDirectory(at: directory, withIntermediateDirectories: true)
+        try encoded(state, savedAtMs: savedAtMs).write(to: tempURL, options: .atomic)
+        try fm.moveItem(at: tempURL, to: resetURL)
+        try? installCommittedReset()
+    }
+
+    public func write(_ state: FlowState, savedAtMs: Int64) throws {
+        try checkVersions()
+        try installCommittedReset()
+        let fm = FileManager.default
+        try fm.createDirectory(at: directory, withIntermediateDirectories: true)
+        let data = try encoded(state, savedAtMs: savedAtMs)
         try data.write(to: tempURL, options: [.atomic])
         if fm.fileExists(atPath: primaryURL.path) {
             if case .some(.ok) = read(primaryURL) {
@@ -121,10 +181,9 @@ public struct FlowSaveStore: Sendable {
         try fm.moveItem(at: tempURL, to: primaryURL)
     }
 
-    /// Starting over: the game files go, including the pre-migration copy (it would otherwise bring the old game
-    /// back as a last resort).
+    /// QA fixture isolation only. A player reset must use commitReset instead.
     public func erase() {
-        for url in [primaryURL, backupURL, tempURL, archiveURL] where FileManager.default.fileExists(atPath: url.path) {
+        for url in [primaryURL, backupURL, tempURL, archiveURL, resetURL] where FileManager.default.fileExists(atPath: url.path) {
             try? FileManager.default.removeItem(at: url)
         }
     }

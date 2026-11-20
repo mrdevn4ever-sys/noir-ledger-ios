@@ -187,12 +187,12 @@ final class GameFlowUITests: NoirUITestCase {
         wait("settings.done")
         app.swipeUp()
         tapRevealed("settings.reset")
-        let erase = app.alerts.buttons["Erase"].firstMatch
+        let erase = app.alerts.buttons["Start again"].firstMatch
         XCTAssertTrue(erase.waitForExistence(timeout: 5))
         shot("en_43_reset_confirm")
         app.alerts.buttons["Cancel"].firstMatch.tap()
         tapRevealed("settings.reset")
-        app.alerts.buttons["Erase"].firstMatch.tap()
+        app.alerts.buttons["Start again"].firstMatch.tap()
         wait("screen.prologue")
     }
 
@@ -210,7 +210,9 @@ final class GameFlowUITests: NoirUITestCase {
 
     func testSaveFromNewerVersionIsProtected() {
         launch(["-qa-reset", "-qa-future-save"])
-        wait("future.restart", 30)
+        wait("save.retry", 30).tap()
+        wait("save.retry", 10)
+        XCTAssertFalse(app.buttons["future.restart"].exists)
         shot("en_45_future_save")
     }
 

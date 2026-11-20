@@ -40,8 +40,10 @@ struct RootView: View {
         switch store.phase {
         case .loading:
             LoadingView()
-        case .futureSave(let version):
-            FutureSaveView(version: version)
+        case .futureSave:
+            ProtectedSaveView(newer: true)
+        case .saveUnavailable:
+            ProtectedSaveView(newer: false)
         case .ready:
             if store.state.start == nil {
                 PrologueView()
@@ -119,12 +121,12 @@ private struct LoadingView: View {
     }
 }
 
-/// Shown when the save on disk was written by a newer version: it is left untouched unless the player starts over.
-struct FutureSaveView: View {
-    let version: Int
+/// No destructive escape hatch: an older app cannot reconstruct an unknown wallet.
+struct ProtectedSaveView: View {
+    let newer: Bool
     @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
-    @State private var confirm = false
+
 
     var body: some View {
         ScrollView {
@@ -135,22 +137,20 @@ struct FutureSaveView: View {
                     .clipShape(RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
                     .accessibilityHidden(true)
                 Panel(.paper) {
-                    Text(verbatim: t("save_future_title")).font(.toon(.title3, .semibold))
-                    Text(verbatim: t("save_future_body")).font(.toon(.body))
+                    Text(verbatim: newer ? t("save_future_title") : t("save_unavailable_title")).font(.toon(.title3, .semibold))
+                    Text(verbatim: newer ? t("save_future_body") : t("save_unavailable_body")).font(.toon(.body))
                 }
-                Button(role: .destructive) { confirm = true } label: { Text(verbatim: t("save_future_restart")) }
-                    .noirButton(.danger)
-                    .accessibilityIdentifier("future.restart")
+                Button {
+                    store.load()
+                    if store.phase == .ready { store.enterForeground() }
+                } label: { Text(verbatim: t("save_check_again")) }
+                    .noirButton(.primary)
+                    .accessibilityIdentifier("save.retry")
             }
             .padding(Noir.s4)
         }
         .background { SheetBackdrop() }
-        .alert(Text(verbatim: t("reset_confirm_title")), isPresented: $confirm) {
-            Button(role: .destructive) { store.resetEverything() } label: { Text(verbatim: t("reset_confirm_btn")) }
-            Button(role: .cancel) {} label: { Text(verbatim: t("btn_cancel")) }
-        } message: {
-            Text(verbatim: t("reset_confirm_body"))
-        }
+
     }
 }
 

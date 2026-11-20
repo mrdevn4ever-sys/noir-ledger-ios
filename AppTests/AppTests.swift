@@ -206,6 +206,36 @@ struct LedgerStoreTests {
         #expect(store.state.meta.favors == 80)
     }
 
+    @Test("A failed restart preserves the live business and every recovery file; retry keeps the whole paid wallet")
+    func resetFailureAndRetry() throws {
+        let dir = tempDir(), clock = Clock()
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let store = makeStore(dir, clock: clock), disk = store.saveStore
+        try Data(OldSaves.business.utf8).write(to: disk.primaryURL)
+        store.load()
+        try #require(store.book(.favors(80), transaction: "paid") == .booked)
+        let old = store.state
+        let files = [disk.primaryURL, disk.backupURL, disk.archiveURL]
+        let original = try files.map { try Data(contentsOf: $0) }
+        try blockWrites(store)
+        #expect(!store.resetEverything())
+        #expect(store.state == old && store.phase == .ready)
+        let after = try files.map { try Data(contentsOf: $0) }
+        #expect(original == after)
+        try unblockWrites(store)
+        let retry = makeStore(dir, clock: clock)
+        retry.load()
+        #expect(retry.state.start == old.start && retry.state.meta.favors == old.meta.favors)
+        try #require(retry.resetEverything())
+        let new = makeStore(dir, clock: clock)
+        new.load()
+        #expect(new.state.start == nil && new.state.estate == .waiting)
+        #expect(new.state.meta.favors == old.meta.favors && new.state.meta.boostSeconds == old.meta.boostSeconds)
+        #expect(new.state.meta.premium && new.state.meta.noAds && new.state.meta.starterBought)
+        #expect(new.book(.favors(80), transaction: "paid") == .alreadyBooked)
+        #expect(!FileManager.default.fileExists(atPath: disk.archiveURL.path))
+    }
+
     @Test("A damaged save is restored from the backup and flagged")
     func backup() throws {
         let dir = tempDir()
@@ -234,8 +264,9 @@ struct LedgerStoreTests {
         #expect(store.phase == .futureSave(99))
         store.save()
         #expect(try Data(contentsOf: saveStore.primaryURL) == data)
-        store.resetEverything()
-        #expect(store.phase == .ready)
+        #expect(!store.resetEverything())
+        #expect(store.phase == .futureSave(99))
+        #expect(try Data(contentsOf: saveStore.primaryURL) == data)
     }
 
     @Test("Rejected actions are reported for sound, taps are counted, the real income is measured")
