@@ -265,12 +265,15 @@ struct HeirloomChoiceView: View {
     let receipt: Double?
     @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var letter = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Noir.s3) {
-                Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s4)
+                if !typeSize.isAccessibilitySize {
+                    Wordmark().frame(maxWidth: .infinity).padding(.top, Noir.s4)
+                }
                 if let receipt {
                     EstateReceipt(amount: receipt)
                 }
@@ -323,8 +326,32 @@ struct HeirloomChoiceView: View {
 struct EstateReceipt: View {
     let amount: Double
     @Environment(\.l10n) private var t
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
+        Group {
+            if typeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: Noir.s2) {
+                        Image("StampPaid").resizable().scaledToFit().frame(width: 32, height: 32).accessibilityHidden(true)
+                        Text(verbatim: "+" + t.money(amount)).font(.toon(.title2, .heavy)).monospacedDigit()
+                    }
+                    Text(verbatim: t("l4_estate_short_receipt")).font(.toon(.subheadline, .semibold))
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                detailedReceipt
+            }
+        }
+        .padding(Noir.s3)
+        .foregroundStyle(Noir.paperInk)
+        .background(Noir.paper, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("estate.receipt")
+    }
+
+    private var detailedReceipt: some View {
         HStack(spacing: Noir.s3) {
             Image("StampPaid").resizable().scaledToFit().frame(width: 52, height: 52).rotationEffect(.degrees(-8))
                 .accessibilityHidden(true)
@@ -336,11 +363,6 @@ struct EstateReceipt: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             Text(verbatim: "+" + t.money(amount)).font(.toon(.title2, .heavy)).monospacedDigit()
         }
-        .padding(Noir.s3)
-        .foregroundStyle(Noir.paperInk)
-        .background(Noir.paper, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("estate.receipt")
     }
 }
 

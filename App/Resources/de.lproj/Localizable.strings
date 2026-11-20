@@ -988,6 +988,7 @@
 "l4_estate_body" = "An der Kellertür steht noch eine Kiste. Der Mann auf der Treppe hält einen Zettel mit Leopolds Unterschrift: diese Kiste, %1$@ bar, einmalig.";
 "l4_estate_collect" = "Kiste übergeben · +%1$@";
 "l4_estate_booked" = "Unterschriebene Abholung verbucht: eine Kiste aus dem Nachlass.";
+"l4_estate_short_receipt" = "Nachlasskiste: einmalig verbucht.";
 "l4_estate_once" = "Eine einmalige Abholung. Stammkunden zahlen den Straßenpreis pro Kiste.";
 "l4_letter_open" = "Den Brief des Notars lesen";
 "l4_book_estate" = "Unterschriebene Abholung aus dem Nachlass: %1$@ Kiste, einmalig";

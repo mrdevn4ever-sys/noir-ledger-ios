@@ -43,7 +43,7 @@ struct ChapterStrip: View {
                         HStack(spacing: 4) {
                             Text(verbatim: t("l4_chapter_n", ch.number) + " · " + t(ChapterText.title(ch.number)))
                                 .font(.toon(13, .heavy))
-                                .lineLimit(1).minimumScaleFactor(0.8)
+                                .fixedSize(horizontal: false, vertical: true)
                             Spacer(minLength: 0)
                             Text(verbatim: "\(ch.goals.filter { Flow.goalDone(state, $0) }.count)/\(ch.goals.count)")
                                 .font(.toon(12, .heavy)).monospacedDigit()
@@ -53,13 +53,13 @@ struct ChapterStrip: View {
                             HStack(spacing: Noir.s2) {
                                 Text(verbatim: ChapterText.goal(goal, t)).font(.toon(12, .semibold))
                                     .foregroundStyle(Noir.paperInk.opacity(0.75))
-                                    .lineLimit(1).minimumScaleFactor(0.8)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Meter(fraction: p.target > 0 ? min(1, p.current / p.target) : 1, tint: Noir.paperGold, height: 4)
                                     .frame(width: 56)
                             }
                         } else {
                             Text(verbatim: t("l4_chapter_ready")).font(.toon(12, .heavy))
-                                .foregroundStyle(Noir.paperRed).lineLimit(1).minimumScaleFactor(0.8)
+                                .foregroundStyle(Noir.paperRed).fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -140,6 +140,27 @@ struct BottleneckBanner: View {
 
     var body: some View {
         let fix = StationText.fix(forecast.bottleneck, good: good, state: state)
+        VStack(alignment: .leading, spacing: 2) {
+            bannerRow(fix: fix)
+            if typeSize.isAccessibilitySize { rates }
+        }
+        .padding(.horizontal, Noir.s2).padding(.vertical, 4)
+        .background(Color(hex: 0x6A2026).opacity(0.55), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Color(hex: 0xE5484D).opacity(0.6), lineWidth: 1))
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("neck.\(good.rawValue)")
+    }
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    private var rates: some View {
+        Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
+            .font(.toon(11, .semibold)).monospacedDigit()
+            .foregroundStyle(.white.opacity(0.8))
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func bannerRow(fix: Station?) -> some View {
         HStack(alignment: .center, spacing: Noir.s2) {
             BottleneckDot()
             Mark(Glyph.product(good.product), size: 18)
@@ -147,13 +168,8 @@ struct BottleneckBanner: View {
                 Text(verbatim: t(NeckText.key(forecast.bottleneck), t(GoodText.name(good))))
                     .font(.toon(13, .heavy))
                     .foregroundStyle(.white)
-                    .lineLimit(2).minimumScaleFactor(0.8)
                     .fixedSize(horizontal: false, vertical: true)
-                Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
-                    .font(.toon(11, .semibold)).monospacedDigit()
-                    .foregroundStyle(.white.opacity(0.7))
-                    .lineLimit(2).minimumScaleFactor(0.8)
-                    .fixedSize(horizontal: false, vertical: true)
+                if !typeSize.isAccessibilitySize { rates }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             if let fix {
@@ -169,11 +185,6 @@ struct BottleneckBanner: View {
                 .accessibilityIdentifier("neck.\(good.rawValue).fix")
             }
         }
-        .padding(.leading, Noir.s2).padding(.trailing, Noir.s2).padding(.vertical, 4)
-        .background(Color(hex: 0x6A2026).opacity(0.55), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Color(hex: 0xE5484D).opacity(0.6), lineWidth: 1))
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("neck.\(good.rawValue)")
     }
 }
 

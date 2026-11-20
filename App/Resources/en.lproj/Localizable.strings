@@ -988,6 +988,7 @@
 "l4_estate_body" = "One crate is left at the cellar door. The man on the step holds a slip Leopold signed: this crate, %1$@ cash, once.";
 "l4_estate_collect" = "Hand over the crate · +%1$@";
 "l4_estate_booked" = "Signed pickup booked: one crate from the estate.";
+"l4_estate_short_receipt" = "Estate crate: one-time payment booked.";
 "l4_estate_once" = "A one-time collection. Regular customers pay the street price per crate.";
 "l4_letter_open" = "Read the notary's letter";
 "l4_book_estate" = "Signed estate pickup: %1$@ crate, once";
