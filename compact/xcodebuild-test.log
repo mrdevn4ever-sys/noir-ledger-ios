@@ -1,0 +1,742 @@
+Command line invocation:
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/xcodebuild test -project NoirLedger.xcodeproj -scheme NoirLedger -configuration Debug -destination id=C8F2C8B6-B6B1-410C-88A5-F430C01769D7 -parallel-testing-enabled NO -resultBundlePath build/Compact.xcresult "-only-testing:NoirLedgerUITests/ScreenshotTourUITests/testLargeStreetGerman" "-only-testing:NoirLedgerUITests/ScreenshotTourUITests/testLargeStreetEnglish" CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  GoogleUserMessagingPlatform: https://github.com/googleads/swift-package-manager-google-user-messaging-platform @ 2.7.0
+  NoirCore: /Users/runner/work/noir-ledger-ios/noir-ledger-ios/Packages/NoirCore
+  GoogleMobileAds: https://github.com/googleads/swift-package-manager-google-mobile-ads @ 11.13.0
+
+Writing result bundle at path:
+	/Users/runner/work/noir-ledger-ios/noir-ledger-ios/build/Compact.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:C8F2C8B6-B6B1-410C-88A5-F430C01769D7, OS:26.5, name:iPhone SE (3rd generation) }
+{ platform:iOS Simulator, arch:x86_64, id:C8F2C8B6-B6B1-410C-88A5-F430C01769D7, OS:26.5, name:iPhone SE (3rd generation) }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (9 targets)
+    Target 'NoirLedgerUITests' in project 'NoirLedger'
+        ➜ Explicit dependency on target 'NoirLedger' in project 'NoirLedger'
+    Target 'NoirLedgerTests' in project 'NoirLedger'
+        ➜ Explicit dependency on target 'NoirLedger' in project 'NoirLedger'
+        ➜ Explicit dependency on target 'NoirCore' in project 'NoirCore'
+    Target 'NoirLedger' in project 'NoirLedger'
+        ➜ Explicit dependency on target 'NoirCore' in project 'NoirCore'
+        ➜ Explicit dependency on target 'GoogleMobileAds' in project 'GoogleMobileAds'
+        ➜ Explicit dependency on target 'GoogleUserMessagingPlatform' in project 'GoogleUserMessagingPlatform'
+    Target 'GoogleMobileAds' in project 'GoogleMobileAds'
+        ➜ Explicit dependency on target 'GoogleMobileAdsTarget' in project 'GoogleMobileAds'
+        ➜ Explicit dependency on target 'GoogleUserMessagingPlatform' in project 'GoogleUserMessagingPlatform'
+    Target 'GoogleMobileAdsTarget' in project 'GoogleMobileAds'
+        ➜ Explicit dependency on target 'GoogleUserMessagingPlatform' in project 'GoogleUserMessagingPlatform'
+    Target 'GoogleUserMessagingPlatform' in project 'GoogleUserMessagingPlatform'
+        ➜ Explicit dependency on target 'UserMessagingPlatformTarget' in project 'GoogleUserMessagingPlatform'
+    Target 'UserMessagingPlatformTarget' in project 'GoogleUserMessagingPlatform' (no dependencies)
+    Target 'NoirCore' in project 'NoirCore'
+        ➜ Explicit dependency on target 'NoirCore' in project 'NoirCore'
+    Target 'NoirCore' in project 'NoirCore' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+Build description signature: 8ba6a10200f83e9af646c545ab9e7501
+Build description path: /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/XCBuildData/8ba6a10200f83e9af646c545ab9e7501.xcbuilddata
+ClangStatCache /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-688ef53f1462e2c8f657fdc38a81448ff45c64a1807a658693f2a61704f17a36.sdkstatcache
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios/NoirLedger.xcodeproj
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-688ef53f1462e2c8f657fdc38a81448ff45c64a1807a658693f2a61704f17a36.sdkstatcache
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirCore.build/Debug-iphonesimulator/NoirCore\ product.build/empty-NoirCore_-3D72E661DF42E9D7_PackageProduct.plist (in target 'NoirCore' from project 'NoirCore')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios/Packages/NoirCore
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirCore.build/Debug-iphonesimulator/NoirCore\ product.build/empty-NoirCore_-3D72E661DF42E9D7_PackageProduct.plist -producttype com.apple.product-type.framework -expandbuildsettings -format binary -platform iphonesimulator -o /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework/Info.plist
+
+CompileAssetCatalogVariant thinned /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets --compile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone14,6 --filter-for-device-os-version 26.5 --development-region en --target-device iphone --minimum-deployment-target 17.0 --platform iphonesimulator
+/* com.apple.actool.document.warnings */
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityDoubleShift.imageset/(null)[2d][AbilityDoubleShift.svg]: warning: The image set "AbilityDoubleShift" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderFinale.imageset/(null)[2d][OrderFinale.svg]: warning: The image set "OrderFinale" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityNewWindow.imageset/(null)[2d][AbilityNewWindow.svg]: warning: The image set "AbilityNewWindow" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionCalm.imageset/(null)[2d][AttentionCalm.svg]: warning: The image set "AttentionCalm" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionWatched.imageset/(null)[2d][AttentionWatched.svg]: warning: The image set "AttentionWatched" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderLoud.imageset/(null)[2d][OrderLoud.svg]: warning: The image set "OrderLoud" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeStrikeIcon.imageset/(null)[2d][ChallengeStrikeIcon.svg]: warning: The image set "ChallengeStrikeIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityQuietWord.imageset/(null)[2d][AbilityQuietWord.svg]: warning: The image set "AbilityQuietWord" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityRushRun.imageset/(null)[2d][AbilityRushRun.svg]: warning: The image set "AbilityRushRun" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderCity.imageset/(null)[2d][OrderCity.svg]: warning: The image set "OrderCity" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistLind.imageset/(null)[2d][SpecialistLind.svg]: warning: The image set "SpecialistLind" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderBig.imageset/(null)[2d][OrderBig.svg]: warning: The image set "OrderBig" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistKraus.imageset/(null)[2d][SpecialistKraus.svg]: warning: The image set "SpecialistKraus" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistMorgen.imageset/(null)[2d][SpecialistMorgen.svg]: warning: The image set "SpecialistMorgen" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionHot.imageset/(null)[2d][AttentionHot.svg]: warning: The image set "AttentionHot" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistOkafor.imageset/(null)[2d][SpecialistOkafor.svg]: warning: The image set "SpecialistOkafor" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengePressWeekIcon.imageset/(null)[2d][ChallengePressWeekIcon.svg]: warning: The image set "ChallengePressWeekIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistSand.imageset/(null)[2d][SpecialistSand.svg]: warning: The image set "SpecialistSand" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeFogIcon.imageset/(null)[2d][ChallengeFogIcon.svg]: warning: The image set "ChallengeFogIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionUnderground.imageset/(null)[2d][AttentionUnderground.svg]: warning: The image set "AttentionUnderground" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderQuiet.imageset/(null)[2d][OrderQuiet.svg]: warning: The image set "OrderQuiet" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderTrust.imageset/(null)[2d][OrderTrust.svg]: warning: The image set "OrderTrust" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistKraus.imageset/(null)[2d][SpecialistKraus.svg]: warning: The image set "SpecialistKraus" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityRushRun.imageset/(null)[2d][AbilityRushRun.svg]: warning: The image set "AbilityRushRun" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistLind.imageset/(null)[2d][SpecialistLind.svg]: warning: The image set "SpecialistLind" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistMorgen.imageset/(null)[2d][SpecialistMorgen.svg]: warning: The image set "SpecialistMorgen" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionUnderground.imageset/(null)[2d][AttentionUnderground.svg]: warning: The image set "AttentionUnderground" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistOkafor.imageset/(null)[2d][SpecialistOkafor.svg]: warning: The image set "SpecialistOkafor" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderTrust.imageset/(null)[2d][OrderTrust.svg]: warning: The image set "OrderTrust" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderLoud.imageset/(null)[2d][OrderLoud.svg]: warning: The image set "OrderLoud" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeFogIcon.imageset/(null)[2d][ChallengeFogIcon.svg]: warning: The image set "ChallengeFogIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengePressWeekIcon.imageset/(null)[2d][ChallengePressWeekIcon.svg]: warning: The image set "ChallengePressWeekIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderQuiet.imageset/(null)[2d][OrderQuiet.svg]: warning: The image set "OrderQuiet" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityNewWindow.imageset/(null)[2d][AbilityNewWindow.svg]: warning: The image set "AbilityNewWindow" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionWatched.imageset/(null)[2d][AttentionWatched.svg]: warning: The image set "AttentionWatched" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionCalm.imageset/(null)[2d][AttentionCalm.svg]: warning: The image set "AttentionCalm" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderFinale.imageset/(null)[2d][OrderFinale.svg]: warning: The image set "OrderFinale" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeStrikeIcon.imageset/(null)[2d][ChallengeStrikeIcon.svg]: warning: The image set "ChallengeStrikeIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityQuietWord.imageset/(null)[2d][AbilityQuietWord.svg]: warning: The image set "AbilityQuietWord" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderCity.imageset/(null)[2d][OrderCity.svg]: warning: The image set "OrderCity" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityDoubleShift.imageset/(null)[2d][AbilityDoubleShift.svg]: warning: The image set "AbilityDoubleShift" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionHot.imageset/(null)[2d][AttentionHot.svg]: warning: The image set "AttentionHot" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderBig.imageset/(null)[2d][OrderBig.svg]: warning: The image set "OrderBig" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistSand.imageset/(null)[2d][SpecialistSand.svg]: warning: The image set "SpecialistSand" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityDoubleShift.imageset/(null)[2d][AbilityDoubleShift.svg]: warning: The image set "AbilityDoubleShift" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderFinale.imageset/(null)[2d][OrderFinale.svg]: warning: The image set "OrderFinale" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityNewWindow.imageset/(null)[2d][AbilityNewWindow.svg]: warning: The image set "AbilityNewWindow" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionCalm.imageset/(null)[2d][AttentionCalm.svg]: warning: The image set "AttentionCalm" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionWatched.imageset/(null)[2d][AttentionWatched.svg]: warning: The image set "AttentionWatched" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderLoud.imageset/(null)[2d][OrderLoud.svg]: warning: The image set "OrderLoud" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeStrikeIcon.imageset/(null)[2d][ChallengeStrikeIcon.svg]: warning: The image set "ChallengeStrikeIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityQuietWord.imageset/(null)[2d][AbilityQuietWord.svg]: warning: The image set "AbilityQuietWord" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AbilityRushRun.imageset/(null)[2d][AbilityRushRun.svg]: warning: The image set "AbilityRushRun" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderCity.imageset/(null)[2d][OrderCity.svg]: warning: The image set "OrderCity" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistLind.imageset/(null)[2d][SpecialistLind.svg]: warning: The image set "SpecialistLind" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderBig.imageset/(null)[2d][OrderBig.svg]: warning: The image set "OrderBig" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistKraus.imageset/(null)[2d][SpecialistKraus.svg]: warning: The image set "SpecialistKraus" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistMorgen.imageset/(null)[2d][SpecialistMorgen.svg]: warning: The image set "SpecialistMorgen" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionHot.imageset/(null)[2d][AttentionHot.svg]: warning: The image set "AttentionHot" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistOkafor.imageset/(null)[2d][SpecialistOkafor.svg]: warning: The image set "SpecialistOkafor" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengePressWeekIcon.imageset/(null)[2d][ChallengePressWeekIcon.svg]: warning: The image set "ChallengePressWeekIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./SpecialistSand.imageset/(null)[2d][SpecialistSand.svg]: warning: The image set "SpecialistSand" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./ChallengeFogIcon.imageset/(null)[2d][ChallengeFogIcon.svg]: warning: The image set "ChallengeFogIcon" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./AttentionUnderground.imageset/(null)[2d][AttentionUnderground.svg]: warning: The image set "AttentionUnderground" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderQuiet.imageset/(null)[2d][OrderQuiet.svg]: warning: The image set "OrderQuiet" has an unassigned child.
+/Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets:./OrderTrust.imageset/(null)[2d][OrderTrust.svg]: warning: The image set "OrderTrust" has an unassigned child.
+/* com.apple.actool.compilation-results */
+/Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist_thinned
+/Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/thinned/AppIcon60x60@2x.png
+/Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/thinned/Assets.car
+
+
+LinkAssetCatalog /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Resources/Assets.xcassets (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-linkAssetCatalog --thinned /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app --plist-output /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/AppIcon60x60@2x.png (in target 'NoirLedger' from project 'NoirLedger')
+note: Emplaced /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/AppIcon76x76@2x~ipad.png (in target 'NoirLedger' from project 'NoirLedger')
+note: Emplaced /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Assets.car (in target 'NoirLedger' from project 'NoirLedger')
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -remove-static-executable /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Info.plist /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Info.plist (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-infoPlistUtility /Users/runner/work/noir-ledger-ios/noir-ledger-ios/App/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks/GoogleMobileAds.framework -scanforprivacyfile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework -scanforprivacyfile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks/UserMessagingPlatform.framework -o /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Info.plist
+
+CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/NoirLedger.debug.dylib --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PlugIns --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/SystemExtensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Extensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework --platform iphonesimulator --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.derJru/Metal.xctoolchain --toolchain /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedger.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PlugIns/NoirLedgerTests.xctest/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerTests.build/empty-NoirLedgerTests.plist (in target 'NoirLedgerTests' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerTests.build/empty-NoirLedgerTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -format binary -platform iphonesimulator -o /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PlugIns/NoirLedgerTests.xctest/Info.plist
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PlugIns/NoirLedgerTests.xctest/Frameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework (in target 'NoirLedgerTests' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -remove-static-executable /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/PackageFrameworks/NoirCore_-3D72E661DF42E9D7_PackageProduct.framework /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app/PlugIns/NoirLedgerTests.xctest/Frameworks
+
+Validate /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app (in target 'NoirLedger' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-validationUtility /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedger.app -shallow-bundle -infoplist-subpath Info.plist
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerUITests.build/empty-NoirLedgerUITests.plist (in target 'NoirLedgerUITests' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerUITests.build/empty-NoirLedgerUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerUITests.build/ProductTypeInfoPlistAdditions.plist -o /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/Info.plist
+
+CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest (in target 'NoirLedgerUITests' from project 'NoirLedger')
+    cd /Users/runner/work/noir-ledger-ios/noir-ledger-ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/NoirLedgerUITests --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/Frameworks --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/PlugIns --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/SystemExtensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/Extensions --platform iphonesimulator --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.derJru/Metal.xctoolchain --toolchain /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Products/Debug-iphonesimulator/NoirLedgerUITests-Runner.app/PlugIns/NoirLedgerUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/NoirLedger-axocdtswguwpcebzsfzbinbfqbyd/Build/Intermediates.noindex/NoirLedger.build/Debug-iphonesimulator/NoirLedgerUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+2026-11-20 23:11:45.433050+0000 NoirLedgerUITests-Runner[73383:458753] [Default] Running tests...
+2026-11-20 23:11:45.540618+0000 NoirLedgerUITests-Runner[73383:460090] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-20 23:11:45.584081+0000 NoirLedgerUITests-Runner[73383:460087] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+objc[73383]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x109454310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105278398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-20 23:11:54.924.
+Test Suite 'NoirLedgerUITests.xctest' started at 2026-11-20 23:11:54.926.
+Test Suite 'ScreenshotTourUITests' started at 2026-11-20 23:11:54.926.
+Test Case '-[NoirLedgerUITests.ScreenshotTourUITests testLargeStreetEnglish]' started.
+    t =     0.00s Start Test at 2026-11-20 23:11:54.928
+    t =     1.96s Set Up
+    t =     1.99s Open io.puredevn.noirledger
+    t =     1.99s     Launch io.puredevn.noirledger
+2026-11-20 23:11:57.865 xcodebuild[66350:440407] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-20 23:11:57.865 xcodebuild[66350:440407] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    10.28s         Setting up automation session
+    t =    13.12s         Wait for io.puredevn.noirledger to idle
+    t =    15.58s Waiting 45.0s for "estate.collect" Any to exist
+    t =    16.58s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.collect" Any`
+    t =    16.58s         Checking existence of `"estate.collect" Any`
+    t =    21.85s Waiting 10.0s for "estate.collect" Any to exist
+    t =    22.90s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.collect" Any`
+    t =    22.90s         Checking existence of `"estate.collect" Any`
+    t =    23.11s Find the "estate.collect" Any
+    t =    23.33s Find the "estate.collect" Button
+    t =    23.53s Find the Target Application 'io.puredevn.noirledger'
+    t =    23.62s Checking existence of `"top.income" Any`
+    t =    23.81s Checking existence of `"top.cash" Any`
+    t =    24.00s Find the "estate.collect" Button
+    t =    24.16s Find the Target Application 'io.puredevn.noirledger'
+    t =    24.19s Checking existence of `"top.income" Any`
+    t =    24.36s Checking existence of `"top.cash" Any`
+    t =    24.51s Press Target Application 'io.puredevn.noirledger'[0.50, 0.62] for 0.1 seconds, then drag to Target Application 'io.puredevn.noirledger'[0.50, 0.42] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    24.51s     Wait for io.puredevn.noirledger to idle
+    t =    24.51s     Find the Target Application 'io.puredevn.noirledger'
+    t =    24.54s     Check for interrupting elements affecting "NOIR LEDGER" Application
+    t =    24.61s     Synthesize event
+    t =    24.62s         Find the Target Application 'io.puredevn.noirledger'
+    t =    24.64s         Find the Target Application 'io.puredevn.noirledger'
+    t =    24.66s         Find the Target Application 'io.puredevn.noirledger'
+    t =    24.70s         Find the Target Application 'io.puredevn.noirledger'
+    t =    24.74s         Find the Target Application 'io.puredevn.noirledger'
+    t =    25.45s     Wait for io.puredevn.noirledger to idle
+    t =    25.94s Find the "estate.collect" Button
+    t =    26.22s Find the "estate.collect" Button
+    t =    26.41s Find the Target Application 'io.puredevn.noirledger'
+    t =    26.43s Checking existence of `TabBar (First Match)`
+    t =    26.52s Checking existence of `"nav.book" Any`
+    t =    26.67s Checking existence of `"notice" Any`
+    t =    26.91s Find the Target Application 'io.puredevn.noirledger'
+    t =    26.93s Checking existence of `"top.income" Any`
+    t =    27.06s Checking existence of `"top.cash" Any`
+    t =    27.31s Added attachment named 'en_tour_19_large_estate'
+    t =    27.31s Tap "estate.collect" Any
+    t =    27.31s     Wait for io.puredevn.noirledger to idle
+    t =    27.34s     Find the "estate.collect" Any
+    t =    27.43s     Check for interrupting elements affecting "estate.collect" Button
+    t =    27.52s     Synthesize event
+    t =    27.86s     Wait for io.puredevn.noirledger to idle
+    t =    27.98s Waiting 15.0s for "estate.receipt" Any to exist
+    t =    29.02s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.receipt" Any`
+    t =    29.02s         Checking existence of `"estate.receipt" Any`
+    t =    29.31s Added attachment named 'en_tour_20_large_heirlooms'
+    t =    29.32s Waiting 10.0s for "start.CASHBOX" Any to exist
+    t =    30.36s     Checking `Expect predicate `existsNoRetry == 1` for object "start.CASHBOX" Any`
+    t =    30.36s         Checking existence of `"start.CASHBOX" Any`
+    t =    30.45s Find the "start.CASHBOX" Any
+    t =    30.50s Find the "start.CASHBOX" Button
+    t =    30.57s Find the Target Application 'io.puredevn.noirledger'
+    t =    30.60s Checking existence of `TabBar (First Match)`
+    t =    30.67s Checking existence of `"nav.book" Any`
+    t =    30.81s Checking existence of `"notice" Any`
+    t =    30.92s Find the Target Application 'io.puredevn.noirledger'
+    t =    30.94s Checking existence of `"top.income" Any`
+    t =    31.05s Checking existence of `"top.cash" Any`
+    t =    31.15s Find the "start.CASHBOX" Button
+    t =    31.19s Press Target Application 'io.puredevn.noirledger'[0.50, 0.62] for 0.1 seconds, then drag to Target Application 'io.puredevn.noirledger'[0.50, 0.42] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    31.19s     Wait for io.puredevn.noirledger to idle
+    t =    31.20s     Find the Target Application 'io.puredevn.noirledger'
+    t =    31.22s     Check for interrupting elements affecting "NOIR LEDGER" Application
+    t =    31.24s     Synthesize event
+    t =    31.25s         Find the Target Application 'io.puredevn.noirledger'
+    t =    31.27s         Find the Target Application 'io.puredevn.noirledger'
+    t =    31.29s         Find the Target Application 'io.puredevn.noirledger'
+    t =    31.31s         Find the Target Application 'io.puredevn.noirledger'
+    t =    31.34s         Find the Target Application 'io.puredevn.noirledger'
+    t =    31.94s     Wait for io.puredevn.noirledger to idle
+    t =    33.62s Find the "start.CASHBOX" Button
+    t =    33.69s Find the "start.CASHBOX" Button
+    t =    33.73s Find the Target Application 'io.puredevn.noirledger'
+    t =    33.75s Checking existence of `TabBar (First Match)`
+    t =    33.79s Checking existence of `"nav.book" Any`
+    t =    33.88s Checking existence of `"notice" Any`
+    t =    34.01s Find the Target Application 'io.puredevn.noirledger'
+    t =    34.03s Checking existence of `"top.income" Any`
+    t =    34.16s Checking existence of `"top.cash" Any`
+    t =    34.24s Tap "start.CASHBOX" Button
+    t =    34.24s     Wait for io.puredevn.noirledger to idle
+    t =    34.24s     Find the "start.CASHBOX" Button
+    t =    34.27s     Check for interrupting elements affecting "start.CASHBOX" Button
+    t =    34.31s     Synthesize event
+    t =    34.61s     Wait for io.puredevn.noirledger to idle
+    t =    35.48s Waiting 15.0s for "screen.ledger" Any to exist
+    t =    36.57s     Checking `Expect predicate `existsNoRetry == 1` for object "screen.ledger" Any`
+    t =    36.57s         Checking existence of `"screen.ledger" Any`
+    t =    37.35s Waiting 15.0s for "van.offer" Any to exist
+    t =    38.42s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    38.42s         Checking existence of `"van.offer" Any`
+    t =    38.55s Waiting 10.0s for "van.offer" Any to exist
+    t =    39.60s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    39.60s         Checking existence of `"van.offer" Any`
+    t =    39.78s Find the "van.offer" Any
+    t =    40.03s Find the "van.offer" Button
+    t =    40.29s Find the Target Application 'io.puredevn.noirledger'
+    t =    40.35s Checking existence of `TabBar (First Match)`
+    t =    40.53s Checking existence of `"nav.book" Any`
+    t =    40.65s Find the "nav.book" Any
+    t =    40.79s Find the "nav.book" Button
+    t =    40.92s Checking existence of `"notice" Any`
+    t =    41.50s Find the Target Application 'io.puredevn.noirledger'
+    t =    41.54s Checking existence of `"top.income" Any`
+    t =    41.63s Find the "top.income" Any
+    t =    41.71s Find the "top.income" StaticText
+    t =    41.78s Checking existence of `"top.cash" Any`
+    t =    41.83s Find the "top.cash" Any
+    t =    41.89s Find the "top.cash" Other
+    t =    42.10s Added attachment named 'en_tour_21_large_van_offer'
+    t =    42.10s Waiting 15.0s for "fleet.go" Any to exist
+    t =    43.18s     Checking `Expect predicate `existsNoRetry == 1` for object "fleet.go" Any`
+    t =    43.18s         Checking existence of `"fleet.go" Any`
+    t =    43.50s Waiting 10.0s for "fleet.go" Any to exist
+    t =    44.56s     Checking `Expect predicate `existsNoRetry == 1` for object "fleet.go" Any`
+    t =    44.56s         Checking existence of `"fleet.go" Any`
+    t =    45.00s Find the "fleet.go" Any
+    t =    45.32s Find the "fleet.go" Button
+    t =    45.77s Find the Target Application 'io.puredevn.noirledger'
+    t =    45.84s Checking existence of `TabBar (First Match)`
+    t =    46.08s Checking existence of `"nav.book" Any`
+    t =    46.21s Find the "nav.book" Any
+    t =    46.46s Find the "nav.book" Button
+    t =    46.60s Checking existence of `"notice" Any`
+    t =    47.05s Find the Target Application 'io.puredevn.noirledger'
+    t =    47.10s Checking existence of `"top.income" Any`
+    t =    47.15s Find the "top.income" Any
+    t =    47.21s Find the "top.income" StaticText
+    t =    47.28s Checking existence of `"top.cash" Any`
+    t =    47.32s Find the "top.cash" Any
+    t =    47.39s Find the "top.cash" Other
+    t =    47.43s Waiting 15.0s for "dispatcher.hire" Any to exist
+    t =    48.49s     Checking `Expect predicate `existsNoRetry == 1` for object "dispatcher.hire" Any`
+    t =    48.49s         Checking existence of `"dispatcher.hire" Any`
+    t =    48.70s Find the "dispatcher.hire" Any
+    t =    49.02s Find the "dispatcher.hire" Button
+    t =    49.38s Find the "fleet.go" Button
+    t =    49.75s Find the "dispatcher.hire" Button
+    t =    50.07s Find the "fleet.go" Button
+    t =    50.63s Added attachment named 'en_tour_21b_large_street_prices'
+    t =    50.64s Waiting 10.0s for "van.offer" Any to exist
+    t =    51.68s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    51.69s         Checking existence of `"van.offer" Any`
+    t =    51.94s Find the "van.offer" Any
+    t =    52.31s Find the "van.offer" Button
+    t =    52.63s Find the Target Application 'io.puredevn.noirledger'
+    t =    52.69s Checking existence of `TabBar (First Match)`
+    t =    52.91s Checking existence of `"nav.book" Any`
+    t =    53.04s Find the "nav.book" Any
+    t =    53.15s Find the "nav.book" Button
+    t =    53.31s Checking existence of `"notice" Any`
+    t =    53.95s Find the Target Application 'io.puredevn.noirledger'
+    t =    54.01s Checking existence of `"top.income" Any`
+    t =    54.09s Find the "top.income" Any
+    t =    54.19s Find the "top.income" StaticText
+    t =    54.26s Checking existence of `"top.cash" Any`
+    t =    54.36s Find the "top.cash" Any
+    t =    54.47s Find the "top.cash" Other
+    t =    54.64s Tap "van.offer" Button
+    t =    54.64s     Wait for io.puredevn.noirledger to idle
+    t =    54.65s     Find the "van.offer" Button
+    t =    55.02s     Check for interrupting elements affecting "van.offer" Button
+    t =    55.20s     Synthesize event
+    t =    55.58s     Wait for io.puredevn.noirledger to idle
+    t =    55.59s Waiting 10.0s for "van.later" Any to exist
+    t =    56.62s     Checking `Expect predicate `existsNoRetry == 1` for object "van.later" Any`
+    t =    56.62s         Checking existence of `"van.later" Any`
+    t =    56.96s Find the "van.later" Any
+    t =    57.33s Find the "van.later" Button
+    t =    57.74s Find the Target Application 'io.puredevn.noirledger'
+    t =    57.83s Checking existence of `TabBar (First Match)`
+    t =    59.41s Checking existence of `"nav.book" Any`
+    t =    59.69s Find the "nav.book" Any
+    t =    60.22s Find the "nav.book" Button
+    t =    60.53s Checking existence of `"notice" Any`
+    t =    61.34s Find the Target Application 'io.puredevn.noirledger'
+    t =    61.44s Checking existence of `"top.income" Any`
+    t =    61.52s Find the "top.income" Any
+    t =    61.67s Find the "top.income" StaticText
+    t =    61.79s Checking existence of `"top.cash" Any`
+    t =    61.96s Find the "top.cash" Any
+    t =    62.03s Find the "top.cash" Other
+    t =    62.12s Tap "van.later" Button
+    t =    62.12s     Wait for io.puredevn.noirledger to idle
+    t =    62.13s     Find the "van.later" Button
+    t =    62.49s     Check for interrupting elements affecting "van.later" Button
+    t =    62.62s     Synthesize event
+    t =    63.00s     Wait for io.puredevn.noirledger to idle
+    t =    63.02s Waiting 10.0s for Button (First Match) to exist
+    t =    64.05s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    64.05s         Checking existence of `Button (First Match)`
+    t =    64.25s Waiting 10.0s for "van.offer" Any to exist
+    t =    65.32s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    65.33s         Checking existence of `"van.offer" Any`
+    t =    65.64s Find the "van.offer" Any
+    t =    65.91s Find the "van.offer" Button
+    t =    66.16s Find the Target Application 'io.puredevn.noirledger'
+    t =    66.28s Checking existence of `TabBar (First Match)`
+    t =    66.56s Checking existence of `"nav.book" Any`
+    t =    66.63s Find the "nav.book" Any
+    t =    66.69s Find the "nav.book" Button
+    t =    66.81s Checking existence of `"notice" Any`
+    t =    67.30s Find the Target Application 'io.puredevn.noirledger'
+    t =    67.35s Checking existence of `"top.income" Any`
+    t =    67.42s Find the "top.income" Any
+    t =    67.48s Find the "top.income" StaticText
+    t =    67.56s Checking existence of `"top.cash" Any`
+    t =    67.60s Find the "top.cash" Any
+    t =    67.68s Find the "top.cash" Other
+    t =    67.72s Tap "van.offer" Button
+    t =    67.72s     Wait for io.puredevn.noirledger to idle
+    t =    67.72s     Find the "van.offer" Button
+    t =    67.90s     Check for interrupting elements affecting "van.offer" Button
+    t =    68.07s     Synthesize event
+    t =    68.39s     Wait for io.puredevn.noirledger to idle
+    t =    68.39s Waiting 15.0s for "van.confirm" Any to exist
+    t =    69.45s     Checking `Expect predicate `existsNoRetry == 1` for object "van.confirm" Any`
+    t =    69.45s         Checking existence of `"van.confirm" Any`
+    t =    69.74s Waiting 10.0s for "van.confirm" Any to exist
+    t =    70.77s     Checking `Expect predicate `existsNoRetry == 1` for object "van.confirm" Any`
+    t =    70.77s         Checking existence of `"van.confirm" Any`
+    t =    71.28s Find the "van.confirm" Any
+    t =    71.73s Find the "van.confirm" Button
+    t =    72.26s Find the Target Application 'io.puredevn.noirledger'
+    t =    72.34s Checking existence of `TabBar (First Match)`
+    t =    72.55s Checking existence of `"nav.book" Any`
+    t =    72.69s Find the "nav.book" Any
+    t =    72.78s Find the "nav.book" Button
+    t =    72.92s Checking existence of `"notice" Any`
+    t =    73.40s Find the Target Application 'io.puredevn.noirledger'
+    t =    73.45s Checking existence of `"top.income" Any`
+    t =    73.51s Find the "top.income" Any
+    t =    73.59s Find the "top.income" StaticText
+    t =    73.65s Checking existence of `"top.cash" Any`
+    t =    73.70s Find the "top.cash" Any
+    t =    73.77s Find the "top.cash" Other
+    t =    73.90s Added attachment named 'en_tour_22_large_van_confirm'
+    t =    73.90s Tap "van.confirm" Any
+    t =    73.90s     Wait for io.puredevn.noirledger to idle
+    t =    73.90s     Find the "van.confirm" Any
+    t =    74.16s     Check for interrupting elements affecting "van.confirm" Button
+    t =    74.27s     Synthesize event
+    t =    74.59s     Wait for io.puredevn.noirledger to idle
+    t =    74.60s Waiting 10.0s for Button (First Match) to exist
+    t =    75.65s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    75.66s         Checking existence of `Button (First Match)`
+    t =    76.00s Added attachment named 'en_tour_23_large_van_bought'
+    t =    76.00s Terminate io.puredevn.noirledger:74352
+    t =    78.06s Tear Down
+Test Case '-[NoirLedgerUITests.ScreenshotTourUITests testLargeStreetEnglish]' passed (79.100 seconds).
+Test Case '-[NoirLedgerUITests.ScreenshotTourUITests testLargeStreetGerman]' started.
+    t =     0.00s Start Test at 2026-11-20 23:13:14.031
+    t =     0.05s Set Up
+    t =     0.06s Open io.puredevn.noirledger
+    t =     0.06s     Launch io.puredevn.noirledger
+2026-11-20 23:13:14.390 xcodebuild[66350:440407] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-20 23:13:14.391 xcodebuild[66350:440407] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.73s         Setting up automation session
+    t =     6.41s         Wait for io.puredevn.noirledger to idle
+    t =     8.60s Waiting 45.0s for "estate.collect" Any to exist
+    t =     9.65s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.collect" Any`
+    t =     9.65s         Checking existence of `"estate.collect" Any`
+    t =     9.85s Waiting 10.0s for "estate.collect" Any to exist
+    t =    10.90s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.collect" Any`
+    t =    10.90s         Checking existence of `"estate.collect" Any`
+    t =    11.26s Find the "estate.collect" Any
+    t =    11.55s Find the "estate.collect" Button
+    t =    11.79s Find the Target Application 'io.puredevn.noirledger'
+    t =    11.86s Checking existence of `"top.income" Any`
+    t =    12.20s Checking existence of `"top.cash" Any`
+    t =    12.69s Find the "estate.collect" Button
+    t =    13.21s Find the Target Application 'io.puredevn.noirledger'
+    t =    13.24s Checking existence of `"top.income" Any`
+    t =    13.64s Checking existence of `"top.cash" Any`
+    t =    14.02s Press Target Application 'io.puredevn.noirledger'[0.50, 0.62] for 0.1 seconds, then drag to Target Application 'io.puredevn.noirledger'[0.50, 0.42] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    14.02s     Wait for io.puredevn.noirledger to idle
+    t =    14.03s     Find the Target Application 'io.puredevn.noirledger'
+    t =    14.17s     Check for interrupting elements affecting "NOIR LEDGER" Application
+    t =    14.21s     Synthesize event
+    t =    14.21s         Find the Target Application 'io.puredevn.noirledger'
+    t =    14.28s         Find the Target Application 'io.puredevn.noirledger'
+    t =    14.30s         Find the Target Application 'io.puredevn.noirledger'
+    t =    14.33s         Find the Target Application 'io.puredevn.noirledger'
+    t =    14.40s         Find the Target Application 'io.puredevn.noirledger'
+    t =    15.01s     Wait for io.puredevn.noirledger to idle
+    t =    15.87s Find the "estate.collect" Button
+    t =    15.94s Find the "estate.collect" Button
+    t =    16.00s Find the Target Application 'io.puredevn.noirledger'
+    t =    16.02s Checking existence of `TabBar (First Match)`
+    t =    16.06s Checking existence of `"nav.book" Any`
+    t =    16.16s Checking existence of `"notice" Any`
+    t =    16.26s Find the Target Application 'io.puredevn.noirledger'
+    t =    16.27s Checking existence of `"top.income" Any`
+    t =    16.36s Checking existence of `"top.cash" Any`
+    t =    16.51s Added attachment named 'de_tour_19_large_estate'
+    t =    16.51s Tap "estate.collect" Any
+    t =    16.51s     Wait for io.puredevn.noirledger to idle
+    t =    16.51s     Find the "estate.collect" Any
+    t =    16.57s     Check for interrupting elements affecting "estate.collect" Button
+    t =    16.63s     Synthesize event
+    t =    16.92s     Wait for io.puredevn.noirledger to idle
+    t =    16.93s Waiting 15.0s for "estate.receipt" Any to exist
+    t =    17.95s     Checking `Expect predicate `existsNoRetry == 1` for object "estate.receipt" Any`
+    t =    17.95s         Checking existence of `"estate.receipt" Any`
+    t =    18.04s Added attachment named 'de_tour_20_large_heirlooms'
+    t =    18.04s Waiting 10.0s for "start.CASHBOX" Any to exist
+    t =    19.07s     Checking `Expect predicate `existsNoRetry == 1` for object "start.CASHBOX" Any`
+    t =    19.07s         Checking existence of `"start.CASHBOX" Any`
+    t =    19.12s Find the "start.CASHBOX" Any
+    t =    19.18s Find the "start.CASHBOX" Button
+    t =    19.22s Find the Target Application 'io.puredevn.noirledger'
+    t =    19.24s Checking existence of `TabBar (First Match)`
+    t =    19.30s Checking existence of `"nav.book" Any`
+    t =    19.39s Checking existence of `"notice" Any`
+    t =    19.52s Find the Target Application 'io.puredevn.noirledger'
+    t =    19.54s Checking existence of `"top.income" Any`
+    t =    19.66s Checking existence of `"top.cash" Any`
+    t =    19.77s Find the "start.CASHBOX" Button
+    t =    19.81s Press Target Application 'io.puredevn.noirledger'[0.50, 0.62] for 0.1 seconds, then drag to Target Application 'io.puredevn.noirledger'[0.50, 0.42] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    19.81s     Wait for io.puredevn.noirledger to idle
+    t =    19.82s     Find the Target Application 'io.puredevn.noirledger'
+    t =    19.86s     Check for interrupting elements affecting "NOIR LEDGER" Application
+    t =    19.92s     Synthesize event
+    t =    19.93s         Find the Target Application 'io.puredevn.noirledger'
+    t =    19.95s         Find the Target Application 'io.puredevn.noirledger'
+    t =    19.97s         Find the Target Application 'io.puredevn.noirledger'
+    t =    20.00s         Find the Target Application 'io.puredevn.noirledger'
+    t =    20.02s         Find the Target Application 'io.puredevn.noirledger'
+    t =    20.67s     Wait for io.puredevn.noirledger to idle
+    t =    22.35s Find the "start.CASHBOX" Button
+    t =    22.44s Find the "start.CASHBOX" Button
+    t =    22.50s Find the Target Application 'io.puredevn.noirledger'
+    t =    22.52s Checking existence of `TabBar (First Match)`
+    t =    22.57s Checking existence of `"nav.book" Any`
+    t =    22.67s Checking existence of `"notice" Any`
+    t =    22.77s Find the Target Application 'io.puredevn.noirledger'
+    t =    22.79s Checking existence of `"top.income" Any`
+    t =    22.88s Checking existence of `"top.cash" Any`
+    t =    22.97s Tap "start.CASHBOX" Button
+    t =    22.97s     Wait for io.puredevn.noirledger to idle
+    t =    22.97s     Find the "start.CASHBOX" Button
+    t =    23.11s     Check for interrupting elements affecting "start.CASHBOX" Button
+    t =    23.16s     Synthesize event
+    t =    23.51s     Wait for io.puredevn.noirledger to idle
+    t =    23.82s Waiting 15.0s for "screen.ledger" Any to exist
+    t =    24.90s     Checking `Expect predicate `existsNoRetry == 1` for object "screen.ledger" Any`
+    t =    24.90s         Checking existence of `"screen.ledger" Any`
+    t =    25.14s Waiting 15.0s for "van.offer" Any to exist
+    t =    26.18s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    26.18s         Checking existence of `"van.offer" Any`
+    t =    26.43s Waiting 10.0s for "van.offer" Any to exist
+    t =    27.46s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    27.46s         Checking existence of `"van.offer" Any`
+    t =    27.60s Find the "van.offer" Any
+    t =    27.80s Find the "van.offer" Button
+    t =    27.98s Find the Target Application 'io.puredevn.noirledger'
+    t =    28.03s Checking existence of `TabBar (First Match)`
+    t =    28.17s Checking existence of `"nav.book" Any`
+    t =    28.21s Find the "nav.book" Any
+    t =    28.28s Find the "nav.book" Button
+    t =    28.37s Checking existence of `"notice" Any`
+    t =    28.73s Find the Target Application 'io.puredevn.noirledger'
+    t =    28.84s Checking existence of `"top.income" Any`
+    t =    28.89s Find the "top.income" Any
+    t =    28.94s Find the "top.income" StaticText
+    t =    29.02s Checking existence of `"top.cash" Any`
+    t =    29.11s Find the "top.cash" Any
+    t =    29.16s Find the "top.cash" Other
+    t =    29.35s Added attachment named 'de_tour_21_large_van_offer'
+    t =    29.36s Waiting 15.0s for "fleet.go" Any to exist
+    t =    30.41s     Checking `Expect predicate `existsNoRetry == 1` for object "fleet.go" Any`
+    t =    30.41s         Checking existence of `"fleet.go" Any`
+    t =    30.59s Waiting 10.0s for "fleet.go" Any to exist
+    t =    31.64s     Checking `Expect predicate `existsNoRetry == 1` for object "fleet.go" Any`
+    t =    31.64s         Checking existence of `"fleet.go" Any`
+    t =    31.92s Find the "fleet.go" Any
+    t =    32.26s Find the "fleet.go" Button
+    t =    32.60s Find the Target Application 'io.puredevn.noirledger'
+    t =    32.75s Checking existence of `TabBar (First Match)`
+    t =    32.98s Checking existence of `"nav.book" Any`
+    t =    33.07s Find the "nav.book" Any
+    t =    33.16s Find the "nav.book" Button
+    t =    33.21s Checking existence of `"notice" Any`
+    t =    33.57s Find the Target Application 'io.puredevn.noirledger'
+    t =    33.60s Checking existence of `"top.income" Any`
+    t =    33.65s Find the "top.income" Any
+    t =    33.73s Find the "top.income" StaticText
+    t =    33.82s Checking existence of `"top.cash" Any`
+    t =    33.94s Find the "top.cash" Any
+    t =    34.03s Find the "top.cash" Other
+    t =    34.17s Waiting 15.0s for "dispatcher.hire" Any to exist
+    t =    35.22s     Checking `Expect predicate `existsNoRetry == 1` for object "dispatcher.hire" Any`
+    t =    35.22s         Checking existence of `"dispatcher.hire" Any`
+    t =    35.35s Find the "dispatcher.hire" Any
+    t =    35.48s Find the "dispatcher.hire" Button
+    t =    35.64s Find the "fleet.go" Button
+    t =    35.80s Find the "dispatcher.hire" Button
+    t =    35.99s Find the "fleet.go" Button
+    t =    36.24s Added attachment named 'de_tour_21b_large_street_prices'
+    t =    36.24s Waiting 10.0s for "van.offer" Any to exist
+    t =    37.28s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    37.28s         Checking existence of `"van.offer" Any`
+    t =    37.46s Find the "van.offer" Any
+    t =    37.61s Find the "van.offer" Button
+    t =    37.76s Find the Target Application 'io.puredevn.noirledger'
+    t =    37.79s Checking existence of `TabBar (First Match)`
+    t =    37.93s Checking existence of `"nav.book" Any`
+    t =    38.02s Find the "nav.book" Any
+    t =    38.15s Find the "nav.book" Button
+    t =    38.31s Checking existence of `"notice" Any`
+    t =    38.88s Find the Target Application 'io.puredevn.noirledger'
+    t =    38.93s Checking existence of `"top.income" Any`
+    t =    39.01s Find the "top.income" Any
+    t =    39.10s Find the "top.income" StaticText
+    t =    39.18s Checking existence of `"top.cash" Any`
+    t =    39.22s Find the "top.cash" Any
+    t =    39.36s Find the "top.cash" Other
+    t =    39.43s Tap "van.offer" Button
+    t =    39.43s     Wait for io.puredevn.noirledger to idle
+    t =    39.44s     Find the "van.offer" Button
+    t =    39.78s     Check for interrupting elements affecting "van.offer" Button
+    t =    39.89s     Synthesize event
+    t =    40.20s     Wait for io.puredevn.noirledger to idle
+    t =    40.21s Waiting 10.0s for "van.later" Any to exist
+    t =    41.25s     Checking `Expect predicate `existsNoRetry == 1` for object "van.later" Any`
+    t =    41.25s         Checking existence of `"van.later" Any`
+    t =    41.40s Find the "van.later" Any
+    t =    41.66s Find the "van.later" Button
+    t =    41.90s Find the Target Application 'io.puredevn.noirledger'
+    t =    41.96s Checking existence of `TabBar (First Match)`
+    t =    42.06s Checking existence of `"nav.book" Any`
+    t =    42.11s Find the "nav.book" Any
+    t =    42.16s Find the "nav.book" Button
+    t =    42.27s Checking existence of `"notice" Any`
+    t =    42.55s Find the Target Application 'io.puredevn.noirledger'
+    t =    42.58s Checking existence of `"top.income" Any`
+    t =    42.62s Find the "top.income" Any
+    t =    42.66s Find the "top.income" StaticText
+    t =    42.69s Checking existence of `"top.cash" Any`
+    t =    42.72s Find the "top.cash" Any
+    t =    42.75s Find the "top.cash" Other
+    t =    42.78s Tap "van.later" Button
+    t =    42.78s     Wait for io.puredevn.noirledger to idle
+    t =    42.78s     Find the "van.later" Button
+    t =    42.92s     Check for interrupting elements affecting "van.later" Button
+    t =    42.99s     Synthesize event
+    t =    43.30s     Wait for io.puredevn.noirledger to idle
+    t =    43.31s Waiting 10.0s for Button (First Match) to exist
+    t =    44.35s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    44.35s         Checking existence of `Button (First Match)`
+    t =    44.46s Waiting 10.0s for "van.offer" Any to exist
+    t =    45.50s     Checking `Expect predicate `existsNoRetry == 1` for object "van.offer" Any`
+    t =    45.50s         Checking existence of `"van.offer" Any`
+    t =    45.68s Find the "van.offer" Any
+    t =    45.90s Find the "van.offer" Button
+    t =    46.12s Find the Target Application 'io.puredevn.noirledger'
+    t =    46.15s Checking existence of `TabBar (First Match)`
+    t =    46.32s Checking existence of `"nav.book" Any`
+    t =    46.39s Find the "nav.book" Any
+    t =    46.50s Find the "nav.book" Button
+    t =    46.61s Checking existence of `"notice" Any`
+    t =    46.88s Find the Target Application 'io.puredevn.noirledger'
+    t =    46.92s Checking existence of `"top.income" Any`
+    t =    46.94s Find the "top.income" Any
+    t =    46.97s Find the "top.income" StaticText
+    t =    47.02s Checking existence of `"top.cash" Any`
+    t =    47.04s Find the "top.cash" Any
+    t =    47.08s Find the "top.cash" Other
+    t =    47.12s Tap "van.offer" Button
+    t =    47.12s     Wait for io.puredevn.noirledger to idle
+    t =    47.12s     Find the "van.offer" Button
+    t =    47.25s     Check for interrupting elements affecting "van.offer" Button
+    t =    47.34s     Synthesize event
+    t =    47.65s     Wait for io.puredevn.noirledger to idle
+    t =    47.66s Waiting 15.0s for "van.confirm" Any to exist
+    t =    48.70s     Checking `Expect predicate `existsNoRetry == 1` for object "van.confirm" Any`
+    t =    48.70s         Checking existence of `"van.confirm" Any`
+    t =    48.91s Waiting 10.0s for "van.confirm" Any to exist
+    t =    49.93s     Checking `Expect predicate `existsNoRetry == 1` for object "van.confirm" Any`
+    t =    49.93s         Checking existence of `"van.confirm" Any`
+    t =    50.11s Find the "van.confirm" Any
+    t =    50.30s Find the "van.confirm" Button
+    t =    50.46s Find the Target Application 'io.puredevn.noirledger'
+    t =    50.50s Checking existence of `TabBar (First Match)`
+    t =    50.61s Checking existence of `"nav.book" Any`
+    t =    50.66s Find the "nav.book" Any
+    t =    50.72s Find the "nav.book" Button
+    t =    50.77s Checking existence of `"notice" Any`
+    t =    51.02s Find the Target Application 'io.puredevn.noirledger'
+    t =    51.05s Checking existence of `"top.income" Any`
+    t =    51.08s Find the "top.income" Any
+    t =    51.12s Find the "top.income" StaticText
+    t =    51.16s Checking existence of `"top.cash" Any`
+    t =    51.18s Find the "top.cash" Any
+    t =    51.22s Find the "top.cash" Other
+    t =    51.32s Added attachment named 'de_tour_22_large_van_confirm'
+    t =    51.32s Tap "van.confirm" Any
+    t =    51.32s     Wait for io.puredevn.noirledger to idle
+    t =    51.32s     Find the "van.confirm" Any
+    t =    51.57s     Check for interrupting elements affecting "van.confirm" Button
+    t =    51.71s     Synthesize event
+    t =    52.02s     Wait for io.puredevn.noirledger to idle
+    t =    52.03s Waiting 10.0s for Button (First Match) to exist
+    t =    53.06s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    53.07s         Checking existence of `Button (First Match)`
+    t =    53.28s Added attachment named 'de_tour_23_large_van_bought'
+    t =    53.28s Terminate io.puredevn.noirledger:76459
+    t =    54.33s Tear Down
+Test Case '-[NoirLedgerUITests.ScreenshotTourUITests testLargeStreetGerman]' passed (54.442 seconds).
+Test Suite 'ScreenshotTourUITests' passed at 2026-11-20 23:14:08.473.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 133.542 (133.547) seconds
+Test Suite 'NoirLedgerUITests.xctest' passed at 2026-11-20 23:14:08.476.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 133.542 (133.550) seconds
+Test Suite 'Selected tests' passed at 2026-11-20 23:14:08.476.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 133.542 (133.552) seconds
+2026-11-20 23:14:09.493 xcodebuild[66350:440407] [MT] IDETestOperationsObserverDebug: 189.013 elapsed -- Testing started completed.
+2026-11-20 23:14:09.493 xcodebuild[66350:440407] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-20 23:14:09.493 xcodebuild[66350:440407] [MT] IDETestOperationsObserverDebug: 189.013 sec, +189.013 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/noir-ledger-ios/noir-ledger-ios/build/Compact.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started
