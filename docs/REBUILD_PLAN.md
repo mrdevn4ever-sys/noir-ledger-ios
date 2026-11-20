@@ -12,7 +12,7 @@
 
 ## M1 candidate (not cleared for TestFlight)
 
-The first playable slice is ready for native testing, not release. Two known blockers remain: the receipt journal drops old transaction IDs after 1,000 entries, and a failed reset can erase the old wallet before its replacement is durable. Do not promote this revision.
+The first playable slice is ready for native testing, not release. The paid transaction journal no longer expires old IDs. Verify redelivery across more than 1,000 later bookings and a relaunch. A failed reset can still erase the old wallet before its replacement is durable; do not promote this revision.
 
 - **Model before code:** `scripts/qa/estate_opening.py` picks the pickup amount (20 is the smallest that pays the
   unchanged 20 van level for every start; wallets after the confirmed upgrade 60 / 0 / 0). The historical baseline

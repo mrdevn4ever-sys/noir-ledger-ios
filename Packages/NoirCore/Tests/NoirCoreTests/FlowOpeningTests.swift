@@ -121,7 +121,7 @@ struct FlowOpeningTests {
     // MARK: Receipts
 
     @Test("A purchase is booked with its transaction id, once; the same id again changes nothing")
-    func receipts() {
+    func receipts() throws {
         let door = Flow.newGame(seed: 1, nowMs: 1)
         let early = Self.ok(door, .deliverPurchase(.favors(80), transaction: "2000001"))
         #expect(early.meta.favors == 80 && early.meta.deliveredTransactions == ["2000001"], "booked even before the choice")
@@ -133,9 +133,17 @@ struct FlowOpeningTests {
         let again = Flow.apply(s, .deliverPurchase(.favors(500), transaction: "2000002"))
         #expect(again.error == .invalid && again.state.meta.favors == 80)
         var many = s
-        for i in 0..<(FlowContent.receiptMemory + 5) { many = Self.ok(many, .deliverPurchase(.favors(1), transaction: "t\(i)")) }
-        #expect(many.meta.deliveredTransactions.count == FlowContent.receiptMemory)
-        #expect(many.meta.deliveredTransactions.last == "t\(FlowContent.receiptMemory + 4)")
+        for i in 0..<1_005 { many = Self.ok(many, .deliverPurchase(.favors(1), transaction: "t\(i)")) }
+        #expect(many.meta.deliveredTransactions.count == 1_007)
+        #expect(many.meta.deliveredTransactions.first == "2000001")
+        let dir = Self.directory()
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let disk = FlowSaveStore(directory: dir)
+        try disk.write(many, savedAtMs: 5)
+        let (reloaded, _) = try #require(Self.load(disk))
+        let redelivery = Flow.apply(reloaded, .deliverPurchase(.favors(80), transaction: "2000001"))
+        #expect(redelivery.error == .invalid)
+        #expect(redelivery.state.meta == many.meta)
     }
 
     // MARK: Migration

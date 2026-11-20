@@ -169,9 +169,7 @@ public struct FlowSaveStore: Sendable {
         s.meta.favors = max(0, s.meta.favors)
         s.meta.boostSeconds = fix(s.meta.boostSeconds, 0, Idle.boostCapSeconds)
         s.meta.offlineBonus = fix(s.meta.offlineBonus)
-        if s.meta.deliveredTransactions.count > FlowContent.receiptMemory {
-            s.meta.deliveredTransactions.removeFirst(s.meta.deliveredTransactions.count - FlowContent.receiptMemory)
-        }
+
         if s.lastWallClockMs < 0 { s.lastWallClockMs = 0 }
     }
 }

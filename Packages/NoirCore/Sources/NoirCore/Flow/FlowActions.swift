@@ -38,6 +38,19 @@ public enum FlowAction: Sendable, Equatable {
     case collectOffline(doubled: Bool)
 }
 
+
+extension MetaState {
+    /// Whether this permanent purchase is already in the wallet (a restore then changes nothing).
+    public func owns(_ grant: Grant) -> Bool {
+        switch grant {
+        case .favors: false
+        case .premium: premium
+        case .noAds: noAds
+        case .starter: starterBought
+        }
+    }
+}
+
 public struct FlowResult: Sendable {
     public let state: FlowState
     public let error: ActionError?
@@ -301,9 +314,9 @@ extension Flow {
             let id = transaction.trimmingCharacters(in: .whitespaces)
             guard !id.isEmpty, !s.meta.deliveredTransactions.contains(id) else { return fail(.invalid) }
             guard applyGrant(&s, .grant(grant)) else { return fail(.invalid) }
+            // Kept for the whole life of the save: an unfinished transaction can come back after any number of
+            // newer ones, and it must still be recognised.
             s.meta.deliveredTransactions.append(id)
-            let extra = s.meta.deliveredTransactions.count - FlowContent.receiptMemory
-            if extra > 0 { s.meta.deliveredTransactions.removeFirst(extra) }
             return done()
 
         case .collectOffline(let doubled):
@@ -316,6 +329,11 @@ extension Flow {
             s.welcome = nil
             return done(gained)
         }
+    }
+
+    /// Whether a verified transaction id is already booked in this save.
+    public static func hasBooked(_ s: FlowState, transaction id: String) -> Bool {
+        s.meta.deliveredTransactions.contains(id.trimmingCharacters(in: .whitespaces))
     }
 
     static func applyGrant(_ s: inout FlowState, _ action: FlowAction) -> Bool {

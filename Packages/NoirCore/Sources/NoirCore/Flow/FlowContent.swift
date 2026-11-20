@@ -335,8 +335,6 @@ public enum FlowContent {
     /// (scripts/qa/estate_opening.py).
     public static let estatePickupCash = 20.0
     public static let estatePickupCrates = 1.0
-    /// Verified store transactions remembered in the save so a redelivered one is never booked twice.
-    public static let receiptMemory = 1_000
 
     public static let cashboxCash = 60.0
     public static let toolsBench = 3

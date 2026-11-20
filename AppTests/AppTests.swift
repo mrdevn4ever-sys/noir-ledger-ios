@@ -346,6 +346,55 @@ struct LedgerStoreTests {
         #expect(relaunched.state.meta.favors == favors + 500)
     }
 
+    @Test("Restoring an owned starter records a missing receipt without paying the starter pack again")
+    func ownedStarterWithoutReceipt() throws {
+        let dir = tempDir(), clock = Clock()
+        defer { try? FileManager.default.removeItem(at: dir) }
+        try Data(OldSaves.business.utf8).write(to: FlowSaveStore(directory: dir).primaryURL)
+        let store = makeStore(dir, clock: clock)
+        store.load()
+        let wallet = store.state.meta
+        try #require(wallet.starterBought && wallet.deliveredTransactions.isEmpty)
+        try blockWrites(store)
+        #expect(store.book(.starter, transaction: "restore") == .notBooked)
+        #expect(store.state.meta == wallet)
+        try unblockWrites(store)
+        #expect(store.book(.starter, transaction: "restore") == .alreadyBooked)
+        let reopened = makeStore(dir, clock: clock)
+        reopened.load()
+        #expect(reopened.state.meta.favors == wallet.favors)
+        #expect(reopened.state.meta.boostSeconds == wallet.boostSeconds)
+        #expect(reopened.state.meta.deliveredTransactions == ["restore"])
+    }
+
+    @Test("Redelivery of the oldest unfinished purchase can finish after a thousand newer bookings and a relaunch")
+    func oldReceiptAfterRelaunch() throws {
+        let dir = tempDir(), clock = Clock()
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let game = makeStore(dir, clock: clock)
+        game.load()
+        #expect(game.book(.favors(80), transaction: "first") == .booked)
+        var s = game.state
+        for i in 0..<1_005 {
+            let r = Flow.apply(s, .deliverPurchase(.favors(1), transaction: "later-\(i)"))
+            try #require(r.isOK)
+            s = r.state
+        }
+        try game.saveStore.write(s, savedAtMs: clock.ms)
+        let relaunched = makeStore(dir, clock: clock)
+        relaunched.load()
+        #expect(relaunched.adoptDeliveredTransactions(["legacy", "legacy"]))
+        let suite = "noir.tests.redelivery.\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let shop = StoreService(defaults: defaults)
+        shop.deliver = { item, id in relaunched.book(item.grant, transaction: id) }
+        let settlement = shop.settle(productID: StoreItem.favorsSmall.rawValue, transactionID: "first", revoked: false)
+        #expect(settlement.finish && settlement.booked)
+        #expect(relaunched.state.meta.favors == 1_085)
+        #expect(relaunched.state.meta.deliveredTransactions.count == 1_007)
+    }
+
     @Test("Purchases are not booked while the save is from a newer version")
     func noBookingOnFutureSave() throws {
         let dir = tempDir()

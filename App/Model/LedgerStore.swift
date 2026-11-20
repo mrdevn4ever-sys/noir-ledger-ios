@@ -431,7 +431,12 @@ final class LedgerStore {
     /// transaction. A transaction already in the save is reported as such and never granted again.
     func book(_ grant: Grant, transaction id: String) -> PurchaseBooking {
         guard phase == .ready else { return .notBooked }
-        if state.meta.deliveredTransactions.contains(id) { return .alreadyBooked }
+        if Flow.hasBooked(state, transaction: id) { return .alreadyBooked }
+        if state.meta.owns(grant) {
+            // A legacy wallet can already own the product without knowing its receipt.
+            guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { return .notBooked }
+            return adoptDeliveredTransactions([id]) ? .alreadyBooked : .notBooked
+        }
         let r = Flow.apply(state, .deliverPurchase(grant, transaction: id))
         guard r.isOK else { return .notBooked }
         guard persist(r.state) else { return .notBooked }
@@ -447,12 +452,12 @@ final class LedgerStore {
     @discardableResult
     func adoptDeliveredTransactions(_ ids: [String]) -> Bool {
         guard phase == .ready else { return false }
-        let missing = ids.filter { !$0.isEmpty && !state.meta.deliveredTransactions.contains($0) }
+        var seen = Set(state.meta.deliveredTransactions)
+        let missing = ids.map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty && seen.insert($0).inserted }
         guard !missing.isEmpty else { return true }
         var next = state
         next.meta.deliveredTransactions.append(contentsOf: missing)
-        let extra = next.meta.deliveredTransactions.count - FlowContent.receiptMemory
-        if extra > 0 { next.meta.deliveredTransactions.removeFirst(extra) }
+
         guard persist(next) else { return false }
         state = next
         return true

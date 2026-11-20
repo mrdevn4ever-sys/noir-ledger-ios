@@ -22,7 +22,7 @@ Schema 2 adds, with safe defaults when missing:
   cellar door. `FlowMigration` gives a schema-1 save `WAITING` only when nothing was chosen, earned, delivered or
   booked; every business already in play gets `NOT_OFFERED` and can never book it.
 - `LedgerKind.ESTATE`: the pickup's single ledger line (not counted as a delivery).
-- `state.meta.deliveredTransactions`: verified store transaction ids already booked, oldest first, at most 1,000.
+- `state.meta.deliveredTransactions`: verified store transaction ids already booked, oldest first, retained for the lifetime of the wallet.
   The grant and its id are written in the same save; only then is the transaction finished. The 3.x/4.0 marker
   `store.deliveredTransactions` in UserDefaults is read as a fallback and copied into the save; it is never written
   again. A reset keeps the ids together with favors and the permanent purchases.
