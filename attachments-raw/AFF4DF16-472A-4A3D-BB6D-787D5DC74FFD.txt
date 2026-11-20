@@ -1,0 +1,1 @@
+OPENING start=TOOLS reward_s=2.40 confirmed_upgrade_s=13.51
