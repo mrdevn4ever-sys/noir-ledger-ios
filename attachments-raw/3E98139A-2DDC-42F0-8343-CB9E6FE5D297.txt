@@ -1,0 +1,103 @@
+Application, 0x115bf9e00, pid: 29460, label: 'NOIR LEDGER' <App element pid: 29460>
+  Window (Main), 0x115bf9680, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 29460, elementOrHash.elementID: 4416440320.4>
+    Other, 0x115bfa1c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 29460, elementOrHash.elementID: 4464439808.5>
+      Other, 0x115bf9400, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 29460, elementOrHash.elementID: 4464098304.6>
+        Other, 0x115bfad00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 29460, elementOrHash.elementID: 4416439296.7>
+          Other, 0x115bf97c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 29460, elementOrHash.elementID: 4464447872.8>
+            Image, 0x115bf9180, {{-38.0, 0.0}, {685.7, 204.7}}, label: 'HudPlate' <AX element pid: 29460, elementOrHash.elementID: 4463769600.54>
+            Button, 0x115bfb700, {{12.0, 72.0}, {100.0, 36.0}}, identifier: 'top.favors', label: '0 Gefallen. Hinterzimmer öffnen' <AX element pid: 29460, elementOrHash.elementID: 4463758400.55>
+              Image, 0x115bf9cc0, {{22.0, 78.0}, {24.0, 24.0}}, label: 'HudFavor' <AX element pid: 29460, elementOrHash.elementID: 4463769152.69>
+              StaticText, 0x115bf9040, {{50.0, 73.5}, {15.3, 33.0}}, label: '0' <AX element pid: 29460, elementOrHash.elementID: 4463768256.70>
+              Image, 0x115bf92c0, {{71.7, 76.0}, {28.0, 28.0}}, identifier: 'plus.circle.fill', label: 'Hinzufügen' <AX element pid: 29460, elementOrHash.elementID: 4463759296.71>
+            Button, 0x115bf8780, {{243.0, 69.0}, {42.0, 42.0}}, identifier: 'top.book', label: 'Kassenbuch' <AX element pid: 29460, elementOrHash.elementID: 4463757504.56>
+            Button, 0x115bf8500, {{295.0, 68.0}, {43.0, 43.0}}, identifier: 'top.rewards', label: 'Belohnungen, 1 warten' <AX element pid: 29460, elementOrHash.elementID: 4463757952.57>
+            Button, 0x115bf8c80, {{347.0, 69.0}, {42.0, 42.0}}, identifier: 'top.settings', label: 'Einstellungen' <AX element pid: 29460, elementOrHash.elementID: 4463766016.58>
+            Other, 0x115bfa080, {{12.0, 118.0}, {123.0, 74.7}}, identifier: 'top.cash', label: 'Bargeld: 80' <AX element pid: 29460, elementOrHash.elementID: 4463759744.59>
+              Image, 0x115bfb0c0, {{18.0, 138.3}, {34.0, 34.0}}, label: 'HudCoin' <AX element pid: 29460, elementOrHash.elementID: 4463766912.72>
+              StaticText, 0x115bf9b80, {{60.0, 122.0}, {61.0, 66.7}}, label: '80' <AX element pid: 29460, elementOrHash.elementID: 4463767360.73>
+            StaticText, 0x115bf88c0, {{300.0, 126.0}, {90.0, 37.7}}, identifier: 'top.income', label: '0/Min.' <AX element pid: 29460, elementOrHash.elementID: 4463764224.60>
+            StaticText, 0x115bfb840, {{152.7, 163.7}, {237.3, 21.0}}, label: 'verbucht in der letzten Minute' <AX element pid: 29460, elementOrHash.elementID: 4463763776.61>
+            ScrollView, 0x115bf8a00, {{0.0, 204.7}, {402.0, 565.0}} <AX element pid: 29460, elementOrHash.elementID: 4415736832.62>
+              Other, 0x115bfb5c0, {{0.0, 204.7}, {402.0, 836.3}} <AX element pid: 29460, elementOrHash.elementID: 4464438784.74>
+                Other, 0x115bf8dc0, {{0.0, 204.7}, {1.0, 1.0}}, identifier: 'screen.ledger', label: 'NOIR LEDGER' <AX element pid: 29460, elementOrHash.elementID: 4463762880.86>
+                Button, 0x115bf9a40, {{12.0, 206.7}, {378.0, 127.7}}, identifier: 'chapter.strip', label: 'Kapitel 1 · Leopolds Keller, 0/5, Lieferungen verbuchen: 1' <AX element pid: 29460, elementOrHash.elementID: 4463764672.87>
+                  Image, 0x115bf8f00, {{24.0, 254.7}, {32.0, 32.0}}, label: 'CrewBrandt' <AX element pid: 29460, elementOrHash.elementID: 4463761536.101>
+                  StaticText, 0x115bf9540, {{64.0, 213.7}, {167.7, 58.3}}, label: 'Kapitel 1 · Leopolds Keller' <AX element pid: 29460, elementOrHash.elementID: 4463762432.102>
+                  StaticText, 0x115bf9900, {{318.3, 229.5}, {34.3, 26.7}}, label: '0/5' <AX element pid: 29460, elementOrHash.elementID: 4463761984.103>
+                  StaticText, 0x115bfbd40, {{64.0, 274.0}, {125.7, 53.3}}, label: 'Lieferungen verbuchen: 1' <AX element pid: 29460, elementOrHash.elementID: 4463761088.104>
+                  Image, 0x115bfbe80, {{197.7, 295.7}, {56.0, 10.0}}, label: 'MeterTrack' <AX element pid: 29460, elementOrHash.elementID: 4463760640.105>
+                  Image, 0x115bfaf80, {{365.0, 260.3}, {11.7, 20.7}}, identifier: 'chevron.right', label: 'Weiter' <AX element pid: 29460, elementOrHash.elementID: 4463765568.106>
+                Button, 0x115bfb980, {{11.2, 339.6}, {379.5, 62.2}}, identifier: 'van.offer', label: 'Wagenausbau ansehen: 1 → 2 Kisten · 20' <AX element pid: 29460, elementOrHash.elementID: 4463837184.160>
+                  Image, 0x115bfb480, {{28.0, 361.7}, {18.0, 18.0}}, label: 'ArrowUp' <AX element pid: 29460, elementOrHash.elementID: 4463838528.162>
+                  StaticText, 0x115bfb340, {{50.0, 340.3}, {285.7, 60.7}}, label: 'Wagenausbau ansehen: 1 → 2 Kisten · 20' <AX element pid: 29460, elementOrHash.elementID: 4463838080.161>
+                  Image, 0x115bfbac0, {{343.7, 363.3}, {26.3, 15.0}}, identifier: 'chevron.down', label: 'Runter' <AX element pid: 29460, elementOrHash.elementID: 4463837632.163>
+                Button, 0x115bfb200, {{87.0, 558.0}, {34.0, 34.0}}, identifier: 'mailbox.open', label: 'Aufträge' <AX element pid: 29460, elementOrHash.elementID: 4463850176.89>
+                Button, 0x115bfbc00, {{51.0, 479.0}, {81.0, 77.0}}, identifier: 'fleet.open', label: 'Wagen Stufe 1', value: Kisten pro Fahrt: 1 <AX element pid: 29460, elementOrHash.elementID: 4463849728.90>
+                  Image, 0x115cd4b40, {{60.0, 491.0}, {62.0, 50.0}}, label: 'BadgePlate' <AX element pid: 29460, elementOrHash.elementID: 4463846592.109>
+                  StaticText, 0x115c73c00, {{66.5, 489.0}, {49.0, 24.3}}, label: 'Stufe' <AX element pid: 29460, elementOrHash.elementID: 4463847040.110>
+                  StaticText, 0x115c71f40, {{86.7, 511.3}, {8.7, 27.7}}, label: '1' <AX element pid: 29460, elementOrHash.elementID: 4463847488.111>
+                  Image, 0x115c72300, {{51.0, 481.0}, {22.0, 22.0}}, label: 'ArrowUp' <AX element pid: 29460, elementOrHash.elementID: 4463847936.112>
+                  Image, 0x115c71b80, {{106.0, 479.0}, {26.0, 26.0}}, label: 'BottleneckBubble' <AX element pid: 29460, elementOrHash.elementID: 4463848832.113>
+                  StaticText, 0x115c71e00, {{65.2, 534.7}, {51.7, 20.3}}, label: 'Wagen' <AX element pid: 29460, elementOrHash.elementID: 4463849280.114>
+                Button, 0x115c70a00, {{130.0, 507.7}, {44.0, 73.3}}, identifier: 'dispatcher.hire', label: 'Disponent: Emil Varga', value: Kostet 300 <AX element pid: 29460, elementOrHash.elementID: 4463851968.91>
+                  Image, 0x115c71a40, {{137.0, 507.7}, {30.0, 46.0}}, label: 'ManagerSlot' <AX element pid: 29460, elementOrHash.elementID: 4463850624.115>
+                  StaticText, 0x115c72940, {{135.0, 555.7}, {34.0, 24.3}}, label: '300' <AX element pid: 29460, elementOrHash.elementID: 4463851072.116>
+                Button, 0x115c71180, {{275.0, 447.0}, {126.0, 153.3}}, identifier: 'contacts.open', label: 'Abnehmer' <AX element pid: 29460, elementOrHash.elementID: 4463845248.92>
+                  Image, 0x115c71540, {{284.0, 472.0}, {117.0, 128.3}} <AX element pid: 29460, elementOrHash.elementID: 4463843008.117>
+                  Image, 0x115c72e40, {{294.3, 539.0}, {22.7, 57.3}} <AX element pid: 29460, elementOrHash.elementID: 4463843456.118>
+                  Image, 0x115c70780, {{275.0, 447.0}, {118.0, 61.7}}, label: 'BadgePlate' <AX element pid: 29460, elementOrHash.elementID: 4463843904.119>
+                  StaticText, 0x115c73840, {{300.3, 450.0}, {67.3, 24.3}}, label: 'Kunden' <AX element pid: 29460, elementOrHash.elementID: 4463844352.120>
+                  StaticText, 0x115c708c0, {{293.0, 475.3}, {82.0, 30.3}}, label: '10/Min.' <AX element pid: 29460, elementOrHash.elementID: 4463844800.121>
+                Button, 0x115c04000, {{124.0, 589.3}, {116.0, 61.3}}, identifier: 'fleet.go', label: 'Los!' <AX element pid: 29460, elementOrHash.elementID: 4463887680.93>
+                  Image, 0x115c04140, {{145.7, 610.0}, {17.7, 20.0}}, identifier: 'play.fill', label: 'Wiedergeben' <AX element pid: 29460, elementOrHash.elementID: 4463886336.122>
+                  StaticText, 0x115c04280, {{167.7, 602.3}, {53.3, 35.3}}, label: 'Los!' <AX element pid: 29460, elementOrHash.elementID: 4463886784.123>
+                Button, 0x115c043c0, {{141.0, 711.0}, {120.0, 60.0}}, identifier: 'bench.WEED', label: 'Werkbank Gras starten' <AX element pid: 29460, elementOrHash.elementID: 4463935936.94>
+                Button, 0x115c04500, {{0.0, 643.0}, {402.0, 196.0}} <AX element pid: 29460, elementOrHash.elementID: 4463935488.95>
+                  Image, 0x115c04640, {{0.0, 643.0}, {402.0, 196.0}} <AX element pid: 29460, elementOrHash.elementID: 4463956800.124>
+                  Image, 0x115c04780, {{0.0, 643.0}, {54.0, 196.0}} <AX element pid: 29460, elementOrHash.elementID: 4463889024.125>
+                  Image, 0x115c048c0, {{162.0, 754.7}, {34.3, 65.7}} <AX element pid: 29460, elementOrHash.elementID: 4463957248.126>
+                  Button, 0x115c04a00, {{59.0, 725.0}, {60.0, 96.0}}, identifier: 'shelf.WEED', label: '0 / 20 Kisten' <AX element pid: 29460, elementOrHash.elementID: 4463894400.127>
+                    StaticText, 0x115c04b40, {{72.8, 727.0}, {32.3, 18.0}}, label: '0/20' <AX element pid: 29460, elementOrHash.elementID: 4463889920.134>
+                    Image, 0x115c04c80, {{59.0, 749.0}, {60.0, 72.0}}, label: 'ShelfFrame' <AX element pid: 29460, elementOrHash.elementID: 4463890816.135>
+                    Image, 0x115c04dc0, {{64.0, 747.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463891264.136>
+                    Image, 0x115c04f00, {{89.0, 747.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463891712.137>
+                    Image, 0x115c05040, {{64.0, 772.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463892160.138>
+                    Image, 0x115c05180, {{89.0, 772.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463892608.139>
+                    Image, 0x115c052c0, {{64.0, 797.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463893056.140>
+                    Image, 0x115c05400, {{89.0, 797.0}, {25.0, 20.0}}, label: 'CrateSlot' <AX element pid: 29460, elementOrHash.elementID: 4463893952.141>
+                  Button, 0x115c05540, {{126.3, 755.0}, {31.3, 66.0}}, identifier: 'lead.WEED', label: 'Werkstattleitung: Jonas Brandt' <AX element pid: 29460, elementOrHash.elementID: 4463896640.128>
+                    Image, 0x115c05680, {{127.0, 755.0}, {30.0, 46.0}}, label: 'ManagerSlot' <AX element pid: 29460, elementOrHash.elementID: 4463895744.142>
+                    StaticText, 0x115c057c0, {{131.3, 803.0}, {21.3, 17.0}}, label: '100' <AX element pid: 29460, elementOrHash.elementID: 4463896192.143>
+                  Button, 0x115c05900, {{321.0, 659.0}, {71.0, 75.0}}, identifier: 'bench.WEED.open', label: 'Werkbank Gras Stufe 1' <AX element pid: 29460, elementOrHash.elementID: 4463899776.129>
+                    Image, 0x115c05a40, {{330.0, 669.0}, {62.0, 50.0}}, label: 'BadgePlate' <AX element pid: 29460, elementOrHash.elementID: 4463897088.144>
+                    StaticText, 0x115c05b80, {{336.5, 667.0}, {49.0, 24.3}}, label: 'Stufe' <AX element pid: 29460, elementOrHash.elementID: 4463897536.145>
+                    StaticText, 0x115c05cc0, {{356.7, 689.3}, {8.7, 27.7}}, label: '1' <AX element pid: 29460, elementOrHash.elementID: 4463897984.146>
+                    Image, 0x115c05e00, {{321.0, 659.0}, {22.0, 22.0}}, label: 'ArrowUp' <AX element pid: 29460, elementOrHash.elementID: 4463898432.147>
+                    StaticText, 0x115c05f40, {{339.5, 708.7}, {43.0, 24.3}}, label: 'Gras' <AX element pid: 29460, elementOrHash.elementID: 4463899328.148>
+                  Image, 0x115c06080, {{69.0, 660.3}, {14.0, 14.0}}, label: 'Coin' <AX element pid: 29460, elementOrHash.elementID: 4463900224.130>
+                  StaticText, 0x115c061c0, {{86.0, 654.0}, {139.0, 26.7}}, label: '12 Kisten/Min.' <AX element pid: 29460, elementOrHash.elementID: 4463900672.131>
+                  StaticText, 0x115c06300, {{188.5, 687.8}, {90.0, 33.0}}, label: 'Tippen!' <AX element pid: 29460, elementOrHash.elementID: 4463901568.132>
+                  Image, 0x115c06440, {{219.7, 729.3}, {32.0, 39.3}} <AX element pid: 29460, elementOrHash.elementID: 4463958144.133>
+                Image, 0x115c06580, {{0.0, 839.0}, {402.0, 132.0}}, label: 'FloorCrystalLocked' <AX element pid: 29460, elementOrHash.elementID: 4463936384.96>
+                Image, 0x115c066c0, {{0.0, 839.0}, {54.0, 132.0}}, label: 'ShaftTile' <AX element pid: 29460, elementOrHash.elementID: 4463937280.97>
+                StaticText, 0x115c06800, {{159.3, 908.7}, {137.3, 30.3}}, label: 'Ab Kapitel 3' <AX element pid: 29460, elementOrHash.elementID: 4463937728.98>
+              Other, 0x115c06940, {{369.0, 204.7}, {30.0, 565.0}}, label: 'Vertikaler Rollbalken, 2 Seiten', value: 0 % <AX element pid: 29460, elementOrHash.elementID: 4913939968.75>
+                Other, 0x115c06a80, {{396.0, 207.7}, {3.0, 377.7}} <AX element pid: 29460, elementOrHash.elementID: 4463950720.100>
+              Other, 0x115c06bc0, {{369.0, 204.7}, {30.0, 565.0}}, label: 'Vertikaler Rollbalken, 2 Seiten', value: 0 % <AX element pid: 29460, elementOrHash.elementID: 4913939968.75>
+                Other, 0x115c06d00, {{396.0, 207.7}, {3.0, 377.7}} <AX element pid: 29460, elementOrHash.elementID: 4463950720.100>
+            Image, 0x115c06e40, {{0.0, 769.7}, {402.0, 104.3}}, label: 'TabBarPlate' <AX element pid: 29460, elementOrHash.elementID: 4463941760.63>
+            Button, 0x115c06f80, {{0.0, 782.0}, {80.3, 56.0}}, identifier: 'nav.orders', label: 'Aufträge' <AX element pid: 29460, elementOrHash.elementID: 4463943104.64>
+              Image, 0x115c070c0, {{25.3, 782.0}, {30.0, 30.0}}, label: 'NavOrders' <AX element pid: 29460, elementOrHash.elementID: 4463942208.76>
+              StaticText, 0x115c07200, {{0.2, 813.8}, {80.0, 24.0}}, label: 'Aufträge' <AX element pid: 29460, elementOrHash.elementID: 4463942656.77>
+            Button, 0x115c07340, {{80.3, 781.7}, {80.3, 56.3}}, identifier: 'nav.contacts', label: 'Kunden' <AX element pid: 29460, elementOrHash.elementID: 4463944896.65>
+              Image, 0x115c07480, {{105.7, 781.7}, {30.0, 30.0}}, label: 'NavCustomers' <AX element pid: 29460, elementOrHash.elementID: 4463944000.78>
+              StaticText, 0x115c075c0, {{86.9, 813.7}, {67.3, 24.3}}, label: 'Kunden' <AX element pid: 29460, elementOrHash.elementID: 4463944448.79>
+            Button, 0x115c07700, {{160.7, 781.7}, {80.7, 56.3}}, identifier: 'nav.crew', label: 'Crew' <AX element pid: 29460, elementOrHash.elementID: 4463946688.66>
+              Image, 0x115c07840, {{186.0, 781.7}, {30.0, 30.0}}, label: 'NavCrew' <AX element pid: 29460, elementOrHash.elementID: 4463945792.80>
+              StaticText, 0x115c07980, {{178.2, 813.7}, {45.7, 24.3}}, label: 'Crew' <AX element pid: 29460, elementOrHash.elementID: 4463946240.81>
+            Button, 0x115c07ac0, {{241.3, 781.7}, {80.3, 56.3}}, identifier: 'nav.city', label: 'Stadt' <AX element pid: 29460, elementOrHash.elementID: 4463948480.67>
+              Image, 0x115c07c00, {{266.3, 781.7}, {30.0, 30.0}}, label: 'NavCity' <AX element pid: 29460, elementOrHash.elementID: 4463947584.82>
+              StaticText, 0x115c07d40, {{256.6, 813.7}, {49.7, 24.3}}, label: 'Stadt' <AX element pid: 29460, elementOrHash.elementID: 4463948032.83>
+            Button, 0x115c07e80, {{321.7, 784.0}, {80.3, 52.0}}, identifier: 'nav.book', label: 'Kassenbuch' <AX element pid: 29460, elementOrHash.elementID: 4463950272.68>
+              Image, 0x115cc8000, {{346.7, 784.7}, {30.0, 30.0}}, label: 'NavBook' <AX element pid: 29460, elementOrHash.elementID: 4463948928.84>
+              StaticText, 0x115cc8140, {{322.0, 816.7}, {79.7, 18.3}}, label: 'Kassenbuch' <AX element pid: 29460, elementOrHash.elementID: 4463949824.85>
