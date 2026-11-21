@@ -181,7 +181,8 @@ struct StreetSection: View {
             .accessibilityIdentifier("fleet.go")
             .frame(width: 2 * goX)
         }
-        .padding(.bottom, 10)
+        // The five-point halo grows with the pulse, beyond the button's layout bounds.
+        .padding(.bottom, 16)
         .frame(width: w, height: h, alignment: .bottomLeading)
     }
 
