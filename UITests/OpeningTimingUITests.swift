@@ -10,6 +10,12 @@ final class OpeningTimingUITests: NoirUITestCase {
     func testOpeningTimingAddressBook() { measureOpening("ADDRESS_BOOK") }
     func testOpeningTimingTools() { measureOpening("TOOLS") }
 
+    private func tapVanButton(_ id: String, timeout: TimeInterval, file: StaticString = #filePath, line: UInt = #line) {
+        let button = app.buttons.matching(NSPredicate(format: "identifier == %@", id)).firstMatch
+        XCTAssertTrue(button.waitForExistence(timeout: timeout), "Missing van button: \(id)", file: file, line: line)
+        button.tap()
+    }
+
     private func measureOpening(_ start: String) {
         launch(["-qa-reset", "-qa-seed", "3"])
         let collect = wait("estate.collect", 45)
@@ -21,8 +27,8 @@ final class OpeningTimingUITests: NoirUITestCase {
         let heirloom = wait("start.\(start)")
         if !heirloom.isHittable { reveal(heirloom) }
         heirloom.tap()
-        wait("van.offer", 15).tap()
-        wait("van.confirm", 10).tap()
+        tapVanButton("van.offer", timeout: 15)
+        tapVanButton("van.confirm", timeout: 10)
         waitForVanCapacity(2)
         let upgrade = ProcessInfo.processInfo.systemUptime - t0
         let line = String(format: "OPENING start=%@ reward_s=%.2f confirmed_upgrade_s=%.2f", start, reward, upgrade)
