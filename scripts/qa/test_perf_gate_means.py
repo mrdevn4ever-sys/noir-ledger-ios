@@ -4,7 +4,7 @@ import itertools
 import unittest
 from unittest.mock import patch
 
-import perf_gate as gate
+import perf_gate_means as gate
 
 BASE = '1d695653c3929c236c74b9d6bd192593d338ef52'
 NEW, CONTROL = 'b' * 40, 'c' * 40
