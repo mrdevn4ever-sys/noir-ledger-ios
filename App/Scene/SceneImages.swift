@@ -108,7 +108,12 @@ extension SceneArt {
     /// The newest quarter the operation sells in: its house stands across the street.
     static func newestQuarter(_ s: FlowState) -> Quarter { Quarter.allCases.last { s.quarters[$0] != nil } ?? .cellars }
 
-    /// What the scene shows for this state, and the next look of each floor, to decode before it is needed.
+    /// The room, its lit overlay and its running animation always belong to the same visual stage.
+    static func floorSheets(_ good: Good, level: Int) -> [(name: String, frames: Int)] {
+        [(floor(good, level: level), 1), (floorLit(good, level: level), 1), (floorRun(good, level: level), 4)]
+    }
+
+    /// Warm the current building. A bench upgrade preview warms its own destination, not every floor's distant successor.
     static func prewarmList(_ s: FlowState) -> [(name: String, frames: Int)] {
         var list: [(name: String, frames: Int)] = [("SkyNight", 1), ("SkylineFar", 1), ("SkylineNear", 1), ("Street", 1), ("ShaftTile", 1),
                                      ("Foundation", 1), ("StreetLampGlow", 1), ("StreetLamp", 1), ("LiftCarEmpty", 1),
@@ -117,10 +122,7 @@ extension SceneArt {
                                      ("PoliceSiren2", 2), ("PoliceCarBody", 1), ("PoliceCarWheel", 1), ("Moon", 1)]
         for g in s.openGoods {
             let level = s.workshop(g)?.bench ?? 1
-            let next = [10, 25, 50, 100, 200].first { $0 > level } ?? level
-            for l in Set([level, next]) {
-                list += [(floor(g, level: l), 1), (floorLit(g, level: l), 1), (floorRun(g, level: l), 4)]
-            }
+            list += floorSheets(g, level: level)
             list += [(worker(g, .walk), 8), (worker(g, .carry), 8), (worker(g, .work), 4), (worker(g, .sleep), 2),
                      (body(FlowContent.good(g).lead), 2), (talk(FlowContent.good(g).lead), 4)]
         }

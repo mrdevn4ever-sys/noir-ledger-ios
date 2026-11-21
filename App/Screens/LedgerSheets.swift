@@ -325,6 +325,9 @@ struct StationArt: View {
                                 Image("ArrowUp").resizable().frame(width: 22, height: 22).offset(x: -8, y: -8)
                             }
                             .padding(Noir.s2)
+                            .onChange(of: SceneArt.floor(g, level: next), initial: true) {
+                                SceneImages.shared.prewarm(SceneArt.floorSheets(g, level: next))
+                            }
                     }
                 }
                 .background { Image(SceneArt.floor(g, level: now)).resizable().scaledToFill() }
