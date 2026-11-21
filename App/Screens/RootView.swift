@@ -32,6 +32,11 @@ struct RootView: View {
             }
             #if NOIR_QA
             .overlay(alignment: .bottomLeading) { if FrameProbe.enabled { FrameProbeView() } }
+            .overlay(alignment: .topLeading) {
+                if OpeningProbe.choice != nil, !OpeningProbe.shared.result.isEmpty {
+                    ScreenMarker(identifier: "opening.result", title: OpeningProbe.shared.result).allowsHitTesting(false)
+                }
+            }
             #endif
     }
 
@@ -199,6 +204,9 @@ struct EstateDoorView: View {
                 }
                 .noirButton(.primary)
                 .accessibilityIdentifier("estate.collect")
+                #if NOIR_QA
+                .openingMarker(.door)
+                #endif
             }
             .padding(Noir.s4)
             .background(alignment: .topLeading) {
@@ -213,6 +221,9 @@ struct EstateDoorView: View {
     }
 
     private func collect() {
+        #if NOIR_QA
+        OpeningProbe.shared.touch(.door)
+        #endif
         store.dispatch(.collectEstate)
     }
 }
@@ -279,7 +290,12 @@ struct HeirloomChoiceView: View {
                 }
                 Text(verbatim: t("l4_prologue_choose")).font(.toon(.headline)).accessibilityAddTraits(.isHeader)
                 ForEach(StartChoice.allCases, id: \.self) { choice in
-                    Button { store.dispatch(.choose(choice)) } label: {
+                    Button {
+                        #if NOIR_QA
+                        if OpeningProbe.choice == choice.rawValue { OpeningProbe.shared.touch(.heirloom) }
+                        #endif
+                        store.dispatch(.choose(choice))
+                    } label: {
                         HStack(alignment: .center, spacing: Noir.s3) {
                             Image(SceneArt.item(choice)).resizable().scaledToFit().frame(width: 52, height: 52)
                                 .accessibilityHidden(true)
@@ -300,6 +316,9 @@ struct HeirloomChoiceView: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("start.\(choice.rawValue)")
+                    #if NOIR_QA
+                    .openingMarker(.heirloom, choice: choice.rawValue)
+                    #endif
                 }
                 Button { letter = true } label: {
                     Label { Text(verbatim: t("l4_letter_open")) } icon: { Image(systemName: "envelope.open.fill") }
@@ -349,6 +368,9 @@ struct EstateReceipt: View {
         .background(Noir.paper, in: RoundedRectangle(cornerRadius: Noir.corner, style: .continuous))
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("estate.receipt")
+        #if NOIR_QA
+        .openingMarker(.receipt)
+        #endif
     }
 
     private var detailedReceipt: some View {

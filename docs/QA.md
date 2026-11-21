@@ -48,7 +48,7 @@ are retained even on failure. This diagnostic run does not replace `ios.yml`, sc
 
 | Test | Proves | Not proof of |
 | --- | --- | --- |
-| `OpeningTimingUITests` (three starts, no `-qa-timescale`) | from the first interactive screen (cellar door, after launch) to the visible pickup booking ≤ 5 s and to the confirmed first van level ≤ 20 s; prints `OPENING start=… reward_s=… confirmed_upgrade_s=…` | how fast a person reads or decides; fun or retention |
+| `OpeningTimingUITests` (three starts, `-qa-opening`, no time acceleration) | QA app uptime from the first visible interactive door to the receipt (raw ≤ 5 s), affordable offer (raw ≤ 20 s), and confirmed capacity change (raw minus responsive time awaiting test input ≤ 20 s). The result attachment retains raw timestamps, raw duration and deduction. The runner taps and reads; it does not time the game. | human decision speed, real-device latency or retention |
 | `GameFlowUITests.testPrologueFirstDeliveryAndUpgrade` | pickup +20, optional letter, heirloom, van 1 → 2 slots at the van, first ordinary delivery | |
 | `GameFlowUITests.testFourMinuteReturnWithoutDispatcher` (`lead`, `lead-rich`) | 4 min away with a lead and no dispatcher books +0; advice is "send the van" (with the hire still out of reach) or "hire the dispatcher" when affordable; it runs only on the tap | |
 | Tour shots `*_tour_00`…`02c`, `17b`, `19`…`21` (EN/DE) | door, letter, heirlooms, van offer/confirm/after, lead-only return, accessibility-size opening | a reviewed image until a person has looked at it |

@@ -21,6 +21,11 @@ struct LedgerView: View {
                             VanOffer(cost: Flow.fleetCost(s, 1), slotsNow: VanCrateSlots.slots(Flow.fleetCapacity(s)),
                                      slotsAfter: VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(s, .fleet, 1)))) {
                                 _ = store.dispatch(.upgrade(.fleet, 1))
+                                #if NOIR_QA
+                                if OpeningProbe.choice != nil, store.state.fleet == 2 {
+                                    OpeningProbe.shared.purchased()
+                                }
+                                #endif
                             }
                         } else if let hint = Flow.hint(s) { HintBubble(hint: hint) }
                         if let ticket = BottleneckTicket.current(s, forecast: f) {

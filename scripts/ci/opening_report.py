@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 STARTS = {"CASHBOX", "ADDRESS_BOOK", "TOOLS"}
-ROW = re.compile(r"\bOPENING start=(\w+) reward_s=([0-9.]+) confirmed_upgrade_s=([0-9.]+)\b")
+ROW = re.compile(r"\bOPENING start=(\w+) reward_s=(\S+) offer_s=(\S+) confirmed_upgrade_s=(\S+) raw_upgrade_s=(\S+) robot_wait_s=(\S+)")
 
 
 def passed_cases(nodes):
@@ -19,16 +19,18 @@ def passed_cases(nodes):
 
 def evaluate(log, summary, tests):
     rows = {}
-    for start, reward, upgrade in ROW.findall(log):
+    for start, *fields in ROW.findall(log):
         if start in rows:
             raise ValueError(f"duplicate result for {start}; inspect retries")
-        rows[start] = (float(reward), float(upgrade))
-    for start, (reward, upgrade) in sorted(rows.items()):
-        print(f"{start}: visible receipt {reward:.2f}s; confirmed upgrade {upgrade:.2f}s")
+        rows[start] = tuple(map(float, fields))
+    for start, (reward, offer, upgrade, raw, robot) in sorted(rows.items()):
+        print(f"{start}: receipt {reward:.2f}s; offer {offer:.2f}s; confirmed {raw:.2f}s - ready for input {robot:.2f}s = {upgrade:.2f}s")
     if set(rows) != STARTS:
         raise ValueError(f"expected {sorted(STARTS)}, got {sorted(rows)}")
-    for start, (reward, upgrade) in rows.items():
-        if not (math.isfinite(upgrade) and 0 < reward <= 5 and reward <= upgrade <= 20):
+    for start, (reward, offer, upgrade, raw, robot) in rows.items():
+        if not (all(map(math.isfinite, (reward, offer, upgrade, raw, robot))) and 0 < reward <= 5
+                and reward <= offer <= 20 and offer <= raw and 0 <= robot <= raw and 0 <= upgrade <= 20
+                and math.isclose(raw - robot, upgrade, rel_tol=0, abs_tol=1e-6)):
             raise ValueError(f"{start}: timing target not met")
     required = {"LedgerStoreTests/" + name + "()" for name in (
         "resetFailureAndRetry", "paidDeliveryWriteFailure", "ownedStarterWithoutReceipt", "oldReceiptAfterRelaunch")}

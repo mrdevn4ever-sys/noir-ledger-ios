@@ -6,7 +6,7 @@ APP="$1"
 BIN="$APP/$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$APP/Info.plist")"
 echo "Release binary: $BIN ($(stat -f%z "$BIN") bytes)"
 hits=0
-for marker in "-qa-scenario" "-qa-timescale" "-qa-reset" "QAAccelerator" "playFinalOperation" "replaceState" "final_ready"; do
+for marker in "-qa-scenario" "-qa-timescale" "-qa-reset" "-qa-opening" "OpeningProbe" "QAAccelerator" "playFinalOperation" "replaceState" "final_ready"; do
   n=$( (strings -a "$BIN"; nm -a "$BIN" 2>/dev/null | (xcrun swift-demangle 2>/dev/null || cat)) | grep -c -- "$marker" || true)
   echo "marker '$marker': $n"
   hits=$((hits + n))

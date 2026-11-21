@@ -393,7 +393,12 @@ struct VanOffer: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("van.later")
-                    Button(action: buy) {
+                    Button {
+                        #if NOIR_QA
+                        OpeningProbe.shared.touch(.confirm)
+                        #endif
+                        buy()
+                    } label: {
                         Text(verbatim: t("l4_van_buy", t.money(cost))).font(.toon(14, .heavy))
                             .foregroundStyle(.white)
                             .padding(.horizontal, 14)
@@ -402,6 +407,9 @@ struct VanOffer: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("van.confirm")
+                    #if NOIR_QA
+                    .openingMarker(.confirm)
+                    #endif
                 }
             }
             .foregroundStyle(Noir.paperInk)
@@ -411,7 +419,12 @@ struct VanOffer: View {
             .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Toon.window, lineWidth: 2))
             .accessibilityElement(children: .contain)
         } else {
-            Button { confirming = true; store.onFeedback?(.uiOpen) } label: {
+            Button {
+                #if NOIR_QA
+                OpeningProbe.shared.touch(.offer)
+                #endif
+                confirming = true; store.onFeedback?(.uiOpen)
+            } label: {
                 HStack(spacing: 4) {
                     Image("ArrowUp").resizable().frame(width: 18, height: 18).accessibilityHidden(true)
                     Text(verbatim: t("l4_van_offer", slotsNow, slotsAfter, t.money(cost))).font(.toon(14, .heavy))
@@ -427,6 +440,9 @@ struct VanOffer: View {
             .buttonStyle(.plain)
             .accessibilityHint(Text(verbatim: t("l4_hint_firstUpgrade")))
             .accessibilityIdentifier("van.offer")
+            #if NOIR_QA
+            .openingMarker(.offer)
+            #endif
         }
     }
 
