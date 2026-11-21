@@ -23,6 +23,10 @@ XC = ['xcrun', 'xctrace']
 SIM = ['xcrun', 'simctl']
 
 
+class CommandTimeout(Stop):
+    pass
+
+
 def kill(p):
     if os.name == 'posix':
         try: os.killpg(p.pid, signal.SIGKILL)
@@ -45,7 +49,7 @@ def run(cmd, sec=30, *, cwd=None, log=None, optional=False):
             try: data = p.communicate(timeout=sec)[0] or b''
             except sp.TimeoutExpired:
                 kill(p)
-                raise Stop(f'timeout after {sec}s: {cmd[0:3]}')
+                raise CommandTimeout(f'timeout after {sec}s: {cmd[0:3]}')
             text = data.decode('utf8', errors='replace').strip()
             if p.returncode and not optional: raise Stop(f'rc={p.returncode} {cmd[0:3]}: {log or text[-1000:]}')
             return ('' if p.returncode else text)
@@ -145,21 +149,28 @@ def build(repo, work, ev, sha, udid):
     return xc, bundle_id(runners[0]), exe, deps
 
 
-def container(udid,bundle,kind,optional=False):
-    path=run(SIM+['get_app_container',udid,bundle,kind],8,optional=optional)
+def container(udid,bundle,kind,optional=False,timeout=8):
+    path=run(SIM+['get_app_container',udid,bundle,kind],timeout,optional=optional)
     if not path and optional:return None
     need(Path(path).is_absolute() and Path(path).is_dir(),'bad simulator container');return Path(path)
 
 
-def wait_ready(p, udid, runner, start, sec=75):
+def wait_ready(p, udid, runner, start, sec=150):
     until=time.monotonic()+sec
-    while time.monotonic()<until:
-        need(p.poll() is None,'UI test exited before idle handshake'); d=container(udid,runner,'data',True)
+    retries=0
+    while (remaining:=until-time.monotonic())>0:
+        need(p.poll() is None,'UI test exited before idle handshake')
+        try:
+            d=container(udid,runner,'data',True,timeout=min(8,remaining))
+        except CommandTimeout:
+            # First installation can hold CoreSimulator's container lookup. Only
+            # the pre-ready lookup is retryable; capture and identity stay strict.
+            retries+=1; d=None
         if d:
             path=d/'Documents/m1-ready.json'
             if path.is_file() and path.stat().st_mtime_ns >= start:return path.parent,json.loads(path.read_bytes())
-        time.sleep(0.4)
-    raise Stop('timeout waiting for fresh idle handshake')
+        time.sleep(min(0.4,max(0,until-time.monotonic())))
+    raise Stop(f'timeout waiting for fresh idle handshake ({retries} lookup timeouts)')
 
 
 def identity(pid, expected):
