@@ -9,7 +9,7 @@ import sys
 MODEL = 'iPhone SE (3rd generation)'
 SIZE = (750, 1334)
 VIEWS = ('19_large_estate', '20_large_heirlooms', '21_large_van_offer', '21b_large_street_prices',
-         '22_large_van_confirm', '23_large_van_bought')
+         '21c_large_van_cancelled', '22_large_van_confirm', '23_large_van_bought')
 
 
 def sim(*args):

@@ -7,6 +7,7 @@ struct LedgerView: View {
     @Environment(LedgerStore.self) private var store
     @Environment(\.l10n) private var t
     @State private var sheet: LedgerSheet?
+    @State private var inspectingVan = false
 
     var body: some View {
         let s = store.state
@@ -19,14 +20,8 @@ struct LedgerView: View {
                         ChapterStrip(state: s, sheet: $sheet)
                         if Flow.firstVanUpgradeReady(s) {
                             VanOffer(cost: Flow.fleetCost(s, 1), slotsNow: VanCrateSlots.slots(Flow.fleetCapacity(s)),
-                                     slotsAfter: VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(s, .fleet, 1)))) {
-                                _ = store.dispatch(.upgrade(.fleet, 1))
-                                #if NOIR_QA
-                                if OpeningProbe.choice != nil, store.state.fleet == 2 {
-                                    OpeningProbe.shared.purchased()
-                                }
-                                #endif
-                            }
+                                     slotsAfter: VanCrateSlots.slots(Flow.fleetCapacity(Flow.upgraded(s, .fleet, 1))),
+                                     confirming: $inspectingVan)
                         } else if let hint = Flow.hint(s) { HintBubble(hint: hint) }
                         if let ticket = BottleneckTicket.current(s, forecast: f) {
                             BottleneckBanner(ticket: ticket, sheet: $sheet)
@@ -201,6 +196,7 @@ struct BottomBar: View {
                         }
                     }
                 Text(verbatim: t(key)).font(.toon(11, .bold)).lineLimit(1).minimumScaleFactor(0.5)
+                    .padding(.horizontal, 3)
             }
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity, minHeight: 52)

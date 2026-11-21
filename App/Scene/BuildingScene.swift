@@ -104,7 +104,13 @@ struct StreetSection: View {
                 Depot(state: state, forecast: forecast, sheet: $sheet)
                     .frame(width: Self.depotWidth, height: Self.buildingHeight)
                     .position(x: Self.depotWidth / 2, y: buildingTop + Self.buildingHeight / 2)
-                dispatcher(streetY: streetY)
+                if state.dispatcher {
+                    Dispatcher(trip: TripMotion(state.trip))
+                        .position(x: Self.depotWidth + 24, y: streetY + 2 - 33)
+                } else if state.trip != nil {
+                    hireButton.frame(height: 100, alignment: .bottom)
+                        .position(x: Self.depotWidth + 24, y: streetY - 16 - 50)
+                }
                 if let trip = TripMotion(state.trip) {
                     BuyerLeaving(quarter: SceneArt.newestQuarter(state), trip: trip, x0: w - Self.houseWidth + 10, y: streetY + 2 - 32)
                 }
@@ -113,7 +119,9 @@ struct StreetSection: View {
                               start: BuildingScene.shaftWidth + 4, end: w - Self.houseWidth + 26, h: h,
                               slots: VanCrateSlots.slots(Flow.fleetCapacity(state)), load: state.trip?.crates ?? 0,
                               grewAt: vanGrewAt)
-                goButton(w: w, h: h)
+                if !state.dispatcher && state.trip == nil {
+                    departureControls(w: w, h: h)
+                }
 
                 if state.ability(.quietWord).active > 0 {
                     AnimatedStrip(name: "ShushBubble4", frames: 4, fps: 4, size: CGSize(width: 54, height: 54))
@@ -128,6 +136,11 @@ struct StreetSection: View {
             }
             .clipped()
         }
+        #if NOIR_QA
+        .overlay(alignment: .bottomTrailing) {
+            ScreenMarker(identifier: "qa.street.bottom", title: t("l4_go")).allowsHitTesting(false)
+        }
+        #endif
         .onChange(of: state.fleet) { old, new in
             if new > old { vanGrewAt = Date().timeIntervalSinceReferenceDate }
         }
@@ -145,12 +158,13 @@ struct StreetSection: View {
         }
     }
 
-    /// "Go!" next to the waiting vehicle while nobody sends it by themselves.
-    @ViewBuilder private func goButton(w: CGFloat, h: CGFloat) -> some View {
-        if !state.dispatcher && state.trip == nil {
-            let v = SceneArt.vehicle(fleetLevel: state.fleet)
-            let vw = v.size.width * 0.8 / 3
-            let start = BuildingScene.shaftWidth + 4 + vw / 2
+    /// Grow upward from the road edge using the actual button heights. The gap and bottom inset
+    /// also leave room for the Go halo at accessibility sizes; neither action covers the other.
+    private func departureControls(w: CGFloat, h: CGFloat) -> some View {
+        let vanWidth = SceneArt.vehicle(fleetLevel: state.fleet).size.width * 0.8 / 3
+        let goX = min(w - Self.houseWidth - 34, BuildingScene.shaftWidth + 4 + vanWidth + 44)
+        return VStack(alignment: .leading, spacing: 12) {
+            hireButton.frame(width: 2 * (Self.depotWidth + 24))
             Button { store.dispatch(.tapFleet) } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "play.fill").font(.toon(12, .black))
@@ -165,30 +179,23 @@ struct StreetSection: View {
             }
             .buttonStyle(.plain)
             .accessibilityIdentifier("fleet.go")
-            .position(x: min(w - Self.houseWidth - 34, start + vw / 2 + 44), y: h - BuildingScene.roadHeight / 2)
+            .frame(width: 2 * goX)
         }
+        .padding(.bottom, 10)
+        .frame(width: w, height: h, alignment: .bottomLeading)
     }
 
     /// The dispatcher waits at the curb next to the depot; the empty place shows the price.
-    @ViewBuilder private func dispatcher(streetY: CGFloat) -> some View {
-        let x = Self.depotWidth + 24
-        if state.dispatcher {
-            Dispatcher(trip: TripMotion(state.trip)).position(x: x, y: streetY + 2 - 33)
-        } else {
-            Button { store.dispatch(.hireDispatcher) } label: {
-                ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
-                            affordable: state.cash >= FlowContent.dispatcherCost)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text(verbatim: t("l4_dispatcher_t", Content.crewDef(FlowContent.dispatcher)?.name ?? "")))
-            .accessibilityValue(Text(verbatim: t("event_cost", t.money(FlowContent.dispatcherCost))))
-            .accessibilityIdentifier("dispatcher.hire")
-            // Anchor the bottom of the price rather than the centre of a variable-height silhouette.
-            // Even at accessibility sizes the price stays on the pavement, above the Go button and its halo.
-            .fixedSize()
-            .frame(height: 100, alignment: .bottom)
-            .position(x: x, y: streetY - 16 - 50)
+    private var hireButton: some View {
+        Button { store.dispatch(.hireDispatcher) } label: {
+            ManagerSlot(crew: FlowContent.dispatcher, hired: false, cost: FlowContent.dispatcherCost,
+                        affordable: state.cash >= FlowContent.dispatcherCost)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(verbatim: t("l4_dispatcher_t", Content.crewDef(FlowContent.dispatcher)?.name ?? "")))
+        .accessibilityValue(Text(verbatim: t("event_cost", t.money(FlowContent.dispatcherCost))))
+        .accessibilityIdentifier("dispatcher.hire")
+        .fixedSize()
     }
 
     /// Watched: a cop walks the pavement. Hot: the patrol car stands at the kerb, its light turning, the cop writing.
@@ -367,8 +374,8 @@ struct VanOffer: View {
     let cost: Double
     let slotsNow: Int
     let slotsAfter: Int
-    @State private var confirming = false
-    let buy: () -> Void
+    // The screen owns disclosure; rebuilding a slip must not undo a player's open action.
+    @Binding var confirming: Bool
     @Environment(\.l10n) private var t
     @Environment(\.dynamicTypeSize) private var textSize
     @Environment(LedgerStore.self) private var store
@@ -397,7 +404,12 @@ struct VanOffer: View {
                         #if NOIR_QA
                         OpeningProbe.shared.touch(.confirm)
                         #endif
-                        buy()
+                        if store.dispatch(.upgrade(.fleet, 1)) != nil {
+                            #if NOIR_QA
+                            if OpeningProbe.choice != nil, store.state.fleet == 2 { OpeningProbe.shared.purchased() }
+                            #endif
+                            confirming = false
+                        }
                     } label: {
                         Text(verbatim: t("l4_van_buy", t.money(cost))).font(.toon(14, .heavy))
                             .foregroundStyle(.white)
@@ -436,6 +448,7 @@ struct VanOffer: View {
                 .frame(maxWidth: .infinity, minHeight: Noir.minTarget)
                 .background(Toon.window, in: Capsule())
                 .overlay(Capsule().stroke(Color.white.opacity(0.8), lineWidth: 1.5))
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityHint(Text(verbatim: t("l4_hint_firstUpgrade")))
