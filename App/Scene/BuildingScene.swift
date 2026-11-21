@@ -734,7 +734,9 @@ struct FloorRow: View {
                 }
                 // Cycle progress
                 if running {
-                    CycleBar(cycle: w.cycle ?? 0, seconds: Flow.cycleSeconds(state, good), width: machine.end - machine.start)
+                    CycleBar(widths: CycleWidths(cycle: w.cycle ?? 0, seconds: Flow.cycleSeconds(state, good),
+                                                 width: machine.end - machine.start, interval: LedgerStore.tickInterval,
+                                                 timeScale: store.timeScale), tickAt: store.lastTickAt)
                         .offset(x: machine.start, y: floorY + 6)
                 }
                 OneShotStrip(name: "DustPuff6", frames: 6, size: 120, start: rebuildAt, fps: 9)
@@ -853,22 +855,18 @@ struct LeadFigure: View {
 
 /// The running cycle's progress under the machines, smooth between simulation ticks.
 struct CycleBar: View {
-    let cycle: Double
-    let seconds: Double
-    let width: CGFloat
-    @Environment(LedgerStore.self) private var store
+    let widths: CycleWidths
+    let tickAt: Double
     @Environment(\.sceneAnimating) private var animating
 
     var body: some View {
-        let span = max(0.1, seconds)
         ZStack(alignment: .leading) {
-            Capsule().fill(Color.black.opacity(0.5)).frame(width: width, height: 7)
-            TimelineView(.animation(paused: !animating)) { tl in
-                let p = min(1, cycle + store.sinceTick(tl.date) / span)
-                Capsule().fill(Toon.up).frame(width: max(7, width * CGFloat(p)), height: 7)
-            }
+            Capsule().fill(Color.black.opacity(0.5))
+            CycleFill(widths: widths, tickAt: tickAt, active: animating)
         }
-        .frame(width: width, height: 7, alignment: .leading)
+        .frame(width: widths.width, height: 7, alignment: .leading)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }
 
