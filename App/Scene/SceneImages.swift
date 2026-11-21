@@ -84,28 +84,9 @@ final class SceneImages {
         ctx.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
         guard let decoded = ctx.makeImage(), let data = ctx.data else { return nil }
         let pixels = data.bindMemory(to: UInt8.self, capacity: w * h * 4)
-        // Union of the visible rows and columns over all frames, in frame-local pixels (row 0 is the top).
-        var minX = fw, maxX = -1, minY = h, maxY = -1
-        for y in 0..<h {
-            let row = y * w * 4
-            var rowHit = false
-            for x in 0..<w where pixels[row + x * 4 + 3] > 2 {
-                let lx = x % fw
-                if lx < minX { minX = lx }
-                if lx > maxX { maxX = lx }
-                rowHit = true
-            }
-            if rowHit {
-                if y < minY { minY = y }
-                maxY = y
-            }
-        }
-        if maxX < minX || maxY < minY { minX = 0; maxX = fw - 1; minY = 0; maxY = h - 1 }
-        // A little air so filtering at the edges stays soft.
-        minX = max(0, minX - 2); minY = max(0, minY - 2)
-        maxX = min(fw - 1, maxX + 2); maxY = min(h - 1, maxY + 2)
-        let bw = maxX - minX + 1
-        let bh = maxY - minY + 1
+        let bounds = NoirTrimBGRA(pixels, w, h, fw)
+        let (minX, minY, bw, bh) = (bounds.x, bounds.y, bounds.width, bounds.height)
+        guard bw > 0, bh > 0 else { return nil }
         var out: [CGImage] = []
         out.reserveCapacity(count)
         for i in 0..<count {

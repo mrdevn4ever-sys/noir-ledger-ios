@@ -46,6 +46,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: io.puredevn.noirledger
         OTHER_LDFLAGS: $(inherited) -ObjC
+        SWIFT_OBJC_BRIDGING_HEADER: App/Scene/SpriteBounds.h
         PRODUCT_NAME: NoirLedger
         INFOPLIST_FILE: App/Info.plist
         TARGETED_DEVICE_FAMILY: "1"

@@ -39,4 +39,27 @@ struct SpriteDecodeTests {
         #expect(black == [0, 0, 0, 255]); #expect(red == [0, 0, 255, 255])
         #expect(blue == [128, 0, 0, 128]); #expect(blank == [0, 0, 0, 0])
     }
+
+    @Test("Blank frames, alpha threshold and artwork split across frames keep their original registration")
+    func edgeUnion() throws {
+        let w = 24, h = 10, fw = 12
+        let space = try #require(CGColorSpace(name: CGColorSpace.sRGB))
+        let format = CGBitmapInfo(rawValue: CGImageAlphaInfo.last.rawValue | CGBitmapInfo.byteOrder32Big.rawValue)
+        func crop(_ marks: [(Int, Int, UInt8)]) throws -> CGRect {
+            var bytes = [UInt8](repeating: 0, count: w * h * 4)
+            for (x, y, alpha) in marks { bytes[(y * w + x) * 4 + 3] = alpha }
+            let provider = try #require(CGDataProvider(data: Data(bytes) as CFData))
+            let image = try #require(CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32,
+                                             bytesPerRow: w * 4, space: space, bitmapInfo: format, provider: provider,
+                                             decode: nil, shouldInterpolate: false, intent: .defaultIntent))
+            return try #require(SceneImages.make(image, frames: 2)).crop
+        }
+        let full = CGRect(x: 0, y: 0, width: 1, height: 1)
+        let empty = try crop([]), thresholdOnly = try crop([(9, 7, 2)])
+        #expect(empty == full && thresholdOnly == full)
+        let split = try crop([(0, 0, 2), (fw + 5, 3, 3), (7, 6, 200)])
+        #expect(split == CGRect(x: 3.0/12, y: 1.0/10, width: 7.0/12, height: 8.0/10))
+        let corners = try crop([(fw, 0, 255), (fw - 1, h - 1, 255)])
+        #expect(corners == full)
+    }
 }

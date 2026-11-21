@@ -60,6 +60,12 @@ The [large-text revision's comparison](https://github.com/mrdevn4ever-sys/noir-l
 
 The [bottleneck slip comparison](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44844026163) (`57f490e`) failed: harbour idle 1/3, late idle 0/3. Late scroll p95 and hitch time were worse in all three rounds. No tour or upload followed. The next trial removes the SwiftUI display-rate clock from the running workshop's progress bar only. Keep the seven-point dot, round caps, previous tick age, accelerated simulation, immediate wrap and static reduced-motion treatment. Check the fill geometry and lifecycle separately from the unchanged paired frame test.
 
+### Sprite preparation at entry
+
+The [progress-bar comparison](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44848812779) failed both gates: harbour idle 0/3 and late idle 1/3. The [focused retest](https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44854127393) passed the compositor lifecycle test, all 165 core tests and all three migrations, but the tools opening took 80.67 s to confirm the upgrade. Most of the observed delay was during the offer lookup; the trace does not establish when the button became visible. Neither profiler attempt produced a usable capture. Do not infer that the GPU or the economy caused either failure.
+
+On first entering the building, the cache prepares both current and upcoming floor artwork. Each running-floor atlas contains 2,836,512 pixels; the previous decoder examined every one even when its crop was already determined. Test one change: find the top and bottom occupied rows, then examine only points that could widen the shared frame-local crop. Keep the alpha threshold, filtering margin, BGRA decoding and per-frame bitmaps unchanged. A host comparison matched an independent alpha-mask reference across 495 catalog PNGs and 1,044 synthetic layouts. This establishes crop equivalence, not a faster iPhone opening or better steady-state frame times. Repeat the unmodified opening and paired frame tests before promotion.
+
 ## Evidence and promotion
 
 - From the **first interactive screen**, aim for first visible player-triggered booking ≤5 s and first confirmed upgrade ≤20 s. Measure all three starts in unaccelerated UI tests. Python establishes affordability and required actions, not how fast a person reads or acts. Keep the original [baseline](../scripts/qa/flow_opening.py) for comparison.
