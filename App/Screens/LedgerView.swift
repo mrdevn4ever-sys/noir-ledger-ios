@@ -103,88 +103,72 @@ struct HintBubble: View {
     }
 }
 
-/// The one place where the flow loses the most right now, in a single line with the fix; the scene itself marks
-/// every other station that holds back with a red "!".
-struct BottleneckPanel: View {
-    let state: FlowState
-    let forecast: Forecast
-    @Binding var sheet: LedgerSheet?
-
-    var body: some View {
-        if let g = Self.worst(state, forecast), let gf = forecast.good(g), let w = state.workshop(g) {
-            BottleneckBanner(good: g, forecast: gf, workshop: w, state: state, sheet: $sheet)
-        }
-    }
-
-    /// The good whose stuck station costs the most cash per minute; a good piling up on a full shelf comes first.
-    static func worst(_ s: FlowState, _ f: Forecast) -> Good? {
-        let stuck = s.openGoods.compactMap { g -> (Good, Double)? in
-            guard let gf = f.good(g), gf.bottleneck != .balanced, StationText.fix(gf.bottleneck, good: g, state: s) != nil else { return nil }
-            let price = gf.sold > 0 ? gf.income / gf.sold : 1
-            let lost = max(0, max(gf.production, gf.demand) - gf.sold) * price
-            let full = (s.workshop(g)?.stock ?? 0) >= Flow.shelfCapacity(s, g) - 1e-9
-            return (g, lost + (full ? 1e30 : 0))
-        }
-        return stuck.max { $0.1 < $1.1 }?.0
-    }
-}
-
 /// The worst good's line: where it stops, the three rates, the station that would fix it.
 struct BottleneckBanner: View {
-    let good: Good
-    let forecast: GoodForecast
-    let workshop: WorkshopState
-    let state: FlowState
+    let ticket: BottleneckTicket
     @Binding var sheet: LedgerSheet?
     @Environment(\.l10n) private var t
 
     var body: some View {
-        let fix = StationText.fix(forecast.bottleneck, good: good, state: state)
         VStack(alignment: .leading, spacing: 2) {
-            bannerRow(fix: fix)
+            bannerRow
             if typeSize.isAccessibilitySize { rates }
         }
         .padding(.horizontal, Noir.s2).padding(.vertical, 4)
         .background(Color(hex: 0x6A2026).opacity(0.55), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Color(hex: 0xE5484D).opacity(0.6), lineWidth: 1))
         .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("neck.\(good.rawValue)")
+        .accessibilityIdentifier("neck.\(ticket.good.rawValue)")
     }
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var rates: some View {
-        Text(verbatim: t("l4_neck_numbers", t.money(forecast.production), t.money(forecast.carried), t.money(forecast.demand)))
-            .font(.toon(11, .semibold)).monospacedDigit()
-            .foregroundStyle(.white.opacity(0.8))
-            .fixedSize(horizontal: false, vertical: true)
+        BottleneckRates(production: ticket.production, carried: ticket.carried, demand: ticket.demand).equatable()
     }
 
-    private func bannerRow(fix: Station?) -> some View {
+    private var bannerRow: some View {
         HStack(alignment: .center, spacing: Noir.s2) {
             BottleneckDot()
-            Mark(Glyph.product(good.product), size: 18)
+            Mark(Glyph.product(ticket.good.product), size: 18)
             VStack(alignment: .leading, spacing: 1) {
-                Text(verbatim: t(NeckText.key(forecast.bottleneck), t(GoodText.name(good))))
+                Text(verbatim: t(NeckText.key(ticket.neck), t(GoodText.name(ticket.good))))
                     .font(.toon(13, .heavy))
                     .foregroundStyle(.white)
                     .fixedSize(horizontal: false, vertical: true)
                 if !typeSize.isAccessibilitySize { rates }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            if let fix {
-                Button { sheet = .station(fix) } label: {
-                    Text(verbatim: t("l4_neck_fix"))
-                        .font(.toon(14, .heavy))
-                        .foregroundStyle(Color(hex: 0x1B1B28))
-                        .padding(.horizontal, 14).frame(minHeight: 36)
-                        .background(Toon.window, in: Capsule())
-                }
-                .buttonStyle(.plain)
-                .frame(minHeight: Noir.minTarget)
-                .accessibilityIdentifier("neck.\(good.rawValue).fix")
+            Button { sheet = .station(ticket.fix) } label: {
+                Text(verbatim: t("l4_neck_fix"))
+                    .font(.toon(14, .heavy))
+                    .foregroundStyle(Color(hex: 0x1B1B28))
+                    .padding(.horizontal, 14).frame(minHeight: 36)
+                    .background(Toon.window, in: Capsule())
             }
+            .buttonStyle(.plain)
+            .frame(minHeight: Noir.minTarget)
+            .accessibilityIdentifier("neck.\(ticket.good.rawValue).fix")
         }
+    }
+}
+
+/// Only the three forecast values feed number formatting. Language and text size stay live environment inputs.
+private struct BottleneckRates: View, Equatable {
+    let production: Double
+    let carried: Double
+    let demand: Double
+    @Environment(\.l10n) private var t
+
+    nonisolated static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.production == rhs.production && lhs.carried == rhs.carried && lhs.demand == rhs.demand
+    }
+
+    var body: some View {
+        Text(verbatim: t("l4_neck_numbers", t.money(production), t.money(carried), t.money(demand)))
+            .font(.toon(11, .semibold)).monospacedDigit()
+            .foregroundStyle(.white.opacity(0.8))
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 

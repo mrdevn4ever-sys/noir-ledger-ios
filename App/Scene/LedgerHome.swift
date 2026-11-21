@@ -23,7 +23,9 @@ struct LedgerView: View {
                                 _ = store.dispatch(.upgrade(.fleet, 1))
                             }
                         } else if let hint = Flow.hint(s) { HintBubble(hint: hint) }
-                        if s.counters.deliveries > 0 { BottleneckPanel(state: s, forecast: f, sheet: $sheet) }
+                        if let ticket = BottleneckTicket.current(s, forecast: f) {
+                            BottleneckBanner(ticket: ticket, sheet: $sheet)
+                        }
                     }
                     .padding(.horizontal, Noir.s3)
                     .padding(.top, 2)
