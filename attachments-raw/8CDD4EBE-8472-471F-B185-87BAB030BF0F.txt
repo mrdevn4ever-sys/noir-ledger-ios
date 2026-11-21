@@ -1,0 +1,1 @@
+perf fps=59.0 p95=16.7ms worst=62.3ms hitch=13.2ms/s dropped=4 frames=295

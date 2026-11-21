@@ -1,0 +1,125 @@
+# CI evidence — a5830a2c8bb999174ec12d8d229dc2230de731bb
+
+- Run: https://github.com/mrdevn4ever-sys/noir-ledger-ios/actions/runs/44886330754 (attempt 1)
+- Generated: 2026-11-21T09:51:27+00:00
+- Runner: {'os': 'macOS', 'image': 'macos26', 'image_version': '20261117.0516.1', 'macos': '26.7.2'}
+- Xcode: Xcode 26.6 Build version 17F113
+- Swift: swift-driver version: 1.148.6 Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+- Simulator: {'name': 'iPhone 17', 'runtime': 'iOS 26.5', 'udid': '8EBAA496-5654-45BF-897F-3C4FD73935F1'}
+- Xcode tests: {'result': 'Failed', 'totalTestCount': 67, 'passedTests': 66, 'failedTests': 1, 'skippedTests': 0}
+- Core tests: ✔ Test run with 165 tests in 14 suites passed after 19.605 seconds.
+- Playthroughs:
+  - seed=1 won after 3.16 h, raids=0, investigations=0, peakHeat=74, legacy=19
+  - NG+ won after 5.42 h
+  - seed=42 won after 7.83 h, raids=0, investigations=0, peakHeat=71, legacy=20
+  - seed=2024 won after 11.05 h, raids=0, investigations=2, peakHeat=81, legacy=22
+- Checks:
+  - l10n: L10N_OK
+  - asset-parity: ASSET_PARITY_OK
+  - scan: SCAN_OK
+- Screenshots (105):
+  - de_42_settings.png
+  - de_flow_01_old_town.png
+  - de_flow_02_crown_goals.png
+  - de_flow_03_before_floor.png
+  - de_flow_04_after_floor.png
+  - de_flow_05_last_contract.png
+  - de_flow_06_contract_running.png
+  - de_flow_07_finale.png
+  - de_flow_08_active_challenge.png
+  - de_tour_00_estate_door.png
+  - de_tour_01_prologue.png
+  - de_tour_01b_letter.png
+  - de_tour_02_cellar.png
+  - de_tour_02b_van_confirm.png
+  - de_tour_02c_van_bigger.png
+  - de_tour_03_bottleneck.png
+  - de_tour_04_upgrade_preview.png
+  - de_tour_05_orders.png
+  - de_tour_06_chain.png
+  - de_tour_07_chapter.png
+  - de_tour_08_harbour.png
+  - de_tour_09_harbour_fleet.png
+  - de_tour_10_city.png
+  - de_tour_11_crew.png
+  - de_tour_12_book.png
+  - de_tour_13_night.png
+  - de_tour_14_late.png
+  - de_tour_15_hot_quarter.png
+  - de_tour_15b_customers.png
+  - de_tour_16_challenges.png
+  - de_tour_17_return.png
+  - de_tour_17b_return_lead_only.png
+  - de_tour_18_large_text.png
+  - de_tour_19_large_estate.png
+  - de_tour_20_large_heirlooms.png
+  - de_tour_21_large_van_offer.png
+  - de_tour_21b_large_street_prices.png
+  - de_tour_21c_large_van_cancelled.png
+  - de_tour_22_large_van_confirm.png
+  - de_tour_23_large_van_bought.png
+  - en_01_estate.png
+  - en_01b_heirlooms.png
+  - en_02_cellar.png
+  - en_02b_van_confirm.png
+  - en_02c_van_bigger.png
+  - en_03_upgrade_preview.png
+  - en_04_bottleneck.png
+  - en_05_fix_preview.png
+  - en_06_orders.png
+  - en_07_order_running.png
+  - en_08_chapter_goals.png
+  - en_09_chapter_news.png
+  - en_10_city.png
+  - en_11_crew.png
+  - en_12_book.png
+  - en_13_return.png
+  - en_14_return_lead_poor.png
+  - en_15_return_lead_rich.png
+  - en_40_shop.png
+  - en_41_rewards.png
+  - en_43_reset_confirm.png
+  - en_44_save_recovered.png
+  - en_45_future_save.png
+  - en_50_large_text.png
+  - en_51_large_text_fleet.png
+  - en_60_home_screen_icon.png
+  - en_flow_01_old_town.png
+  - en_flow_02_crown_goals.png
+  - en_flow_03_before_floor.png
+  - en_flow_04_after_floor.png
+  - en_flow_05_last_contract.png
+  - en_flow_06_contract_running.png
+  - en_flow_07_finale.png
+  - en_flow_08_active_challenge.png
+  - en_tour_00_estate_door.png
+  - en_tour_01_prologue.png
+  - en_tour_01b_letter.png
+  - en_tour_02_cellar.png
+  - en_tour_02b_van_confirm.png
+  - en_tour_02c_van_bigger.png
+  - en_tour_03_bottleneck.png
+  - en_tour_04_upgrade_preview.png
+  - en_tour_05_orders.png
+  - en_tour_06_chain.png
+  - en_tour_07_chapter.png
+  - en_tour_08_harbour.png
+  - en_tour_09_harbour_fleet.png
+  - en_tour_10_city.png
+  - en_tour_11_crew.png
+  - en_tour_12_book.png
+  - en_tour_13_night.png
+  - en_tour_14_late.png
+  - en_tour_15_hot_quarter.png
+  - en_tour_15b_customers.png
+  - en_tour_16_challenges.png
+  - en_tour_17_return.png
+  - en_tour_17b_return_lead_only.png
+  - en_tour_18_large_text.png
+  - en_tour_19_large_estate.png
+  - en_tour_20_large_heirlooms.png
+  - en_tour_21_large_van_offer.png
+  - en_tour_21b_large_street_prices.png
+  - en_tour_21c_large_van_cancelled.png
+  - en_tour_22_large_van_confirm.png
+  - en_tour_23_large_van_bought.png
